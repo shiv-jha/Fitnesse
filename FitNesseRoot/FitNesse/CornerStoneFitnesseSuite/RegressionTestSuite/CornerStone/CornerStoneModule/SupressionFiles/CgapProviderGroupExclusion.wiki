@@ -1,0 +1,159 @@
+---
+Test
+---
+!define fileType {AET_MA}
+!define providerType {CGAPPrvGrpExclusion}
+!define elementType {NETWORK}
+!define D1_HDR_Data {Provider Group ID Type|Provider Group ID|Provider Group Name|Provider Group State|Date Added}
+!define D2_Data {$currentdate|Chisolm|GA|20180228}
+!define D3_Data {$currentdate1|Chisolm|GA|20180228}
+!define D4_Data {|Chisolm|GA|20180228}
+!define D5_Data {$currentdate3||GA|20180228}
+!define D6_Data {$currentdate4|Chisolm||20180228}
+!define D7_Data {$currentdate5|Chisolm|GA|}
+!define D10_CNT_Data {T|9}
+!define env {TST}
+!define var = $currentdatetime
+
+!define providerdata {
+${D1_HDR_Data}
+${elementType}| ${D2_Data} |
+              | ${D3_Data} |
+${elementType}| ${D4_Data} |
+${elementType}| ${D5_Data} |
+${elementType}| ${D6_Data} |
+${elementType}| ${D7_Data} |
+${D10_CNT_Data}}
+
+!| script | File Support |
+| $currentdatetime= | make id using Time | yyyyMMddHHmmss |
+| given the | ${fileType}_${providerType} | PAF PRVG file with content | ${providerdata} |
+
+| script | File Support |
+| command | ${paf_command} | In | ${pafhost} | To | ${pafuser} | Location | ${pafpass} | Zone |
+
+!***> 2. !style_green('''This step will wait till file moves to 104 status)'''
+
+| script |
+| check | query | select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT' | For | 104 | And Retry | 120 | times | true |
+
+*!
+!| script | DbTable |
+| query | select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT' |
+| $filekey= | valueofcolumn | FILE_KEY |
+
+| Query:Db Table | select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT' | ${env} |
+| FILE_KEY |
+| $filekey |
+
+
+| Query:Db Table |SELECT * FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID_TYP IS NULL AND PRV_GRP_SK IN (select PRV_GRP_SK from oct_ioa_mbr_sprs  where file_key = $filekey))| ${env} |
+| FILE_KEY | SPRS_TYP  | VRSN     | DATE_ADDED            | REJ_IND |
+| $filekey | EXCLUSION | $filekey | 2018-02-28 06:00:00.0 | Y |
+
+
+| Query:Db Table | SELECT * FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID IS NULL AND PRV_GRP_SK IN (select PRV_GRP_SK from oct_ioa_mbr_sprs  where file_key = $filekey))| ${env} |
+| FILE_KEY | SPRS_TYP  | VRSN     | DATE_ADDED            | REJ_IND |
+| $filekey | EXCLUSION | $filekey | 2018-02-28 06:00:00.0 | Y |
+
+
+| Query:Db Table | SELECT * FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_NM IS NULL AND PRV_GRP_SK IN (select PRV_GRP_SK from oct_ioa_mbr_sprs  where file_key = $filekey))| ${env} |
+| FILE_KEY | SPRS_TYP  | VRSN     | DATE_ADDED            | REJ_IND |
+| $filekey | EXCLUSION | $filekey | 2018-02-28 06:00:00.0 | N |
+
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY IN ($filekey) AND REJ_IND = 'N' AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID_TYP IS NOT NULL) AND ROWNUM = 1 ORDER BY SPRS_SK ASC |
+| $PRV_GRP_SK= | valueofcolumn | PRV_GRP_SK |
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY IN ($filekey) AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID_TYP IS NULL) |
+| $PRV_GRP_SK1= | valueofcolumn | PRV_GRP_SK |
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY IN ($filekey) AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID IS NULL) |
+| $PRV_GRP_SK2= | valueofcolumn | PRV_GRP_SK |
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY IN ($filekey) AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_NM IS NULL) |
+| $PRV_GRP_SK3= | valueofcolumn | PRV_GRP_SK |
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY IN ($filekey) AND DATE_ADDED IS NULL |
+| $PRV_GRP_SK4= | valueofcolumn | PRV_GRP_SK |
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_IOA_STATE WHERE STATE_SK IN (SELECT STATE_SK FROM OCT_IOA_PRV_GRP_STATE WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY =$filekey))) AND STATE IS NULL|
+| $STATE_SK1= | valueofcolumn | STATE_SK |
+
+| Query:Db Table | select * from oct_ioa_prv_grp where prv_grp_sk = $PRV_GRP_SK | ${env} |
+| PRV_GRP_SK  | PRV_GRP_NM | PRV_GRP_ID_TYP |
+| $PRV_GRP_SK | Chisolm    | NETWORK|
+
+| Query:Db Table | select * from oct_ioa_prv_grp where prv_grp_sk = $PRV_GRP_SK1 | ${env} |
+| PRV_GRP_SK   | PRV_GRP_NM | PRV_GRP_ID_TYP |
+| $PRV_GRP_SK1 | Chisolm    ||
+
+| Query:Db Table | select * from oct_ioa_prv_grp where prv_grp_sk = $PRV_GRP_SK2 | ${env} |
+| PRV_GRP_SK   | PRV_GRP_NM | PRV_GRP_ID |
+| $PRV_GRP_SK2 | Chisolm    ||
+
+| Query:Db Table | select * from oct_ioa_prv_grp where prv_grp_sk = $PRV_GRP_SK3 | ${env} |
+| PRV_GRP_SK   | PRV_GRP_NM |
+| $PRV_GRP_SK3 ||
+
+| Query:Db Table | select * from oct_ioa_prv_grp where prv_grp_sk = $PRV_GRP_SK4 | ${env} |
+| PRV_GRP_SK   | PRV_GRP_NM | DATE_ADDED |
+| $PRV_GRP_SK4 | Chisolm    ||
+
+| Query:Db Table | select * from OCT_IOA_STATE where state_sk = $state_sk1 | ${env} |
+| STATE_SK   | STATE |
+| $STATE_SK1 ||
+
+!| script | DbTable |
+| query | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE PROCESS_NM = 'cdi' AND ELMNT_NM = 'prvGrpId' AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID_TYP IS NULL AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey))))|
+| $ERR_CD1=   | valueofcolumn | ERR_CD |
+| $ERR_DESC1= | valueofcolumn | ERR_DESC |
+
+!| script | DbTable |
+| query | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE FILE_KEY = $filekey AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID IS NULL)))|
+| $ERR_CD2=   | valueofcolumn | ERR_CD |
+| $ERR_DESC2= | valueofcolumn | ERR_DESC |
+
+!| script | DbTable |
+| query | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE FILE_KEY = $filekey AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_NM IS NULL)))|
+| $ERR_CD3=   | valueofcolumn | ERR_CD |
+| $ERR_DESC3= | valueofcolumn | ERR_DESC |
+
+!| script | DbTable |
+| query | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE FILE_KEY = $filekey AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey AND DATE_ADDED IS NULL))|
+| $ERR_CD4=   | valueofcolumn | ERR_CD |
+| $ERR_DESC4= | valueofcolumn | ERR_DESC |
+
+!| script | DbTable |
+| query | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM (SELECT STATE_SK FROM OCT_IOA_STATE WHERE STATE_SK IN (SELECT STATE_SK FROM OCT_IOA_PRV_GRP_STATE WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY =$filekey))) AND STATE IS NULL)) AND ELEMENT_NM = 'states' and PROCESS_NM = 'cdi') AND DATA_VAL_IN_ERR_TXT IS NULL)|
+| $ERR_CD5=   | valueofcolumn | ERR_CD |
+| $ERR_DESC5= | valueofcolumn | ERR_DESC |
+
+| Query:Db Table | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE PROCESS_NM = 'cdi' AND ELMNT_NM = 'prvGrpId' AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID_TYP IS NULL AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey))))| ${env} |
+| ERR_CD   | ERR_DESC  | ERR_SVRTY_TYP |
+| $ERR_CD1 |$ERR_DESC1 | REJECT        |
+
+
+| Query:Db Table | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE FILE_KEY = $filekey AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_ID IS NULL)))| ${env} |
+| ERR_CD   | ERR_DESC  | ERR_SVRTY_TYP |
+| $ERR_CD2 |$ERR_DESC2 | REJECT        |
+
+
+| Query:Db Table | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE FILE_KEY = $filekey AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey AND PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_NM IS NULL)))| ${env} |
+| ERR_CD   | ERR_DESC  | ERR_SVRTY_TYP |
+| $ERR_CD3 |$ERR_DESC3 | WARNING       |
+
+
+| Query:Db Table | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE FILE_KEY = $filekey AND RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY = $filekey AND DATE_ADDED IS NULL))| ${env} |
+| ERR_CD   | ERR_DESC  | ERR_SVRTY_TYP |
+| $ERR_CD4 |$ERR_DESC4 | WARNING       |
+
+| Query:Db Table | SELECT * FROM DQ_ERR WHERE ERR_CD IN (SELECT ERR_CD FROM DQ_ERR_RSLT WHERE RECORD_ID IN (SELECT SPRS_SK FROM OCT_IOA_MBR_SPRS WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM (SELECT STATE_SK FROM OCT_IOA_STATE WHERE STATE_SK IN (SELECT STATE_SK FROM OCT_IOA_PRV_GRP_STATE WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_PRV_GRP WHERE PRV_GRP_SK IN (SELECT PRV_GRP_SK FROM OCT_IOA_MBR_SPRS WHERE FILE_KEY =$filekey))) AND STATE IS NULL)) AND ELEMENT_NM = 'states' and PROCESS_NM = 'cdi') AND DATA_VAL_IN_ERR_TXT IS NULL)| ${env} |
+| ERR_CD   | ERR_DESC  | ERR_SVRTY_TYP |
+| $ERR_CD5 |$ERR_DESC5 | WARNING       |

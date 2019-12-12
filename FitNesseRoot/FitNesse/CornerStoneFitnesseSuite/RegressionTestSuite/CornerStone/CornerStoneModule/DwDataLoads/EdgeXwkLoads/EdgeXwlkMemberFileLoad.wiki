@@ -1,0 +1,46 @@
+---
+Test
+---
+!define fileType {member_xwalk}
+
+!define D1_HDR_Data {Id|DeIdentifiedId|IssrId|IdModifier|DateOfService|UserDefinedFields}
+!define D2_XWK_Data {MBRMASKEDDOB101|51485|2001|2017|USERDEFINED101}
+!define env {TST}
+
+
+!define EDGEXWALKdata {${D1_HDR_Data}
+|$currentdatetime|${D2_XWK_Data}}
+
+
+!|script          |File Support                                         |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                   |
+|given the edgexwk|${fileType}       |file with content|${EDGEXWALKdata}|
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_ED_XWK_E|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|113|And Retry|160|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                          |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM|FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |ACA         |                |           |            |             |1          |
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+|Query:Db Table|select * from EDGE_XWALK_ENRL_MBR where file_key = $filekey|${env}                                                         |
+|FILE_KEY      |INS_MBR_ID                                                 |INS_MBR_MOD_ID|INS_MBR_ID_MASKED|ISSR_ID|DOS_YR|USR_DFN_TXT    |
+|$filekey      |$currentdatetime                                           |2001          |MBRMASKEDDOB101  |51485  |2017  |USERDEFINED101 |

@@ -1,0 +1,46 @@
+!include .FitNesse.CornerStoneFitnesseSuite.SuiteSetUp
+
+
+#!define TST_DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0835.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts00svc.uhc.com)))-!}
+!define TST_DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0010)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=payts04.uhc.com)))-!}
+!define UAT_DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0009)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=payts06.uhc.com)))-!}
+!define DEV_DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsld0002)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=paydv04.uhc.com)))-!}
+
+
+!define env {UAT}
+
+
+!*> # Test server .....
+!define ftpserver {APSRT4214}
+!define env {UAT}
+!define ftpdir {/cas/TST/data/inb/cs/bpm}
+!define DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0836.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts01svc.uhc.com)))-!}
+!define DB_USER {cas20_ods}
+!define DB_PASS {cas20_ods9}
+
+
+!define createddir {C:\cas\forftp\}
+!define ftpuser {bpmuser}
+!define ftppass {FRbG7aCD}
+!define ftp_out_dir {/cas/TST/data/out/}
+!define WESB_CAS20 {/replaceuser/IBM/WebSphere/ESB/profiles/WESB_CAS20}
+!define CAS20_LIBRARY {/cas/TST/library/}
+!define trgfilename {CMS_ENC0022_OUTBOUND_I_GOOD_CLAIM_SUBMISSION.START}
+!define trgifilename {CMS_ENC0022_OUTBOUND_I_GOOD_CLAIM_SUBMISSION.START}
+!define encryptiondate {'2999/09/30'}
+!define outboundfiledir {/cas/${env}/data/proc/out/non-cms/837}
+!define ftp_poll_dir {/cas/TST/poll/}
+
+
+
+*!
+
+|Library                                                                            |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DB_URL}|${DB_USER}|${DB_PASS}|
+
+
+
+
+#|script|
+#|when outbound is stopped for 837I|
+#|when outbound is stopped for 837P|

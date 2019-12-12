@@ -1,0 +1,82 @@
+!define fileType {PROVIDER}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+
+!define New_file_name {PROVIDER_126_MR_20170720_18513530_P.DAT}
+!define localDir {PROVIDER}
+!define destDir {/cas/TST/data/inb/cornerstone/custom/}
+!define newftphost {apsrt1029}
+!define newftpuser {wesbuser}
+!define newftppass {uT3MALxe}
+!define localdir {E:\\Automation\\Rahul\\Prov_Diff\\}
+!define command {sh /mapr/datalake/optum/optuminsight/rqnsdatalake/scripts/cornerstone/shell/differentialProcessJob.sh STG rqnsdev}
+!define diffCommand {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/shell/differentialProcessJob.sh TST}
+!define dbftphost {dbsls0324}
+!define dbftpuser {csappdev}
+!define dbftppass {eH5yWM62}
+!define diff_New_file_name {DIFF_PROVIDER_91_20170720_155524211_EDW_P.DAT}
+!define diffFileLoc {/mapr/datalake/optum/optuminsight/rqnsdev/out/provider/differential/arch/}
+!define diffFile {E:\\Automation\\Rahul\\Prov_Diff\\${diff_New_file_name}}
+!define sourceFile {E:\\Automation\\Rahul\\Prov_Diff\\PROVIDER_126_MR_20170717_18513526_P_Source.DAT}
+!define compareFile {E:\\Automation\\Rahul\\Prov_Diff\\compareFile_126.DAT}
+
+
+!define fileType {PROVIDER}
+!define sub_client_sk {165}
+!define clientText {OMN-UT}
+!define clientUniqueText {26f3b4b0-fbf0-4954-a95b-d044415994ac}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20170505|20170505|20170505112079|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_ENT_Data {1257|GENERIC OUT OF COUNTRY SPEC|GENERIC OUT OF COUNTRY SPEC|||||UNKNOWN||N||20010830|20791231}
+!define D4_ID_Data {1257|NPI|1999999984|||20010830|20791231}
+!define D5_ID_Data {1257|TIN|000000031|GENERIC OUT OF COUNTRY SPEC||20010830|20791231}
+!define D6_ID_Data  {1257|SPID|000000000731|||20010830|20791231|FACETS}
+!define D7_ID_Data  {1257|OTHR|E01300008244|||20010830|20791231}
+!define D8_SPC_Data {1257|2|41|20010830|20791231}
+!define D9_ADR_Data {1257|P|MEMBER REIMBURSEMENT||LAS VEGAS|NV|99999|||20010830|20791231}
+!define D10_FTR_Data {${fileType}|${sub_client_sk}|20170505|20170505|20170505112079|6.1}
+!define D11_CNT_Data {1|1|4|1|0|1|0|8}
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define providerdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+ENT|$currentdatetime|${D3_ENT_Data}
+ID|$currentdatetime|${D4_ID_Data}
+ID|$currentdatetime|${D5_ID_Data}
+ID|$currentdatetime|${D6_ID_Data}
+ID|$currentdatetime|${D7_ID_Data}
+SPC|$currentdatetime|${D8_SPC_Data}
+ADR|$currentdatetime|${D9_ADR_Data}
+FTR|${D10_FTR_Data}
+CNT|${D11_CNT_Data}}
+
+!|script          |File Support                                                     |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss                   |
+|given the        |${fileType}_${sub_client_sk}_MR|file with content|${providerdata}|
+
+|script |File Support                                                   |
+|command|${command}|In|${pafhost}|To|${pafuser}|Location|${pafpass}|Zone|
+|       |sleep     |700                                                 |
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|94|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+|comment                                                                                                          |
+|script|File Support                                                                                              |
+|ftp   |${New_file_name}|File|${localdir}|In|${newftphost}|To|${newftpuser}|Location|${newftppass}|Zone|${destDir}|
+
+
+|comment                                                   |
+|script |File Support                                      |
+|compare|${diffFile}|Text|${sourceFile}|File|${compareFile}|

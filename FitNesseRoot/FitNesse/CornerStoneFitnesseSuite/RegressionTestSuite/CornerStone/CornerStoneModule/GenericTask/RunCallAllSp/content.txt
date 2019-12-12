@@ -1,0 +1,2 @@
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|

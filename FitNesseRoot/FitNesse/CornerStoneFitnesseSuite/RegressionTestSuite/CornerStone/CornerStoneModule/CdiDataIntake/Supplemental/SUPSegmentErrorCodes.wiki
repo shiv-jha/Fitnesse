@@ -1,0 +1,349 @@
+---
+Test
+---
+!define fileType {SUP}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define sup_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/supplemental/dataintake.sh TST rqnsdev supplemental}
+
+!define D1_HDR_Data {${fileType}|${subclisk}|20180101|20180111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D6_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D7_SUP_Data {|MBR0874151|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D8_SUP_Data {123||412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D9_SUP_Data {123|M838887||CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D10_SUP_Data {123|M406743|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D11_SUP_Data {123|M416570|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D12_SUP_Data {123|M406743|455|||||20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D13_SUP_Data {123|M314885|412|CAD|10A|mg/dl|TEST2||PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D14_SUP_Data {123|M879322|412|ACA|10|mg/dl|TEST2|20182711|PRV1235||L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D15_SUP_Data {123|M352613|412|BMI|10|mg/dl|TEST2|20181127||1234||L5250|10|111111|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D16_SUP_Data {123|M191075|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|11122|L5250|10||DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D17_SUP_Data {123|M199300|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|11111|10|DF12|1111111|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|XX|spc|AD|user1|user2|user3}
+!define D18_SUP_Data {123|M457021|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250||10|DF12|||S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D19_SUP_Data {123|M694874|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|0|DF12|DF1297Z|S61211S||L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D20_SUP_Data {123|M860432|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|9|DF12|DF1297Z|1111111|S61222S|L4397|CVX|12634047178|46388-5|ZZ|SU|spc|AD|user1|user2|user3}
+!define D21_SUP_Data {123|M1028721|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|11|DF12|DF1297Z|S61211S|1111111|L4397|CVX|12634047178|46388-5|J2||spc|AD|user1|user2|user3}
+!define D22_SUP_Data {123|MBR0874103|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|11111|CVX|111111|46388-5||SU|spc|AD|user1|user2|user3}
+!define D23_SUP_Data {123|M733723|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250||DF12|DF1297Z|S61211S|S61222S||RXNORM|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D24_SUP_Data {123|M775502|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|ZZZ|12634047178||J2|SU|spc|AD|user1|user2|user3}
+!define D25_SUP_Data {123|M8890505201|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|NDC|12634047178|11111-1|J2|SU||KK|user1|user2|user3}
+!define D26_SUP_Data {123|20160616|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX||46388-5|J2|SU|spc||user1|user2|user3}
+!define D27_SUP_Data {123|20160615|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234||||||||||||J2|SU|spc|AD|user1|user2|user3}
+!define D28_SUP_Data {123|M893116|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|||||||||NDC|12634047178||J2|SU|spc|AD|user1|user2|user3}
+!define D29_SUP_Data {123|120959675|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|||||||||||46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D30_SUP_Data {123|120599934|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397||||J2|SU|spc|AD|user1|user2|user3}
+!define D31_SUP_Data {123|A10122249|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D32_SUP_Data {123|MBR0874155|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D4_FTR_Data {${fileType}|${subclisk}|20180101|20180111|$currentdatetime|6.1}
+!define D5_CNT_Data {1|27|28}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define supplementaldata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+SUP||${D6_SUP_Data}
+SUP|$currentdatetime|${D7_SUP_Data}
+SUP|$currentdatetime+1|${D8_SUP_Data}
+SUP|$currentdatetime+2|${D9_SUP_Data}
+SUP|$currentdatetime+3|${D10_SUP_Data}
+SUP|$currentdatetime+4|${D11_SUP_Data}
+SUP|$currentdatetime+5|${D12_SUP_Data}
+SUP|$currentdatetime+6|${D13_SUP_Data}
+SUP|$currentdatetime+7|${D14_SUP_Data}
+SUP|$currentdatetime+8|${D15_SUP_Data}
+SUP|$currentdatetime+9|${D16_SUP_Data}
+SUP|$currentdatetime+10|${D17_SUP_Data}
+SUP|$currentdatetime+11|${D18_SUP_Data}
+SUP|$currentdatetime+12|${D19_SUP_Data}
+SUP|$currentdatetime+13|${D20_SUP_Data}
+SUP|$currentdatetime+14|${D21_SUP_Data}
+SUP|$currentdatetime+15|${D22_SUP_Data}
+SUP|$currentdatetime+16|${D23_SUP_Data}
+SUP|$currentdatetime+17|${D24_SUP_Data}
+SUP|$currentdatetime+18|${D25_SUP_Data}
+SUP|$currentdatetime+19|${D26_SUP_Data}
+SUP|$currentdatetime+20|${D27_SUP_Data}
+SUP|$currentdatetime+21|${D28_SUP_Data}
+SUP|$currentdatetime+22|${D29_SUP_Data}
+SUP|$currentdatetime+23|${D30_SUP_Data}
+SUP|$currentdatetime+24|${D31_SUP_Data}
+SUP|$currentdatetime+25|${D32_SUP_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata}|
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6004|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180147'|For|CS180147|And Retry|15|times|true|
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180147' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180147                                                                                                                      |SUP   |supplRecId			   |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180148'|For|CS180148|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180148' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180148                                                                                                                      |SUP   |supplModId                  |  		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey'  and ERR_CD='CS180149'|For|CS180149|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180149' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180149                                                                                                                      |SUP   |mbrId                                    |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180150'|For|CS180150|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180150' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180150                                                                                                                      |SUP   |mbrModId			                       |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180151'|For|CS180151|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180151' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM								   |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180151                                                                                                                      |SUP   |mbrModId   							   |455		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180152' and DATA_VAL_IN_ERR_TXT='A10122249' |For|CS180152|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180152' and file_key = $filekey and DATA_VAL_IN_ERR_TXT='A10122249'|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180152                                                                                                                      |SUP   |mbrId                                    |A10122249            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180153'|For|CS180153|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180153' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180153                                                                                                                      |SUP   |measure			   |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180154' and DATA_VAL_IN_ERR_TXT is null|For|CS180154|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180154' and file_key = $filekey and DATA_VAL_IN_ERR_TXT is null|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180154                                                                                                                      |SUP   |supplRsltNbr                  ||
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180154' and DATA_VAL_IN_ERR_TXT is not null|For|CS180154|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180154' and file_key = $filekey and DATA_VAL_IN_ERR_TXT='10A'|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180154                                                                                                                      |SUP   |supplRsltNbr                                    |10A       |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180155'|For|CS180155|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180155' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180155                                                                                                                      |SUP   |supplRsltUnit			                       |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180156'|For|CS180156|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180156' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM								   |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180156                                                                                                                      |SUP   |supplRslt   							   |		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180157' and DATA_VAL_IN_ERR_TXT is null|For|CS180157|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180157' and file_key = $filekey and DATA_VAL_IN_ERR_TXT is null|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180157                                                                                                                      |SUP   |supplDt                                    |            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180157'  and DATA_VAL_IN_ERR_TXT is not null|For|CS180157|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180157' and file_key = $filekey and DATA_VAL_IN_ERR_TXT='20182711'|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180157                                                                                                                      |SUP   |supplDt                                    |20182711            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180158'|For|CS180158|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180158' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180158                                                                                                                      |SUP   |uniqProvId			   |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180159'|For|CS180159|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180159' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180159                                                                                                                      |SUP   |provModId                  |  		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180160'|For|CS180160|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180160' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180160                                                                                                                      |SUP   |hcpcsCd                                    |11122         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180161'|For|CS180161|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180161' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180161                                                                                                                      |SUP   |cptIiCd			                       |11111         |
+
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180162' and DATA_VAL_IN_ERR_TXT='0'|For|CS180162|And Retry|15|times|true|
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180162' and file_key = $filekey and DATA_VAL_IN_ERR_TXT='0'|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM								   |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180162                                                                                                                      |SUP   |icdVerCdTyp   					  |0		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180162' and DATA_VAL_IN_ERR_TXT='11'|For|CS180162|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180162' and file_key = $filekey and DATA_VAL_IN_ERR_TXT='11'|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM								   |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180162                                                                                                                      |SUP   |icdVerCdTyp   					  |11		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180163'|For|CS180163|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180163' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180163                                                                                                                      |SUP   |icdProcCd1                                    |111111            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180164'|For|CS180164|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180164' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180164                                                                                                                      |SUP   |icdProcCd2			             |1111111         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180165'|For|CS180165|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180165' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180165                                                                                                                      |SUP   |icdDiagCd1                  |1111111|
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180166'|For|CS180166|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180166' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180166                                                                                                                      |SUP   |icdDiagCd2                                    |1111111       |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180167'|For|CS180167|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180167' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180167                                                                                                                      |SUP   |cpt4Code			                       |11111        |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180169'|For|CS180169|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180169' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM								   |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180169                                                                                                                      |SUP   |codeType   							   |ZZZ		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180170'|For|CS180170|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180170' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180170                                                                                                                      |SUP   |code                                    |111111            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180171'|For|CS180171|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180171' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180171                                                                                                                      |SUP   |lonicCd                                    |11111-1            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180172'|For|CS180172|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180172' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180172                                                                                                                      |SUP   |procCdMod1			             |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180173'|For|CS180173|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180173' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180173                                                                                                                      |SUP   |procCdMod2                  ||
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180174'|For|CS180174|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180174' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180174                                                                                                                      |SUP   |provSpclCd                                    |       |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180175' and DATA_VAL_IN_ERR_TXT='KK'|For|CS180175|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180175' and file_key = $filekey and DATA_VAL_IN_ERR_TXT='KK'|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180175                                                                                                                      |SUP   |mapSrc			                       |KK        |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180175' and DATA_VAL_IN_ERR_TXT is null|For|CS180175|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180175' and file_key = $filekey and DATA_VAL_IN_ERR_TXT is null|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180175                                                                                                                      |SUP   |mapSrc			                       |       |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180176'|For|CS180176|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180176' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM								   |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180176                                                                                                                      |SUP   |hcpcsCd   							   |		 |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180177'|For|CS180177|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180177' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180177                                                                                                                      |SUP   |codeType                                    |CVX            |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS180178'|For|CS180178|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180178' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS180178                                                                                                                      |SUP   |mbrId                                    |MBR0874155            |
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_SupplementalNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+

@@ -1,0 +1,88 @@
+---
+Test
+---
+!define fileType {MINCLM}
+!define subCliSk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20161101|20161231|20160921134506|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CLM_Data {414|20170719234758|233|HIC|288327298B|FINALIZED|2232323|RESERVED||99|@#$|XY|10|1|20160110|20160128|201601101420|20160128|PA001234|20160131|2016-13-30T00:00:00|CLMUD1=CSUD01|CLMUD2=CSUD02|CRK000001|LIKITH|20160721|1|HIOSID01|MMID001|ABC|WRONG|AD|120|OTH|CLMUD3=CSUD03}
+!define D4_PRV_Data {415||2838762327|20160602|abcd|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D5_CDE_Data {414|ABK|S0789|1|CDEUD1=CSUD01|CDEUD2=CSUD02|CDEUD3=CSUD03}
+!define D6_XSVC_Data {414|1|MUBCDE101|HC|12345|32|33|50|52|221|1||||1000|20160110|20160128|RENDERING|1838762327|20160602|232|12634049061|10|N|XSVCUD1=CSUD01|XSVCUD2=CSUD02|XSVCUD3=CSUD03}
+!define D7_XFIN_Data {414|1|BILLED_AMT|104.78|20160125|Y|XFINUD1=CSUD01|XFINUD2=CSUD02|XFINUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20161101|20161231|20160921134506|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+
+!define minclmdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLM|$currentdatetime|${D3_CLM_Data}
+PRV|$currentdatetime|${D4_PRV_Data}
+CDE|$currentdatetime|${D5_CDE_Data}
+XSVC|$currentdatetime|${D6_XSVC_Data}
+XFIN|$currentdatetime|${D7_XFIN_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the cdi    |${fileType}_${subCliSk}_CM|file with content|${minclmdata}|
+
+|script |File Support                                                       |
+|command|${cdi_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107139' and file_key = $filekey|${env}                              |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107139                                                                                                                      |CLM   |CLM|@#$                |
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107141' and file_key = $filekey|${env}                             |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107141                                                                                                                      |XSVC  |XSVC_CLM_ID   |12634049061        |
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107086' and file_key = $filekey|${env}                               |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM  |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107086                                                                                                                      |PRV   |PROV_ID_MOD|20160602           |
+
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107037' and file_key = $filekey|${env}                                   |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM      |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107037                                                                                                                      |PRV   |clmProvEntyNpi|2838762327         |
+
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107052' and file_key = $filekey|${env}                             |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107052                                                                                                                      |XSVC  |NUBC_CD  |MUBCDE101          |
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107054' and file_key = $filekey|${env}                             |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107054                                                                                                                      |XSVC  |PRCDR_CD  |12345              |
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107088' and file_key = $filekey|${env}                             |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107088                                                                                                                      |CDE   |DIAG_CD  |S0789              |
+
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107083' and file_key = $filekey|${env}                              |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107083                                                                                                                      |CLM   |FAC_TYP_CD|XY                 |

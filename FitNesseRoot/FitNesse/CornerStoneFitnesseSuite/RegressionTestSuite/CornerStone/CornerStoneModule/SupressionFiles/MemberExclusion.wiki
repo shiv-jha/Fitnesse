@@ -1,0 +1,64 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {AET_MA}
+!define providerType {MemberExclusion}
+
+!define hicNo {18080282A}
+
+!define D1_HDR_Data {Member MBI_HIC|Date Added}
+!define D2_Data {${hicNo}|20170620}
+!define D10_CNT_Data {T|3}
+
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define memberdata {${D1_HDR_Data}
+${D2_Data}
+${D10_CNT_Data}}
+
+
+!|script          |File Support                                                          |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                            |
+|given the        |${fileType}_${providerType}|PAF PRVG file with content|${memberdata}|
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location|${pafpass}|Zone|
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+*!
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+
+|Query:Db Table|select * from oct_ioa_mbr_sprs where file_key = $filekey|${env}                                |
+|FILE_KEY      |SPRS_TYP                                                |VRSN    |DATE_ADDED           |REJ_IND|
+|$filekey      |EXCLUSION                                               |$filekey|2017-06-20 10:30:00.0|N      |
+
+
+
+!|script |DbTable                                                  |
+|query   |select * from oct_ioa_mbr_sprs  where file_key = $filekey|
+|$MBR_SK=|valueofcolumn                   |MBR_SK                  |
+
+
+
+|Query:Db Table|select * from oct_ioa_mbr where MBR_SK = $MBR_SK|${env}|
+|MBR_SK        |HIC_MBI                                                |
+|$MBR_SK       |${hicNo}                                               |
+

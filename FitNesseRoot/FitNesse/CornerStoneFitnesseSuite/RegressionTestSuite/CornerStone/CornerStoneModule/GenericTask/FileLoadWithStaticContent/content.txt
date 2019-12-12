@@ -1,0 +1,36 @@
+!define fileType {MEMBER}
+!define memberNumber {101}
+!define env {TST}
+
+
+!define memberdata {HDR|MEMBER|93|20160101|20161231|20160120000006|6.1
+CLI|Cornerstone Test Client|c3f51d7a-2e1b-487c-888f-52a765bf1b63
+MBR|20171122121202|101|MANI|SHASHI|SSP|19880614|M|MAIN BRIT DOWN STREET|BUILDING H06|NAMPALLY|MN|33061|9586488998|20160101|20161231|EE|N||CRK0001|MBRUD1=CSUD01|HIOSID009|MMID001|Y|MN|MBRUD2=CSUD02|MBRUD3=CSUD03
+ENR|20171122121202|101|H00151723|003|SSI|SUB123|S|20160101|20161231|100.55|RA|ENRUD1=CSUD01|EMPGID103|4|021028|EGROUPNAME|HIOSID009|MMID001|MMIDSUB|2|00|Y|Y|MC|01|21|11|91|41|51|61|71|81|Y|Y|Y|Y|Y|Y|Y|Y|MCO001|QHPID002|MN|PPO|12345678901213|VID2|Y|Y|Y|Y|Y|QHPMRKTNM002|Y|MGC01|2|G|Y|HLP NAME|31|Y|ENRUD2=CSUD02|ENRUD3=CSUD03
+PCP|20171122121202|101|0205490033|102|020549|102|20160101|20161231|PCPUD1=CSUD01|PCPUD2=CSUD02|PCPUD3=CSUD03
+ID|20171122121202|101|HIC|912912912Z|20160101|20161231|IDUD1=CSUD01|FACETS|IDUD2=CSUD02|IDUD3=CSUD03
+ID|20171122121202|101|UCARD|UCN12345|20160101|20161231|IDUD11=CSUD011|FACETS|IDUD21=CSUD021|IDUD31=CSUD031
+MBXT|20171122121202|101|9586488991|AAR|M|20160101|20161231|20161130|PALASTNAME|PAFNAME|SPS|9586488992|9586488993|13050 D CIRCLE 20170720004|APT A2323|EDEN PRAIRIE|MN|55344|POPID321001|MBXTUD1=CSUD01|MBXTUD2=CSUD02|MBXTUD3=CSUD03
+FTR|MEMBER|93|20160101|20161231|20160120000006|6.1
+CNT|1|1|1|1|2|1|7
+}
+
+
+|script           |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${memberNumber}_MR|file with content|${memberdata}|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+|script   |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+                                                                                               
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|script                                               |
+|run|calc_rdy_for_duplicate_chk_sts|procedure|$filekey|

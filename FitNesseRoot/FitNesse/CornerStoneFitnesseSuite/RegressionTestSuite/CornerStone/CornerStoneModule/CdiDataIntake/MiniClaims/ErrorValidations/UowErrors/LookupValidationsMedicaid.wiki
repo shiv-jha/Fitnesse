@@ -1,0 +1,54 @@
+---
+Test
+---
+!define fileType {MINCLM}
+!define subCliSk {900}
+!define clientText {Cornerstone Medicaid Test Client}
+!define clientUniqueText {59c18d1c-11cc-4c4e-9082-124dabac3307}
+!define D1_HDR_Data {${fileType}|${subCliSk}|20170301|20170331|20170331121205|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CLM_Data {414|M352613|412|HIC|288327298A|FINALIZED|2232323|RESERVED|V|01|PLAN01|12|32|3|20160110|20160128|201601101420|20160128|PA001234|20160131|2016-01-30T00:00:00|CLMUD1=CSUD01|CLMUD2=CSUD02|CRK000001|LIKITH|20160721|1|HIOSID01|MMID001|900|WRONG|AD|120|OTH12|CLMUD1=CSUD01}
+!define D4_PRV_Data {414||1838762327|2016083101|411|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D5_CDE_Data {414|ABK|R0789|1|CDEUD1=CSUD01|CDEUD2=CSUD02|CDEUD3=CSUD03}
+!define D6_XSVC_Data {414|1|NUBCDE101|HC|Q4045|32|33|50|52|221|1||||32|20160110|20160128|RENDERING|1838762327|2016083101|411|12634049060|10|N|XSVCD1=XSVC01|XSVCD2=XSVC02|XSVCD3=XSVC03}
+!define D7_XFIN_Data {414||BILLED_AMT|104.78|20160125|Y|XFINUD1=CSUD01|XFINUD2=CSUD02|XFINUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20170301|20170331|20170331121205|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+
+!define minclmdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLM|$currentdatetime|${D3_CLM_Data}
+PRV|$currentdatetime|${D4_PRV_Data}
+CDE|$currentdatetime|${D5_CDE_Data}
+XSVC|$currentdatetime|${D6_XSVC_Data}
+XFIN|$currentdatetime|${D7_XFIN_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the cdi    |${fileType}_${subCliSk}_CM|file with content|${minclmdata}|
+
+|script |File Support                                                       |
+|command|${cdi_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107146' and file_key = $filekey|${env}                              |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107146                                                                                                                      |CLM   |CLM_DrgCd|900                |
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt_V2 where ERR_CD='CS107147' and file_key = $filekey|${env}                              |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS107147                                                                                                                      |CLM   |SevOfIll|WRONG                |

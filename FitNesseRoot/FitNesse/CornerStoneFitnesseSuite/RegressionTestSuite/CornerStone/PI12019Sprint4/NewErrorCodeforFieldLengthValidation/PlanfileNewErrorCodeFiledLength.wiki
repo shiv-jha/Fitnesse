@@ -1,0 +1,79 @@
+---
+Test
+---
+!Included page: .FitNesse.CornerStoneFitnesseSuite.RegressionTestSuite.ScenarioLibrary
+
+!Included page: .FitNesse.CornerStoneFitnesseSuite.RegressionTestSuite.CornerStone.SuiteSetUp
+
+!define fileType {PLAN}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20130918|20140918|20150120000006|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CTR_Data {TEST MAPD CON1|MYPLAN|R|01/01/2006|12/31/2012|N|Y|USER1|USER2|USER3}
+!define D4_SBP_Data {001|CALOP PN   PBP|CA|01/01/2006|12/31/2012|MAPD|HMO|N|I|BRANDNAME1|UD01|MEMBER_888_MR_20180220_165758_PMEMBER_888_MR_20180220_165758_PMEMBER_888_MR_20180220_165758_P|UD03|CR01|TANF|CLNT}
+!define D5_COM_Data {1234CA999|1123456789|IN|ON|P|AO|H0013|HMO|N|999000112|Y|30|125.65|3000.89|ABC1|DEF1|GHI1|CRK01|2015|CLNT}
+!define D6_FTR_Data {${fileType}|${sub_client_sk}|20130918|20140918|20150120000006|6.1}
+!define D7_CNT_Data {1|1|1|1|4}
+!define env {TST}
+
+
+
+!define plandata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CTR|$currentdatetime|${D3_CTR_Data}
+SBP|$currentdatetime|${D4_SBP_Data}
+COM|12345|$currentdatetime|${D5_COM_Data}
+FTR|${D6_FTR_Data}
+CNT|${D7_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${plandata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from stg_uow_grp_evnt f where f.file_key=$filekey|For|18|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT 
+
+|Query:Db Table|select select FILE_KEY,ERR_CD,PROCESS_NM,THRESH_INFO_DFN_VAL_NBR, FILE_RJCT_IND from DQ_THRESH_RSLT where file_key = $filekey|${env} from DQ_THRESH_RSLT where file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                          |PROCESS_NM|THRESH_INFO_DFN_VAL_NBR|FILE_RJCT_IND|
+|$filekey      |CS990004                                                                                                        |        |                   |                   |
+
+
+|Query:Db Table|select select  FILE_KEY,ERROR_MSG,PROCESS_NM  from FRMK_STG_ERRORS where file_key = $filekey|${env} from DQ_THRESH_RSLT where file_key = $filekey|${env}|
+|FILE_KEY      |ERROR_MSG                                                                        |PROCESS_NM|
+|$filekey      |                                                                                 |          |                  
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                           |
+|send   |ERR CD validation for Plan file load|Test|Pass|Result||To|This is Automated run from Rally|Rally|

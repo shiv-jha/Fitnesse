@@ -1,0 +1,103 @@
+---
+Test
+---
+!define fileYear {2017}
+!define fileType1 {CF_Risk_PAF}
+!define fileType2 {OP}
+!define fileType3 {COMM}
+!define filev {_Vooooooooooo}
+!define  HDR1 {Request_ID}
+!define  HDR2 {Mem_ID}
+!define  HDR3 {Project_ID}
+!define  HDR4 {Prov_ID}
+!define  HDR5 {HIC_Num}
+!define  HDR6 {Suspect_Year}
+!define  HDR7 {Suspect_Flag}
+!define  HDR8 {Suspect_Reason}
+!define  HDR9 {Suspect_Detail}
+!define  HDR10 {Summary_Files}
+!define  HDR11 {PAF_HCC}
+!define  HDR12 {Model}
+!define  DTL1 {OP_3274033}
+!define  DTL2 {8150670}
+!define  DTL3 {PAF_2017}
+!define  DTL4 {CVT_241418_IDXMED4_CVT}
+!define  DTL5 {130345778A}
+!define  DTL6 {2017}
+!define  DTL7 {CPC}
+!define  DTL8 {Previously Coded (Esophageal Reflux, Oth Disorderskk of Esop-Test)}
+!define  DTL9 {Esophageal Reflux, Oth Disorders of Esophagus}
+!define  DTL10 {}
+!define  DTL11 {068}
+!define  DTL12 {D}
+
+
+
+!define contents  {${HDR1}|${HDR2}|${HDR3}|${HDR4}|${HDR5}|${HDR6}|${HDR7}|${HDR8}|${HDR9}|${HDR10}|${HDR11}|${HDR12}
+${DTL1}|${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}|${DTL8}|${DTL9}|${DTL10}|${DTL11}|${DTL12}
+TRL|1}
+
+!define env {TST}
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                                                                     |
+|$currentdatetime=|make id using Time                                 |yyyyMMddHHmmss                                               |
+|given the        |${fileType1}_${fileYear}_${fileType2}_${fileType3}_|paf companion file with content|${contents}|and type|${filev}|
+*!
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                      |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.txt'|For|1|And Retry|60|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_RA_CMPN|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename.txt'|For|4|And Retry|60|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.txt'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from PREP_PAF_RA_CMPN_HDR where file_key = $filekey and MBR_ID='${DTL2}'|${env}                                                                                                           |
+|FILE_KEY      |SGMNT_ID                                                                         |CLNT_RQST_PAF_ID|MBR_ID |PROJ_ID|PROV_ID|HIC_MBR|SPCT_YR|SPCT_SRC_ID|SPCT_RSN|SPCT_DTL|SMRY_FL |PAF_HCC |PAF_MDL |
+|$filekey      |HDR                                                                              |${DTL1}         |${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}    |${DTL8} |${DTL9} |${DTL10}|${DTL11}|${DTL12}|
+
+
+!|script     |DbTable                                                                           |
+|query       |select cli_id from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1}' and rownum=1     |
+|$cli_id=    |valueofcolumn                             |CLI_ID                                 |
+|query       |select cli_sk from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1}'  and rownum=1    |
+|$cli_sk=    |valueofcolumn                             |CLI_SK                                 |
+|query       |select clnt_guid from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1}'  and rownum=1 |
+|$clnt_guid= |valueofcolumn                             |CLNT_GUID                              |
+|query       |select sub_cli_sk from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1}'  and rownum=1|
+|$sub_cli_sk=|valueofcolumn                             |SUB_CLI_SK                             |
+
+
+
+
+|Query:Db Table|select * from A_PAF_RA_CMPN_HDR where file_key = $filekey  and MBR_ID='${DTL2}'|${env}                                                                                                                                                    |
+|CLI_ID        |CLI_SK                                                                         |CLNT_GUID |SUB_CLI_SK |FILE_KEY|SGMNT_ID|CLNT_RQST_PAF_ID|MBR_ID |PROJ_ID|PROV_ID|HIC_MBR|SPCT_YR|SPCT_SRC_ID|SPCT_RSN|SPCT_DTL|SMRY_FL |PAF_HCC |PAF_MDL |
+|$cli_id       |$cli_sk                                                                        |$clnt_guid|$sub_cli_sk|$filekey|HDR     |${DTL1}         |${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}    |${DTL8} |${DTL9} |${DTL10}|${DTL11}|${DTL12}|
+

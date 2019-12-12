@@ -1,0 +1,153 @@
+---
+Test
+---
+!define env {TST}
+
+!define fileType {MEMBER}
+!define subCliSk {888}
+!define clientText {Cornerstone Test Client}
+!define clientUniqueText {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20180301|20180331|20180331121201|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_0_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_0_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_0_PCP_Data {233|092096|337|M2064|337|20190101|20191231}
+!define D6_0_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_0_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_1_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_1_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_1_PCP_Data {233|092096|337|M2064|337|CS106006|20191231}
+!define D6_1_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_1_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_2_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_2_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_2_PCP_Data {233|092096|337|M2064|337||20191231}
+!define D6_2_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_2_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_3_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_3_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_3_PCP_Data {233|092096|337|M2064|337|20200101|20191231}
+!define D6_3_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_3_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_4_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_4_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_4_PCP_Data {233|092096|337|M2064|337|21062019|20191231}
+!define D6_4_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_4_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_5_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_5_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_5_PCP_Data {233|092096|337|M2064|337|20180101|20191231}
+!define D6_5_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_5_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_6_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_6_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_6_PCP_Data {233|092096|337|M2064|337|19750101|20191231}
+!define D6_6_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_6_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_7_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_7_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_7_PCP_Data {233|092096|337|M2064|337|20180601|20181201}
+!define D6_7_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_7_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D3_8_MBR_Data {233|Test|Member|K|19830621|F|Address1|Address2|EdenPrairie|MN|55344|8889991111|20190101|99991231|000|N||||67138}
+!define D4_8_ENR_Data {233|16012702|SUB16012703|SSI|SUBid|S|20190101|20191231|355.36|015||CA5200||||67138}
+!define D5_8_PCP_Data {233|092096|337|M2064|337|2019|20191201}
+!define D6_8_ID_Data  {233|MBRID|S1001567616|20190101|20191231}
+!define D7_8_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20180301|20180331|20180331121201|6.1}
+!define D9_CNT_Data {1|9|9|9|9|0|37}
+!define env {TST}
+
+!define var1 {$currentdatetime}
+
+!define memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|0$currentdatetime|${D3_0_MBR_Data}
+ENR|0$currentdatetime|${D4_0_ENR_Data}
+PCP|0$currentdatetime|${D5_0_PCP_Data}
+ID|0$currentdatetime|${D6_0_ID_Data}
+MBR|1$currentdatetime|${D3_1_MBR_Data}
+ENR|1$currentdatetime|${D4_1_ENR_Data}
+PCP|1$currentdatetime|${D5_1_PCP_Data}
+ID|1$currentdatetime|${D6_1_ID_Data}
+MBR|2$currentdatetime|${D3_2_MBR_Data}
+ENR|2$currentdatetime|${D4_2_ENR_Data}
+PCP|2$currentdatetime|${D5_2_PCP_Data}
+ID|2$currentdatetime|${D6_2_ID_Data}
+MBR|3$currentdatetime|${D3_3_MBR_Data}
+ENR|3$currentdatetime|${D4_3_ENR_Data}
+PCP|3$currentdatetime|${D5_3_PCP_Data}
+ID|3$currentdatetime|${D6_3_ID_Data}
+MBR|4$currentdatetime|${D3_4_MBR_Data}
+ENR|4$currentdatetime|${D4_4_ENR_Data}
+PCP|4$currentdatetime|${D5_4_PCP_Data}
+ID|4$currentdatetime|${D6_4_ID_Data}
+MBR|5$currentdatetime|${D3_5_MBR_Data}
+ENR|5$currentdatetime|${D4_5_ENR_Data}
+PCP|5$currentdatetime|${D5_5_PCP_Data}
+ID|5$currentdatetime|${D6_5_ID_Data}
+MBR|6$currentdatetime|${D3_6_MBR_Data}
+ENR|6$currentdatetime|${D4_6_ENR_Data}
+PCP|6$currentdatetime|${D5_6_PCP_Data}
+ID|6$currentdatetime|${D6_6_ID_Data}
+MBR|7$currentdatetime|${D3_7_MBR_Data}
+ENR|7$currentdatetime|${D4_7_ENR_Data}
+PCP|7$currentdatetime|${D5_7_PCP_Data}
+ID|7$currentdatetime|${D6_7_ID_Data}
+MBR|8$currentdatetime|${D3_8_MBR_Data}
+ENR|8$currentdatetime|${D4_8_ENR_Data}
+PCP|8$currentdatetime|${D5_8_PCP_Data}
+ID|8$currentdatetime|${D6_8_ID_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the cdi mbr|${fileType}_${subCliSk}_MR|file with content|${memberdata}|
+
+
+|script |File Support                                                              |
+|command|${cdi_Member_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = 'CS106006' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                           |
+|$filekey      |CS106006                                                                                                         |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT IS NULL AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                      |
+|$filekey      |CS106033                                                                                                    |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = '20200101' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                           |
+|$filekey      |CS106081                                                                                                         |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = '21062019' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                           |
+|$filekey      |CS106006                                                                                                         |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = '20180101' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                           |
+|$filekey      |CS106006                                                                                                         |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = '19750101' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                           |
+|$filekey      |CS106006                                                                                                         |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = '20180601' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                           |
+|$filekey      |CS106006                                                                                                         |
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where DATA_VAL_IN_ERR_TXT = '2019' AND file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                       |
+|$filekey      |CS106006                                                                                                     |

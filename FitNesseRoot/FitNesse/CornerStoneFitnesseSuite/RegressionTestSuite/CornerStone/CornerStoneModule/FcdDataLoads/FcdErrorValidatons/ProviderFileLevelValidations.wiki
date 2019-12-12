@@ -1,0 +1,141 @@
+---
+Test
+---
+!define fileType {PROVIDER}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {PROV|999|20170101|20161231|$currentdate|6.1x|X.67}
+!define D2_CLI_Data {$XXX||TEST}
+!define D3_ENT_Data {411|DINESH SIVAPURAM|DINESH|SIVAPURAM|S|SSP|1|PROVIDER|N|Y|NY|20140101|20191231|ENTUD1=CSUD01|ENTUD2=CSUD02|CRK0001|Y|ENTUD3=CSUD03}
+!define D4_ID_Data {411|NPI|1838762327|DINESH SIVAPURAM|Y|20160101|20191231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D5_SPC_Data {411|2|71|20160101|20191231|user4|user5|user6}
+!define D5_3_SPC_Data {411|2|72|20160101|20191231|user4|user5|user6}
+!define D5_2_SPC_Data {411|1|213E00000X|20160101|20161231|user1|user2|user3}
+!define D6_AFF_Data {411|PNO000001|411|20160101|20291231|AFFUD1=CSUD01|SACRK09091|Y|AFFUD2=CSUD02|AFFUD3=CSUD03}
+!define D7_ADR_Data {411|P|1038 E CHAPMAN AVE||ORANGE|CA|928662345|7147712345|7147754321|20010101|20491231|JOHNDOE@GMAIL.COM|PNO000001|411|ADRUD1=CSUD01|PRV RGN 01|DOE JOHN|ADRUD2=CSUD02|ADRUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|6.1}
+!define D9_CNT_Data {2|6|10|30|3|4|1|80|100}
+!define env {TST}
+
+
+
+!define providerdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+ENT|$currentdatetime|${D3_ENT_Data}
+ID|$currentdatetime|${D4_ID_Data}
+SPC|$currentdatetime|${D5_SPC_Data}
+SPC|$currentdatetime|${D5_2_SPC_Data}
+SPC|$currentdatetime|${D5_3_SPC_Data}
+AFF|$currentdatetime|${D6_AFF_Data}
+ADR|$currentdatetime|${D7_ADR_Data}
+FTR|${D8_FTR_Data}|XXX
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                                     |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss                   |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${providerdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101089' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101089                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS200202' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS200202                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101088' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101088                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101092' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101092                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101097' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101097                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101112' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101112                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS200210' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS200210                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101094' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101094                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101093' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101093                                                    |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101091' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101091                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101096' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101096                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101095' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101095                                                    |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101090' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101090                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS200209' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS200209                                                     |
+
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101087' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101087                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101083' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101083                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101084' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101084                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101110' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101110                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101109' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101109                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS200201' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS200201                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101002' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101002                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS101100' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS101100                                                     |
+
+
+
+
+
+

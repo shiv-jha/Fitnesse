@@ -1,0 +1,62 @@
+---
+Test
+---
+!define fileType {EDGEXWALK}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|4.5}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_XWK_Data {1001|DEIDENCLAIM01|99110|2015|MC|CLAIMLOAD}
+!define D4_XWK_Data {2001|DEIDENMMBR01|99110|2016|MBR|MEMBERLOAD}
+!define D5_FTR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|4.5}
+!define D6_CNT_Data {1|2|3}
+!define env {TST}
+
+
+!define EDGEXWALKdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+XWK|$currentdatetime|${D3_XWK_Data}
+XWK|$currentdatetime|${D4_XWK_Data}
+FTR|${D5_FTR_Data}
+CNT|${D6_CNT_Data}}
+
+
+
+!|script          |File Support                                                      |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss                    |
+|given the edgexwk|${fileType}_${sub_client_sk}_CM|file with content|${EDGEXWALKdata}|
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_ED_XWK_F|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|113|And Retry|160|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                          |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM|FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |ACA         |                |           |            |             |1          |
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+|Query:Db Table|select * from EDGE_XWALK_MED_CLM where file_key = $filekey|${env}                                                 |
+|FILE_KEY      |CLM_ID                                                    |INS_CLM_MOD_ID|CLM_ID_MASKED|ISSR_ID|DOS_YR|USR_DFN_TXT|
+|$filekey      |$currentdatetime                                          |1001          |DEIDENCLAIM01|99110  |2015  |CLAIMLOAD  |
+
+
+|Query:Db Table|select * from EDGE_XWALK_ENRL_MBR where file_key = $filekey|${env}                                                         |
+|FILE_KEY      |INS_MBR_ID                                                 |INS_MBR_MOD_ID|INS_MBR_ID_MASKED|ISSR_ID|DOS_YR|USR_DFN_TXT|
+|$filekey      |$currentdatetime                                           |2001          |DEIDENMMBR01     |99110  |2016  |MEMBERLOAD |

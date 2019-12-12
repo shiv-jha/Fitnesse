@@ -1,0 +1,2242 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 8:37:27 PM (IST) on Tuesday, November 8, 2016 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.QaEnv.MeasureYear2016.PurpleMeasures|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.8.0_51\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;C:\HDE\automation-hde\lib\antisamy-1.4.3.jar;C:\HDE\automation-hde\lib\asm-3.3.1.jar;C:\HDE\automation-hde\lib\avalon-framework-4.1.3.jar;C:\HDE\automation-hde\lib\batik-css-1.7.jar;C:\HDE\automation-hde\lib\batik-ext-1.7.jar;C:\HDE\automation-hde\lib\batik-util-1.7.jar;C:\HDE\automation-hde\lib\bsh-core-2.0b4.jar;C:\HDE\automation-hde\lib\cglib-2.2.2.jar;C:\HDE\automation-hde\lib\commons-beanutils-1.7.0.jar;C:\HDE\automation-hde\lib\commons-beanutils-core-1.7.0.jar;C:\HDE\automation-hde\lib\commons-codec-1.8.jar;C:\HDE\automation-hde\lib\commons-collections-3.2.jar;C:\HDE\automation-hde\lib\commons-configuration-1.5.jar;C:\HDE\automation-hde\lib\commons-digester-1.8.jar;C:\HDE\automation-hde\lib\commons-fileupload-1.2.jar;C:\HDE\automation-hde\lib\commons-httpclient-3.1.jar;C:\HDE\automation-hde\lib\commons-io-2.4.jar;C:\HDE\automation-hde\lib\commons-lang-2.3.jar;C:\HDE\automation-hde\lib\commons-logging-1.1.jar;C:\HDE\automation-hde\lib\esapi-2.1.0.jar;C:\HDE\automation-hde\lib\hde-fitnesse.jar;C:\HDE\automation-hde\lib\jsch-0.1.51.jar;C:\HDE\automation-hde\lib\junit-4.8.2.jar;C:\HDE\automation-hde\lib\log4j-1.2.16.jar;C:\HDE\automation-hde\lib\logkit-1.0.1.jar;C:\HDE\automation-hde\lib\nekohtml-1.9.12.jar;C:\HDE\automation-hde\lib\ojdbc6.jar;C:\HDE\automation-hde\lib\selenium-java-2.52.0.jar;C:\HDE\automation-hde\lib\selenium-server-standalone-2.52.0.jar;C:\HDE\automation-hde\lib\servlet-api-2.3.jar;C:\HDE\automation-hde\lib\servlet-api-2.5-6.1.14.jar;C:\HDE\automation-hde\lib\sqljdbc42.jar;C:\HDE\automation-hde\lib\stk-1.3.0-SNAPSHOT.jar;C:\HDE\automation-hde\lib\testng-6.8.jar;C:\HDE\automation-hde\lib\xalan-2.7.0.jar;C:\HDE\automation-hde\lib\xercesImpl-2.8.0.jar;C:\HDE\automation-hde\lib\xml-apis-1.3.03.jar;C:\HDE\automation-hde\lib\xml-apis-ext-1.3.04.jar;C:\HDE\automation-hde\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8087-! |
+|'''Exit code: '''| 1 |
+|'''Time elapsed: '''| 5176.924 seconds |
+
+----
+'''Standard Output:'''
+{{{Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE\automation-hde\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE\automation-hde\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Request number extracted: 5000725
+Request number extracted: 5000737
+Request number extracted: 5000753
+Request number extracted: 5000805
+Request number extracted: 5000856
+Request number extracted: 5000874
+}}}
+----
+'''Standard Error:'''
+{{{log4j:WARN No appenders could be found for logger (com.optum.stk.config.BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.Properties <init>
+INFO: Properties loaded
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - AAB_QANEW
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_AABSIT and 20
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:11:13 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Nov 08, 2016 7:11:22 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Nov 08, 2016 7:11:22 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Nov 08, 2016 7:11:25 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Nov 08, 2016 7:11:25 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Nov 08, 2016 7:11:27 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Nov 08, 2016 7:11:27 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STGNEW
+Nov 08, 2016 7:11:30 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STGNEW DB connection established! 
+Nov 08, 2016 7:11:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:11:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:11:30 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='AAB'
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='AAB'
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:11:33 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_AAB_HEDIS-2017_11082016191133
+Nov 08, 2016 7:11:34 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp20\AAB.txt
+Nov 08, 2016 7:11:37 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:11:37 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_HEDIS-2017_11082016191133.txt
+Nov 08, 2016 7:11:38 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_HEDIS-2017_11082016191133.trg
+Nov 08, 2016 7:11:38 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_HEDIS-2017_11082016191133.txt
+Nov 08, 2016 7:11:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_HEDIS-2017_11082016191133*.*
+Nov 08, 2016 7:11:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:11:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:11:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_AAB_HEDIS-2017_11082016191133
+Nov 08, 2016 7:11:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:12:04 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:12:08 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:12:15 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:12:19 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:12:32 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:12:36 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:12:36 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:12:37 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:12:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:12:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:12:53 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 7:13:43 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:13:43 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:13:43 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 7:13:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 7:13:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 7:13:53 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: title: Request Creation Confirmed   
+Nov 08, 2016 7:13:53 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: Request Number extracted is: 5000725
+Nov 08, 2016 7:15:02 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing page title
+Nov 08, 2016 7:15:02 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: TWS Update Current Plan (Self-Service) - #5000725
+Nov 08, 2016 7:15:43 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing Available actions
+Nov 08, 2016 7:15:43 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Available Actions
+Nov 08, 2016 7:15:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Request Status as on the ITG Page - 
+Nov 08, 2016 7:15:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Complete (View Full Status Below)
+Nov 08, 2016 7:15:48 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: true
+Nov 08, 2016 7:16:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:16:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:16:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'AAB' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 384
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - ABA_QANEW
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_ABASIT and 19
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:16:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='ABA'
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='ABA'
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 7:16:42 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_ABA_HEDIS-2016_11082016191642
+Nov 08, 2016 7:16:43 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\ABA.txt
+Nov 08, 2016 7:16:48 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:16:48 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ABA_HEDIS-2016_11082016191642.txt
+Nov 08, 2016 7:16:49 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ABA_HEDIS-2016_11082016191642.trg
+Nov 08, 2016 7:16:49 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ABA_HEDIS-2016_11082016191642.txt
+Nov 08, 2016 7:16:50 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ABA_HEDIS-2016_11082016191642*.*
+Nov 08, 2016 7:16:50 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:16:50 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:16:50 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_ABA_HEDIS-2016_11082016191642
+Nov 08, 2016 7:17:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:17:12 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:17:16 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:17:23 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:17:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:17:41 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:17:45 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:17:45 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:17:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:17:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:17:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:18:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 7:18:51 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:18:51 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:18:52 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 7:18:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 7:18:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 7:19:02 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: title: Request Creation Confirmed   
+Nov 08, 2016 7:19:02 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: Request Number extracted is: 5000737
+Nov 08, 2016 7:20:11 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing page title
+Nov 08, 2016 7:20:11 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: TWS Update Current Plan (Self-Service) - #5000737
+Nov 08, 2016 7:20:53 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing Available actions
+Nov 08, 2016 7:20:53 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Available Actions
+Nov 08, 2016 7:20:58 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Request Status as on the ITG Page - 
+Nov 08, 2016 7:20:58 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Complete (View Full Status Below)
+Nov 08, 2016 7:20:59 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: true
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ABA' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 52215
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - ART_QANEW
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_ARTSIT and 19
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:21:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:21:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:21:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:21:50 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='ART'
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='ART'
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 7:21:52 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_ART_HEDIS-2016_11082016192152
+Nov 08, 2016 7:21:53 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\ART.txt
+Nov 08, 2016 7:21:55 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:21:55 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ART_HEDIS-2016_11082016192152.txt
+Nov 08, 2016 7:21:56 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ART_HEDIS-2016_11082016192152.trg
+Nov 08, 2016 7:21:56 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ART_HEDIS-2016_11082016192152.txt
+Nov 08, 2016 7:21:57 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_ART_HEDIS-2016_11082016192152*.*
+Nov 08, 2016 7:21:57 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:21:57 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:21:57 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_ART_HEDIS-2016_11082016192152
+Nov 08, 2016 7:22:11 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:22:18 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:22:20 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:22:24 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 7:22:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 7:22:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 7:22:27 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 7:23:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:23:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:23:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:23:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ART' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:23:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:23:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:23:18 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ART' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:24:08 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 7:24:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:24:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:24:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:24:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ART' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:24:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:24:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:24:59 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ART' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:25:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 7:26:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:26:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:26:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:26:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ART' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:26:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:26:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:26:40 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'ART' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:27:30 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - W34_QANEW
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_W34SIT and 20
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:27:31 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='W34'
+Nov 08, 2016 7:27:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:27:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='W34'
+Nov 08, 2016 7:27:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 7:27:34 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_W34_HEDIS-2016_11082016192734
+Nov 08, 2016 7:27:34 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp20\W34.txt
+Nov 08, 2016 7:27:37 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:27:37 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_W34_HEDIS-2016_11082016192734.txt
+Nov 08, 2016 7:27:38 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_W34_HEDIS-2016_11082016192734.trg
+Nov 08, 2016 7:27:38 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_W34_HEDIS-2016_11082016192734.txt
+Nov 08, 2016 7:27:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_W34_HEDIS-2016_11082016192734*.*
+Nov 08, 2016 7:27:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:27:39 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:27:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_W34_HEDIS-2016_11082016192734
+Nov 08, 2016 7:27:54 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:28:02 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:28:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:28:12 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:28:16 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:28:30 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:28:34 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:28:34 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:28:35 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:28:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:28:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:28:51 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 7:29:41 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:29:41 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:29:41 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 7:29:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 7:29:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 7:29:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: title: Request Creation Confirmed   
+Nov 08, 2016 7:29:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: Request Number extracted is: 5000753
+Nov 08, 2016 7:30:59 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing page title
+Nov 08, 2016 7:30:59 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: TWS Update Current Plan (Self-Service) - #5000753
+Nov 08, 2016 7:31:42 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing Available actions
+Nov 08, 2016 7:31:42 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 7:31:42 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Available Actions
+Nov 08, 2016 7:31:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Request Status as on the ITG Page - 
+Nov 08, 2016 7:31:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+SEVERE: Problem occurred while TWS scheduling for :W34 with Client id:DEMO, Project Id:DEMOHEDIS, Job Id:rahul1
+Nov 08, 2016 7:31:54 PM org.openqa.selenium.os.ProcessUtils killWinProcess
+WARNING: Process refused to die after 10 seconds, and couldn't taskkill it
+org.openqa.selenium.os.ProcessUtils$ProcessStillAliveException: Timeout waiting for process to die
+	at org.openqa.selenium.os.ProcessUtils.waitForProcessDeath(ProcessUtils.java:67)
+	at org.openqa.selenium.os.ProcessUtils.killWinProcess(ProcessUtils.java:139)
+	at org.openqa.selenium.os.ProcessUtils.killProcess(ProcessUtils.java:81)
+	at org.openqa.selenium.os.UnixProcess$SeleniumWatchDog.destroyHarder(UnixProcess.java:247)
+	at org.openqa.selenium.os.UnixProcess$SeleniumWatchDog.access$2(UnixProcess.java:246)
+	at org.openqa.selenium.os.UnixProcess.destroy(UnixProcess.java:125)
+	at org.openqa.selenium.os.CommandLine.destroy(CommandLine.java:155)
+	at org.openqa.selenium.firefox.FirefoxBinary.quit(FirefoxBinary.java:246)
+	at org.openqa.selenium.firefox.internal.NewProfileExtensionConnection.quit(NewProfileExtensionConnection.java:194)
+	at org.openqa.selenium.firefox.FirefoxDriver$LazyCommandExecutor.quit(FirefoxDriver.java:364)
+	at org.openqa.selenium.firefox.FirefoxDriver.stopClient(FirefoxDriver.java:310)
+	at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:529)
+	at com.optum.hde.fitnesse.measure.run.TwsScheduler.finalize(Unknown Source)
+	at java.lang.System$2.invokeFinalize(System.java:1270)
+	at java.lang.ref.Finalizer.runFinalizer(Finalizer.java:98)
+	at java.lang.ref.Finalizer.access$100(Finalizer.java:34)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:210)
+Caused by: java.lang.InterruptedException
+	at java.lang.ProcessImpl.waitFor(ProcessImpl.java:451)
+	at org.openqa.selenium.os.ProcessUtils$ProcessWaiter.run(ProcessUtils.java:164)
+	at java.lang.Thread.run(Thread.java:745)
+
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'W34' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:32:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:33:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:33:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:33:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:33:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'W34' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:33:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:33:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:33:30 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'W34' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:34:20 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 7:35:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:35:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:35:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:35:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'W34' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:35:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:35:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:35:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'W34' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:36:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 7:36:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'W34' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - AWC_QA
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_AWCTST and 20
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qa /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:36:52 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: Namrata - QA Unix session established
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QA
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='AWC'
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='AWC'
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 7:36:55 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_AWC_HEDIS-2016_11082016193655
+Nov 08, 2016 7:36:56 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp20\AWC.txt
+Nov 08, 2016 7:36:59 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:36:59 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AWC_HEDIS-2016_11082016193655.txt
+Nov 08, 2016 7:36:59 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AWC_HEDIS-2016_11082016193655.trg
+Nov 08, 2016 7:37:00 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AWC_HEDIS-2016_11082016193655.txt
+Nov 08, 2016 7:37:00 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_AWC_HEDIS-2016_11082016193655*.*
+Nov 08, 2016 7:37:01 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:37:01 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:37:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_AWC_HEDIS-2016_11082016193655
+Nov 08, 2016 7:37:15 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:37:22 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:37:24 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:37:33 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:37:37 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:37:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:37:54 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:37:55 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:37:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:37:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 7:37:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 7:37:56 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 7:38:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:38:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'AWC' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 5616
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - BCS_QANEW
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_BCSSIT and 19
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:38:47 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='BCS'
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='BCS'
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 7:38:50 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_BCS_HEDIS-2016_11082016193850
+Nov 08, 2016 7:38:51 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\BCS.txt
+Nov 08, 2016 7:38:54 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:38:54 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_BCS_HEDIS-2016_11082016193850.txt
+Nov 08, 2016 7:38:54 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_BCS_HEDIS-2016_11082016193850.trg
+Nov 08, 2016 7:38:55 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_BCS_HEDIS-2016_11082016193850.txt
+Nov 08, 2016 7:38:55 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_BCS_HEDIS-2016_11082016193850*.*
+Nov 08, 2016 7:38:56 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:38:56 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:38:56 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_BCS_HEDIS-2016_11082016193850
+Nov 08, 2016 7:39:11 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:39:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:39:21 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:39:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:39:31 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:39:45 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:39:49 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:39:49 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:39:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 7:39:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:39:54 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 7:40:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:40:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:40:06 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 7:40:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:40:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:40:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 7:41:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 7:41:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 7:41:08 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: title: Request Creation Confirmed   
+Nov 08, 2016 7:41:08 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: Request Number extracted is: 5000805
+Nov 08, 2016 7:42:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing page title
+Nov 08, 2016 7:42:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: TWS Update Current Plan (Self-Service) - #5000805
+Nov 08, 2016 7:43:00 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing Available actions
+Nov 08, 2016 7:43:00 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Available Actions
+Nov 08, 2016 7:43:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Request Status as on the ITG Page - 
+Nov 08, 2016 7:43:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Complete (View Full Status Below)
+Nov 08, 2016 7:43:05 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: true
+Nov 08, 2016 7:43:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:43:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:43:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:43:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'BCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:43:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:43:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:43:56 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:44:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:44:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:44:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:44:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'BCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:44:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:44:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:44:47 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'BCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:45:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 7:46:27 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:46:27 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:46:27 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:46:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'BCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:46:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:46:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:46:28 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'BCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:47:18 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 7:48:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'BCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - CCS_QANEW
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_CCSSIT and 19
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:48:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:48:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:48:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:48:10 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:48:12 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:48:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:48:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:48:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:48:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:48:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='CCS'
+Nov 08, 2016 7:48:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:48:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='CCS'
+Nov 08, 2016 7:48:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 7:48:13 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_CCS_HEDIS-2016_11082016194813
+Nov 08, 2016 7:48:14 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\CCS.txt
+Nov 08, 2016 7:48:18 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:48:18 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CCS_HEDIS-2016_11082016194813.txt
+Nov 08, 2016 7:48:18 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CCS_HEDIS-2016_11082016194813.trg
+Nov 08, 2016 7:48:19 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CCS_HEDIS-2016_11082016194813.txt
+Nov 08, 2016 7:48:19 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CCS_HEDIS-2016_11082016194813*.*
+Nov 08, 2016 7:48:20 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:48:20 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:48:20 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_CCS_HEDIS-2016_11082016194813
+Nov 08, 2016 7:48:35 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:48:42 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:48:44 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:48:55 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:48:59 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:49:12 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:49:16 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:49:16 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:49:18 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:49:28 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:49:28 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:49:33 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 7:50:23 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:50:23 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:50:23 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 7:50:25 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 7:50:28 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 7:50:28 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 7:50:35 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: title: Request Creation Confirmed   
+Nov 08, 2016 7:50:35 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: Request Number extracted is: 5000856
+Nov 08, 2016 7:51:44 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing page title
+Nov 08, 2016 7:51:44 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: TWS Update Current Plan (Self-Service) - #5000856
+Nov 08, 2016 7:52:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing Available actions
+Nov 08, 2016 7:52:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Available Actions
+Nov 08, 2016 7:52:32 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Request Status as on the ITG Page - 
+Nov 08, 2016 7:52:32 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Complete (View Full Status Below)
+Nov 08, 2016 7:52:32 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: true
+Nov 08, 2016 7:53:22 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:53:23 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:53:23 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:53:23 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:53:23 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:53:23 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:53:23 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 7:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:54:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:54:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:54:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:54:14 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:55:04 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 7:55:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:55:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:55:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:55:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:55:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:55:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:55:55 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 7:56:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:56:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:56:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:56:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:56:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:56:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:56:46 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CCS' and PROJECT_KEY = '5793'
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 7:57:36 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - COL_QANEW
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_COLSIT and 19
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:57:37 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 7:57:39 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 7:57:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 7:57:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 7:57:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 7:57:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 7:57:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='COL'
+Nov 08, 2016 7:57:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 7:57:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='COL'
+Nov 08, 2016 7:57:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 7:57:40 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_COL_HEDIS-2017_11082016195740
+Nov 08, 2016 7:57:41 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\COL.txt
+Nov 08, 2016 7:57:46 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 7:57:46 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_COL_HEDIS-2017_11082016195740.txt
+Nov 08, 2016 7:57:47 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_COL_HEDIS-2017_11082016195740.trg
+Nov 08, 2016 7:57:47 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_COL_HEDIS-2017_11082016195740.txt
+Nov 08, 2016 7:57:48 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_COL_HEDIS-2017_11082016195740*.*
+Nov 08, 2016 7:57:49 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 7:57:49 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 7:57:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_COL_HEDIS-2017_11082016195740
+Nov 08, 2016 7:58:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 7:58:09 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 7:58:14 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 7:58:23 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 7:58:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:58:40 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 7:58:44 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:58:44 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 7:58:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 7:58:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:58:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:59:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 7:59:51 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 7:59:52 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 7:59:52 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 7:59:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 7:59:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 8:00:04 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: title: Request Creation Confirmed   
+Nov 08, 2016 8:00:04 PM com.optum.hde.fitnesse.measure.run.TwsScheduler getRequestNumber
+INFO: Request Number extracted is: 5000874
+Nov 08, 2016 8:01:13 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: Now printing page title
+Nov 08, 2016 8:01:13 PM com.optum.hde.fitnesse.measure.run.TwsScheduler excecuteItgRequest
+INFO: TWS Update Current Plan (Self-Service) - #5000874
+Nov 08, 2016 8:01:37 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:01:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+SEVERE: Problem occurred while TWS scheduling for :COL with Client id:DEMO, Project Id:DEMOHEDIS, Job Id:rahul1
+Nov 08, 2016 8:02:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:02:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:02:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:02:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'COL' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:02:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:02:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:02:30 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'COL' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:03:20 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 8:04:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:04:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:04:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:04:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'COL' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:04:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:04:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:04:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'COL' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:05:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 8:05:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:05:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:05:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:05:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'COL' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:05:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:05:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:05:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 8:06:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:06:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:06:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'COL' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - CWP_QANEW
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_CWPSIT and 20
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:06:43 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='CWP'
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='CWP'
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 8:06:46 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_CWP_HEDIS-2016_11082016200646
+Nov 08, 2016 8:06:47 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp20\CWP.txt
+Nov 08, 2016 8:06:51 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:06:51 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CWP_HEDIS-2016_11082016200646.txt
+Nov 08, 2016 8:06:51 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CWP_HEDIS-2016_11082016200646.trg
+Nov 08, 2016 8:06:52 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CWP_HEDIS-2016_11082016200646.txt
+Nov 08, 2016 8:06:52 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_CWP_HEDIS-2016_11082016200646*.*
+Nov 08, 2016 8:06:53 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 8:06:53 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 8:06:53 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_CWP_HEDIS-2016_11082016200646
+Nov 08, 2016 8:07:07 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 8:07:14 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 8:07:16 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 8:07:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 8:07:31 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:07:45 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 8:07:49 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:07:49 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 8:07:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 8:08:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 8:08:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 8:08:06 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button
+Nov 08, 2016 8:08:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:08:56 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Current Url after clicking the dialog - https://releaseservices.uhc.com/itg/web/knta/crt/RequestCreate.jsp?REQUEST_TYPE_CREATE=5.38.32991.TWS+Update+Current+Plan+%28Self-Service%29
+Nov 08, 2016 8:08:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: After Job stream is selected
+Nov 08, 2016 8:09:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Submit button sucessfully back in the Create Request page
+Nov 08, 2016 8:09:01 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+INFO: ITG New request created successfully
+Nov 08, 2016 8:09:02 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+SEVERE: Problem occurred while TWS scheduling for :CWP with Client id:DEMO, Project Id:DEMOHEDIS, Job Id:rahul1
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CWP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:09:52 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:10:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:10:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:10:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:10:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CWP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:10:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:10:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:10:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 8:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:11:33 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:11:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CWP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:11:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:11:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:11:34 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CWP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:12:24 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 8:13:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:13:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:13:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:13:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CWP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:13:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:13:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:13:15 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'CWP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:14:05 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - DMS_QANEW
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_PDMSSIT and 29
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:14:06 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='DMS'
+Nov 08, 2016 8:14:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:14:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='DMS'
+Nov 08, 2016 8:14:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 8:14:10 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_DMS_HEDIS-2016_11082016201410
+Nov 08, 2016 8:14:10 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp29\DMS.txt
+Nov 08, 2016 8:14:10 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+SEVERE: File :DMS.txt not found under dp29
+Nov 08, 2016 8:14:10 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+SEVERE: Problem occurred while Transfering data files for :DMS with Client id:DEMO, Project Id:DEMOHEDIS, Job Id:rahul1
+Nov 08, 2016 8:14:27 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 8:14:36 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 8:14:39 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 8:14:45 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:14:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:14:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 8:14:54 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:15:07 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 8:15:11 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:15:11 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 8:15:13 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 8:15:13 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 8:15:13 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 8:15:13 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'DMS' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:16:03 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:16:53 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:16:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:16:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:16:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'DMS' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:16:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:16:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:16:54 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 8:17:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:17:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:17:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:17:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'DMS' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:17:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:17:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:17:45 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'DMS' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:18:35 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 8:19:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:19:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:19:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:19:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'DMS' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:19:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:19:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:19:26 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'DMS' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:20:16 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - HPV_QANEW
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_HPVSIT and 19
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:20:17 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='HPV'
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='HPV'
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:20:20 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_HPV_HEDIS-2017_11082016202020
+Nov 08, 2016 8:20:21 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\HPV.txt
+Nov 08, 2016 8:20:24 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:20:24 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_HPV_HEDIS-2017_11082016202020.txt
+Nov 08, 2016 8:20:25 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_HPV_HEDIS-2017_11082016202020.trg
+Nov 08, 2016 8:20:25 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_HPV_HEDIS-2017_11082016202020.txt
+Nov 08, 2016 8:20:26 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_HPV_HEDIS-2017_11082016202020*.*
+Nov 08, 2016 8:20:26 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 8:20:26 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 8:20:26 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_HPV_HEDIS-2017_11082016202020
+Nov 08, 2016 8:20:41 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 8:20:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 8:20:50 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 8:21:02 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 8:21:06 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:21:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 8:21:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 8:21:17 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'HPV' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:22:07 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:22:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:22:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:22:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:22:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'HPV' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:22:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:22:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:22:58 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 8:23:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:23:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:23:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:23:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'HPV' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:23:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:23:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:23:49 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'HPV' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:24:39 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 8:25:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:25:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:25:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:25:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'HPV' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:25:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:25:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:25:30 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'HPV' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:26:20 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - IHU_QANEW
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_PTIHUSIT and 29
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:26:21 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='IHU'
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='IHU'
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 8:26:24 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_IHU_HEDIS-2016_11082016202624
+Nov 08, 2016 8:26:25 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp29\IHU.txt
+Nov 08, 2016 8:26:25 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+SEVERE: File :IHU.txt not found under dp29
+Nov 08, 2016 8:26:25 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+SEVERE: Problem occurred while Transfering data files for :IHU with Client id:DEMO, Project Id:DEMOHEDIS, Job Id:rahul1
+Nov 08, 2016 8:26:41 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 8:26:48 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 8:26:49 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 8:26:53 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:26:55 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:26:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 8:26:57 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 8:26:57 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 8:27:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:27:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:27:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:27:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'IHU' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:27:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:27:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:27:48 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'IHU' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:28:38 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 8:29:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:29:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:29:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:29:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'IHU' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:29:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:29:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:29:29 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 8:30:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:30:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:30:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:30:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'IHU' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:30:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:30:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:30:20 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'IHU' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:31:10 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Nov 08, 2016 8:32:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'IHU' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - LSC_QANEW
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_LSCSIT and 20
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:32:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:32:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:32:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:32:02 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='LSC'
+Nov 08, 2016 8:32:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:32:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='LSC'
+Nov 08, 2016 8:32:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:32:05 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_LSC_HEDIS-2017_11082016203205
+Nov 08, 2016 8:32:06 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp20\LSC.txt
+Nov 08, 2016 8:32:09 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:32:09 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_LSC_HEDIS-2017_11082016203205.txt
+Nov 08, 2016 8:32:10 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_LSC_HEDIS-2017_11082016203205.trg
+Nov 08, 2016 8:32:10 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_LSC_HEDIS-2017_11082016203205.txt
+Nov 08, 2016 8:32:11 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_LSC_HEDIS-2017_11082016203205*.*
+Nov 08, 2016 8:32:11 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 8:32:11 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 8:32:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_LSC_HEDIS-2017_11082016203205
+Nov 08, 2016 8:32:25 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 8:32:31 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 8:32:33 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 8:32:42 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Job Family pop up
+Nov 08, 2016 8:32:46 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:32:59 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Clicked Find button in Action pop up
+Nov 08, 2016 8:33:04 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: waited after Find button
+Nov 08, 2016 8:33:04 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Till Action = Submit its ok
+Nov 08, 2016 8:33:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Click on Job Stream button, Pop up opens
+Nov 08, 2016 8:33:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 8:33:05 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 8:33:05 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 8:33:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:33:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:33:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:33:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'LSC' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:33:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:33:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:33:56 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'LSC' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Nov 08, 2016 8:34:46 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Nov 08, 2016 8:35:36 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'LSC' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 152
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - MRP_QANEW
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_MRPSIT and 20
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:35:37 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='MRP'
+Nov 08, 2016 8:35:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:35:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='MRP'
+Nov 08, 2016 8:35:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 8:35:41 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_MRP_HEDIS-2016_11082016203541
+Nov 08, 2016 8:35:42 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp20\MRP.txt
+Nov 08, 2016 8:35:46 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:35:46 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_MRP_HEDIS-2016_11082016203541.txt
+Nov 08, 2016 8:35:46 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_MRP_HEDIS-2016_11082016203541.trg
+Nov 08, 2016 8:35:47 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_MRP_HEDIS-2016_11082016203541.txt
+Nov 08, 2016 8:35:47 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_MRP_HEDIS-2016_11082016203541*.*
+Nov 08, 2016 8:35:48 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 8:35:48 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 8:35:48 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_MRP_HEDIS-2016_11082016203541
+Nov 08, 2016 8:36:04 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page opened successfully
+Nov 08, 2016 8:36:12 PM com.optum.hde.fitnesse.measure.run.TwsScheduler validateTitle
+INFO: Step Pass - ITG Page logged in successfully
+Nov 08, 2016 8:36:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+INFO: Inside the runJobStream method 
+
+Nov 08, 2016 8:36:17 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:36:19 PM com.optum.hde.fitnesse.measure.run.TwsScheduler runJobStream
+SEVERE: Could not complete Creating ITG request
+Nov 08, 2016 8:36:19 PM com.optum.hde.fitnesse.measure.run.TwsScheduler createItgRequest
+SEVERE: ITG New request creation failed
+Nov 08, 2016 8:36:19 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+INFO: Temporary trace result value: false
+Nov 08, 2016 8:36:20 PM com.optum.hde.fitnesse.measure.run.TwsScheduler finalize
+INFO: Freeing web driver
+Nov 08, 2016 8:37:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:37:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:37:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5793
+Nov 08, 2016 8:37:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_MEASURES where MEASURE_NAME= 'MRP' and PROJECT_KEY = '5793'
+Nov 08, 2016 8:37:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Nov 08, 2016 8:37:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 1273
+Nov 08, 2016 8:37:10 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - NCS_QANEW
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_NCSSIT and 19
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - rahul1
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qanew /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='rahul1'
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Nov 08, 2016 8:37:11 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: QANEW Unix session established
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside get measureset .........
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Enviorment is ....QANEW
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Creating QANEW db connection
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: inside try before getting measureset.......
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='NCS'
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :HEDIS
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: SELECT MEASURE_SET from Etl_Oracle00.HDE_MASTER_MEASURE_CONFIG where MEASURE_NAME='NCS'
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureSet
+INFO: Found Measurement year in Project table :2015
+Nov 08, 2016 8:37:14 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_NCS_HEDIS-2016_11082016203714
+Nov 08, 2016 8:37:15 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :C:\HDE\automation-hde\testdata\2016\dp19\NCS.txt
+Nov 08, 2016 8:37:19 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Nov 08, 2016 8:37:19 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_NCS_HEDIS-2016_11082016203714.txt
+Nov 08, 2016 8:37:20 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_NCS_HEDIS-2016_11082016203714.trg
+Nov 08, 2016 8:37:21 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_NCS_HEDIS-2016_11082016203714.txt
+Nov 08, 2016 8:37:21 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_NCS_HEDIS-2016_11082016203714*.*
+Nov 08, 2016 8:37:22 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Nov 08, 2016 8:37:22 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Nov 08, 2016 8:37:22 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_NCS_HEDIS-2016_11082016203714
+}}}

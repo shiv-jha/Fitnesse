@@ -1,0 +1,105 @@
+---
+Test
+---
+!define fileType {PROVIDER}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_ENT_Data {||DINESH|SIVAPURAM|S|SSP||PROV|N|Y|NY|20143131|20191531|ENTUD1=CSUD01|ENTUD2=CSUD02|CRK0001||ENTUD3=CSUD03}
+!define D3_2_ENT_Data {9999|DINESH SIVAPURAM|DINESH|SIVAPURAM|S|SSP|ZZ||Z|Y|NY|20200101|20191231|ENTUD1=CSUD01|ENTUD2=CSUD02|CRK0001|B|ENTUD3=CSUD03}
+!define D4_ID_Data {412|NPI|1838762327|DINESH SIVAPURAM|Y|20160101|20161231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D4_2_ID_Data {411|NPI|1838762327|DINESH SIVAPURAM|Y|20170101|20171231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D5_SPC_Data {412|2|71|20160101|20191231|user4|user5|user6}
+!define D5_3_SPC_Data {411|2|72|20160101|20191231|user4|user5|user6}
+!define D5_2_SPC_Data {411|1|213E00000X|20160101|20161231|user1|user2|user3}
+!define D6_AFF_Data {412|PNO000001|411|20160101|20161231|AFFUD1=CSUD01|SACRK09091|Y|AFFUD2=CSUD02|AFFUD3=CSUD03}
+!define D6_2_AFF_Data {411|PNO000002|411|20170101|20171231|AFFUD1=CSUD01|SACRK09091|Y|AFFUD2=CSUD02|AFFUD3=CSUD03}
+!define D7_ADR_Data {411|P|1038 E CHAPMAN AVE||ORANGE|CA|928662345|7147712345|7147754321|20010101|20491231|JOHNDOE@GMAIL.COM|PNO000001|411|ADRUD1=CSUD01|PRV RGN 01|DOE JOHN|ADRUD2=CSUD02|ADRUD3=CSUD03}
+!define D10_ENT_Data {411|DINESH SIVAPURAM|DINESH|SIVAPURAM|S|SSP|1|PROVIDER|N|Y|NY|20140101|20191231|ENTUD1=CSUD01|ENTUD2=CSUD02|CRK0001|Y|ENTUD3=CSUD03}
+!define D11_ID_Data {411|UPIN|A1B3C4|DINESH SIVAPURAM|Z|20160101|20191531|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D11_2_ID_Data {411||1838762327|DINESH SIVAPURAM|Y|20130101|20131231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D11_3_ID_Data {411|NPI|1234A123411|DINESH SIVAPURAM|Y|20140101|20141231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D11_4_ID_Data {411|TIN|ZZZZZ|DINESH SIVAPURAM|Y|20150101|20151231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D11_5_ID_Data {411|XXX|1838762327|DINESH SIVAPURAM|Y|20163101|20161231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D11_6_ID_Data {411|DEA|ABCDE62327|DINESH SIVAPURAM|Y|20180101|20171231|FACETS|IDUD1=CSUD01|IDUD2=CSUD02|IDUD3=CSUD03}
+!define D12_SPC_Data {411|2|71|20160101|20191231|user4|user5|user6}
+!define D13_AFF_Data {411|PNO000001|411|20160101|20291231|AFFUD1=CSUD01|SACRK09091|Y|AFFUD2=CSUD02|AFFUD3=CSUD03}
+!define D14_ADR_Data {411|P|1038 E CHAPMAN AVE||ORANGE|CA|928662345|7147712345|7147754321|20010101|20491231|JOHNDOE@GMAIL.COM|PNO000001|411|ADRUD1=CSUD01|
+!define D8_FTR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|6.1}
+!define D9_CNT_Data {1|3|8|4|3|2|0|21}
+!define env {TST}
+
+
+
+!define providerdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+ENT|$currentdatetime|${D3_ENT_Data}
+ENT||${D3_2_ENT_Data}
+ID|$currentdatetime|${D4_ID_Data}
+ID|$currentdatetime|${D4_2_ID_Data}
+SPC|$currentdatetime|${D5_SPC_Data}
+SPC|$currentdatetime|${D5_2_SPC_Data}
+SPC|$currentdatetime|${D5_3_SPC_Data}
+AFF|$currentdatetime|${D6_AFF_Data}
+AFF|$currentdatetime|${D6_2_AFF_Data}
+ADR|$currentdatetime|${D7_ADR_Data}
+ENT|$currentdatetime|${D10_ENT_Data}
+ID|$currentdatetime|${D11_ID_Data}
+ID|$currentdatetime|${D11_2_ID_Data}
+ID|$currentdatetime|${D11_3_ID_Data}
+ID|74846867788|${D11_4_ID_Data}
+ID|$currentdatetime|${D11_5_ID_Data}
+ID|$currentdatetime|${D11_6_ID_Data}
+ID||${D11_5_ID_Data}
+ID|$currentdatetime|${D11_6_ID_Data}
+SPC|$currentdatetime|${D12_SPC_Data}
+AFF|$currentdatetime|${D13_AFF_Data}
+ADR|$currentdatetime|${D14_ADR_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+!|script          |File Support                                                     |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss                   |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${providerdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from stg_uow_grp_evnt f where f.file_key=$filekey|For|21|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PRV_LD1|Job|APSRT0109|Stn||Table|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|105|And Retry|120|times|true|
+
+
+

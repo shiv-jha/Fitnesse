@@ -1,0 +1,63 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {AET_MA}
+!define providerType {StateExclusion}
+
+
+!define D1_HDR_Data {State|Date Added}
+!define D2_Data {RI|20180528}
+!define D10_CNT_Data {T|3}
+
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define stateData {${D1_HDR_Data}
+${D2_Data}
+${D10_CNT_Data}}
+
+
+!|script          |File Support                                                       |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                         |
+|given the        |${fileType}_${providerType}|PAF PRVG file with content|${stateData}|
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location|${pafpass}|Zone|
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+*!
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+
+|Query:Db Table|select * from oct_ioa_mbr_sprs where file_key = $filekey|${env}                                |
+|FILE_KEY      |SPRS_TYP                                                |VRSN    |DATE_ADDED           |REJ_IND|
+|$filekey      |EXCLUSION                                               |$filekey|2018-05-28 05:00:00.0|N      |
+
+
+
+!|script |DbTable                                                  |
+|query   |select * from oct_ioa_mbr_sprs  where file_key = $filekey|
+|$STATE_SK=|valueofcolumn                  |STATE_SK                 |
+
+
+
+|Query:Db Table|select * from oct_ioa_state where STATE_SK = $STATE_SK|${env}|
+|STATE_SK        |STATE                                                |
+|$STATE_SK       |RI                                               |
+

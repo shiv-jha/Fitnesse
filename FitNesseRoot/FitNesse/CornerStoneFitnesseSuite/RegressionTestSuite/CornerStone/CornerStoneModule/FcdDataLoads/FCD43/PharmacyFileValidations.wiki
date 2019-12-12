@@ -1,0 +1,95 @@
+---
+Test
+---
+!define fileType {PHARMACY}
+!define sub_client_sk {888}
+!define rx_modifier {236}
+!define clientText {Cornerstone Test Client}
+!define clientUniqueText {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+!define command {sh /cas/scripts/cornerstone/bin/batchclient.sh PHARMACY_STG_TO_ODS TST &}
+!define newftphost {APSRT1029}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20170101|20170630|20170630112233|4.3}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_RX_Data {54991|233|68180048003|04/14/2017|10|25|1998000001|99.981|100.85|88.87|N|H8684|2017-18-04T00:00:00|2017-04-21|SVCREFNUM001|ID TYPE|IDNUM001|32.563|P|R|Y|HPS=POS TST|CLM=TSTCLM|RecordStatusTST=N|CLIRECKEY01}
+!define D4_FTR_Data {${fileType}|${sub_client_sk}|20170101|20170630|20170630112233|4.3}
+!define D5_CNT_Data {1|1|2}
+!define env {TST}
+
+
+
+!define rxdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+PCY|$currentdatetime|${rx_modifier}|${D3_RX_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                               |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss             |
+|given the        |${fileType}_${sub_client_sk}_MR|file with content|${rxdata}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 2 status)
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+*!
+
+#|script |File Support                                                      |
+#|command|${command}|In|${newftphost}|To|${ftpuser}|Location Zone|${ftppass}|
+
+|script |File Support                                                      |
+|command|${command}|In|${bpmhost}|To|${ftpuser}|Location Zone|${ftppass}|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                                 |
+|$exit_cd=|run All|CALL_ALL_RX_CLM_SP_IN_SEQ|Procedure Chunk|1000|And File|$filekey|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select * from RX_CLM_NDC where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|FILE_KEY      |SUB_CLI_SK                                        |CLNT_GUID          |RX_CLM_ID       |RX_CLM_MOD_ID |MBR_ID|MBR_MOD_ID|NDC_CD     |RECV_FILL_DT|DAY_SPL_CNT|DRG_QTY|RX_CLM_PROV_NPI|RECV_RX_CLM_LINE_PAID_AMT|SRVC_PLN_ALLW_AMT|SRVC_PLN_PAY_AMT|SRC_REC_UPDT_IND|RX_PLN_NUM|RECV_RX_CLM_PROC_DTTM|RECV_RX_CLM_PD_DT|PRSC_SRVC_REF_NBR|DSPNS_PROV_ID_TYP_CD|DSPNS_PROV_ID|RECV_FILL_NBR|DSPNS_STS_CD|PREV_CLM_VOID_REPL_IND|DERIV_AMT_IND|RX_CLM_USER_DFN_1_TXT|RX_CLM_USER_DFN_2_TXT|RX_CLM_USER_DFN_3_TXT|RX_CLM_CLI_REC_KEY|
+|$filekey      |${sub_client_sk}                                  |${clientUniqueText}|$currentdatetime|${rx_modifier}|54991 |233       |68180048003|04/14/2017  |10         |25     |1998000001     |99.981                   |100.85           |88.87           |N               |H8684     |2017-18-04T00:00:00  |2017-04-21       |SVCREFNUM001     |ID TYPE             |IDNUM001     |32.563       |P           |R                     |Y            |HPS=POS TST          |CLM=TSTCLM           |RecordStatusTST=N    |CLIRECKEY01       |
+
+
+#|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_LAB_CLM|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+#!|script     |EtlJobRunner                                                                                               |
+
+
+#|script                                                                                                                                |
+#|check|query|SELECT ETL_CMPL_ind  FROM ETL_CLM_FILE_LOG_HIST WHERE TBL_GRP='LAB' and file_key=$filekey|For|'Y'|And Retry|120|times|true|
+
+
+#|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key = $filekey|${env}|
+#|process_sts_key                                                                              |
+#|107                                                                                          |
+
+#|Library                                                                                     |
+#|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+#|Query:Db Table|select * from A_LAB_CLM_SRVC where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                       |
+#|FILE_KEY      |SUB_CLI_SK                                            |CLNT_GUID          |LAB_CLM_SRVC_ID |LAB_CLM_SRVC_MOD_ID|MBR_ID|MBR_MOD_ID|LAB_PROV_ENTY_NM|RECV_LAB_SRVC_DT|LOINC_CD|LAB_RSLT_NUM|LAB_RSLT_TXT|LAB_RSLT_UNIT_NM  |LAB_CLI_REC_KEY|LAB_USER_DFN_1_TXT|LAB_USER_DFN_2_TXT|LAB_USER_DFN_3_TXT|
+#|$filekey      |${sub_client_sk}                                      |${clientUniqueText}|$currentdatetime|${lab_modifier}    |54991 |233       |TEST PROVIDER   |20161221        |23183-7 |1234.2101   |3.5 mg/dl   |mL/min/1.73m2^mL/m|clireckey01    |HIC=TSTHIC001A    |NPI=TSTNPI6886    |TIN=TSTTIN333     |
+
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                      |
+|send   |CS_LabClaimNewFCDFile_ODSDB_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+
+

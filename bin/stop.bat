@@ -1,0 +1,1 @@
+java -cp ../fitnesse.jar fitnesse.Shutdown -p 8088 -c shutdown shutdown

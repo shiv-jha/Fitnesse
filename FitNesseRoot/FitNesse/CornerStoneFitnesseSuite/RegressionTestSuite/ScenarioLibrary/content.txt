@@ -1,0 +1,196 @@
+!contents -R2 -g -p -f -h
+
+!define createddir {C:\\Automation\\Inbound_Files\\}
+!define ftpdir {/cas/TST/data/inb/cs/bpm/}
+!define pafdir {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/paftst}
+!define precl_path {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/cmspreclusion/}
+!define ftpuser {bpmuser}
+!define ftppass {FRbG7aCD}
+!define ftpserver {apsrt4214}
+!define ftphost {apsrt4214}
+!define paf_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/paftst/dataintake.sh TST rqnsdev paftst}
+!define ogm_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/shell/ogm/ogmintake.sh STG rqnsdev ogm}
+!define pafhost {dbsls0324}
+!define pafuser {csappdev}
+!define pafpass {eH5yWM63}
+
+
+!define cdi_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/cornerstone/member/intake/scripts/claims_dataintake.sh TST rqnsdev claims}
+!define cdi_load_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/shell/cdi/claimsthresholdandload.sh TST rqnsdev claims}
+
+!define cdi_Member_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/shell/cdi/member_dataintake.sh TST rqnsdev member}
+
+!define cdi_DQVMember_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/shell/sftpdqvget.sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/properties/dqvSFTP_member.TST.properties rqnsdev dqv}
+!define cdi_DQV_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/cornerstone/member/dqv/scripts/memberdqv_dataintake.sh TST rqnsdev memberdqv}
+
+
+!define cdihost {dbsls0324}
+!define cdiuser {csappdev}
+!define cdipass {eH5yWM63}
+!define cdidir {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/claims/tst/}
+!define cdimemberdir {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/member/tst/}
+!define ogmdir {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/ogm/}
+!define cdisup {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/supplemental/}
+!define cdiqgc {/mapr/datalake/optum/optuminsight/rqnsdev/in/dataintake/qgc/}
+!define cdiDQV {/mapr/datalake/optum/optuminsight/rqnsdev/in/dqv/member}
+
+
+
+!define ftpDwuser {dsivapur}
+!define ftpDwpass {United@19}
+!define ftpDwserver {APSRD5785}
+!define ftpDwdir {/etldata/pay02/provider/inbox/}
+!define ftpEDGEXWKDwdir {/etldata/pay02/edgeserver/inbox/}
+!define ftpTrrdir {/etldata/pay02/trr/inbox/}
+!define ftpMod_D_dir {/etldata/pay02/mor_d_m/inbox/}
+
+!define etl_ui_user {dsivapur}
+!define etl_ui_pwd {United@19}
+!define newftphost {APSRT1029}
+!define bdpas {dbsls0324}
+
+!define bpmhost {apsrt4214}
+
+!define DW_DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0903.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts02.uhc.com)))-!}
+!define DW_DB_USER {cas20_dw}
+!define DW_DB_PASS {cas20_dw01}
+
+|scenario     |given the       |filetype  |file with content|content                                                                          |
+|$datfilename=|create          |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |_P.DAT                            |
+|createTRG    |$datfilename.TRG|File In   |${createddir}                                                                                      |
+|sleep        |2                                                                                                                              |
+|ftp          |$datfilename.DAT|File      |${createddir}    |In           |${ftphost}  |To      |${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|ftp          |$datfilename.TRG|File      |${createddir}    |In           |${ftphost}  |To      |${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+
+
+|scenario     |given the cdi   |filetype  |file with content|content                                                                          |
+|$datfilename=|create          |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |_P.DAT                            |
+|createTRG    |$datfilename.TRG|File In   |${createddir}                                                                                      |
+|sleep        |2                                                                                                                              |
+|ftp          |$datfilename.DAT|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdidir}|
+|ftp          |$datfilename.TRG|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdidir}|
+
+
+|scenario     |given the cdi mbr|filetype  |file with content|content                                                                                |
+|$datfilename=|create           |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |_P.DAT                                  |
+|createTRG    |$datfilename.TRG |File In   |${createddir}                                                                                            |
+|sleep        |2                                                                                                                                     |
+|ftp          |$datfilename.DAT |File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdimemberdir}|
+|ftp          |$datfilename.TRG |File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdimemberdir}|
+
+|scenario     |given the ogm   |filetype  |file with content|content                                                                          |
+|$datfilename=|create          |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |_P.DAT                            |
+|createTRG    |$datfilename.TRG|File In   |${createddir}                                                                                      |
+|sleep        |2                                                                                                                              |
+|ftp          |$datfilename.DAT|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${ogmdir}|
+|ftp          |$datfilename.TRG|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${ogmdir}|
+
+
+
+|scenario     |given the ndc   |filetype  |file with content|content                                                                          |
+|$datfilename=|create          |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |.DAT                              |
+|createTRG    |$datfilename.TRG|File In   |${createddir}                                                                                      |
+|sleep        |2                                                                                                                              |
+|ftp          |$datfilename.DAT|File      |${createddir}    |In           |${ftphost}  |To      |${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|ftp          |$datfilename.TRG|File      |${createddir}    |In           |${ftphost}  |To      |${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+
+
+
+|scenario     |given the   |filetype |trr file with content|content                                                                                  |
+|$datfilename=|create      |@filetype|inDirectory          |${createddir}|with content  |@content|and type    |        |                             |
+|sleep        |2                                                                                                                                     |
+|ftp          |$datfilename|File     |${createddir}        |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+|scenario     |given the       |filetype |mod file with content|content                                                                                  |
+|$datfilename=|create          |@filetype|inDirectory          |${createddir}|with content  |@content|and type    |.txt    |                             |
+|sleep        |2                                                                                                                                         |
+|ftp          |$datfilename.txt|File     |${createddir}        |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+|scenario     |given the   |filetype |daily paf sts file with content|content                                                                                  |
+|$datfilename=|create      |@filetype|inDirectory                    |${createddir}|with content  |@content|and type    |.txt    |                             |
+|sleep        |2                                                                                                                                               |
+|ftp          |$datfilename|File     |${createddir}                  |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+|scenario     |given the   |filetype |modc file with content|content                                                                                  |
+|$datfilename=|create      |@filetype|inDirectory           |${createddir}|with content  |@content|and type    |        |                             |
+|sleep        |2                                                                                                                                      |
+|ftp          |$datfilename|File     |${createddir}         |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+
+|scenario     |given the       |filetype |paf file with content|content      |and type      |type                                                        |
+|$datfilename=|create          |@filetype|inDirectory          |${createddir}|with content  |@content|and type    |@type   |                             |
+|sleep        |2                                                                                                                                         |
+|ftp          |$datfilename.DAT|File     |${createddir}        |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+|scenario     |given the       |filetype |paf companion file with content|content      |and type      |type                                                        |
+|$datfilename=|create          |@filetype|inDirectory                    |${createddir}|with content  |@content|and type    |@type   |                             |
+|sleep        |2                                                                                                                                                   |
+|ftp          |$datfilename.txt|File     |${createddir}                  |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+|scenario     |given the       |filetype |met file with content|content                                                                                  |
+|$datfilename=|create          |@filetype|inDirectory          |${createddir}|with content  |@content|and type    |        |                             |
+|sleep        |2                                                                                                                                         |
+|ftp          |$datfilename.txt|File     |${createddir}        |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+
+|scenario     |given the       |filetype |PAF PRVG file with content|content                                                                          |
+|$datfilename=|create          |@filetype|inDirectory               |${createddir}|with content|@content|and type  |        |                         |
+|createTRG    |$datfilename.TRG|File In  |${createddir}                                                                                               |
+|sleep        |2                                                                                                                                      |
+|ftp          |$datfilename.txt|File     |${createddir}             |In           |${pafhost}  |To      |${pafuser}|Location|${pafpass}|Zone|${pafdir}|
+|ftp          |$datfilename.TRG|File     |${createddir}             |In           |${pafhost}  |To      |${pafuser}|Location|${pafpass}|Zone|${pafdir}|
+
+
+|scenario     |given the       |filetype |Precl file with content|content                                                                              |
+|$datfilename=|create          |@filetype|inDirectory            |${createddir}|with content|@content|and type  |        |                             |
+|createTRG    |$datfilename.TRG|File In  |${createddir}                                                                                                |
+|sleep        |2                                                                                                                                       |
+|ftp          |$datfilename.csv|File     |${createddir}          |In           |${pafhost}  |To      |${pafuser}|Location|${pafpass}|Zone|${precl_path}|
+|ftp          |$datfilename.TRG|File     |${createddir}          |In           |${pafhost}  |To      |${pafuser}|Location|${pafpass}|Zone|${precl_path}|
+
+|scenario     |given the csv   |filetype |Precl file with content|content                                                                                         |
+|$datfilename=|create          |@filetype|inDirectory            |${createddir}|with content  |@content|and type    |        |                                    |
+|createTRG    |$datfilename.TRG|File In  |${createddir}                                                                                                           |
+|sleep        |2                                                                                                                                                  |
+|ftp          |$datfilename.csv|File     |${createddir}          |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpEDGEXWKDwdir}|
+|ftp          |$datfilename.TRG|File     |${createddir}          |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpEDGEXWKDwdir}|
+
+
+|scenario     |given the       |filetype |OGM file with content|content                                                                          |
+|$datfilename=|create          |@filetype|inDirectory          |${createddir}|with content|@content|and type  |        |                         |
+|createTRG    |$datfilename.TRG|File In  |${createddir}                                                                                          |
+|sleep        |2                                                                                                                                 |
+|ftp          |$datfilename.txt|File     |${createddir}        |In           |${pafhost}  |To      |${pafuser}|Location|${pafpass}|Zone|${ogmdir}|
+|ftp          |$datfilename.TRG|File     |${createddir}        |In           |${pafhost}  |To      |${pafuser}|Location|${pafpass}|Zone|${ogmdir}|
+
+|scenario     |given the cdisup|filetype  |file with content|content                                                                          |
+|$datfilename=|create          |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |_P.DAT                            |
+|createTRG    |$datfilename.TRG|File In   |${createddir}                                                                                      |
+|sleep        |2                                                                                                                              |
+|ftp          |$datfilename.DAT|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdisup}|
+|ftp          |$datfilename.TRG|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdisup}|
+
+|scenario     |given the cdiqgc|filetype  |file with content|content                                                                          |
+|$datfilename=|create          |@filetype_|inDirectory      |${createddir}|with content|@content|and type  |_P.DAT                            |
+|createTRG    |$datfilename.TRG|File In   |${createddir}                                                                                      |
+|sleep        |2                                                                                                                              |
+|ftp          |$datfilename.DAT|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdiqgc}|
+|ftp          |$datfilename.TRG|File      |${createddir}    |In           |${cdihost}  |To      |${cdiuser}|Location|${cdipass}|Zone|${cdiqgc}|
+
+|scenario        |create            |random val|
+|$currentdynamic=|make id using Time|ddHHmmss  |
+
+
+|scenario     |given the edgexwk|filetype  |file with content|content                                                                                         |
+|$datfilename=|create           |@filetype_|inDirectory      |${createddir}|with content  |@content|and type    |_P.DAT                                       |
+|createTRG    |$datfilename.TRG |File In   |${createddir}                                                                                                     |
+|sleep        |2                                                                                                                                              |
+|ftp          |$datfilename.DAT |File      |${createddir}    |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpEDGEXWKDwdir}|
+|ftp          |$datfilename.TRG |File      |${createddir}    |In           |${ftpDwserver}|To      |${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpEDGEXWKDwdir}|
+

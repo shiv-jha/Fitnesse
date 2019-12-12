@@ -1,0 +1,76 @@
+---
+Test
+---
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+!|script           |DbTable                                                                                 |
+|query             |select lst_etl_begn_dt,curr_etl_begn_dt FROM ETL_PROC_WNDW WHERE TBL_GRP = 'PROVIDER_BV'|
+|$lst_etl_begn_dt= |valueofcolumn                             |lst_etl_begn_dt                              |
+|$curr_etl_begn_dt=|valueofcolumn                             |curr_etl_begn_dt                             |
+
+
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PROV_BV|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+|script                                                                                                                                             |
+|check|query|select count(*)  FROM ETL_PROC_WNDW WHERE TBL_GRP = 'PROVIDER_BV' and lst_etl_begn_dt>'$lst_etl_begn_dt'|For|1|And Retry|120|times|true|
+
+
+!|script           |DbTable                                                                                                                 |
+|query             |select * from D_PROV_ENTY where DW_UPDT_DTTM > '$lst_etl_begn_dt' and rownum=1 order by dw_updt_dttm desc|
+|$PROV_ENTY_ID=    |valueofcolumn                                             |PROV_ENTY_ID                                                 |
+|$CLI_ID=          |valueofcolumn                                             |CLI_ID                                                       |
+|$SUB_CLI_SK=      |valueofcolumn                                             |SUB_CLI_SK                                                   |
+|$CLI_SK=          |valueofcolumn                                             |CLI_SK                                                       |
+|$PROV_ENTY_MOD_ID=|valueofcolumn                                             |PROV_ENTY_MOD_ID                                             |
+|$PROV_ENTY_NM=    |valueofcolumn                                             |PROV_ENTY_NM                                                 |
+|$PROV_LST_NM=     |valueofcolumn                                             |PROV_LST_NM                                                  |
+|$PROV_FST_NM=     |valueofcolumn                                             |PROV_FST_NM                                                  |
+|$PROV_MIDL_NM=    |valueofcolumn                                             |PROV_MIDL_NM                                                 |
+|$CLNT_GUID=       |valueofcolumn                                             |CLNT_GUID                                                    |
+
+
+!|script         |DbTable                                                                    |
+|query           |select * from VW_CS_CLNT_GUID_MOD where sub_cli_sk=$SUB_CLI_SK and rownum=1|
+|$CLI_ORG_NM=    |valueofcolumn                        |CLI_ORG_NM                           |
+|$SUB_CLI_ORG_NM=|valueofcolumn                        |SUB_CLI_ORG_NM                       |
+|$INS_CATG_CD=   |valueofcolumn                        |INS_CATG_CD                          |
+
+
+
+!|script               |DbTable                                                                                                                           |
+|query                 |SELECT * FROM A_PROV_ENTY_EXTR_ID WHERE prov_enty_id='$PROV_ENTY_ID' and sub_cli_sk=$SUB_CLI_SK and prov_enty_extr_id_typ_cd='NPI'|
+|$PROV_ENT_EXTR_ID_NPI=|valueofcolumn                                                  |PROV_ENT_EXTR_ID                                                  |
+
+
+!|script            |DbTable                                                                                                 |
+|query              |SELECT * FROM A_PROV_ENTY_ADR WHERE prov_enty_id='$PROV_ENTY_ID' and sub_cli_sk=$SUB_CLI_SK and rownum=1|
+|$RECV_ADR_TYP_CD=  |valueofcolumn                                     |RECV_ADR_TYP_CD                                      |
+|$RECV_ADR_LN_1_TXT=|valueofcolumn                                     |RECV_ADR_LN_1_TXT                                    |
+|$RECV_ADR_LN_2_TXT=|valueofcolumn                                     |RECV_ADR_LN_2_TXT                                    |
+|$RECV_CITY_NM=     |valueofcolumn                                     |RECV_CITY_NM                                         |
+|$RECV_ST_CD=       |valueofcolumn                                     |RECV_ST_CD                                           |
+|$RECV_TEL_NUM_TXT= |valueofcolumn                                     |RECV_TEL_NUM_TXT                                     |
+
+
+!|script               |DbTable                                                                                                                           |
+|query                 |SELECT * FROM A_PROV_ENTY_EXTR_ID WHERE prov_enty_id='$PROV_ENTY_ID' and sub_cli_sk=$SUB_CLI_SK and prov_enty_extr_id_typ_cd='TIN'|
+|$PROV_ENT_EXTR_ID_TIN=|valueofcolumn                                                  |PROV_ENT_EXTR_ID                                                  |
+
+
+!|script           |DbTable                                                                                                                                                               |
+|query             |select * from A_PROV_ENTY_SPCL where sub_cli_sk=$SUB_CLI_SK and prov_enty_id='$PROV_ENTY_ID' AND prov_spcl_user_dfn_1_txt='P' and rownum=1 order by ods_updt_dttm desc|
+|$PROV_ENT_SPCL_CD=|valueofcolumn                                                                    |PROV_ENT_SPCL_CD                                                                    |
+
+
+
+
+|Query:Db Table|select * from bv_prov_dtl where PROV_ENTY_ID = '$PROV_ENTY_ID'|${env}                                                                                                                                                                                                                                                                                                                                   |
+|CLNT_GUID     |CLI_SK                                                        |SUB_CLI_SK |CLI_ORG_NM |SUB_CLI_ORG_NM |PROV_GLB_ID|PROV_ENTY_ID |PROV_ENTY_MOD_ID |PROV_ENTY_NM |PROV_LST_NM |PROV_FST_NM |PROV_MIDL_NM |TIN                  |NPI                  |UPIN|PROV_ENT_SPCL_CD |PCP_SPCL_IND|RECV_ADR_TYP_CD |RECV_ADR_LN_1_TXT |RECV_ADR_LN_2_TXT |RECV_CITY_NM |RECV_ST_CD |TEL_NUM_TXT      |INS_CATG_CD |
+|$CLNT_GUID    |$CLI_SK                                                       |$SUB_CLI_SK|$CLI_ORG_NM|$SUB_CLI_ORG_NM|           |$PROV_ENTY_ID|$PROV_ENTY_MOD_ID|$PROV_ENTY_NM|$PROV_LST_NM|$PROV_FST_NM|$PROV_MIDL_NM|$PROV_ENT_EXTR_ID_TIN|$PROV_ENT_EXTR_ID_NPI|    |$PROV_ENT_SPCL_CD|            |$RECV_ADR_TYP_CD|$RECV_ADR_LN_1_TXT|$RECV_ADR_LN_2_TXT|$RECV_CITY_NM|$RECV_ST_CD|$RECV_TEL_NUM_TXT|$INS_CATG_CD|
+ 
+
+
+

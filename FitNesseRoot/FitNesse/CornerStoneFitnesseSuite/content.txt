@@ -1,0 +1,17 @@
+!contents -R2 -g -p -f -h
+
+!define TEST_SYSTEM {slim}
+
+!path classes
+!path ../lib/*.jar
+
+----
+
+!2 ''Utilities''
+ * Fitnesse.CornerStoneFitnesseSuite.SuiteSetUp
+ * •Fitnesse.CornerStoneFitnesseSuite.SuiteTearDown
+
+----
+!2 Collapse Set Up and Tear Down
+!define COLLAPSE_SETUP {true}
+!define COLLAPSE_TEARDOWN {true}

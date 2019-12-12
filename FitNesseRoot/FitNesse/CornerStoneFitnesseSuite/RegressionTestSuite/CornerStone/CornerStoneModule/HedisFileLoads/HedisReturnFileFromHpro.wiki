@@ -1,0 +1,99 @@
+---
+Test
+---
+---
+Help: HEDIS Return File Load from HPRO / ODM
+Test
+---
+!define projectkey {2057}
+!define returnfilename {CNRS_VDS_Result_Prosp_${projectkey}_RETURN_$currentdatetime}
+!define command {cd ${ftpDwdir}; touch ${returnfilename}.trg;}
+
+
+!define D1_Rtn_Data {"ART","ART","CPCSTRAT0111","150267637A","RANS02","0","0","0","0","0","2016-12-05","2016-05-27","2016-02-21","2007","2006","2005","2004","2003","2002","2001","35.56","0.43","37.12","38","39.75","31.5","M","20.49","21.67","22.99","DCC_CTG42","P|O|P|I|D|Population Identifier","Provider_Organiza_ID_0042","1","11.22","0.02","21.12","HEDIS-2016.1","Test11","Test12","RSN12","0","0"}
+!define D2_Rtn_Data {"BCS","BCS","CPCSTRAT0121","200188964D","RANS01","0","0","0","0","0","2014-12-01","2016-01-29","2017-01-20","2001","2002","2003","2004","2005","2006","2007","0.56","26.43","27.12","28","29.75","30.51","F","10.49","11.67","12.99","DCC_CTG41","P|O|P|I|D|Population Identifier P|O|P|I","Provider_Organiza_ID_0041","0","0.11","1.02","10.01","HEDIS-2016.0","Test01","Test02MCODN","RSN02","0","0"}
+!define D3_Rtn_Data {"ABA","ABA","CPCSTRAT0131","143227465A","RANS03","0","0","0","0","0","2014-12-02","2016-01-30","2017-01-21","2009","2008","2007","2006","2004","2003","2002","0.57","26.44","27.13","29","29.80","30.52","M","10.51","11.68","13.99","DCC_CTG43","P|O|P|I|D|Population Identifier P|O|P|I|","Provider_Organiza_ID_0043","1","0.12","1.03","10.04","HEDIS-2017.0","Test06","Test02","RSN03","0","0"}
+!define env {TST}
+
+!define rtnfiledata {${D1_Rtn_Data}
+${D2_Rtn_Data}
+${D3_Rtn_Data}}
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time   |yyyyMMddHHmmss                      |
+|given the        |${returnfilename}.txt|mod file with content|${rtnfiledata}|
+
+
+!|script|Zippingfile                                                                                                         |
+|$test= |compress File|C:\\Automation\\Inbound_Files\\$datfilename|To Unix|C:\\Automation\\Inbound_Files\\$datfilename.gz|Zip|
+
+!|script|File Support                                                                                               |
+|ftp    |$datfilename.gz|File|${createddir}|In|${ftpDwserver}|To|${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+!|script|DeleteHDEFiles                                                                   |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\${returnfilename}.txt|From Inbound|
+
+!|script|DeleteHDEFiles                                                                      |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\${returnfilename}.txt.gz|From Inbound|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script      |File Support                                                           |
+|commandhedis|${command}|In|${ftpDwserver}|To|${ftpDwuser}|Location Zone|${ftpDwpass}|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_ODM_RTN|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script                                                                                                                             |
+|check|query|SELECT count(*) FROM FRMK_STG_FILEINFO WHERE FILE_NAME LIKE '%${projectkey}_RETURN%.txt'|For|1|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                                          |
+|query    |SELECT * FROM FRMK_STG_FILEINFO WHERE FILE_NAME LIKE '%${projectkey}_RETURN%.txt'|
+|$filekey=|valueofcolumn                              |FILE_KEY                             |
+
+
+|script                                                                                                             |
+|check|query|SELECT PROCESS_STS_KEY FROM FRMK_STG_FILEINFO WHERE FILE_KEY =$filekey|For|113|And Retry|120|times|true|
+
+
+|script                                                                                                                                            |
+|check|query|SELECT COUNT(*) FROM HDE_PRJ_FILE WHERE PROJECT_KEY = ${projectkey} AND FILE_TYP = 'ODM MEASURE RETURN'|For|1|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select * from HDE_PRJ_FILE where PROJECT_KEY = ${projectkey} AND FILE_TYP = 'ODM MEASURE RETURN'|${env}                                                                                                                                                      |
+|OHR_FILE_KEY  |PROJECT_KEY                                                                                     |FILE_NM          |FILE_TYP          |FILE_KEY|OHR_STATUS_KEY|ORIG_REC_CNT|OHR_PROCESSED_REC_CNT|ORIG_FILE_NM|OHR_FILE_RECV_DT|OHR_CREATE_DT|DW_INSRT_USER_ID|
+|              |${projectkey}                                                                                   |${ReturnFileName}|ODM MEASURE RETURN|$filekey|              |0           |                     |            |                |             |msndspay        |
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script                                                                                                                               |
+|check|query|SELECT COUNT(*) FROM HDE_MSR_RSLT WHERE PROJECT_KEY = ${projectkey} AND FILE_KEY =$filekey|For|3|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from HDE_MSR_RSLT where PROJECT_KEY = ${projectkey} AND MSR_ID = 'ART' AND FILE_KEY =$filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|FILE_KEY      |PROJECT_KEY                                                                                           |SUB_PARTITION_KEY    |CLI_SK|RUN_TYP|ENR_TYP|MBR_GLB_ID|MSR_ID|MSR_NM|STRAT_ID|MBR_ID      |HIC_NUM   |RSLT_ANS|DENOM_FLG|DENOM_XCLS_FLG|DENOM_XCPT_FLG|NMT_FLG|NMT_XCLS_FLG|MSRMT_END_DT         |QUAL_DT              |RUN_DT               |EPSD_NBR|EXPT_VST_CNT|ACTUL_VST_CNT|MBR_MO_CNT|DAY_CNT|DSCHRG_CNT|SRVC_CNT|SURG_WGT|BAS_RISK_WGT|AGE_AND_GDR_WGT|DCC_WGT|COMORB_WGT|AGE |GDR|RISK_SCOR|ADJ_PRBL|VARIANCE|DCC_CATGY|POP_ID                             |RSN_CD|FINAL_DENOM|FINAL_NMT|DW_INSRT_USER_ID|PROV_ORG_ID              |SUPL_ONLY_FLG|BAS_RISK_WGT_2|AGE_AND_GDR_WGT_2|COMORBIDITY_WGT_2|MSR_SET_ID  |MSR_SET_YR|MSR_SET_YR_VER|SRC_MSR|CMS_HOSP_ID|
+|$filekey      |${projectkey}                                                                                         |M_C_${projectkey}_ODM|4     |M      |C      |-1        |ART   |ART   |STRAT02 |4_150267637A|150267637A|RANS02  |1        |1             |1             |1      |1           |2016-12-05 00:00:00.0|2016-05-27 00:00:00.0|2016-02-21 00:00:00.0|2007    |2006        |2005         |2004      |2003   |2002      |2001    |35.56   |0.43        |37.12          |38     |39.75     |31.5|M  |20.49    |21.67   |22.99   |DCC_CTG42|!-P|O|P|I|D|Population Identifier-!|RSN12 |0          |1        |msndspay        |Provider_Organiza_ID_0042|1            |11.22         |0.02             |21.12            |HEDIS-2016.1|2016      |1             |Test11 |Test12     |
+
+
+|Query:Db Table|select * from HDE_MSR_RSLT where PROJECT_KEY = ${projectkey} AND MSR_ID = 'BCS' AND FILE_KEY =$filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|FILE_KEY      |PROJECT_KEY                                                                                           |SUB_PARTITION_KEY    |CLI_SK|RUN_TYP|ENR_TYP|MBR_GLB_ID|MSR_ID|MSR_NM|STRAT_ID|MBR_ID      |HIC_NUM   |RSLT_ANS|DENOM_FLG|DENOM_XCLS_FLG|DENOM_XCPT_FLG|NMT_FLG|NMT_XCLS_FLG|MSRMT_END_DT         |QUAL_DT              |RUN_DT               |EPSD_NBR|EXPT_VST_CNT|ACTUL_VST_CNT|MBR_MO_CNT|DAY_CNT|DSCHRG_CNT|SRVC_CNT|SURG_WGT|BAS_RISK_WGT|AGE_AND_GDR_WGT|DCC_WGT|COMORB_WGT|AGE  |GDR|RISK_SCOR|ADJ_PRBL|VARIANCE|DCC_CATGY|POP_ID                                     |RSN_CD|FINAL_DENOM|FINAL_NMT|DW_INSRT_USER_ID|PROV_ORG_ID              |SUPL_ONLY_FLG|BAS_RISK_WGT_2|AGE_AND_GDR_WGT_2|COMORBIDITY_WGT_2|MSR_SET_ID  |MSR_SET_YR|MSR_SET_YR_VER|SRC_MSR|CMS_HOSP_ID|
+|$filekey      |${projectkey}                                                                                         |M_C_${projectkey}_ODM|4     |M      |C      |-1        |BCS   |BCS   |STRAT01 |4_143227464A|143227464A|RANS01  |1        |0             |1             |0      |1           |2014-12-01 00:00:00.0|2016-01-29 00:00:00.0|2017-01-20 00:00:00.0|2001    |2002        |2003         |2004      |2005   |2006      |2007    |0.56    |26.43       |27.12          |28     |29.75     |30.51|F  |10.49    |11.67   |12.99   |DCC_CTG41|!-P|O|P|I|D|Population Identifier P|O|P|I-!|RSN02 |0          |0        |msndspay        |Provider_Organiza_ID_0041|0            |0.11          |1.02             |10.01            |HEDIS-2016.0|2016      |0             |Test01 |Test02MCODN|
+
+
+|Query:Db Table|select * from HDE_MSR_RSLT where PROJECT_KEY = ${projectkey} AND MSR_ID = 'ABA' AND FILE_KEY =$filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|FILE_KEY      |PROJECT_KEY                                                                                           |SUB_PARTITION_KEY    |CLI_SK|RUN_TYP|ENR_TYP|MBR_GLB_ID|MSR_ID|MSR_NM|STRAT_ID|MBR_ID      |HIC_NUM   |RSLT_ANS|DENOM_FLG|DENOM_XCLS_FLG|DENOM_XCPT_FLG|NMT_FLG|NMT_XCLS_FLG|MSRMT_END_DT         |QUAL_DT              |RUN_DT               |EPSD_NBR|EXPT_VST_CNT|ACTUL_VST_CNT|MBR_MO_CNT|DAY_CNT|DSCHRG_CNT|SRVC_CNT|SURG_WGT|BAS_RISK_WGT|AGE_AND_GDR_WGT|DCC_WGT|COMORB_WGT|AGE  |GDR|RISK_SCOR|ADJ_PRBL|VARIANCE|DCC_CATGY|POP_ID                                     |RSN_CD|FINAL_DENOM|FINAL_NMT|DW_INSRT_USER_ID|PROV_ORG_ID              |SUPL_ONLY_FLG|BAS_RISK_WGT_2|AGE_AND_GDR_WGT_2|COMORBIDITY_WGT_2|MSR_SET_ID  |MSR_SET_YR|MSR_SET_YR_VER|SRC_MSR|CMS_HOSP_ID|
+|$filekey      |${projectkey}                                                                                         |M_C_${projectkey}_ODM|4     |M      |C      |-1        |ABA   |ABA   |STRAT03 |4_143227465A|143227465A|RANS03  |0        |0             |0             |1      |0           |2014-12-02 00:00:00.0|2016-01-30 00:00:00.0|2017-01-21 00:00:00.0|2009    |2008        |2007         |2006      |2004   |2003      |2002    |0.57    |26.44       |27.13          |29     |29.8      |30.52|M  |10.51    |11.68   |13.99   |DCC_CTG43|!-P|O|P|I|D|Population Identifier P|O|P|I-!|RSN03 |1          |1        |msndspay        |Provider_Organiza_ID_0043|1            |0.12          |1.03             |10.04            |HEDIS-2017.0|2017      |0             |Test06 |Test02     |
+

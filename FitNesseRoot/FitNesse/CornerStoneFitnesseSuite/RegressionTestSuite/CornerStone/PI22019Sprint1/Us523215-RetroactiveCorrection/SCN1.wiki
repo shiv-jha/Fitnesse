@@ -1,0 +1,176 @@
+---
+Test
+---
+!define fileType {PreclusionList}
+!define precl_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/cmspreclusion/cmspreclusion-intake.sh TST rqnsdev cmspreclusion}
+
+## insert new records
+#1.Check the DERIV_DEL_IND column population in CMS_PRECL_PROV table when CMS Precusion file has EXCL_DT and REIN_DT same and CLM_REJ_DT is NULL
+#2.Check the DERIV_DEL_IND column population in CMS_PRECL_PROV table when CMS Precusion file has EXCL_DT and REIN_DT same and CLM_REJ_DT is NOT  NULL
+#3.Check the DERIV_DEL_IND column population in CMS_PRECL_PROV table when CMS Precusion file has EXCL_DT  is there and REIN_DT is NULL and CLM_REJ_DT is NOT NULL
+#4.Check the DERIV_DEL_IND column population in CMS_PRECL_PROV table when CMS Precusion file has EXCL_DT is present and REIN_DT is NULL and CLM_REJ_DT is NULL 
+#5.Check the DERIV_DEL_IND column population in CMS_PRECL_PROV table when CMS Precusion file has EXCL_DT and REIN_DT same and CLM_REJ_DT is NULL - Will be used for Update Scenario
+
+!define D1_HDR_Data {LASTNAME,FIRSTNAME,MIDNAME,BUSNAME,GENERAL,SPECIALTY,NPI,EIN,DOB,LINE_1_ST_ADR,LINE_2_ST_ADR,CITY,STATE,ZIP,EXCLDATE,CLMREJECTDATE,REINDATE}
+!define D2_PRV_Data {KAREN,ISABELL,K,REX Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113001,TEST01,19860621,796 N ST,SANFORD,ORLANDO,FL,32773,20190101,,20190101}
+!define D3_PRV_Data {NESTAG,CASEY,K,SSD Hospitals,PRACTITIONER (PHYSICIAN),GENERAL,20190113002,TEST02,19860821,6540 N ST,SANFORD,ORLANDO,FL,32773,20190101,20190401,20190101}
+!define D4_PRV_Data {JHON,BOLIVER,D,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113003,TEST02,19890621,876 N ST,SANFORD,ORLANDO,FL,32773,20190101,20190401,}
+!define D5_PRV_Data {RUBY,MITCHEL,D,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113004,TEST02,19830621,87 N ST,SANFORD,ORLANDO,FL,32775,20190101,,}
+!define D6_PRV_Data {Mallela,Sri,Radha,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113005,EIN211,19860621,796 N ST,Yellow Stone,LORTON,VA,22079,20190101,,20190101}
+!define env {TST}
+
+
+!define cmsprecldata {${D1_HDR_Data}
+${D2_PRV_Data}
+${D3_PRV_Data}
+${D4_PRV_Data}
+${D5_PRV_Data}
+${D6_PRV_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                         |
+|given the        |${fileType}_      |Precl file with content|${cmsprecldata}|
+*!
+
+
+|script |File Support                                                         |
+|command|${precl_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.csv'|For|104|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.csv'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+!*> 2. !style_green('''CMS_PRECL_PROV Data)
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '$currentdatetime'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|KAREN    | ISABELL   | K       | REX Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190113001 | TEST01 | 19860621 | 796 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 |               | 20190101 |Y            |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '$currentdatetime1'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|NESTAG   | CASEY     | K       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | GENERAL         | 20190313002 | TEST02 | 19860821 | 6540 N ST     | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 20190101 |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = $filekey and npi = '$currentdatetime2'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|JHON     | BOLIVER   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313003 | TEST02 | 19890621 | 876 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 		  |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = $filekey and npi = '$currentdatetime3'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|RUBY     | MITCHEL   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313004 | TEST02 | 19830621 | 87 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 20190101 |               |          |             |$Currentdate |
+
+!*> 2. !style_green('''CMS_PRECL_PROV_HIST Data)
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where updt_file_key = $filekey and npi = '$currentdatetime'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|KAREN    | ISABELL   | K       | REX Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313001 | TEST01 | 19860621 | 796 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 |               | 20190101 |Y            |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where updt_file_key = $filekey and npi = '$currentdatetime1'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|NESTAG   | CASEY     | K       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | GENERAL         | 20190313002 | TEST02 | 19860821 | 6540 N ST     | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 20190101 |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where UPDT_file_key = $filekey and npi = '$currentdatetime2'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|JHON     | BOLIVER   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313003 | TEST02 | 19890621 | 876 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 		  |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where UPDT_file_key = $filekey and npi = '$currentdatetime3'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|RUBY     | MITCHEL   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313004 | TEST02 | 19830621 | 87 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 20190101 |               |          |             |$Currentdate |
+
+#Update/Delete Scenario Check
+#1.Address change for 1st record
+#2.No change in the record
+#3.JHON,BOLIVER record from Insert has been removed in the 2nd file to check delete scenario
+#4.Made sure REIN_DT is same as EXCL_DT and CLM_REJ_DT is NULL
+#5.Made sure REIN_DT is NULL
+
+!define D7_HDR_Data {LASTNAME,FIRSTNAME,MIDNAME,BUSNAME,GENERAL,SPECIALTY,NPI,EIN,DOB,LINE_1_ST_ADR,LINE_2_ST_ADR,CITY,STATE,ZIP,EXCLDATE,CLMREJECTDATE,REINDATE}
+!define D8_PRV_Data {KAREN,ISABELL,K,REX Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113001,TEST01,19860621,799 N ST,TORONTO,ORLANDO,FL,32773,20190101,,20190101}
+!define D9_PRV_Data {NESTAG,CASEY,K,SSD Hospitals,PRACTITIONER (PHYSICIAN),GENERAL,20190113002,TEST02,19860821,6540 N ST,SANFORD,ORLANDO,FL,32773,20190101,20190401,20190101}
+!define D10_PRV_Data {RUBY,MITCHEL,D,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113004,TEST02,19830621,87 N ST,SANFORD,ORLANDO,FL,32775,20190101,,20190101}
+!define D11_PRV_Data {Mallela,Sri,Radha,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190113005,EIN211,19860621,796 N ST,Yellow Stone,LORTON,VA,22079,20190101,,}
+!define env {TST}
+
+
+!define cmsprecldata {${D7_HDR_Data}
+${D8_PRV_Data}
+${D9_PRV_Data}
+${D4_PRV_Data}
+${D10_PRV_Data}
+${D11_PRV_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                         |
+|given the        |${fileType}_      |Precl file with content|${cmsprecldata}|
+
+*!
+
+|script |File Support                                                         |
+|command|${precl_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.csv'|For|104|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.csv'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+!*> 2. !style_green('''CMS_PRECL_PROV Data)
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '$currentdatetime'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|KAREN    | ISABELL   | K       | REX Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313001 | TEST01 | 19860621 | 799 N ST      | TORONTO       | ORLANDO | FL    | 32773 | 20190101 |               | 20190101 |Y            |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '$currentdatetime1'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|NESTAG   | CASEY     | K       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | GENERAL         | 20190313002 | TEST02 | 19860821 | 6540 N ST     | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 20190101 |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = $filekey and npi = '$currentdatetime2'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|JHON     | BOLIVER   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313003 | TEST02 | 19890621 | 876 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 		  |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = $filekey and npi = '$currentdatetime3'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|RUBY     | MITCHEL   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313004 | TEST02 | 19830621 | 87 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 20190101 |               |          |             |$Currentdate |
+
+!*> 2. !style_green('''CMS_PRECL_PROV_HIST Data)
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where updt_file_key = $filekey and npi = '$currentdatetime'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|KAREN    | ISABELL   | K       | REX Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313001 | TEST01 | 19860621 | 796 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 |               | 20190101 |Y            |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where updt_file_key = $filekey and npi = '$currentdatetime1'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|NESTAG   | CASEY     | K       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | GENERAL         | 20190313002 | TEST02 | 19860821 | 6540 N ST     | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 20190101 |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where UPDT_file_key = $filekey and npi = '$currentdatetime2'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|JHON     | BOLIVER   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313003 | TEST02 | 19890621 | 876 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 20190101 | 20190401      | 		  |             |$Currentdate |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where UPDT_file_key = $filekey and npi = '$currentdatetime3'|${env}                                                                                                                                                                                                                                   |
+|LASTNAME | FIRSTNAME | MIDNAME | BUSNAME       | GENERAL                  | SPECIALTY       | NPI         | EIN    | DOB      | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCLDATE | CLMREJECTDATE | REINDATE |DERIV_DEL_IND|DERIV_FILE_DT|
+|RUBY     | MITCHEL   | D       | SSD Hospitals | PRACTITIONER (PHYSICIAN) | FAMILY PRACTICE | 20190313004 | TEST02 | 19830621 | 87 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 20190101 |               |          |             |$Currentdate |

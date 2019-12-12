@@ -1,0 +1,95 @@
+---
+Test
+---
+!define fileType {PreclusionList}
+!define precl_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/cmspreclusion/cmspreclusion-intake.sh TST rqnsdev cmspreclusion}
+
+!define D1_HDR_Data {LASTNAME,FIRSTNAME,MIDNAME,BUSNAME,GENERAL,SPECIALTY,NPI,EIN,DOB,LINE_1_ST_ADR,LINE_2_ST_ADR,CITY,STATE,ZIP,EXCLDATE,CLMREJECTDATE,REINDATE}
+!define D2_PRV_Data {Sivapuram,Dinesh,S,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICES,1234567844,EIN001,19820101,796 N ST,Yellow Stone,LORTON,VA,22079,20190101,20190401,20190331}
+!define D3_PRV_Data {Dendi,Revanth,D,DR Nursing Home,Orthopaedician,Orthopedic Surgery,1234567845,EIN002,19821101,963 S ST,Blue Stone,New Jersey,NJ,63985,20190202,20190501,20190402}
+!define D4_PRV_Data {Parthasarathy,Srikanth,SP,SP Clinic,Pediatrician,Pediatrics,1234567846,EIN003,19830101,101 South Street,Market Yard,Minnetonka,MN,21302,20190115,20190330,20190228}
+!define D5_PRV_Data {Mohanty,Prasanjeet,PM,PM Diagnostics,Diabetician,Diabetics,1234567847,EIN004,19890101,120 Down Street,PM Enclave,California,CA,59862,20190101,20190101,20190101}
+!define D6_PRV_Data {,,,Get Well Cardiology Center,Cardiology,Cardiologist,1234567848,EIN005,,122 Middle Street,GW Enclave,Washington,WT,59869,20190501,20190731,20190801}
+!define env {TST}
+
+
+!define cmsprecldata {${D1_HDR_Data}
+${D2_PRV_Data}
+${D3_PRV_Data}
+${D4_PRV_Data}
+${D5_PRV_Data}
+${D6_PRV_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                         |
+|given the        |${fileType}_      |Precl file with content|${cmsprecldata}|
+*!
+
+
+|script |File Support                                                         |
+|command|${precl_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.csv'|For|104|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.csv'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '1234567844'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM   |PROV_FST_NM                                                                       |PROV_MIDL_NM|PROV_ENTY_NM |PROV_ENT_SPCLTY|PROV_TYP                |NPI       |EIN   |DOB       |LINE_1_ST_ADR|LINE_2_ST_ADR|CITY  |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Sivapuram     |Dinesh                                                                            |S           |SSD Hospitals|FAMILY PRACTICE|PRACTITIONER (PHYSICIAN)|1234567844|EIN001|1982-01-01|796 N ST     |Yellow Stone |LORTON|VA   |22079|2019-01-01|2019-04-01|2019-03-31|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '1234567845'|${env}                                                                                                                                                                                                                                  |
+|PROV_LST_NM   |PROV_FST_NM                                                                       |PROV_MIDL_NM|PROV_ENTY_NM   |PROV_ENT_SPCLTY   |PROV_TYP      |NPI       |EIN   |DOB       |LINE_1_ST_ADR|LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Dendi         |Revanth                                                                           |D           |DR Nursing Home|Orthopedic Surgery|Orthopaedician|1234567845|EIN002|1982-11-01|963 S ST     |Blue Stone   |New Jersey|NJ   |63985|2019-02-02|2019-05-01|2019-04-02|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '1234567846'|${env}                                                                                                                                                                                                                             |
+|PROV_LST_NM   |PROV_FST_NM                                                                       |PROV_MIDL_NM|PROV_ENTY_NM|PROV_ENT_SPCLTY|PROV_TYP    |NPI       |EIN   |DOB       |LINE_1_ST_ADR   |LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Parthasarathy |Srikanth                                                                          |SP          |SP Clinic   |Pediatrics     |Pediatrician|1234567846|EIN003|1983-01-01|101 South Street|Market Yard  |Minnetonka|MN   |21302|2019-01-15|2019-03-30|2019-02-28|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '1234567847'|${env}                                                                                                                                                                                                                             |
+|PROV_LST_NM   |PROV_FST_NM                                                                       |PROV_MIDL_NM|PROV_ENTY_NM  |PROV_ENT_SPCLTY|PROV_TYP   |NPI       |EIN   |DOB       |LINE_1_ST_ADR  |LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Mohanty       |Prasanjeet                                                                        |PM          |PM Diagnostics|Diabetics      |Diabetician|1234567847|EIN004|1989-01-01|120 Down Street|PM Enclave   |California|CA   |59862|2019-01-01|2019-01-01|2019-01-01|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where updt_file_key = $filekey and npi = '1234567848'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM   |PROV_FST_NM                                                                       |PROV_MIDL_NM|PROV_ENTY_NM              |PROV_ENT_SPCLTY|PROV_TYP  |NPI       |EIN   |DOB|LINE_1_ST_ADR    |LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|              |                                                                                  |            |Get Well Cardiology Center|Cardiologist   |Cardiology|1234567848|EIN005|   |122 Middle Street|GW Enclave   |Washington|WT   |59869|2019-05-01|2019-07-31|2019-08-01|             |             |$filekey      |$filekey     |
+
+
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where insrt_file_key = $filekey and npi = '1234567844'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM   |PROV_FST_NM                                                                             |PROV_MIDL_NM|PROV_ENTY_NM |PROV_ENT_SPCLTY|PROV_TYP                |NPI       |EIN   |DOB       |LINE_1_ST_ADR|LINE_2_ST_ADR|CITY  |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Sivapuram     |Dinesh                                                                                  |S           |SSD Hospitals|FAMILY PRACTICE|PRACTITIONER (PHYSICIAN)|1234567844|EIN001|1982-01-01|796 N ST     |Yellow Stone |LORTON|VA   |22079|2019-01-01|2019-04-01|2019-03-31|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where insrt_file_key = $filekey and npi = '1234567845'|${env}                                                                                                                                                                                                                                  |
+|PROV_LST_NM   |PROV_FST_NM                                                                             |PROV_MIDL_NM|PROV_ENTY_NM   |PROV_ENT_SPCLTY   |PROV_TYP      |NPI       |EIN   |DOB       |LINE_1_ST_ADR|LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Dendi         |Revanth                                                                                 |D           |DR Nursing Home|Orthopedic Surgery|Orthopaedician|1234567845|EIN002|1982-11-01|963 S ST     |Blue Stone   |New Jersey|NJ   |63985|2019-02-02|2019-05-01|2019-04-02|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where insrt_file_key = $filekey and npi = '1234567846'|${env}                                                                                                                                                                                                                             |
+|PROV_LST_NM   |PROV_FST_NM                                                                             |PROV_MIDL_NM|PROV_ENTY_NM|PROV_ENT_SPCLTY|PROV_TYP    |NPI       |EIN   |DOB       |LINE_1_ST_ADR   |LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Parthasarathy |Srikanth                                                                                |SP          |SP Clinic   |Pediatrics     |Pediatrician|1234567846|EIN003|1983-01-01|101 South Street|Market Yard  |Minnetonka|MN   |21302|2019-01-15|2019-03-30|2019-02-28|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where insrt_file_key = $filekey and npi = '1234567847'|${env}                                                                                                                                                                                                                             |
+|PROV_LST_NM   |PROV_FST_NM                                                                             |PROV_MIDL_NM|PROV_ENTY_NM  |PROV_ENT_SPCLTY|PROV_TYP   |NPI       |EIN   |DOB       |LINE_1_ST_ADR  |LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|Mohanty       |Prasanjeet                                                                              |PM          |PM Diagnostics|Diabetics      |Diabetician|1234567847|EIN004|1989-01-01|120 Down Street|PM Enclave   |California|CA   |59862|2019-01-01|2019-01-01|2019-01-01|             |             |$filekey      |$filekey     |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where updt_file_key = $filekey and npi = '1234567848'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM   |PROV_FST_NM                                                                            |PROV_MIDL_NM|PROV_ENTY_NM              |PROV_ENT_SPCLTY|PROV_TYP  |NPI       |EIN   |DOB|LINE_1_ST_ADR    |LINE_2_ST_ADR|CITY      |STATE|ZIP  |EXCL_DT   |CLM_REJ_DT|REIN_DT   |DERIV_DEL_IND|DERIV_FILE_DT|INSRT_FILE_KEY|UPDT_FILE_KEY|
+|              |                                                                                       |            |Get Well Cardiology Center|Cardiologist   |Cardiology|1234567848|EIN005|   |122 Middle Street|GW Enclave   |Washington|WT   |59869|2019-05-01|2019-07-31|2019-08-01|             |             |$filekey      |$filekey     |

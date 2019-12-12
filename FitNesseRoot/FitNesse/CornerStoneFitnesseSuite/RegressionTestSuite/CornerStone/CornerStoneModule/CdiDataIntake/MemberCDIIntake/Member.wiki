@@ -1,0 +1,54 @@
+---
+Test
+---
+!define env {TST}
+
+!define fileType {MEMBER}
+!define subCliSk {888}
+!define clientText {Cornerstone Test Client}
+!define clientUniqueText {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20180301|20180331|20180331121201|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data {233|NISHITH|KUMAR|D||m|Dugbug, Lee 002|See Mee 2|Miami|CA|100810011|0018099867037|20180101|20181231|EE|N|01|CR00001|TST01|12345|123456|Y|02|TST02|TST03}
+!define D4_ENR_Data {233|12345B2798|001|ssi|MEM200001|S|20180101|20180131|100.21|CA|TST02|EMG00001|08|021041|XYZ Employer|12345|MasterID|Member Master ID Non Sub|2|05|Y|Y|MMP|01|21|11|91|41|51|61|79|89|Y|Y|N|Y|N|Y|N|Y|MCOID1234|QHP12|MN|QHPPPO|12345678901213|50|Y|Y|Y|Y|N|Healthyworld|N|MemberGroupCode|0|G|Y|Fit247|31|Y|TST02|TST03}
+!define D5_PCP_Data {233|PNO000001|232|PNO000001|232|20110101|20111231|TST01|TST02|TST03}
+!define D6_ID_Data  {233|UcaRD|32100001A|20110101|20121231|TST01|Facets|TST02|TST03}
+!define D7_MBXT_Data {233|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|123 B BAKER STREET|SUITE 33|ST LOUIS|MO|33061-3304|123|TST01|TST02|TST03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20180301|20180331|20180331121201|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|$currentdatetime|${D3_MBR_Data}
+ENR|$currentdatetime|${D4_ENR_Data}
+PCP|$currentdatetime|${D5_PCP_Data}
+ID|$currentdatetime|${D6_ID_Data}
+MBXT|$currentdatetime|${D7_MBXT_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the cdi mbr|${fileType}_${subCliSk}_MR|file with content|${memberdata}|
+
+
+|script |File Support                                                              |
+|command|${cdi_Member_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD from DQ_ERR_RSLT_V2  where file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                      |
+|$filekey      |CS106015                                                                    |

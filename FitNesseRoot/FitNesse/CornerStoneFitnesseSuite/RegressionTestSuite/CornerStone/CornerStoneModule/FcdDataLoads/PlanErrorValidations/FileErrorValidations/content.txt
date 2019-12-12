@@ -1,0 +1,48 @@
+!define fileType {PLAN}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}||20130918|20140918|20150120000006|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CTR_Data {TEST MAPD CON1|myplan|R|01/01/2006|12/31/2012|N|Y|USER1|USER2|USER3}
+!define D4_SBP_Data {001|CALOP Pn   PBP|CA|01/01/2006|12/31/2012|mapd|hmo|N||brandname1||||CR01|TANF|clnt}
+!define D5_COM_Data {12345A9021|1234CA999|1123456789|IN|ON|P|AO|H0013|HMO|N|999000112|Y|30|125.65|3000.89|abc1|def1|ghi1|CRK01|2015|clnt}
+!define D6_FTR_Data {${fileType}|${sub_client_sk}|20130918|20140918|20150120000006|6.1}
+!define D7_CNT_Data {1|1|1|1|4}
+!define env {TST}
+
+
+
+!define plandata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CTR|$currentdatetime|${D3_CTR_Data}
+SBP|$currentdatetime|${D4_SBP_Data}
+COM|$currentdatetime|${D5_COM_Data}
+FTR|${D6_FTR_Data}
+CNT|${D7_CNT_Data}}
+
+
+
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${plandata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select error_cd from frmk_stg_errors where file_key = $filekey|${env}|
+|ERROR_CD                                                                            |
+|CS102027                                                                            |
+
+
+
+       

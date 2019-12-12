@@ -1,0 +1,122 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 1:44:53 PM (IST) on Monday, October 31, 2016 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.QaEnv.MeasureYear2016.SpMeasures.VerifySpdMeasureTest|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.8.0_51\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;C:\HDE1\automation-hde1\lib\antisamy-1.4.3.jar;C:\HDE1\automation-hde1\lib\asm-3.3.1.jar;C:\HDE1\automation-hde1\lib\avalon-framework-4.1.3.jar;C:\HDE1\automation-hde1\lib\batik-css-1.7.jar;C:\HDE1\automation-hde1\lib\batik-ext-1.7.jar;C:\HDE1\automation-hde1\lib\batik-util-1.7.jar;C:\HDE1\automation-hde1\lib\bsh-core-2.0b4.jar;C:\HDE1\automation-hde1\lib\cglib-2.2.2.jar;C:\HDE1\automation-hde1\lib\commons-beanutils-1.7.0.jar;C:\HDE1\automation-hde1\lib\commons-beanutils-core-1.7.0.jar;C:\HDE1\automation-hde1\lib\commons-codec-1.8.jar;C:\HDE1\automation-hde1\lib\commons-collections-3.2.jar;C:\HDE1\automation-hde1\lib\commons-configuration-1.5.jar;C:\HDE1\automation-hde1\lib\commons-digester-1.8.jar;C:\HDE1\automation-hde1\lib\commons-fileupload-1.2.jar;C:\HDE1\automation-hde1\lib\commons-httpclient-3.1.jar;C:\HDE1\automation-hde1\lib\commons-io-2.4.jar;C:\HDE1\automation-hde1\lib\commons-lang-2.3.jar;C:\HDE1\automation-hde1\lib\commons-logging-1.1.jar;C:\HDE1\automation-hde1\lib\esapi-2.1.0.jar;C:\HDE1\automation-hde1\lib\hde-fitnesse.jar;C:\HDE1\automation-hde1\lib\jsch-0.1.51.jar;C:\HDE1\automation-hde1\lib\junit-4.8.2.jar;C:\HDE1\automation-hde1\lib\log4j-1.2.16.jar;C:\HDE1\automation-hde1\lib\logkit-1.0.1.jar;C:\HDE1\automation-hde1\lib\nekohtml-1.9.12.jar;C:\HDE1\automation-hde1\lib\ojdbc6.jar;C:\HDE1\automation-hde1\lib\selenium-java-2.52.0.jar;C:\HDE1\automation-hde1\lib\selenium-server-standalone-2.52.0.jar;C:\HDE1\automation-hde1\lib\servlet-api-2.3.jar;C:\HDE1\automation-hde1\lib\servlet-api-2.5-6.1.14.jar;C:\HDE1\automation-hde1\lib\sqljdbc42.jar;C:\HDE1\automation-hde1\lib\stk-1.3.0-SNAPSHOT.jar;C:\HDE1\automation-hde1\lib\testng-6.8.jar;C:\HDE1\automation-hde1\lib\xalan-2.7.0.jar;C:\HDE1\automation-hde1\lib\xercesImpl-2.8.0.jar;C:\HDE1\automation-hde1\lib\xml-apis-1.3.03.jar;C:\HDE1\automation-hde1\lib\xml-apis-ext-1.3.04.jar;C:\HDE1\automation-hde1\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8086-! |
+|'''Exit code: '''| 0 |
+|'''Time elapsed: '''| 24.293 seconds |
+
+----
+'''Standard Output:'''
+{{{Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE1\automation-hde1\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE1\automation-hde1\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+}}}
+----
+'''Standard Error:'''
+{{{log4j:WARN No appenders could be found for logger (com.optum.stk.config.BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Oct 31, 2016 1:44:31 PM com.optum.hde.fitnesse.Properties <init>
+INFO: Properties loaded
+Oct 31, 2016 1:44:31 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : SPD_QANEW
+Oct 31, 2016 1:44:31 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>SPD Pattern Num->SP Script File name-> HDE_HDE_SPDSIT
+Oct 31, 2016 1:44:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:31 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Oct 31, 2016 1:44:40 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Oct 31, 2016 1:44:40 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Oct 31, 2016 1:44:44 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Oct 31, 2016 1:44:44 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Oct 31, 2016 1:44:46 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Oct 31, 2016 1:44:46 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STGNEW
+Oct 31, 2016 1:44:49 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STGNEW DB connection established! 
+Oct 31, 2016 1:44:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Oct 31, 2016 1:44:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5526
+Oct 31, 2016 1:44:49 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:SPD and population:C
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:SPD
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5526
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:SPD and population:C
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:SPD
+Oct 31, 2016 1:44:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5526
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:SPD and population:D
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:SPD
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5526
+Oct 31, 2016 1:44:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Oct 31, 2016 1:44:52 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:SPD and population:D
+Oct 31, 2016 1:44:52 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:SPD
+Oct 31, 2016 1:44:52 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QANEW Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STGNEW Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: Creating Stage db connection
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QANEW Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Oct 31, 2016 1:44:53 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STGNEW Connection closed
+Picked up JAVA_TOOL_OPTIONS: -Djava.vendor="Sun Microsystems Inc."
+}}}

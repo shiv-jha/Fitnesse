@@ -1,0 +1,139 @@
+---
+Test
+---
+!define fileType {MEMBER}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define DQVmember_command {yet to update}
+
+!define D1_HDR_Data {$fileType|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data { Yet to add}
+!define D4_FTR_Data {$fileType|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D5_CNT_Data {1||}
+!define env {tst}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${memberNumber}_CM|file with content|${memberdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from mbr_uow_grp_evnt f where f.file_key=$filekey|For|20|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |${fileType} |${memberNumber} |   |    ||6.1        |
+
+
+|Query:Db Table|select * from P_MBR_VER where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                 |
+|FILE_KEY      |MBR_ID                                           |MBR_MOD_ID|MBR_LST_NM|MBR_FST_NM|MBR_MIDL_NM|MBR_DOB_DT           |MBR_GDR_CD|MBR_ORIG_STRT_DT     |MBR_LT_END_DT        |MBR_REL_TYP_CD|MBR_TBCC_STS_CD|MBR_CST_SHR_RDUC_CD|SRC_MBR_CLI_REC_KEY|MBR_USER_DFN_1_TXT|HIOS_ISSR_ID|MBR_MSTR_ID|MBR_ACTV_IND|CNTY_CD|MBR_USER_DFN_2_TXT|MBR_USER_DFN_3_TXT|
+|$filekey      |                                 |       |    | |        ||         |||            |              |                   |            |    |   |    |           |     |     |     |
+
+
+|Query:Db Table|select * from P_MBR_ADR_VER where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |MBR_ID                                               |MBR_MOD_ID|ADR_LN_1_TXT          |ADR_LN_2_TXT|CITY_NM  |ST_CD|ZIP_CD|TEL_NUM_TXT|
+|$filekey      |$currentdatetime                                     |       | |||  | | |
+
+
+|Query:Db Table|select * from P_MBR_ENRL_VER where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|FILE_KEY      |MBR_ID                                                |MBR_MOD_ID|MBR_CONTR_NBR|MBR_SUB_PLN_ID|MBR_ENRL_CATGY_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_SUB_PLN_STRT_DT  |MBR_SUB_PLN_END_DT   |MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_ENRL_DFN_1_TXT|MBR_EMPL_GRP_ID|MBR_POL_RERT_MO|MBR_ENRL_ACTV_IND|MBR_EMPL_GRP_NM|HIOS_ISSR_ID|MBR_MSTR_ID|MBR_MSTR_ID_NON_SUB|FPL|MBR_CST_SHR_RDUC_CD|RX_BEN_IND|MED_BEN_IND|PRDCT_CD|RACE_CD|RACE_SRC_CD|ETHNC_CD|ETHNC_SRC_CD|SPK_LANG_SRC_CD|WRT_LANG_CD|WRT_LANG_SRC_CD|OTHR_LANG_CD|OTHR_LANG_SRC_CD|DNTL_BEN_IND|MH_IPTNT_BEN_IND|MH_INTS_BEN_IND|MH_OPTNT_BEN_IND|CD_IPTNT_BEN_IND|CD_INTS_BEN_IND|CD_OPTNT_BEN_IND|HSP_BEN_IND|MCOID |QHP_ISSR_ID|QHP_ST_CD|QHP_RPT_UNIT_ID|QHP_SCID      |QHP_VAR_ID|QHP_MSP_IND|QHP_MKT_COV|QHP_ENR_RTE|QHP_APTC_CSR_ELIG_IND|QHP_CTZN_STS|QHP_PLN_MKT_NM|IS_PLN_EMP|MBR_GRP_CD|LOB_TYPE_ID|QHP_METAL_LVL|ECDS_DATA_AVL|HLTH_PLN_NM|SPK_LANG|PRI_COV_IND|MBR_ENRL_DFN_2_TXT|MBR_ENRL_DFN_3_TXT|
+|$filekey      |$currentdatetime                                      |       |     |   |              |      |            |||           |                   |     |      |              |           |     |   |    |            |  |                 |         |          |      |     |         |      |          |             |         |             |          ||          |            |Y              |Y               |Y               |Y              |Y               |          ||   |       |            ||      |        |          |          |                  |           |  |        |     |          |           |            |    |      |          |     |    |
+
+
+|Query:Db Table|select * from P_MBR_PCP_VER where file_key = $filekey|${env}                                                                                                                                                                                          |
+|FILE_KEY      |MBR_ID                                               |MBR_MOD_ID|MBR_PROV_ENTY_ID|MBR_PROV_ENTY_MOD_ID|MBR_PROV_ENTY_GRP_ID|MBR_PROV_ENTY_GRP_MOD_ID|MBR_PCP_STRT_DT      |MBR_PCP_END_DT       |MBR_PCP_DFN_1_TXT|MBR_PCP_DFN_2_TXT|MBR_PCP_DFN_3_TXT|
+|$filekey      |$currentdatetime                                     |       |           |                 |               |                     |||    |    |    |
+
+
+|Query:Db Table|select * from P_MBR_ALT_ID_VER where  file_key = $filekey|${env}                                                                                                                                                                      |
+|FILE_KEY      |MBR_ID                                                                                |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |MBR_ID_USER_DFN_1_TXT|MBR_ALT_ID_SRC|MBR_ID_USER_DFN_2_TXT|MBR_ID_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                                                      |       |              |          |||         |        |         |         |
+
+
+
+
+|Query:Db Table|select * from P_MBR_ADD_INFO_VER where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                 |
+|FILE_KEY      |MBR_ID                                                    |MBR_MOD_ID|MBR_ALT_TEL_NUM_TXT|MBR_LANG_CD|MBR_MRTL_STS_CD|PART_A_ELIG_EFF_DT   |PART_B_ELIG_EFF_DT   |MBR_DOD_DT           |MBR_POA_LST_NM|MBR_POA_FST_NM|MBR_POA_REL_CD|MBR_POA_TEL_NUM_TXT|MBR_POA_ALT_TEL_NUM_TXT|MAIL_ADR_LN_1_TXT         |MAIL_ADR_LN_2_TXT|MAIL_CITY_NM|MAIL_ST_CD|MAIL_ZIP_CD|MBR_POP_ID |MBR_ADD_USER_DFN_1_TXT|MBR_ADD_USER_DFN_2_TXT|MBR_ADD_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                          |       |         |        |              ||||    |       |SPS           |         |             ||       ||        |      ||        |        |       |
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|90|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from MBR where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                 |
+|UPDT_FILE_KEY |MBR_ID                                          |MBR_MOD_ID|MBR_LST_NM|MBR_FST_NM|MBR_MIDL_NM|MBR_DOB_DT           |MBR_GDR_CD|MBR_ORIG_STRT_DT     |MBR_LT_END_DT        |MBR_REL_TYP_CD|MBR_TBCC_STS_CD|MBR_CST_SHR_RDUC_CD|SRC_MBR_CLI_REC_KEY|MBR_USER_DFN_1_TXT|HIOS_ISSR_ID|MBR_MSTR_ID|MBR_ACTV_IND|CNTY_CD|MBR_USER_DFN_2_TXT|MBR_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                |       |    | |        ||         |||            |             |                   |            |    |   |    |           |     |     |     |
+
+
+|Query:Db Table|select * from MBR_ADR where UPDT_FILE_KEY = $filekey|${env}                                                                           |
+|UPDT_FILE_KEY |MBR_ID                                              |MBR_MOD_ID|ADR_LN_1_TXT          |ADR_LN_2_TXT|CITY_NM  |ST_CD|ZIP_CD|TEL_NUM_TXT|
+|$filekey      |$currentdatetime                                    |       ||||   | | |
+
+
+|Query:Db Table|select * from MBR_ENRL where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|UPDT_FILE_KEY |MBR_ID                                               |MBR_MOD_ID|MBR_CONTR_NBR|MBR_SUB_PLN_ID|MBR_ENRL_CATGY_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_SUB_PLN_STRT_DT  |MBR_SUB_PLN_END_DT   |MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_ENRL_DFN_1_TXT|MBR_EMPL_GRP_ID|MBR_POL_RERT_MO|MBR_ENRL_ACTV_IND|MBR_EMPL_GRP_NM|HIOS_ISSR_ID|MBR_MSTR_ID|MBR_MSTR_ID_NON_SUB|FPL|MBR_CST_SHR_RDUC_CD|RX_BEN_IND|MED_BEN_IND|PRDCT_CD|RACE_CD|RACE_SRC_CD|ETHNC_CD|ETHNC_SRC_CD|SPK_LANG_SRC_CD|WRT_LANG_CD|WRT_LANG_SRC_CD|OTHR_LANG_CD|OTHR_LANG_SRC_CD|DNTL_BEN_IND|MH_IPTNT_BEN_IND|MH_INTS_BEN_IND|MH_OPTNT_BEN_IND|CD_IPTNT_BEN_IND|CD_INTS_BEN_IND|CD_OPTNT_BEN_IND|HSP_BEN_IND|MCOID |QHP_ISSR_ID|QHP_ST_CD|QHP_RPT_UNIT_ID|QHP_SCID      |QHP_VAR_ID|QHP_MSP_IND|QHP_MKT_COV|QHP_ENR_RTE|QHP_APTC_CSR_ELIG_IND|QHP_CTZN_STS|QHP_PLN_MKT_NM|IS_PLN_EMP|MBR_GRP_CD|LOB_TYPE_ID|QHP_METAL_LVL|ECDS_DATA_AVL|HLTH_PLN_NM|SPK_LANG|PRI_COV_IND|MBR_ENRL_DFN_2_TXT|MBR_ENRL_DFN_3_TXT|
+|$filekey      |$currentdatetime                                     |       |     |   |              |     |          |||          |                   |     |      |              |           |     |   |    |            |  |                 |         |          |      |     |         |      |          |             |         |             |         |              |           |             |              |               |              |              |               |          ||   |       |            ||      |          |         |          |                   |           |  |         |     |          |            |           |   |     |          |     |    |
+
+
+|Query:Db Table|select * from MBR_ENRL_ADJ where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|UPDT_FILE_KEY |MBR_ID                                                   |MBR_MOD_ID|MBR_CONTR_NBR|MBR_SUB_PLN_ID|MBR_ENRL_CATGY_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_SUB_PLN_ADJ_STRT_DT|MBR_SUB_PLN_ADJ_END_DT|MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_ENRL_DFN_1_TXT|MBR_EMPL_GRP_ID|MBR_POL_RERT_MO|MBR_ENRL_ACTV_IND|MBR_EMPL_GRP_NM|HIOS_ISSR_ID|MBR_MSTR_ID|MBR_MSTR_ID_NON_SUB|FPL|MBR_CST_SHR_RDUC_CD|RX_BEN_IND|MED_BEN_IND|PRDCT_CD|RACE_CD|RACE_SRC_CD|ETHNC_CD|ETHNC_SRC_CD|SPK_LANG_SRC_CD|WRT_LANG_CD|WRT_LANG_SRC_CD|OTHR_LANG_CD|OTHR_LANG_SRC_CD|DNTL_BEN_IND|MH_IPTNT_BEN_IND|MH_INTS_BEN_IND|MH_OPTNT_BEN_IND|CD_IPTNT_BEN_IND|CD_INTS_BEN_IND|CD_OPTNT_BEN_IND|HSP_BEN_IND|MCOID |QHP_ISSR_ID|QHP_ST_CD|QHP_RPT_UNIT_ID|QHP_SCID      |QHP_VAR_ID|QHP_MSP_IND|QHP_MKT_COV|QHP_ENR_RTE|QHP_APTC_CSR_ELIG_IND|QHP_CTZN_STS|QHP_PLN_MKT_NM|IS_PLN_EMP|MBR_GRP_CD|LOB_TYPE_ID|QHP_METAL_LVL|ECDS_DATA_AVL|HLTH_PLN_NM|SPK_LANG|PRI_COV_IND|MBR_ENRL_DFN_2_TXT|MBR_ENRL_DFN_3_TXT|
+|$filekey      |$currentdatetime                                         |       |     |   |              |      |            |  | |          |                  |     |      |             |           |     |   |    |            |  |                 |         |       |      |     |         |      |          |             |         |             |          |              |           |               |             |               |               |              |           |        ||   |       |]            ||      |          |          |          |                    |Y           |  |         |     |          |            |            |   |      |          |     |     |
+
+
+|Query:Db Table|select * from MBR_PCP where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                          |
+|UPDT_FILE_KEY |MBR_ID                                              |MBR_MOD_ID|MBR_PROV_ENTY_ID|MBR_PROV_ENTY_MOD_ID|MBR_PROV_ENTY_GRP_ID|MBR_PROV_ENTY_GRP_MOD_ID|MBR_PCP_STRT_DT      |MBR_PCP_END_DT       |MBR_PCP_DFN_1_TXT|MBR_PCP_DFN_2_TXT|MBR_PCP_DFN_3_TXT|
+|$filekey      |$currentdatetime                                    |       |           |                 |               |                     |||    |    |    |
+
+
+|Query:Db Table|select * from MBR_PCP_ADJ where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                          |
+|UPDT_FILE_KEY |MBR_ID                                                  |MBR_MOD_ID|MBR_PROV_ENTY_ID|MBR_PROV_ENTY_MOD_ID|MBR_PROV_ENTY_GRP_ID|MBR_PROV_ENTY_GRP_MOD_ID|MBR_PCP_ADJ_STRT_DT  |MBR_PCP_ADJ_END_DT   |MBR_PCP_DFN_1_TXT|MBR_PCP_DFN_2_TXT|MBR_PCP_DFN_3_TXT|
+|$filekey      |$currentdatetime                                        |       |           |                 |               |                     |||   |   |    |
+
+
+|Query:Db Table|select * from MBR_ALT_ID where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                      |
+|UPDT_FILE_KEY |MBR_ID                                                                               |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |MBR_ID_USER_DFN_1_TXT|MBR_ALT_ID_SRC|MBR_ID_USER_DFN_2_TXT|MBR_ID_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                                                     |       |              |          |||         |        |         |         |
+
+
+
+
+|Query:Db Table|select * from MBR_ALT_ID_ADJ where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                       |
+|UPDT_FILE_KEY |MBR_ID                                                                                   |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_ADJ_STRT_DT|MBR_ALT_ID_ADJ_END_DT|MBR_ID_USER_DFN_1_TXT|MBR_ALT_ID_SRC|MBR_ID_USER_DFN_2_TXT|MBR_ID_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                                                         |       |              |          | ||        |        |         |         |
+
+
+
+|Query:Db Table|select * from MBR_ADD_INFO where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                 |
+|UPDT_FILE_KEY |MBR_ID                                                   |MBR_MOD_ID|MBR_ALT_TEL_NUM_TXT|MBR_LANG_CD|MBR_MRTL_STS_CD|PART_A_ELIG_EFF_DT   |PART_B_ELIG_EFF_DT   |MBR_DOD_DT           |MBR_POA_LST_NM|MBR_POA_FST_NM|MBR_POA_REL_CD|MBR_POA_TEL_NUM_TXT|MBR_POA_ALT_TEL_NUM_TXT|MAIL_ADR_LN_1_TXT         |MAIL_ADR_LN_2_TXT|MAIL_CITY_NM|MAIL_ST_CD|MAIL_ZIP_CD|MBR_POP_ID |MBR_ADD_USER_DFN_1_TXT|MBR_ADD_USER_DFN_2_TXT|MBR_ADD_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                         |       |         |        |||||    |       |           |         |             ||        ||        |      ||        |        |        |
+
+
+#!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_MemberNewFCDFile_PREPDB_ODS_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|

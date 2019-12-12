@@ -1,0 +1,1 @@
+java -jar fitnesse-standalone.jar -p 8888 -c "FitNesse.HedisFitnesseSuite.RegressionTestSuite.StgEnv.MeasureYear2015.RruMeasures.VerifyRasMeasureTest?test&format=text" > testResults\VerifyRasMeasureTest.txt

@@ -1,0 +1,33 @@
+---
+Test
+---
+!define env {PROD}
+!define createddir {/etldata/pay02/cdo/outbox}
+!define ftpdir {E:\\Automation\\CDO\\}
+
+
+!*> 1. !style_green('''This step will run required ETL job)
+!|script     |EtlJobRunner                                                                                                                        |
+|$job_status=|run Individual Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_UX_CMSEXTR_MORV12_DEV|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+*!
+
+
+!|script   |DbTable                                                                                                      |
+|query     |select FILE_NM from etl_cms_file_log  where file_nm like '%MOR_V12%' and rownum=1 order by dw_insrt_dttm desc|
+|$filename=|valueofcolumn                                            |FILE_NM                                            |
+
+                                                                                                                                                                                                                                                                                                                               
+!|script  |DbTable                                                                                                         |
+|query    |select GZ_FILE_NM from etl_cms_file_log  where file_nm like '%MOR_V12%' and rownum=1 order by dw_insrt_dttm desc|
+|$zipname=|valueofcolumn                                              |FILE_NM                                             |
+
+
+
+|script  |File Support                                                                                        |
+|$result=|ftp|$zipname|File|${createddir}|In|${ftphost}|From|${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpdir}|
+
+
+
+!|script |Extract                                                |
+|$output=|extract File|$result  |From Folder|${ftpdir}           |
+|$msg=   |verify Cdo  |$filename|Extract    |${env}|By Type|MOR12|

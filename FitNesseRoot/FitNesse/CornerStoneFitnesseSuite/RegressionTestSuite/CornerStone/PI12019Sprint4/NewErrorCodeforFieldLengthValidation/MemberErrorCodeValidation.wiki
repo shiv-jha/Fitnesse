@@ -1,0 +1,85 @@
+---
+Test
+---
+!define fileType {MEMBER}
+!define sub_client_sk {888}
+!define clientText {Cornerstone Test Client}
+!define clientUniqueText {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data {233|NAYEEM|GHOUSE|SSP|19880614|M|GREAT BRIT DOWN STREET|BUILDING H06|CHURCHILL|MN|33061|9586488998|20160111|20180131|EE|N||CRK000011|MBRUD1=CSUD01|HIOSID009|MMID001|Y|MN|MBRUD2=IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02|MBRUD3=CSUD03}
+!define D4_ENR_Data {233|16012702|SUB16012703|SSI|SUB123|S|20160101|20180131|100.55|RA|ENRUD1=CSUD01|EMPGID103|4|021028|EGROUPNAME|HIOSID009|MMID001|MMIDSUB|2|00|Y|Y|MC|01|21|11|91|41|51|61|71|81|Y|Y|Y|Y|Y|Y|Y|Y|MCO001|QHPID002|MN|PPO|12345678901213|VID2|Y|Y|Y|Y|Y|QHPMRKTNM002|Y|MGC01|2|G|Y|HLP NAME|31|Y|ENRUD2=CSUD02|ENRUD3=CSUD03}
+!define D5_PCP_Data {233|74518958648899895864889989586488998958648899895864889989586488998958648899895864889989586488998|232|11111|2324|20160101|20161231|PCPUD1=CSUD01|PCPUD2=CSUD02|PCPUD3=CSUD03}
+!define D6_ID_Data  {233|HIC|110110110110110110110110110||20160101|20161231|IDUD1=CSUD01|FACETS|IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02IDUD2=CSUD02|IDUD3=CSUD03}
+!define D7_MBXT_Data {233|9586488991|AAR|M|20160101|20161231|20161130|PALASTNAME|PAFNAME|SPS|9586488992|9586488993|13050 D CIRCLE 20170720004|APT A2323|EDEN PRAIRIE|MN|55344|POPID321001|MBXTUD1=CSUD01|MBXTUD2=CSUD02|MBXTUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${sub_client_sk}|20160101|20161231|$currentdatetime|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+
+
+!define Memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|$currentdatetime|${D3_MBR_Data}
+ENR|$currentdatetime|${D4_ENR_Data}
+PCP|$currentdatetime|${D5_PCP_Data}
+ID|$currentdatetime|${D6_ID_Data}
+MBXT|$currentdatetime|${D7_MBXT_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                                     |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss                   |
+|given the        |${fileType}_${sub_client_sk}_MR|file with content|${Memberdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from mbr_uow_grp_evnt f where f.file_key=$filekey|For|18|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT  
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|105|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select select FILE_KEY,ERR_CD,PROCESS_NM,THRESH_INFO_DFN_VAL_NBR, FILE_RJCT_IND from DQ_THRESH_RSLT where file_key = $filekey|${env} from DQ_THRESH_RSLT where file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD                                                                                                          |PROCESS_NM|THRESH_INFO_DFN_VAL_NBR|FILE_RJCT_IND|
+|$filekey      |CS990002                                                                                                        |        |                   |                   |
+
+
+|Query:Db Table|select  FILE_KEY,ERROR_MSG,PROCESS_NM  from FRMK_STG_ERRORS where file_key = $filekey|${env} from DQ_THRESH_RSLT where file_key = $filekey|${env}|
+|FILE_KEY      |ERROR_MSG                                                                        |PROCESS_NM|
+|$filekey      |                                                                                 |          |                  
+                                                                            
+!|script|RallyTestCaseStatusUpdates                                                                                           |
+|send   |ERR CD validation for member file load|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+

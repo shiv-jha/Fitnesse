@@ -1,0 +1,80 @@
+---
+Test
+---
+!define fileType {MAO002}
+
+!define contents {0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+1*MAO-002*H5590*L175MCE00259                          *$currentdatetime                              *000*Accepted*     *                                        *
+1*MAO-002*H5590*L175MCE00259                          *$currentdatetime                              *001*Accepted*     *                                        *
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000001*
+}
+
+
+!define env {TST}
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                             |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss               |
+|given the        |${fileType}_Test_Automation|file with content|${contents}|
+*!
+
+
+
+!*> 2. !style_green('''This step will wait till file moves to 2 status)
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+*!
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+|Query:Db Table|select * from mini_clm_mao_hdr where file_key=$filekey|${env}                                                                                                                                                                                                                        |
+|FILE_KEY      |HDR_REC_TYP                                           |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|PHASE|VERSION|
+|$filekey      |0                                                     |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |           |         |     |       |
+
+|Query:Db Table|select * from mini_clm_mao_ftr where file_key=$filekey|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                           |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey      |9                                                     |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000001            |                  |     |     |
+
+
+|Query:Db Table|select * from MINI_CLM_MAO_002_DTL where file_key=$filekey and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                   |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey      |1                                                                             |MAO-002   |H5590             |L175MCE00259  |$currentdatetime|1            |Accepted  |
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_MAO2_ODS|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|107|And Retry|120|times|true|
+
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+|script                                                                                                             |
+|check|query|select ETL_CMPL_IND from etl_mao_file_log_hist where file_key=$filekey|For|'Y'|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from A_MED_CLM_MAO002_HDR where file_key=$filekey|${env}                                                                                                                                                                                                          |
+|FILE_KEY      |HDR_REC_TYP                                               |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|
+|$filekey      |0                                                         |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |                     |
+
+|Query:Db Table|select * from A_MED_CLM_MAO002_FTR where file_key=$filekey|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                               |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey      |9                                                         |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000001            |                  |     |     |
+
+
+|Query:Db Table|select * from A_MED_CLM_MAO_002_DTL where file_key=$filekey and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                    |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey      |1                                                                              |MAO-002   |H5590             |L175MCE00259  |$currentdatetime|1            |Accepted  |
+

@@ -1,0 +1,116 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {PLAN}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20130918|20140918|$currentdatetime|4.2}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CTR_Data {TEST MAPD CON1|MYPLAN|R|01/01/2017|12/31/2017}
+!define D4_SBP_Data {001|CALOP PN   PBP|CA|01/01/2017|12/31/2017|MAPD|HMO|N|I|BRANDNAME1|UD01|UD02|UD03|CR01}
+!define D5_COM_Data {1234CA999|1123456789|IN|ON|P|AO|H0013|HMO|N|999000112|Y|30|125.65|3000.89|ABC1|DEF1|GHI1|CRK01}
+!define D6_FTR_Data {${fileType}|${sub_client_sk}|20130918|20140918|$currentdatetime|4.2}
+!define D7_CNT_Data {1|1|1|1|4}
+!define env {TST}
+
+
+
+!define plandata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CTR|$currentdatetime|${D3_CTR_Data}
+SBP|$currentdatetime|${D4_SBP_Data}
+COM|12345|$currentdatetime|${D5_COM_Data}
+FTR|${D6_FTR_Data}
+CNT|${D7_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${plandata}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 18 status)
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+*!
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from stg_uow_grp_evnt f where f.file_key=$filekey|For|20|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |${fileType} |${sub_client_sk}|20130918   |20140918    |20150120000006|6.1        |
+
+
+
+|Query:Db Table|select * from P_CONTR_VER where file_key = $filekey|${env}                                                                                                                                                                                  |
+|FILE_KEY      |CONTR_NBR                                          |CONTR_DESC    |HLTH_PLN_NM|PGM_TYP_CD|CONTR_STRT_DT        |CONTR_END_DT         |RECV_CONTR_NBR  |RECV_CONTR_DESC|RECV_HLTH_PLN_NM|RECV_PGM_TYP_CD|RECV_CONTR_STRT_DT|RECV_CONTR_END_DT|
+|$filekey      |$currentdatetime                                   |TEST MAPD CON1|MYPLAN     |R         |2017-01-01 00:00:00.0|2017-12-31 00:00:00.0|$currentdatetime|TEST MAPD CON1 |MYPLAN          |R              |01/01/2017        |12/31/2017       |
+
+
+
+
+|Query:Db Table|select * from P_SUB_PLN_VER where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|FILE_KEY      |CONTR_NBR                                            |SUB_PLN_ID|SUB_PLN_DESC  |SUB_PLN_ST_CD|SUB_PLN_STRT_DT      |SUB_PLN_END_DT       |SUB_PLN_BEN_TYP_CD|SUB_PLN_TYP_CD|SPCL_NEED_PLN_IND|SPCL_NEED_PLN_TYP_CD|SUB_PLN_BRND_NM|SUB_PLN_USER_DFN_1_TXT|SUB_PLN_USER_DFN_2_TXT|SUB_PLN_USER_DFN_3_TXT|SRC_SUB_PLN_CLI_REC_KEY|RECV_CONTR_NBR  |RECV_SUB_PLN_ID|RECV_SUB_PLN_DESC|RECV_SUB_PLN_ST_CD|RECV_SUB_PLN_STRT_DT|RECV_SUB_PLN_END_DT|RECV_SUB_PLN_BEN_TYP_CD|RECV_SUB_PLN_TYP_CD|RECV_SPCL_NEED_PLN_IND|RECV_SPCL_NEED_PLN_TYP_CD|RECV_SUB_PLN_BRND_NM|
+|$filekey      |$currentdatetime                                     |001       |CALOP PN   PBP|CA           |2017-01-01 00:00:00.0|2017-12-31 00:00:00.0|MAPD              |HMO           |N                |I                   |BRANDNAME1     |UD01                  |UD02                  |UD03                  |CR01                   |$currentdatetime|001            |CALOP PN   PBP   |CA                |01/01/2017          |12/31/2017         |MAPD                   |HMO                |N                     |                         |BRANDNAME1          |
+
+
+
+|Query:Db Table|select * from P_CML_VER where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                       |
+|FILE_KEY      |HIOS_ISSR_ID                                     |CONTR_NBR       |CML_PRDCT_ID|ASSOC_HLTH_PLN_ID|MKT_COV_CD|OFR_XCHG_CD|LVL_OF_COV_CD|CHLD_OFR_CD|CHLD_CONTR_NBR|CONTR_TYP_CD|CONTR_XST_IND|ISSR_TIN_NBR|CONTR_UNIQ_DESN_IND|ISSR_ACTL_VAL_TXT|INDIV_COMB_NTWK_AMT|RECV_INDIV_COMB_NTWK_AMT|FAM_COMB_NTWK_AMT|RECV_FAM_COMB_NTWK_AMT|CML_USR_DFN_1_TXT|CML_USR_DFN_2_TXT|CML_USR_DFN_3_TXT|SRC_CML_CLI_REC_KEY|
+|$filekey      |12345                                            |$currentdatetime|1234CA999   |1123456789       |IN        |ON         |P            |AO         |H0013         |HMO         |N            |999000112   |Y                  |30               |125.65             |125.65                  |3000.89          |3000.89               |ABC1             |DEF1             |GHI1             |CRK01              |
+
+
+
+!|script  |DbTable                                                               |
+|$exit_cd=|run All|CALL_ALL_PLAN_SP_IN_SEQ|Procedure Chunk|1000|And File|$filekey|
+
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|84|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select * from CONTR where updt_file_key = $filekey|${env}                                                                                                                                                                        |
+|UPDT_FILE_KEY |CONTR_NBR                                         |CONTR_DESC    |HLTH_PLN_NM|PGM_TYP_CD|CONTR_STRT_DT|CONTR_END_DT|RECV_CONTR_NBR  |RECV_CONTR_DESC|RECV_HLTH_PLN_NM|RECV_PGM_TYP_CD|RECV_CONTR_STRT_DT   |RECV_CONTR_END_DT    |
+|$filekey      |$currentdatetime                                  |TEST MAPD CON1|MYPLAN     |R         |01/01/2017   |12/31/2017  |$currentdatetime|TEST MAPD CON1 |MYPLAN          |R              |2017-01-01 00:00:00.0|2017-12-31 00:00:00.0|
+
+
+
+|Query:Db Table|select * from SUB_PLN where updt_file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|UPDT_FILE_KEY |CONTR_NBR                                           |SUB_PLN_ID|SUB_PLN_DESC  |SUB_PLN_ST_CD|SUB_PLN_STRT_DT      |SUB_PLN_END_DT       |SUB_PLN_BEN_TYP_CD|SUB_PLN_TYP_CD|SPCL_NEED_PLN_IND|SPCL_NEED_PLN_TYP_CD|SUB_PLN_BRND_NM|SUB_PLN_USER_DFN_1_TXT|SUB_PLN_USER_DFN_2_TXT|SUB_PLN_USER_DFN_3_TXT|SRC_SUB_PLN_CLI_REC_KEY|RECV_CONTR_NBR  |RECV_SUB_PLN_ID|RECV_SUB_PLN_DESC|RECV_SUB_PLN_ST_CD|RECV_SUB_PLN_STRT_DT|RECV_SUB_PLN_END_DT|RECV_SUB_PLN_BEN_TYP_CD|RECV_SUB_PLN_TYP_CD|RECV_SPCL_NEED_PLN_IND|RECV_SPCL_NEED_PLN_TYP_CD|RECV_SUB_PLN_BRND_NM|
+|$filekey      |$currentdatetime                                    |001       |CALOP PN   PBP|CA           |2017-01-01 00:00:00.0|2017-12-31 00:00:00.0|MAPD              |HMO           |N                |I                   |BRANDNAME1     |UD01                  |UD02                  |UD03                  |CR01                   |$currentdatetime|001            |CALOP PN   PBP   |CA                |01/01/2017          |12/31/2017         |MAPD                   |HMO                |N                     |                         |BRANDNAME1          |
+
+
+
+|Query:Db Table|select * from CML where updt_file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                       |
+|UPDT_FILE_KEY |HIOS_ISSR_ID                                    |CONTR_NBR       |CML_PRDCT_ID|ASSOC_HLTH_PLN_ID|MKT_COV_CD|OFR_XCHG_CD|LVL_OF_COV_CD|CHLD_OFR_CD|CHLD_CONTR_NBR|CONTR_TYP_CD|CONTR_XST_IND|ISSR_TIN_NBR|CONTR_UNIQ_DESN_IND|ISSR_ACTL_VAL_TXT|INDIV_COMB_NTWK_AMT|RECV_INDIV_COMB_NTWK_AMT|FAM_COMB_NTWK_AMT|RECV_FAM_COMB_NTWK_AMT|CML_USR_DFN_1_TXT|CML_USR_DFN_2_TXT|CML_USR_DFN_3_TXT|SRC_CML_CLI_REC_KEY|
+|$filekey      |12345                                           |$currentdatetime|1234CA999   |1123456789       |IN        |ON         |P            |AO         |H0013         |HMO         |N            |999000112   |Y                  |30               |125.65             |125.65                  |3000.89          |3000.89               |ABC1             |DEF1             |GHI1             |CRK01              |
+
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                       |
+|send   |CS_PlanNewFCDFile_PREPDB_ODS_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|

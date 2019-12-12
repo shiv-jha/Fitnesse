@@ -1,0 +1,83 @@
+---
+Test
+---
+!define fileType {QGC}
+!define subclisk {91}
+!define clientText {wellpoint}
+!define clientUniqueText {c78fc3ba-3f18-4b09-93a7-c365a36b9d63}
+!define qgc_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/qgc/dataintake.sh TST rqnsdev qgc}
+!define qgc_threshold {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/qgc/dataintake-threshold.sh TST rqnsdev qgc}
+
+!define D1_HDR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190311|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_QGC_Data {WLP2017082302|685|123456789D|COLM|COL|20190404|2019|FK=123123|User2|User3}
+!define D4_FTR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190311|$currentdatetime|6.1}
+!define D5_CNT_Data {1|1|2}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define QGCdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+QGC|${D3_QGC_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata}|
+
+|script |File Support                                                       |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                            |
+|query    |select * from frmk_stg_fileinfo where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                      |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select FILE_KEY,SEG_IDENTIFIER,SEG_TOT_ROW_CNT from file_seg_trk where file_key = '$filekey' and SEG_IDENTIFIER='CLI'|${env}                                      |
+|FILE_KEY      |SEG_IDENTIFIER                                                                                                           |SEG_TOT_ROW_CNT|
+|$filekey      |CLI                                                                                                                      |1              |
+
+|Query:Db Table|Select FILE_KEY,SEG_IDENTIFIER,SEG_TOT_ROW_CNT from file_seg_trk where file_key = '$filekey' and SEG_IDENTIFIER='DATA_COUNT'|${env}                                      |
+|FILE_KEY      |SEG_IDENTIFIER                                                                                                                  |SEG_TOT_ROW_CNT|
+|$filekey      |DATA_COUNT                                                                                                                      |1              |
+
+|Query:Db Table|Select FILE_KEY,SEG_IDENTIFIER,SEG_TOT_ROW_CNT from file_seg_trk where file_key = '$filekey' and SEG_IDENTIFIER='QGC'|${env}                                      |
+|FILE_KEY      |SEG_IDENTIFIER                                                                                                           |SEG_TOT_ROW_CNT|
+|$filekey      |QGC                                                                                                                      |1              |
+
+|Query:Db Table|Select FILE_KEY,SEG_IDENTIFIER,SEG_TOT_ROW_CNT from file_seg_trk where file_key = '$filekey' and SEG_IDENTIFIER='TOTALCNT'|${env}                                      |
+|FILE_KEY      |SEG_IDENTIFIER                                                                                                                |SEG_TOT_ROW_CNT|
+|$filekey      |TOTALCNT                                                                                                                      |2              |
+
+|script |File Support                                                       |
+|command|${qgc_threshold}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6010|And Retry|120|times|true|
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+|script                                                                                                                                      |
+|check|query|select distinct MBR_ID from A_CLNT_QUAL_GAP where updt_file_key = $filekey and MBR_ID='WLP2017082302'|For|WLP2017082302|And Retry|15|times|true|
+
+|Query:Db Table                       |Select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK,MBR_ID,MBR_MOD_ID,HIC_NBR,MSR_ID,MSR_NM,GAP_CLOSED_DT,MSR_YR,USR_DFN_TXT_1,USR_DFN_TXT_2,USR_DFN_TXT_3 FROM A_CLNT_QUAL_GAP where updt_file_key = '$filekey' |${env}|                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|CLI_ID                               | CLI_SK | CLNT_GUID                            | SUB_CLI_SK | MBR_ID        | MBR_MOD_ID | HIC_NBR    | MSR_ID | MSR_NM | GAP_CLOSED_DT | MSR_YR | USR_DFN_TXT_1 | USR_DFN_TXT_2 | USR_DFN_TXT_3|
+|c78fc3ba-3f18-4b09-93a7-c365a36b9d63 | 91     | c78fc3ba-3f18-4b09-93a7-c365a36b9d63 | 91         | WLP2017082302 | 685        | 123456789D | COLM   | COL    | 04-APR-19     | 2019   | FK=123123     | User2         | User3        |
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_QGCNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+	 

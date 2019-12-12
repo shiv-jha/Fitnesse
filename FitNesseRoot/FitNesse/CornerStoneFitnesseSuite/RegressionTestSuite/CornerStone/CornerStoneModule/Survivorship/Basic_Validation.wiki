@@ -1,0 +1,15 @@
+---
+Test
+---
+---
+Test
+---
+!define env {TST}
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+!|script  |DbTable                                                                                                 		 	|
+|executeUpdate    |update d_cs_mbr_glb_id set DW_UPDT_DTTM = systimestamp, MBR_SRVVR_IND = '' where rownum = 1 order by DW_UPDT_DTTM desc;|
+

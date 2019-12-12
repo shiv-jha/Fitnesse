@@ -1,0 +1,2 @@
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|

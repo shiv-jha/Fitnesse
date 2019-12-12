@@ -1,0 +1,109 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 3:34:55 PM (CST) on Tuesday, March 1, 2016 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.StgEnv.MeasureYear2016.MeasureSetup.AabMeasureSetup|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.7.0_71\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;E:\HDE\lib\antisamy-1.4.3.jar;E:\HDE\lib\asm-3.3.1.jar;E:\HDE\lib\avalon-framework-4.1.3.jar;E:\HDE\lib\batik-css-1.7.jar;E:\HDE\lib\batik-ext-1.7.jar;E:\HDE\lib\batik-util-1.7.jar;E:\HDE\lib\bsh-core-2.0b4.jar;E:\HDE\lib\cglib-2.2.2.jar;E:\HDE\lib\commons-beanutils-1.7.0.jar;E:\HDE\lib\commons-beanutils-core-1.7.0.jar;E:\HDE\lib\commons-codec-1.8.jar;E:\HDE\lib\commons-collections-3.2.jar;E:\HDE\lib\commons-configuration-1.5.jar;E:\HDE\lib\commons-digester-1.8.jar;E:\HDE\lib\commons-fileupload-1.2.jar;E:\HDE\lib\commons-httpclient-3.1.jar;E:\HDE\lib\commons-io-2.4.jar;E:\HDE\lib\commons-lang-2.3.jar;E:\HDE\lib\commons-logging-1.1.jar;E:\HDE\lib\esapi-2.1.0.jar;E:\HDE\lib\hde-fitnesse.jar;E:\HDE\lib\jsch-0.1.51.jar;E:\HDE\lib\junit-4.8.2.jar;E:\HDE\lib\log4j-1.2.16.jar;E:\HDE\lib\logkit-1.0.1.jar;E:\HDE\lib\nekohtml-1.9.12.jar;E:\HDE\lib\ojdbc6.jar;E:\HDE\lib\selenium-java-2.52.0.jar;E:\HDE\lib\selenium-server-standalone-2.52.0.jar;E:\HDE\lib\servlet-api-2.3.jar;E:\HDE\lib\servlet-api-2.5-6.1.14.jar;E:\HDE\lib\sqljdbc42.jar;E:\HDE\lib\stk-1.3.0-SNAPSHOT.jar;E:\HDE\lib\testng-6.8.jar;E:\HDE\lib\xalan-2.7.0.jar;E:\HDE\lib\xercesImpl-2.8.0.jar;E:\HDE\lib\xml-apis-1.3.03.jar;E:\HDE\lib\xml-apis-ext-1.3.04.jar;E:\HDE\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8091-! |
+|'''Exit code: '''| 1 |
+|'''Time elapsed: '''| 15.616 seconds |
+
+----
+'''Standard Output:'''
+{{{Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: E:\HDE\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (\\ms\userdata\036\nchakrab) directory: \\ms\userdata\036\nchakrab\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: E:\HDE\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (\\ms\userdata\036\nchakrab) directory: \\ms\userdata\036\nchakrab\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+}}}
+----
+'''Standard Error:'''
+{{{log4j:WARN No appenders could be found for logger (com.optum.stk.config.BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Mar 01, 2016 3:34:41 PM com.optum.hde.fitnesse.Properties <init>
+INFO: Properties loaded
+Mar 01, 2016 3:34:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Creating STGNEW db connection
+Mar 01, 2016 3:34:41 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STGNEW
+Mar 01, 2016 3:34:42 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STGNEW DB connection established! 
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMO_P4P_STG2016'
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2016
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - AAB_STGNEW
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_AABTST and 20
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - DEMO_P4P_STG2016
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data stgnew /landing_hde/stg/fab/inbound/measures
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: STGNEW Unix session established
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_AAB_010320161534
+Mar 01, 2016 3:34:43 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :E:\HDE\testdata\2016\dp20\AAB.txt
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/stg/fab/inbound/measures
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/stg/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_010320161534.txt
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/stg/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_010320161534.trg
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/stg/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_010320161534.txt
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/stg/fab/inbound/measures/DEMOHEDIS_DEMO_AAB_010320161534*.*
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_AAB_010320161534
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QANEW Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STGNEW Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: Creating Stage db connection
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QANEW Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Mar 01, 2016 3:34:44 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STGNEW Connection closed
+}}}

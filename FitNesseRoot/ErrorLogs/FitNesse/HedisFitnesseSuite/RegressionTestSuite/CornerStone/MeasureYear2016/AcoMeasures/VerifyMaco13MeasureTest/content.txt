@@ -1,0 +1,66 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 5:05:43 PM (IST) on Tuesday, February 28, 2017 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.CornerStone.MeasureYear2016.AcoMeasures.VerifyMaco13MeasureTest|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.8.0_51\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;C:\HDE_STUFF\HDE\automation-hde\lib\antisamy-1.4.3.jar;C:\HDE_STUFF\HDE\automation-hde\lib\asm-3.3.1.jar;C:\HDE_STUFF\HDE\automation-hde\lib\avalon-framework-4.1.3.jar;C:\HDE_STUFF\HDE\automation-hde\lib\batik-css-1.7.jar;C:\HDE_STUFF\HDE\automation-hde\lib\batik-ext-1.7.jar;C:\HDE_STUFF\HDE\automation-hde\lib\batik-util-1.7.jar;C:\HDE_STUFF\HDE\automation-hde\lib\bsh-core-2.0b4.jar;C:\HDE_STUFF\HDE\automation-hde\lib\cglib-2.2.2.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-beanutils-1.7.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-beanutils-core-1.7.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-codec-1.8.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-collections-3.2.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-configuration-1.5.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-digester-1.8.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-fileupload-1.2.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-httpclient-3.1.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-io-2.4.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-lang-2.3.jar;C:\HDE_STUFF\HDE\automation-hde\lib\commons-logging-1.1.jar;C:\HDE_STUFF\HDE\automation-hde\lib\esapi-2.1.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\hde-fitnesse.jar;C:\HDE_STUFF\HDE\automation-hde\lib\jsch-0.1.51.jar;C:\HDE_STUFF\HDE\automation-hde\lib\junit-4.8.2.jar;C:\HDE_STUFF\HDE\automation-hde\lib\log4j-1.2.16.jar;C:\HDE_STUFF\HDE\automation-hde\lib\logkit-1.0.1.jar;C:\HDE_STUFF\HDE\automation-hde\lib\nekohtml-1.9.12.jar;C:\HDE_STUFF\HDE\automation-hde\lib\ojdbc6.jar;C:\HDE_STUFF\HDE\automation-hde\lib\selenium-java-2.52.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\selenium-server-standalone-2.52.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\servlet-api-2.3.jar;C:\HDE_STUFF\HDE\automation-hde\lib\servlet-api-2.5-6.1.14.jar;C:\HDE_STUFF\HDE\automation-hde\lib\sqljdbc42.jar;C:\HDE_STUFF\HDE\automation-hde\lib\stk-1.3.0-SNAPSHOT.jar;C:\HDE_STUFF\HDE\automation-hde\lib\testng-6.8.jar;C:\HDE_STUFF\HDE\automation-hde\lib\xalan-2.7.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\xercesImpl-2.8.0.jar;C:\HDE_STUFF\HDE\automation-hde\lib\xml-apis-1.3.03.jar;C:\HDE_STUFF\HDE\automation-hde\lib\xml-apis-ext-1.3.04.jar;C:\HDE_STUFF\HDE\automation-hde\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8094-! |
+|'''Exit code: '''| 1 |
+|'''Time elapsed: '''| 41.249 seconds |
+
+----
+'''Standard Output:'''
+{{{QA Unix session established
+File already exists.
+QA Unix session established
+Files moved to Landing Zone
+QA Unix session closed
+Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE_STUFF\HDE\automation-hde\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE_STUFF\HDE\automation-hde\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+}}}
+----
+'''Standard Error:'''
+{{{log4j:WARN No appenders could be found for logger (com.optum.stk.config.BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Feb 28, 2017 5:05:20 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Feb 28, 2017 5:05:24 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Feb 28, 2017 5:05:24 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Feb 28, 2017 5:05:28 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Feb 28, 2017 5:05:28 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Feb 28, 2017 5:05:31 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Feb 28, 2017 5:05:31 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STGNEW
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QANEW Connection closed
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: Creating Stage db connection
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QANEW Connection closed
+Feb 28, 2017 5:05:32 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+}}}

@@ -1,0 +1,66 @@
+---
+Test
+---
+!define SubClientID {33}
+!define DateTime {20180529}
+!define ClaimID {CLM000000}
+!define env {TST}
+!define createddir {E:\\Automation\\Rahul\\}
+!define ftpdir {/etldata/pay02/provider/inbox
+!define ftpuser {rmohan11}
+!define ftppass {pwd123!}
+!define ftpserver {APSRD5785}
+!define ftphost {APSRD5785}
+
+!define ClaimToProv {CLAIM_NUMBER|SUBSCRIBER_ID|MBI_NUM|PRPR_ID_RENDERING|PRPR_ID_BILLING|PRPR_ID_ATTENDING|PRPR_ID_REFFERAL|SRVC_FROM_DT|SRVC_TO_DT|PAT_ACC_NUM
+${ClaimID}|10000AB00|0A00AB0AB00|0095049000|0031180000|12345600|1952747000|04/07/2018|04/07/2018|PATACC0001
+}
+
+|script       |File Support                                                                                                                                                             |
+|$datfilename=|create          |UHG_${ClientID}_CLAIM_PROVIDER_LOOKUP_${DateTime}|.DAT|
+|sleep        |2                                                                                                                                                                        |
+|ftp          |$datfilename.DAT|File                                               |${createddir}|In           |${ftphost}  |To           |${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep        |10    |
+
+!|script |File Support                                                   |
+|command|${command}|In|${ftphost}|To|${ftpuser}|Location Zone|${ftppass}|
+|sleep  |30                                                             |
+
+!|script   |DbTable                                                                                                                   |
+|query     |select max(file_key) as file_key from FRMK_STG_FILEINFO where load_date is not NULL and file_name like '%CLAIM_PROVIDER_LOOKUP%'|
+|$file_key=|valueofcolumn                                                  |file_key                                                  |
+
+!|script                                                                                                                    |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_key ='$file_key'|For|4|And Retry|120|times|true|
+
+!|script   |DbTable                                                                                                                   |
+|query     |select max(file_key) as file_key from FRMK_STG_FILEINFO where file_key = $filekey|
+|$file_nm=|valueofcolumn                                                  |file_nm                                                  |
+
+!|script |DbTable                                                                                                  |
+|query   |select CLI_SK from VW_CS_CLNT_GUID_MOD where Sub_Cli_Sk = ${SubClientID}|
+|$Cli_SK=|valueofcolumn                                           |Cli_SK                                          |
+
+!|script |DbTable                                                                                                  |
+|query   |select CLI_ID from VW_CS_CLNT_GUID_MOD where Sub_Cli_Sk = ${SubClientID}|
+|$Cli_ID=|valueofcolumn                                           |Cli_ID                                          |
+
+!|script |DbTable                                                                                                  |
+|query   |select SUB_CLI_ORG_NM from VW_CS_CLNT_GUID_MOD where Sub_Cli_Sk = ${SubClientID}|
+|$Sub_cli_org_nm=|valueofcolumn                                           |SUB_CLI_ORG_NM                                          |
+
+
+|Query:Db Table|select * from FRMK_TRK where FILE_KEY = $file_key|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|FILE_KEY      |CLI_ID                                             |CLI_NM           |FILE_NM      |FILE_INFO_NM   |FILE_APPL_SND_ID |FILE_ID |FILE_TOT_ROW_CNT|ODS_REJ_IND|WAREHOUSE_CMPL_IND|ARCHV_IND
+|$file_key     |${Cli_ID}                                          |$Sub_cli_org_nm  |${file_nm}   |$CLM_PROV_LKP  |SubClientID      |1       |                |N          |Y                 |Y
+
+|Query:Db Table|select * from PREP_CLM_PROV_LKP where FILE_KEY = $file_key|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|FILE_KEY	|CLAIM_NUMBER	|SUBSCRIBER_ID	|MBI_NUM	 |PRVDR_ID_RENDERING	|PRVDR_ID_BILLING	|PRVDR_ID_ATTENDING	|PRVDR_ID_REFERRAL	|SRVC_FROM_DT	|SRVC_TO_DT	|PAT_ACC_NUM
+|${filekey} |${ClaimID}     |10000AB00      |0A00AB0AB00 |0095049000            |0031180000         |12345600           |1952747000         |04/07/2018     |04/07/2018 |PATACC0001
+
+|Query:Db Table|select * from A_CLM_PROV_LKP where FILE_KEY = $file_key|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|CLI_SK	 |SUB_CLI_SK	  |FILE_KEY	  |CLM_ID	      |SBSCR_ID	   |MBI_NUM		|PRVDR_ID_RENDERING	   |PRVDR_ID_BILLING   |PRVDR_ID_ATTENDING	|PRVDR_ID_REFERRAL	|SRVC_FROM_DT	|SRVC_TO_DT	 |PAT_ACC_NUM	|PRCSD_IND
+|$Cli_SK |${SubClientID}  |${filekey} |${ClaimID}     |10000AB00   |0A00AB0AB00 |0095049000            |0031180000         |12345600            |1952747000         |04/07/2018     |04/07/2018  |PATACC0001    |N
+
+
+

@@ -1,0 +1,76 @@
+---
+Test
+---
+!define fileType {MODD}
+!define contract {R4010}
+!define hicnum1 {271266289A}
+!define hicnum2 {445469610A}
+!define DyaTM {201703}
+!define DyaTM1 {170301}
+!define YYYYMMDD {20170308}
+
+
+
+!define contents {1${contract}${YYYYMMDD}${DyaTM}                                                                                                                                               
+2A$createRandom  DLASTSHIVJ   DFIRST I198804132SSN1234561000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000
+3${contract}000000003                                                                                                                                                    
+}
+
+
+!define env {TST}
+
+!|script  |File Support             |
+|$current=|make id using Time|yyyyMM|
+
+
+!|script       |File Support               |
+|$createRandom=|make id using Time|yyyyMMdd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                                |
+|$currentdatetime=|make id using Time                        |yyyyMMddHHmmss                   |
+|given the        |PTD${fileType}_${DyaTM1}Random_${contract}|mod file with content|${contents}|
+*!
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                                               |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.txt' and f.file_typ='MOR_RX'|For|1|And Retry|120|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_MORD_MTH|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                             |
+|check|query|select count(*) as count from frmk_stg_fileinfo f where  f.file_name ='$datfilename.txt'|For|1|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.txt'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+!|script     |DbTable                                                     |
+|query       |select sub_cli_sk from d_contr where contr_nbr='${contract}'|
+|$sub_cli_sk=|valueofcolumn                  |sub_cli_sk                  |
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.txt'|For|4|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from CMS_MOR_RX where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|FILE_KEY      |CLI_SK                                            |SUB_CLI_SK |CS_SRC_DATA_SYS_CD|CONTR_NBR  |PAY_DT_YM|HIC_NBR          |BENFY_LST_NM|BENFY_FST_NM|BENFY_INIT|DOB      |SEX|SSN      |AGE_GRP_FEMALE_0_34|AGE_GRP_FEMALE_35_44|AGE_GRP_FEMALE_45_54|AGE_GRP_FEMALE_55_59|AGE_GRP_FEMALE_60_64|AGE_GRP_FEMALE_65_69|AGE_GRP_FEMALE_70_74|AGE_GRP_FEMALE_75_79|AGE_GRP_FEMALE_80_84|AGE_GRP_FEMALE_85_89|AGE_GRP_FEMALE_90_94|AGE_GRP_FEMALE_95_GT|AGE_GRP_MALE_0_34|AGE_GRP_MALE_35_44|AGE_GRP_MALE_45_54|AGE_GRP_MALE_55_59|AGE_GRP_MALE_60_64|AGE_GRP_MALE_65_69|AGE_GRP_MALE_70_74|AGE_GRP_MALE_75_79|AGE_GRP_MALE_80_84|AGE_GRP_MALE_85_89|AGE_GRP_MALE_90_94|AGE_GRP_MALE_95_GT|ORIG_DSBL_FEMALE|ORIG_DSBL_MALE|RXHCC001|RXHCC002|RXHCC003|RXHCC005|RXHCC008|RXHCC009|RXHCC010|RXHCC011|RXHCC014|RXHCC015|RXHCC017|RXHCC018|RXHCC019|RXHCC020|RXHCC021|RXHCC023|RXHCC024|RXHCC025|RXHCC030|RXHCC031|RXHCC032|RXHCC033|RXHCC034|RXHCC037|RXHCC038|RXHCC039|RXHCC040|RXHCC041|RXHCC042|RXHCC043|RXHCC044|RXHCC045|RXHCC047|RXHCC048|RXHCC049|RXHCC050|RXHCC051|RXHCC052|RXHCC054|RXHCC055|RXHCC057|RXHCC058|RXHCC059|RXHCC060|RXHCC061|RXHCC062|RXHCC063|RXHCC065|RXHCC066|RXHCC067|RXHCC068|RXHCC071|RXHCC072|RXHCC074|RXHCC075|RXHCC076|RXHCC077|RXHCC078|RXHCC079|RXHCC080|RXHCC081|RXHCC082|RXHCC083|RXHCC085|RXHCC086|RXHCC087|RXHCC088|RXHCC089|RXHCC091|RXHCC092|RXHCC093|RXHCC097|RXHCC098|RXHCC099|RXHCC100|RXHCC101|RXHCC102|RXHCC103|RXHCC104|RXHCC105|RXHCC106|RXHCC108|RXHCC109|RXHCC110|RXHCC111|RXHCC112|RXHCC113|RXHCC120|RXHCC121|RXHCC122|RXHCC123|RXHCC124|RXHCC125|RXHCC126|RXHCC129|RXHCC130|RXHCC132|RXHCC134|RXHCC135|RXHCC137|RXHCC138|RXHCC139|RXHCC140|RXHCC142|RXHCC144|RXHCC145|RXHCC147|RXHCC156|RXHCC157|RXHCC158|RXHCC159|RXHCC160|RXHCC165|RXHCC166|RXHCC167|RXHCC168|RXHCC186|RXHCC187|DSBL_DSES_RXHCC065|DSBL_DSES_RXHCC066|DSBL_DSES_RXHCC108|ORIG_DSBL|NON_AGED_RXHCC001|NON_AGED_RXHCC058|NON_AGED_RXHCC059|NON_AGED_RXHCC060|NON_AGED_RXHCC061|NON_AGED_RXHCC062|NON_AGED_RXHCC063|NON_AGED_RXHCC065|NON_AGED_RXHCC075|NON_AGED_RXHCC078|NON_AGED_RXHCC079|NON_AGED_RXHCC080|RXHCC016|RXHCC084|RXHCC095|RXHCC096|RXHCC131|RXHCC133|RXHCC146|RXHCC148|RXHCC161|RXHCC163|RXHCC164|RXHCC185|RXHCC188|RXHCC193|RXHCC206|RXHCC207|RXHCC215|RXHCC216|RXHCC225|RXHCC226|RXHCC227|RXHCC241|RXHCC243|RXHCC260|RXHCC261|RXHCC262|RXHCC263|RXHCC311|RXHCC314|RXHCC316|RXHCC355|RXHCC395|RXHCC396|RXHCC397|NON_AGED_RXHCC130|NON_AGED_RXHCC131|NON_AGED_RXHCC132|NON_AGED_RXHCC133|NON_AGED_RXHCC134|NON_AGED_RXHCC135|NON_AGED_RXHCC160|NON_AGED_RXHCC163|NON_AGED_RXHCC145|NON_AGED_RXHCC164|NON_AGED_RXHCC165|FILLER|RADC_LOADLOGKEY|RADC_CMSMORPARTDKEY|
+|$filekey      |$sub_cli_sk                                       |$sub_cli_sk|CS_DW             |${contract}|${DyaTM} |A$createRandom  D|LASTSHIVJ   |DFIRST      |I         |1988-04-13 00:00:00.0|2  |SSN123456|1                  |0                   |0                   |0                   |0                   |0                   |0                   |0                   |0                   |0                   |0                   |0                   |0                |0                 |0                 |0                 |0                 |0                 |0                 |0                 |0                 |0                 |0                 |0                 |0               |0             |0       |        |        |0       |        |        |        |        |        |0       |0       |0       |0       |        |        |        |        |        |0       |1       |        |        |        |        |        |        |0       |0       |0       |0       |        |0       |        |        |        |        |        |        |0       |0       |        |        |        |        |        |        |        |0       |0       |0       |0       |        |        |        |        |        |        |        |        |0       |        |0       |0       |        |        |0       |        |        |        |        |        |0       |0       |        |        |        |        |        |        |        |        |        |        |        |0       |0       |        |        |        |        |        |        |        |        |        |0       |0       |0       |0       |        |        |        |        |        |        |0       |0       |0       |0       |        |0       |0       |0       |0       |        |0       |0       |0       |                  |                  |                  |0        |0                |                 |                 |                 |                 |                 |                 |                 |                 |                 |                 |                 |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0       |0                |0                |0                |0                |0                |0                |0                |0                |                 |                 |                 |      |               |                   |
+
+|script                                                                                                                                               |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.txt' and f.file_typ='MOR_RX'|For|0|And Retry|120|times|true|

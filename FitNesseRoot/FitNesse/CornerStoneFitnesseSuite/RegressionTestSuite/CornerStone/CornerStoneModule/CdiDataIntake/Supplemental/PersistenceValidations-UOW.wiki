@@ -1,0 +1,89 @@
+---
+Test
+---
+!define fileType {SUP}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define sup_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/supplemental/dataintake.sh TST rqnsdev supplemental}
+!define sup_threshold {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/threshold/dataintake-threshold.sh TST rqnsdev threshold}
+
+!define D1_HDR_Data {${fileType}|${subclisk}|20180101|20180111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3user3}
+!define D6_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D4_FTR_Data {${fileType}|${subclisk}|20180101|20180111|$currentdatetime|6.1}
+!define D5_CNT_Data {1|2|3}
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define supplementaldata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+SUP|$currentdatetime|${D3_SUP_Data}
+SUP|$currentdatetime+1|${D6_SUP_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+!|script          |File Support                                                    |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                       |
+|given the cdisup |${fileType}_${subclisk}_CM|file with content|${supplementaldata}|
+
+|script |File Support                                                       |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                            |
+|query    |select * from frmk_stg_fileinfo where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                      |
+
+
+File_SEG_TRK info
+|Query:Db Table|select * from FILE_SEG_TRK where file_key = '$filekey' |${env}|
+|FILE_KEY |SEG_IDENTIFIER|SEG_TOT_ROW_CNT|
+|$filekey  |       |               |
+|$filekey  |       |               |
+|$filekey  |       |               |
+|$filekey  |       |               |
+
+|script |File Support                                                         |
+|command|${sup_threshold}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6010|And Retry|120|times|true|
+
+|Query:Db Table|select * from SUPP_UOW_TRK where file_key = '$filekey'|${env}|                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+|FILE_KEY      |UOW_BUS_KEY|PERSIST_STS|KAFKA_PUBLISHED_FLG|ERR_MSG|INSRT_DTTM|UPDT_DTTM|
+|$filekey      |     |          |       |         |          |              |
+|$filekey   |     |          |       |         |          |              |
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+|Query:Db Table|select FILE_KEY, CLI_SK, CLNT_GUID, SUB_CLI_SK,SUPPL_REC_ID from A_SUPPL_DATA where file_key = '$filekey' and sub_cli_sk = '889'|${env}| 
+|FILE_KEY  |CLI_SK |CLNT_GUID|SUB_CLI_SK|SUPPL_REC_ID|
+|$filekey   |       |        |          |            |
+
+
+
+|Query:Db Table |Select FILE_KEY,CLI_SK,CLNT_GUID,SUB_CLI_SK,PSEUDO_CLM_SRC_TBL,CLM_ID,CLM_MOD_ID,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,PROV_ENTY_ID,PROV_ENTY_MOD_ID,HCPCS_CD,CPT_II_CD,ICD_VER_CD_TYP,ICD_PROC_CD_1,ICD_PROC_CD_2,ICD_DIAG_CD_1,ICD_DIAG_CD_2,PROC_CD,PROC_CD_MOD_1,PROC_CD_MOD_2,PROV_SPCL_CD,SRVC_DT,MAP_SRC,FILE_KEY,DERIV_STS_CD,MEASURE FROM A_PSEUDO_MED_CLM where file_key = '$filekey' and sub_Cli_sk = 889|${env} |                                                                                                                                                                                                                                                                                                                                          
+|FILE_KEY  |CLI_SK |CLNT_GUID|SUB_CLI_SK|PSEUDO_CLM_SRC_TBL|CLM_ID|CLM_MOD_ID|MBR_ID |MBR_MOD_ID|MBR_GLB_ID|PROV_ENTY_ID|PROV_ENTY_MOD_ID|HCPCS_CD|CPT_II_CD|ICD_VER_CD_TYP|ICD_PROC_CD_1|ICD_PROC_CD_2|ICD_DIAG_CD_1|ICD_DIAG_CD_2|PROC_CD|PROC_CD_MOD_1|PROC_CD_MOD_2|PROV_SPCL_CD|SRVC_DT |MAP_SRC|FILE_KEY|DERIV_STS_CD|MEASURE|
+|$filekey      |889 |       |889       |                   |       |         |        |         |           |            |                |        |         |              |              |              |           |             |        |            |              |            |           |  |         |             |         |        
+
+|Query:Db Table|Select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK,PSEUDO_CLM_SRC_TBL,RX_CLM_ID,RX_CLM_MOD_ID,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,PROV_ENTY_ID,PROV_ENTY_MOD_ID,NDC_CD,MAP_SRC,PSEUDO_CLM_USR_DFN_1_TXT,PSEUDO_CLM_USR_DFN_2_TXT,FILE_KEY,DERIV_STS_CD,MEASURE FROM A_PSEUDO_RX_CLM_NDC where file_key = '$filekey'|${env}|
+|CLI_ID                               | CLI_SK | CLNT_GUID                             | SUB_CLI_SK | PSEUDO_CLM_SRC_TBL | RX_CLM_ID                  | RX_CLM_MOD_ID | MBR_ID | MBR_MOD_ID | MBR_GLB_ID | PROV_ENTY_ID | PROV_ENTY_MOD_ID | NDC_CD    | MAP_SRC | PSEUDO_CLM_USR_DFN_1_TXT | PSEUDO_CLM_USR_DFN_2_TXT | FILE_KEY | DERIV_STS_CD | MEASURE |
+|3d148bfe-792f-445b-903a-92c96264f0b2|  889   |  3d148bfe-792f-445b-903a-92c96264f0b2 |  889       |                    |                                 |           |         |     |            | PRV1235      | 1234             ||       |                     |                     |$filekey  |             |     | 
+
+
+|Query:Db Table|Select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK,PSEUDO_CLM_SRC_TBL,LAB_CLM_SRVC_ID,LAB_CLM_SRVC_MOD_ID,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,PROV_ENTY_ID,PROV_ENTY_MOD_ID,LOINC_CD,CPT_CD,LAB_RSLT_NM,LAB_RSLT_TXT,PSEUDO_CLM_USR_DFN_1_TXT,PSEUDO_CLM_USR_DFN_2_TXT,FILE_KEY,DERIV_STS_CD,MEASURE FROM A_PSEUDO_LAB_CLM_SRVC where file_key = '$filekey'|${env}|
+|CLI_ID                               | CLI_SK | CLNT_GUID                             | SUB_CLI_SK | PSEUDO_CLM_SRC_TBL | LAB_CLM_SRVC_ID            | LAB_CLM_SRVC_MOD_ID | MBR_ID    | MBR_MOD_ID | MBR_GLB_ID | PROV_ENTY_ID | PROV_ENTY_MOD_ID | LOINC_CD | CPT_CD | LAB_RSLT_TXT | PSEUDO_CLM_USR_DFN_1_TXT | PSEUDO_CLM_USR_DFN_2_TXT | FILE_KEY | DERIV_STS_CD | MEASURE |
+|3d148bfe-792f-445b-903a-92c96264f0b2 |  889   |                                                                    |         |                    |                               |                  | |         |            |       |              |   |   |        |                     |                     |$filekey  |  Y           |  1      | 
+|3d148bfe-792f-445b-903a-92c96264f0b2 |  889   |                                                                    |         |                    |                               |                  | |         |            |       |              |   |   |        |                     |                     |$filekey  |  Y           |  1      | 
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                                |
+|send   |CS_SupplementalNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+

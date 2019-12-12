@@ -1,0 +1,193 @@
+---
+Test
+---
+# Covers All Header and FTR level errors (CS190008 to CS190016,CS190019)
+!define fileType {QUALITY GAP CLOSURE FILE}
+!define subclisk {91}
+!define clientText {wellpoint}
+!define clientUniqueText {c78fc3ba-3f18-4b09-93a7-c365a36b9d63}
+!define qgc_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/qgc/dataintake.sh TST rqnsdev qgc}
+#!define Error_msg1 {ProcessTo date Invalid}
+
+!define D1_HDR_Data {|||20191301||}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_QGC_Data {MBRN0001|685|1PJ9XU1GY06|COA1|COA|20190404|2019|FK=123123|User2|User3}
+!define D4_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D5_CNT_Data {1|1|2}
+!define env {tst}
+
+
+!define var = $currentdatetime
+
+!define QGCdata1 {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+QGC|${D3_QGC_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata1}|
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190008' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190008                                                                                                           |$datfilename.DAT    |Expected literal value 'QGC' |
+
+                                                                                 
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190010' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190010                                                                                                           |$datfilename.DAT    |Sender ID is invalid |
+
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190012' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190012                                                                                                           |$datfilename.DAT    |Process from date is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190013' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190013                                                                                                           |$datfilename.DAT    |!-ProcessTo date Invalid-! |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190015' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190015                                                                                                           |$datfilename.DAT    |Timestamp is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190016' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190016                                                                                                           |$datfilename.DAT    |File Version Identifier is missing/invalid |
+
+
+!define D6_HDR_Data {QUALITY|999|20190201|20190111|20191501010101|7.1}
+!define D7_CLI_Data {${clientText}|${clientUniqueText}}
+!define D8_SUP_Data D3_QGC_Data {MBRN0001|685|1PJ9XU1GY06|COA1|COA|20190404|2019|FK=123123|User2|User3}
+!define D9_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D10_CNT_Data {1|1|2}
+
+!define QGCdata2 {HDR|${D6_HDR_Data}
+CLI|${D7_CLI_Data}
+QGC|${D8_QGC_Data}
+FTR|${D9_FTR_Data}
+CNT|${D10_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata2}|
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190008' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190008                                                                                                           |$datfilename.DAT    |Expected literal value 'QGC' |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190010' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERROR_CD                                                                                                                        |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190010                                                                                                                      |$datfilename.DAT    |Sender ID is invalid  |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190014' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190014                                                                                                           |$datfilename.DAT    |Process From date is greater then process through date |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190015' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190015                                                                                                           |$datfilename.DAT    |Timestamp is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190016' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190016                                                                                                           |$datfilename.DAT    |File Version Identifier is missing/invalid |
+
+
+!define D11_HDR_Data {${fileType}|${subclisk}|20191401|20191211|20190101010190|6.1}
+!define D12_CLI_Data {${clientText}|${clientUniqueText}}
+!define D13_QGC_Data  {123456|685|1PJ9XU1GY25|COA1|COA|20190404|2019|FK=123123|User2|User3}
+!define D14_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D15_CNT_Data {1|1|2}
+
+!define QGCdata3 {HDR|${D11_HDR_Data}
+CLI|${D12_CLI_Data}
+QGC|${D13_QGC_Data}
+FTR|${D14_FTR_Data}
+CNT|${D15_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata3}|
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|0|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|script                                                                                                                                               |
+|check|query|select distinct ERROR_CD from frmk_stg_errors f where f.file_key ='$filekey' and ERROR_CD='CS190012'|For|CS190012|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190012' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190012                                                                                                           |$datfilename.DAT    |Process from date is missing/invalid |
+
+|script                                                                                                                                               |
+|check|query|select distinct ERROR_CD from frmk_stg_errors f where f.file_key ='$filekey' and ERROR_CD='CS190015'|For|CS190015|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190015' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190015                                                                                                           |$datfilename.DAT    |Timestamp is missing/invalid |
+
+|script                                                                                                                                               |
+|check|query|select distinct ERROR_CD from frmk_stg_errors f where f.file_key ='$filekey' and ERROR_CD='CS190019'|For|CS190019|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190019' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190019                                                                                                           |$datfilename.DAT    |HDR segment does not match with FTR segment |
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_QGCNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+

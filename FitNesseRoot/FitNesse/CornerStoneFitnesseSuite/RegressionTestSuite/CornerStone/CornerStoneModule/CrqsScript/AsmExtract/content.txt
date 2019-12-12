@@ -1,0 +1,47 @@
+!define extractSql {SELECT distinct ASM.GAP_ID as gap,ASM.ENTY_ID as enty,ASM.CLI_SK,ASM.SUB_CLNT_SK,ASM.CLI_ID,ASM.CLNT_GUID,ASM.GSM_PROJ_CNTN_BRCD,ASM.DT_SRVC_TO,ASM.DT_SRVC_FRM,ASM.SRC_SYS_PROV_ID,ASM.SRC_MBR_ID,ASM.GCM_SER_TYPE_CD,ASM.RTRV_PROV_FLG,ASM.RNDR_PROV_TAXID,ASM.RNDR_PROV_LIC,ASM.RNDR_PROV_NPI,ASM.RNDR_PROV_LST_NM,ASM.RNDR_PROV_FST_NM,ASM.RNDR_PROV_MIDL_NM,ASM.RNDR_PROV_GRP_NM,ASM.RNDR_PROV_ADR1,ASM.RNDR_PROV_ADR2,ASM.RNDR_PROV_CTY,ASM.RNDR_PROV_ST,ASM.RNDR_PROV_ZIP,ASM.RNDR_PROV_TEL,ASM.RNDR_PROV_FAX,ASM.RNDR_PROV_EMAIL,ASM.GCM_ENCTR_KEY,ASM.GCM_ENC_DX_KEY,ASM.ICD_DX_CD,ASM.ICD_VER_CD_TYP,ASM.CMS_SPCL_TYP,ASM.SEVERITY,MBR.HIC_NBR AS MBR_ALT_ID_VAL_TXT,MBR.MBR_LST_NM,MBR.MBR_FST_NM,MBR.MBR_MIDL_NM,MBR.MBR_DOB_DT,MBR.MBR_GDR_CD,MBR.ADR_LN_1_TXT,MBR.ADR_LN_2_TXT,MBR.CITY_NM,MBR.ST_CD,MBR.ZIP_CD,MBR.MBR_CONTR_NBR,CASE WHEN MPIN IS NULL THEN UPIN ELSE MPIN END AS MPN_NBR,MBR.MBR_PROV_ENTY_ID AS RENDERING_PROV_ID_INTERNAL ,PRV.TIN,PRV.NPI,PRV.PROV_LST_NM,PRV.PROV_FST_NM,PRV.PROV_ENTY_ROLE_CD,PRV.PROV_ENT_SPCL_CD,PRV.PROV_ENTY_NM,PRV.PROV_ENTY_ID,PRV.PROV_ENTY_MOD_ID,CLN.CLI_ORG_NM FROM A_ASM_CHRT_RVW_DATA ASM INNER JOIN (SELECT DISTINCT CLNT_GUID,CLI_ORG_NM FROM VW_CS_CLNT_GUID_MOD) CLN ON ASM.CLNT_GUID=CLN.CLNT_GUID INNER JOIN ETL_PROC_WNDW PW ON ASM.DW_UPDT_DTTM >= PW.LST_ETL_BEGN_DT and ASM.DW_UPDT_DTTM <PW.CURR_ETL_BEGN_DT AND PW.TBL_GRP = 'CRQS_ASM_OUTBOUND' INNER JOIN A_SPCT_GAP SPCT ON ASM.CLI_SK = SPCT.CLI_SK AND ASM.SUB_CLNT_SK = SPCT.SUB_CLI_SK AND ASM.CLNT_GUID = SPCT.CLNT_GUID AND ASM.GAP_ID =SPCT.GAP_ID left outer join BV_MBR_DTL MBR on ASM.CLI_SK = MBR.CLI_SK and ASM.SUB_CLNT_SK =MBR.SUB_CLI_SK and ASM.SRC_MBR_ID =MBR.MBR_ID left outer join BV_PROV_DTL PRV on ASM.CLI_SK = PRV.CLI_SK and ASM.SUB_CLNT_SK =PRV.SUB_CLI_SK AND MBR.MBR_PROV_ENTY_ID = PRV.PROV_ENTY_ID AND MBR.MBR_PROV_ENTY_MOD_ID = PRV.PROV_ENTY_MOD_ID WHERE ASM.GCM_DX_EO_CODE IS NULL order by ASM.GAP_ID desc}
+
+
+!define ftpuser {rmohan11}
+!define ftppass {Kjaya@143!}
+!define ftphost {APSRD5785}
+!define command {cd /etldata/pay02/provider/archive && ls *.zip -Art | tail -n 1}
+
+!define DW_DB_URL {!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0903.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts02svc.uhc.com)))-!}
+!define DW_DB_USER {cas20_dw}
+!define DW_DB_PASS {cas20_dw01}
+!define createddir {/etldata/pay02/provider/archive/}
+!define ftpdir {E:\\Automation\\ASM\\}
+!define format_file {format_asm_heading.txt}
+
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+!|script  |DbTable          |
+|query    |${extractSql}    |
+|$filekey=|valueofcolumn|gap|
+
+
+!|script     |EtlJobRunner                                                                                      |
+|$job_status=|run Job With|dsivapur|User|SaiRam#87|Pass|PAY_PAY_ASM_OBND|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+!|script     |File Support                                                       |
+|$job_return=|job|${command}|In|${ftphost}|To|${ftpuser}|Location Zone|${ftppass}|
+
+
+
+|script  |File Support                                                                                       |
+|$result=|ftp|$job_return|File|${createddir}|In|${ftphost}|From|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+
+
+
+!|script   |Extract                                                                                     |
+|$txt_file=|unzip File  |EOD10097_DATA_I_20170706053055.zip|From Folder|${ftpdir}                       |
+|$msg=     |validate Asm|$txt_file                         |Extract    |${format_file}|Heading|${ftpdir}|
+
+
+!|script  |DbTable                   |
+|$exit_cd=|verify Asm Extract Details|
+

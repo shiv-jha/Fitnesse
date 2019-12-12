@@ -1,0 +1,197 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {PLAN}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {|||||}
+!define D2_CLI_Data {|}
+!define D3_CTR_Data {TEST MAPD CON1|MYPLAN|R|01/01/2006|12/31/2012|N|Y|USER1|USER2|USER3}
+!define D5_COM_Data {1234CA999|1123456789|IN|ON|P|AO|H0013|HMO|N|999000112|Y|30|125.65|3000.89|ABC1|DEF1|GHI1|CRK01|2015|CLNT}
+!define D6_FTR_Data {${fileType}|${sub_client_sk}|20130918|20140918|$currentdatetime|6.1}
+!define D7_CNT_Data {3|2|5|7|40}
+!define env {TST}
+
+
+!define plandata {HDR|${D1_HDR_Data}
+{HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLI|${D2_CLI_Data}
+FTR|${D6_FTR_Data}
+FTR|${D6_FTR_Data}
+CNT|${D7_CNT_Data} 
+CNT|${D7_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${plandata}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 15 status)
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+*!
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102027' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102027                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102029' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102029                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102031' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102031                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102032' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102032                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102034' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102034                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102035' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102035                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102036' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102036                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102037' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102037                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102054' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102054                                                    |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102055' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102055                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102056' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102056                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102057' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102057                                                    |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102058' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102058                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102080' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102080                                                     |
+
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102021' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102021                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102022' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102022                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102023' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102023                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102024' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102024                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102025' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102025                                                     |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102026' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102026                                                     |
+
+
+
+!define D8_HDR_Data {PLAN|888|20180201|20171231|20181231909090|6.1}
+!define D9_CLI_Data {Anthem|754756-7589785}
+!define D10_CTR_Data {TEST MAPD CON1|MYPLAN|R|01/01/2006|12/31/2012|N|Y|USER1|USER2|USER3}
+!define D11_SBP_Data {001|CALOP PN   PBP|CA|01/01/2006|12/31/2012|MAPD|HMO|N|I|BRANDNAME1|UD01|UD02|UD03|CR01|TANF|CLNT}
+!define D12_COM_Data {1234CA999|1123456789|IN|ON|P|AO|H0013|HMO|N|999000112|Y|30|125.65|3000.89|ABC1|DEF1|GHI1|CRK01|2015|CLNT}
+!define D13_FTR_Data {PLAN|888|20130918|20140918|$currentdatetime|6.1}
+!define D14_CNT_Data {1|1|1|1|7}
+!define env {TST}
+
+
+!define plandata_mr {HDR|${D8_HDR_Data}
+CLI|${D9_CLI_Data}
+CTR|$currentdatetime|${D10_CTR_Data}
+COM|12345|$currentdatetime|${D12_COM_Data}
+FTR|${D13_FTR_Data}
+FTR|${D13_FTR_Data}
+CNT|${D14_CNT_Data}
+CNT|${D14_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |PLAN_888_MR|file with content|${plandata_mr}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 15 status)
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+*!
+
+
+!|script  |DbTable                                                             |
+|query    |Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102027' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102027     												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102028' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102028     												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102029' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102029     												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102030' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102030     												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102033' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102033     												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102036' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102036    												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102037' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102037     												 |
+
+|Query:Db Table|Select FILE_KEY,SUBSTR(ERROR_MSG,1,8)  from FRMK_STG_ERRORS where SUBSTR(ERROR_MSG,1,8)='CS102054' and file_key = $filekey|${env}  |
+|FILE_KEY      |SUBSTR(ERROR_MSG,1,8)                                                     |
+|$filekey      |CS102054     												 |
+

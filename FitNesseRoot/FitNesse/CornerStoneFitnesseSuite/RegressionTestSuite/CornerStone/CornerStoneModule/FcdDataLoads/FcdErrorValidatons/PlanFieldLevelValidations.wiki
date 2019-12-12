@@ -1,0 +1,364 @@
+---
+Test
+---
+!define fileType_mr {PLAN}
+!define sub_client_sk_mr {888}
+!define clientText_mr {Cornerstone Test Client}
+!define clientUniqueText_mr {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+
+!define fileType {PLAN}
+!define sub_client_sk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20170918|20170918|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CTR_Data {||||31/31/2017|||USER1|USER2|USER3}
+!define D4_SBP_Data {||||31/31/2017||||I||UD01|UD02|UD03|CR01|TANF|CLNT}
+!define D5_COM_Data {|1123456789|||||||||Y|30|125.65|3000.89|ABC1|DEF1|GHI1|CRK01||CLNT}
+!define D19_CTR_Data {TEST MAPD CON12|MYPLAN12|L|31/31/2006|12/31/2012|N|Y|USER1|USER2|USER3}
+!define D20_COM_Data {111CA999|1113456789|ZZ|ZZ|Z|ZZ|H0013|HMOD|Z|999000112|Y|30|125.65|3000.89|ABC1|DEF1|GHI1|CRK01|2015|CLNT}
+!define D6_FTR_Data {${fileType}|${sub_client_sk}|20170918|20170918|$currentdatetime|6.1}
+!define D7_CNT_Data {1|2|1|2|6}
+!define env {TST}
+
+
+!define plandata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CTR||${D3_CTR_Data}
+SBP||${D4_SBP_Data}
+COM|||${D5_COM_Data}
+CTR|H1212|${D19_CTR_Data}
+COM|H1213||${D20_COM_Data}
+FTR|${D6_FTR_Data}
+CNT|${D7_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |${fileType}_${sub_client_sk}_CM|file with content|${plandata}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 18 status)
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+*!
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from stg_uow_grp_evnt f where f.file_key=$filekey|For|21|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |${fileType} |${sub_client_sk}|20130918   |20140918    |20150120000006|6.1        |
+
+
+!|script  |DbTable                                                               |
+|$exit_cd=|run All|CALL_ALL_PLAN_SP_IN_SEQ|Procedure Chunk|1000|And File|$filekey|
+
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|105|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102001' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102001                                                     |CTR     |CTR Start Date |31/31/2006|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102002' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102002                                                     |CTR     |CTR End Date |31/31/2017|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102005' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102005                                                     |CTR     |Contract No|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102006' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102006                                                     |CTR     |Contract Desc|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102007' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102007                                                     |CTR     |Health Pln Name|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102008' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102008                                                     |CTR     |Program Type |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102009' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102009                                                     |CTR     |CTR Start Date |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102039' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102039                                                     |COM     |Program Type|L|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102062' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102062                                                     |CTR     |HIOS Issuer ID|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102063' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102063                                                     |COM     |HIOS Plan ID |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102064' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102064                                                     |COM     |HIOS Product ID |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102065' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102065                                                     |COM     |Market Coverage Type |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102066' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102066                                                     |COM     |Xchng Indicator|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102067' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102067                                                     |COM     |Level of Coverage |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102068' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102068                                                     |COM     |Child Only Offer|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102069' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102069                                                     |COM     |Child Only Plan |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102070' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102070                                                     |COM     |Plan Type |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102071' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102071                                                     |COM     |New Existing Ind|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102072' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102072                                                     |COM     |TIN |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102073' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102073                                                     |COM     |COM |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102074' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102074                                                     |COM     |HIX |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102075' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102075                                                     |COM     |Market Coverage Type |ZZ|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102076' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102076                                                     |COM     |Xchng Indicator|ZZ|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102077' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102077                                                     |COM     |Level of Coverage Type|Z|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102078' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102078                                                     |COM     |Plan Type |HMOD|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102079' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102079                                                     |COM     |Child Only offering|ZZ|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102081' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102081                                                     |COM     |New Existing Plan|Z|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102086' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102086                                                     |COM     |Market Year|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102088' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102088                                                     |COM     |DrugBenfits Flag|Missing Data|
+
+
+
+!define D8_HDR_Data {${fileType_mr}|${sub_client_sk_mr}|20170918|20170918|$currentdatetime|6.1}
+!define D9_CLI_Data {${clientText_mr}|${clientUniqueText_mr}}
+!define D10_CTR_Data {TEST MAPD CON10|MYPLAN10|R|01/01/2018|12/31/2017|N|Y|USER10|USER20|USER30}
+!define D11_SBP_Data {||||31/31/2017||||I||UD010|UD020|UD030|CR01|TANF|CLNT}
+!define D14_SBP_Data {001|XXXX|CA|31/31/2017|12/31/2017|MAPD|HMO|N|I|BRANDNAME11|UD010|UD020|UD030|CR01|TANF|CLNT}
+!define D15_CTR_Data {TEST MAPD CON1|MYPLAN|R|01/01/2006|12/31/2012|N|Y|USER1|USER2|USER3}
+!define D16_SBP_Data {001|CALOP PN   PBP11|CA|01/01/2017|12/31/2017|MAPD|HMO|Y|H|BRANDNAME1|UD01|UD02|UD03|CR01|TANF|CLNT}
+!define D17_SBP_Data {001|CALOP PN   PBP11|CA|01/01/2017|12/31/2017|MAPD|HMO|Y|H|BRANDNAME2|UD01|UD02|UD03|CR01|TANF|CLNT}
+!define D18_SBP_Data {001|CALOP PN   PBP11|ZZ|12/31/2016|01/29/2016|ZZZZ|ZZZ|J|O|BRANDNAME2|UD01|UD02|UD03|CR01|TANF|CLNT}
+!define D12_FTR_Data {${fileType_mr}|${sub_client_sk_mr}|20170918|20170918|$currentdatetime|6.1}
+!define D13_CNT_Data {1|2|5|0|8}
+!define env {TST}
+
+
+!define plandata_mr {HDR|${D8_HDR_Data}
+CLI|${D9_CLI_Data}
+CTR|H1111|${D10_CTR_Data}
+SBP||${D11_SBP_Data}
+SBP|H1111|${D14_SBP_Data}
+CTR|H1112|${D15_CTR_Data}
+SBP|H1112|${D16_SBP_Data}
+SBP|H1112|${D17_SBP_Data}
+SBP|H1112|${D18_SBP_Data}
+FTR|${D12_FTR_Data}
+CNT|${D13_CNT_Data}}
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss               |
+|given the        |${fileType_mr}_${sub_client_sk_mr}_MR|file with content|${plandata_mr}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 18 status)
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+*!
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from stg_uow_grp_evnt f where f.file_key=$filekey|For|21|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |${fileType} |${sub_client_sk}|20130918   |20140918    |20150120000006|6.1        |
+
+
+!|script  |DbTable                                                               |
+|$exit_cd=|run All|CALL_ALL_PLAN_SP_IN_SEQ|Procedure Chunk|1000|And File|$filekey|
+
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|105|And Retry|120|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102003' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102003                                                     |SBP     |SubPlan Start Date |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102004' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102004                                                     |SBP     |SubPlan End Date |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102059' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102059                                                     |SBP     |Contract Number |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102010' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102010                                                     |SBP     |SubPlan ID |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102011' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102011                                                     |SBP     |SubPlan Description |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102012' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102012                                                     |SBP     |SubPlanState or Region |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102013' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102013                                                     |SBP     |SubPlan Start Date |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102015' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102015                                                     |SBP     |SubPlan Benefit Type |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102016' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102016                                                     |SBP     |SubPlan Type |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102017' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102017                                                     |SBP     |SNP Indicator|Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102018' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102018                                                     |SBP     |SubPlan Branded Name |Missing Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102038' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102038                                                     |CTR     |Contract Number|H1111|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102040' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102040                                                    |CTR     |CTR Start Date|01/01/2018|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102042' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102042                                                    |CTR     |CTR|Contr Nbr: [H1111],Contr Desc: [TEST MAPD CON10],Hlth Plan Nm: [MYPLAN10],Pgm Typ Cd: [R],Contr Strt Dt: [Mon Jan 01 00:00:00 CST 2018],Contr End Dt: [Sun Dec 31 00:00:00 CST 2017]|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102043' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102043                                                    |CTR     |CTR Start Date|InvalidSBPSegment|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102046' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102046                                                     |SBP     |Sub Plan Start Date |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102047' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102047                                                     |SBP     |Sub Plan Start Date |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102048' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102048                                                     |SBP     |Sub Plan End Date|Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102049' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102049                                                     |SBP     |Sub Plan Start and End Dates |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102050' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102050                                                     |SBP     |SubPlan Benefit Type |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102051' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102051                                                     |SBP     |SubPlan Type |Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102052' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102052                                                     |SBP     |SNP Indicator|Invalid Data|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS102053' and file_key = $filekey|${env}  |
+|FILE_KEY      |ERR_CD                                                       |SEG_NM  |ELMNT_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS102053                                                     |SBP     |Special Needs Plan Type|Invalid Data|
+
+
+
+
+
+

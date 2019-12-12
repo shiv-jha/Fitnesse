@@ -1,0 +1,140 @@
+---
+Test
+---
+!define fileType {SUP}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define sup_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/supplemental/dataintake.sh TST rqnsdev supplemental}
+!define sup_threshold {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/threshold/dataintake-threshold.sh TST rqnsdev threshold}
+
+!define D1_HDR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D6_SUP_Data {|MBR0874151|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D7_SUP_Data {123|MBR0874103|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|||DF1297Z||S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D8_SUP_Data {123|M838887|412|CAD|10|mg/dl|TEST2|20181128|PRV1235|1234||L5250|10|DF12||S61211S||L4397|||46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D9_SUP_Data {123|M448979|412|||||20181127|||L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5||||AD|||}
+!define D10_SUP_Data {123|M406743|412|||||20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D11_SUP_Data {123|M314885|412|CAD|10A|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D12_SUP_Data {123|M879322|412|ACA|10|mg/dl|TEST2|20182711|PRV1235||L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D13_SUP_Data {123|MBR0874151|412|ACA|10|mg/dl|TEST2||PRV1235||L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D14_SUP_Data {123|M879322|412|ACA|10|mg/dl|TEST2|20182711|||L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D15_SUP_Data {123|M406743|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|99899|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D16_SUP_Data {123|M199300|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|99899|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|XX|spc|AD|user1|user2|user3}
+!define D17_SUP_Data {123|M457021|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|11|DF12|||S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D18_SUP_Data {123|M694874|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|X898|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D19_SUP_Data {123|M860432|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|9|DF12|9999999|S61211S|S61222S|L4397|CVX|12634047178|46388-5|ZZ|SU|spc|AD|user1|user2|user3}
+!define D20_SUP_Data {123|M1028721|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|1111111|S61222S|L4397|CVX|12634047178|46388-5|J2||spc|AD|user1|user2|user3}
+!define D21_SUP_Data {123|MBR0874103|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|1111111|L4397|CVX|12634047178|46388-5||SU|spc|AD|user1|user2|user3}
+!define D22_SUP_Data {123|M733723|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|99999|RXNORM|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D23_SUP_Data {123|M775502|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|ZZZ|12634047178||J2|SU|spc|AD|user1|user2|user3}
+!define D24_SUP_Data {123|M406743|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|99899|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|99999047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D25_SUP_Data {123|M8890505201|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|99899|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|99999-5|J2|SU|spc|AD|user1|user2|user3}
+!define D26_SUP_Data {123|20160616|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|||||AD|user1|user2|user3}
+!define D27_SUP_Data {123|20160615|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX||46388-5|J2|SU|spc||user1|user2|user3}
+!define D28_SUP_Data {123|M893116|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX||46388-5|J2|SU|spc|XX|user1|user2|user3}
+!define D29_SUP_Data {123|20160615|412|BMI|10|mg/dl|TEST2|20181127|PRV1235|1234|||||||||||||||AD|user1|user2|user3}
+!define D30_SUP_Data {123|MBR0874155|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|||||||||NDC|12634047178|||||AD|user1|user2|user3}
+!define D31_SUP_Data {123|120959675|412|CAD|10|mg/dl|TEST2|20181127|PRV1235|1234|||||||||||46388-5||||AD|user1|user2|user3}
+!define D4_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D5_CNT_Data {1|27|28}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define supplementaldata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+SUP||${D3_SUP_Data}
+SUP|$currentdatetime+1|${D6_SUP_Data}
+SUP|$currentdatetime+2|${D7_SUP_Data}
+SUP|$currentdatetime+3|${D8_SUP_Data}
+SUP|$currentdatetime+4|${D9_SUP_Data}
+SUP|$currentdatetime+5|${D10_SUP_Data}
+SUP|$currentdatetime+6|${D11_SUP_Data}
+SUP|$currentdatetime+7|${D12_SUP_Data}
+SUP|$currentdatetime+8|${D13_SUP_Data}
+SUP|$currentdatetime+9|${D14_SUP_Data}
+SUP|$currentdatetime+10|${D15_SUP_Data}
+SUP|$currentdatetime+11|${D16_SUP_Data}
+SUP|$currentdatetime+12|${D17_SUP_Data}
+SUP|$currentdatetime+13|${D18_SUP_Data}
+SUP|$currentdatetime+14|${D19_SUP_Data}
+SUP|$currentdatetime+15|${D20_SUP_Data}
+SUP|$currentdatetime+16|${D21_SUP_Data}
+SUP|$currentdatetime+17|${D22_SUP_Data}
+SUP|$currentdatetime+18|${D23_SUP_Data}
+SUP|$currentdatetime+19|${D24_SUP_Data}
+SUP|$currentdatetime+20|${D25_SUP_Data}
+SUP|$currentdatetime+21|${D26_SUP_Data}
+SUP|$currentdatetime+22|${D27_SUP_Data}
+SUP|$currentdatetime+23|${D28_SUP_Data}
+SUP|$currentdatetime+24|${D29_SUP_Data}
+SUP|$currentdatetime+25|${D30_SUP_Data}
+SUP|$currentdatetime+26|${D31_SUP_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+!|script          |File Support                                                    |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                       |
+|given the cdisup |${fileType}_${subclisk}_CM|file with content|${supplementaldata}|
+
+|script |File Support                                                       |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6004|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                            |
+|query    |select * from frmk_stg_fileinfo where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                      |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|script |File Support                                                         |
+|command|${sup_threshold}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|7002|And Retry|120|times|true|
+
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+|script                                                                                                                                      |
+|check|query|select distinct MBR_ID from A_SUPPL_DATA f where f.file_key ='$filekey' and MBR_ID='M448979'|For|M448979|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,CLI_SK,SUB_CLI_SK,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,SRC_SYS,CD,SUPPL_DT,UNIQ_PROV_ID,HCPCS_CD,CPT_II_CD,ICD_VER_CD_TYP,ICD_PROC_CD_1,ICD_PROC_CD_2,ICD_DIAG_CD_1,ICD_DIAG_CD_2,PROC_CD,PROC_CD_MOD_1,PROC_CD_MOD_2,PROV_SPCL_CD,CLI_ID,CLNT_GUID,DERIV_STS_CD,SUPPL_REC_ID,SUPPL_MOD_ID,SUPPL_RSLT_NBR,SUPPL_RSLT_UNIT,PROV_MOD_ID,LONIC_CD,MAP_SRC,USER_DFN_1_TXT,USER_DFN_2_TXT,USER_DFN_3_TXT from A_SUPPL_DATA where file_key = '$filekey' and MBR_ID='M448979'|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|FILE_KEY      |CLI_SK                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |SUB_CLI_SK|MBR_ID |MBR_MOD_ID|MBR_GLB_ID|CD         |SUPPL_DT|UNIQ_PROV_ID          |HCPCS_CD|CPT_II_CD|ICD_VER_CD_TYP|ICD_PROC_CD_1|ICD_PROC_CD_2|ICD_DIAG_CD_1|ICD_DIAG_CD_2|PROC_CD|PROC_CD_MOD_1|PROC_CD_MOD_2|PROV_SPCL_CD|CLI_ID                              |CLNT_GUID                           |DERIV_STS_CD|SUPPL_REC_ID    |SUPPL_MOD_ID|SUPPL_RSLT_NBR|SUPPL_RSLT_UNIT|PROV_MOD_ID|LONIC_CD|MAP_SRC|USER_DFN_1_TXT|USER_DFN_2_TXT|USER_DFN_3_TXT|MEASURE|
+|$filekey      |889                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |889       |M448979|412       |TESTCOM123|12634047178|27-NOV-18 12.00.00.000000000 AM|PRV1235     |L5250   |L5250    |10            |DF12         |DF1297Z      |S61211S      |S61222S      |L4397  |J2           |SU           |spc         |3d148bfe-792f-445b-903a-92c96264f0b2|3d148bfe-792f-445b-903a-92c96264f0b2|Y           |$currentdatetime|123         |10            |mg/dl          |1234       |46388-5 |AD     |user1         |user2         |user3         |ACA    |
+
+|script                                                                                                                                          |
+|check|query|select distinct MBR_ID from A_PSEUDO_MED_CLM f where f.file_key ='$filekey' and MBR_ID='M448979'|For|M448979|And Retry|15|times|true|
+
+|Query:Db Table                      |Select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK,PSEUDO_CLM_SRC_TBL,CLM_ID,CLM_MOD_ID,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,PROV_ENTY_ID,PROV_ENTY_MOD_ID,HCPCS_CD,CPT_II_CD,ICD_VER_CD_TYP,ICD_PROC_CD_1,ICD_PROC_CD_2,ICD_DIAG_CD_1,ICD_DIAG_CD_2,PROC_CD,PROC_CD_MOD_1,PROC_CD_MOD_2,PROV_SPCL_CD,SRVC_DT,MAP_SRC,FILE_KEY,DERIV_STS_CD,MEASURE FROM A_PSEUDO_MED_CLM where file_key = '$filekey' and MBR_ID='M448979'|${env}                                                                                                                                                                                                                                                                                                                                                        |
+|CLI_ID                              |CLI_SK                                                                                                                                                                                                                                                                                                                                                                            |CLNT_GUID                           |SUB_CLI_SK|PSEUDO_CLM_SRC_TBL|CLM_ID                    |CLM_MOD_ID|MBR_ID |MBR_MOD_ID|MBR_GLB_ID|PROV_ENTY_ID|PROV_ENTY_MOD_ID|HCPCS_CD|CPT_II_CD|ICD_VER_CD_TYP|ICD_PROC_CD_1|ICD_PROC_CD_2|ICD_DIAG_CD_1|ICD_DIAG_CD_2|PROC_CD|PROC_CD_MOD_1|PROC_CD_MOD_2|PROV_SPCL_CD|SRVC_DT |MAP_SRC|FILE_KEY|DERIV_STS_CD|MEASURE|
+|3d148bfe-792f-445b-903a-92c96264f0b2|889                                                                                                                                                                                                                                                                                                                                                                               |3d148bfe-792f-445b-903a-92c96264f0b2|889       |                  |PSUD_SUPL_$currentdatetime|123       |M448979|412       |TESTCOM123|PRV1235     |1234            |L5250   |L5250    |10            |DF12         |DF1297Z      |S61211S      |S61222S     |L4397  |J2           |SU           |spc         |20181127|AD     |$filekey|Y           |ACA    |
+
+|script                                                                                                                                          |
+|check|query|select distinct MBR_ID from A_PSEUDO_RX_CLM_NDC f where f.file_key ='$filekey' and MBR_ID='M838887'|For|M838887|And Retry|15|times|true|
+
+|Query:Db Table|Select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK,PSEUDO_CLM_SRC_TBL,RX_CLM_ID,RX_CLM_MOD_ID,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,PROV_ENTY_ID,PROV_ENTY_MOD_ID,NDC_CD,MAP_SRC,PSEUDO_CLM_USR_DFN_1_TXT,PSEUDO_CLM_USR_DFN_2_TXT,FILE_KEY,DERIV_STS_CD,MEASURE FROM A_PSEUDO_RX_CLM_NDC where file_key = '$filekey'|${env}|
+|CLI_ID                               | CLI_SK | CLNT_GUID                             | SUB_CLI_SK | PSEUDO_CLM_SRC_TBL | RX_CLM_ID                  | RX_CLM_MOD_ID | MBR_ID | MBR_MOD_ID | MBR_GLB_ID | PROV_ENTY_ID | PROV_ENTY_MOD_ID | NDC_CD    | MAP_SRC | PSEUDO_CLM_USR_DFN_1_TXT | PSEUDO_CLM_USR_DFN_2_TXT | FILE_KEY | DERIV_STS_CD | MEASURE |
+|3d148bfe-792f-445b-903a-92c96264f0b2 |  889   |  3d148bfe-792f-445b-903a-92c96264f0b2 |  889       |                    |PSUD_SUPL_$currentdatetime+2| 123           | M838887|     412    |            | PRV1235      | 1234             |12634047190| AD      | user1                    | user2                    |$filekey  |  Y           |  1      | 
+
+|script                                                                                                                                          |
+|check|query|select distinct MBR_ID from A_PSEUDO_LAB_CLM_SRVC f where f.file_key ='$filekey' and MBR_ID='MBR0874151'|For|MBR0874151|And Retry|15|times|true|
+
+
+|Query:Db Table|Select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK,PSEUDO_CLM_SRC_TBL,LAB_CLM_SRVC_ID,LAB_CLM_SRVC_MOD_ID,MBR_ID,MBR_MOD_ID,MBR_GLB_ID,PROV_ENTY_ID,PROV_ENTY_MOD_ID,LOINC_CD,CPT_CD,LAB_RSLT_NM,LAB_RSLT_TXT,PSEUDO_CLM_USR_DFN_1_TXT,PSEUDO_CLM_USR_DFN_2_TXT,FILE_KEY,DERIV_STS_CD,MEASURE FROM A_PSEUDO_LAB_CLM_SRVC where file_key = '$filekey'|${env}|
+|CLI_ID                               | CLI_SK | CLNT_GUID                             | SUB_CLI_SK | PSEUDO_CLM_SRC_TBL | LAB_CLM_SRVC_ID            | LAB_CLM_SRVC_MOD_ID | MBR_ID    | MBR_MOD_ID | MBR_GLB_ID | PROV_ENTY_ID | PROV_ENTY_MOD_ID | LOINC_CD | CPT_CD | LAB_RSLT_TXT | PSEUDO_CLM_USR_DFN_1_TXT | PSEUDO_CLM_USR_DFN_2_TXT | FILE_KEY | DERIV_STS_CD | MEASURE |
+|3d148bfe-792f-445b-903a-92c96264f0b2 |  889   |  3d148bfe-792f-445b-903a-92c96264f0b2 |  889       |                    |PSUD_SUPL_$currentdatetime+1| 123                 | MBR0874151| 412        |            | PRV1235      | 1234             | 46388-5  | L4397  | TEST21       | user1                    | user2                    |$filekey  |  Y           |  1      | 
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                                |
+|send   |CS_SupplementalNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+

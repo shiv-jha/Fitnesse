@@ -1,0 +1,242 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 7:17:11 PM (CST) on Tuesday, February 9, 2016 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.RruMeasures.RcaMeasureSetup|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.7.0_71\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;E:\HDE\lib\antisamy-1.4.3.jar;E:\HDE\lib\asm-3.3.1.jar;E:\HDE\lib\avalon-framework-4.1.3.jar;E:\HDE\lib\batik-css-1.7.jar;E:\HDE\lib\batik-ext-1.7.jar;E:\HDE\lib\batik-util-1.7.jar;E:\HDE\lib\bsh-core-2.0b4.jar;E:\HDE\lib\cglib-2.2.2.jar;E:\HDE\lib\commons-beanutils-1.7.0.jar;E:\HDE\lib\commons-beanutils-core-1.7.0.jar;E:\HDE\lib\commons-codec-1.8.jar;E:\HDE\lib\commons-collections-3.2.jar;E:\HDE\lib\commons-configuration-1.5.jar;E:\HDE\lib\commons-digester-1.8.jar;E:\HDE\lib\commons-fileupload-1.2.jar;E:\HDE\lib\commons-httpclient-3.1.jar;E:\HDE\lib\commons-io-2.4.jar;E:\HDE\lib\commons-lang-2.3.jar;E:\HDE\lib\commons-logging-1.1.jar;E:\HDE\lib\esapi-2.1.0.jar;E:\HDE\lib\hde-fitnesse.jar;E:\HDE\lib\jsch-0.1.51.jar;E:\HDE\lib\junit-4.8.2.jar;E:\HDE\lib\log4j-1.2.16.jar;E:\HDE\lib\logkit-1.0.1.jar;E:\HDE\lib\nekohtml-1.9.12.jar;E:\HDE\lib\ojdbc6.jar;E:\HDE\lib\selenium-java-2.47.1-srcs.jar;E:\HDE\lib\selenium-server-standalone-2.47.1.jar;E:\HDE\lib\servlet-api-2.3.jar;E:\HDE\lib\servlet-api-2.5-6.1.14.jar;E:\HDE\lib\stk-1.3.0.jar;E:\HDE\lib\xalan-2.7.0.jar;E:\HDE\lib\xercesImpl-2.8.0.jar;E:\HDE\lib\xml-apis-1.3.03.jar;E:\HDE\lib\xml-apis-ext-1.3.04.jar;E:\HDE\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8086-! |
+|'''Exit code: '''| 1 |
+|'''Time elapsed: '''| 511.83 seconds |
+
+----
+'''Standard Output:'''
+{{{Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: E:\HDE\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (\\ms\userdata\036\nchakrab) directory: \\ms\userdata\036\nchakrab\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: E:\HDE\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (\\ms\userdata\036\nchakrab) directory: \\ms\userdata\036\nchakrab\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+}}}
+----
+'''Standard Error:'''
+{{{log4j:WARN No appenders could be found for logger (BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Feb 09, 2016 7:08:40 PM com.optum.hde.fitnesse.Properties <init>
+INFO: Properties loaded
+Feb 09, 2016 7:08:40 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: SELECT MEASUREMENT_YR from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getMeasureYear
+INFO: Found Measurement year in Project table :2015
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Extracting jobstream name from id - RCA_QA
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: Job Stream Name and Pattern Number extracted :HDE_HDE_RCATST and 14
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure extractJobStream
+INFO: ProjectID - DEMOHEDIS ClientID - DEMO Acc Job Id - DEMOHEDIS_TEST2
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: Inside transfer data qa /landing_hde/sit/fab/inbound/measures
+Feb 09, 2016 7:08:41 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Inside unixcommandexecutor run measure
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.SSHService <init>
+INFO: Namrata - QA Unix session established
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: Measure file name:DEMOHEDIS_DEMO_RCA_090220161908
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.SSHService copyFiles
+INFO: test data filepath is :E:\HDE\testdata\2015\dp14\RCA.txt
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - landingpath inside runmeasure - /landing_hde/sit/fab/inbound/measures
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for txt : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_RCA_090220161908.txt
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: sed for trg : sed -i 's/
+$//g' /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_RCA_090220161908.trg
+Feb 09, 2016 7:08:42 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: gzip for txt : gzip /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_RCA_090220161908.txt
+Feb 09, 2016 7:08:43 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: chmod for both : chmod 777 /landing_hde/sit/fab/inbound/measures/DEMOHEDIS_DEMO_RCA_090220161908*.*
+Feb 09, 2016 7:08:43 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: 
+Feb 09, 2016 7:08:43 PM com.optum.hde.fitnesse.measure.run.UnixCommandExecutor runMeasure
+INFO: Namrata - Commented running the scripts
+Feb 09, 2016 7:08:43 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure TransferMeasureTestDataFiles
+INFO: FTP Test data files [.txt / gz and create .trg] for the MeasureDEMOHEDIS_DEMO_RCA_090220161908
+org.openqa.selenium.firefox.NotConnectedException: Unable to connect to host 127.0.0.1 on port 7056 after 45000 ms. Firefox console output:
+
+	at org.openqa.selenium.firefox.internal.NewProfileExtensionConnection.start(NewProfileExtensionConnection.java:122)
+	at org.openqa.selenium.firefox.FirefoxDriver.startClient(FirefoxDriver.java:276)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:116)
+	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:223)
+	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:216)
+	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:212)
+	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:125)
+	at com.optum.hde.fitnesse.measure.run.TwsScheduler.<init>(Unknown Source)
+	at com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure.ScheduleMeasureJobStream(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at fitnesse.slim.fixtureInteraction.DefaultInteraction.methodInvoke(DefaultInteraction.java:16)
+	at fitnesse.slim.MethodExecutor.callMethod(MethodExecutor.java:43)
+	at fitnesse.slim.MethodExecutor.invokeMethod(MethodExecutor.java:30)
+	at fitnesse.slim.MethodExecutor.findAndInvoke(MethodExecutor.java:52)
+	at fitnesse.slim.FixtureMethodExecutor.execute(FixtureMethodExecutor.java:20)
+	at fitnesse.slim.StatementExecutor.getMethodExecutionResult(StatementExecutor.java:121)
+	at fitnesse.slim.StatementExecutor.call(StatementExecutor.java:99)
+	at fitnesse.slim.instructions.CallInstruction.executeInternal(CallInstruction.java:35)
+	at fitnesse.slim.instructions.Instruction.execute(Instruction.java:30)
+	at fitnesse.slim.ListExecutor$Executive.executeStatement(ListExecutor.java:50)
+	at fitnesse.slim.ListExecutor$Executive.executeStatements(ListExecutor.java:44)
+	at fitnesse.slim.ListExecutor.execute(ListExecutor.java:84)
+	at fitnesse.slim.SlimServer.executeInstructions(SlimServer.java:107)
+	at fitnesse.slim.SlimServer.processTheInstructions(SlimServer.java:94)
+	at fitnesse.slim.SlimServer.processOneSetOfInstructions(SlimServer.java:68)
+	at fitnesse.slim.SlimServer.tryProcessInstructions(SlimServer.java:54)
+	at fitnesse.slim.SlimServer.serve(SlimServer.java:40)
+	at fitnesse.slim.SlimService.handle(SlimService.java:164)
+	at fitnesse.slim.SlimService.acceptOne(SlimService.java:172)
+	at fitnesse.slim.SlimService.accept(SlimService.java:134)
+	at fitnesse.slim.SlimService.startWithFactory(SlimService.java:65)
+	at fitnesse.slim.SlimService.main(SlimService.java:51)
+Feb 09, 2016 7:09:31 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure ScheduleMeasureJobStream
+SEVERE: Problem occurred while TWS scheduling for :RCA with Client id:DEMO, Project Id:DEMOHEDIS, Job Id:DEMOHEDIS_TEST2
+Feb 09, 2016 7:10:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:10:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:10:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:10:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:10:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:10:21 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 1
+Feb 09, 2016 7:11:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:11:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:11:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:11:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:11:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:11:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 2
+Feb 09, 2016 7:12:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:12:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:12:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:12:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:12:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:12:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 3
+Feb 09, 2016 7:12:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:12:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:12:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:12:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:12:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:12:51 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 4
+Feb 09, 2016 7:13:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:13:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:13:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:13:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:13:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:13:41 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 5
+Feb 09, 2016 7:14:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:14:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:14:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:14:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:14:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:14:31 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 6
+Feb 09, 2016 7:15:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:15:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:15:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:15:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:15:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:15:21 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 7
+Feb 09, 2016 7:16:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:16:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:16:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:16:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:16:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:16:11 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 8
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select PROJECT_KEY from Etl_Oracle00.HDE_PROJECT where PROJECT_ID='DEMOHEDIS' and CLIENT_NAME='DEMO' and ACC_JOB_ID='DEMOHEDIS_TEST2'
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: select COUNT(*) AS REC0RDCOUNT from etl_Oracle00.HDE_ACC_RRU_MEASURES where MEASURE_NAME= 'RCA' and PROJECT_KEY = '5414'
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Inside if 
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl IsAccDataLoaded
+INFO: Count retrieved is - index 1 0
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.fixtures.TestDataSetupMeasure WaitUntilDataLoad
+INFO: Poll is = 9
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: Creating Stage db connection
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Feb 09, 2016 7:17:01 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+}}}

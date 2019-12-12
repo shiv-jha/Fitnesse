@@ -1,0 +1,2 @@
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_QUA_GAP|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|

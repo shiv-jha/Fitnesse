@@ -1,0 +1,554 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20161106</FitNesseVersion>
+  <rootPath>FitNesse.CornerStoneFitnesseSuite.RegressionTestSuite.CornerStone.SuiteSetUp</rootPath>
+    <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <date>2018-01-07T17:18:04-07:00</date>
+    <runTimeInMillis>288</runTimeInMillis>
+    <content>&lt;div class="collapsible closed"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;Included page: &lt;a href="FitNesse.CornerStoneFitnesseSuite.RegressionTestSuite.ScenarioLibrary"&gt;.FitNesse.CornerStoneFitnesseSuite.RegressionTestSuite.ScenarioLibrary&lt;/a&gt; &lt;a href="FitNesse.CornerStoneFitnesseSuite.RegressionTestSuite.ScenarioLibrary?edit&amp;amp;redirectToReferer=true&amp;amp;redirectAction=" class="edit"&gt;(edit)&lt;/a&gt;&lt;/p&gt;
+	&lt;div&gt;&lt;div class="contents"&gt;
+	&lt;b&gt;Contents:&lt;/b&gt;
+	&lt;ul class="toc1"/&gt;&lt;ul class="toc1"/&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: createddir=E:\\Automation\\Rahul\\paftrack\\&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpdir=/cas/TST/data/inb/cs/&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpuser=wesbuser&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftppass=uT3MALxe&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpDwuser=nkhaza&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpDwpass=Nazma$786&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpDwserver=APSRD5785&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpDwdir=/etldata/pay02/provider/inbox/&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpTrrdir=/etldata/pay02/trr/inbox/&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpMod_D_dir=/etldata/pay02/mor_d_m/inbox/&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpserver=APSRT0109&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftphost=APSRT0109&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: etl_ui_user=sjha1002&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: etl_ui_pwd=Optum4567$&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: newftphost=APSRT1029&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DW_DB_URL=!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0903.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts02svc.uhc.com)))-!&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DW_DB_USER=cas20_dw&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DW_DB_PASS=cas20_dw01&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;scenario&lt;/td&gt;
+		&lt;td&gt;given the&lt;/td&gt;
+		&lt;td&gt;filetype&lt;/td&gt;
+		&lt;td&gt;file with content&lt;/td&gt;
+		&lt;td colspan="8"&gt;content&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$datfilename=&lt;/td&gt;
+		&lt;td&gt;create&lt;/td&gt;
+		&lt;td&gt;@filetype_&lt;/td&gt;
+		&lt;td&gt;inDirectory&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;with content&lt;/td&gt;
+		&lt;td&gt;@content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td colspan="4"&gt;_P.DAT&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor5"&gt;
+		&lt;td&gt;createTRG&lt;/td&gt;
+		&lt;td&gt;$datfilename.TRG&lt;/td&gt;
+		&lt;td&gt;File In&lt;/td&gt;
+		&lt;td colspan="9"&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;sleep&lt;/td&gt;
+		&lt;td colspan="11"&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename.DAT&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRT0109&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;wesbuser&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;uT3MALxe&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/cas/TST/data/inb/cs/&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename.TRG&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRT0109&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;wesbuser&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;uT3MALxe&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/cas/TST/data/inb/cs/&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;scenario&lt;/td&gt;
+		&lt;td&gt;given the&lt;/td&gt;
+		&lt;td&gt;filetype&lt;/td&gt;
+		&lt;td&gt;trr file with content&lt;/td&gt;
+		&lt;td colspan="8"&gt;content&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$datfilename=&lt;/td&gt;
+		&lt;td&gt;create&lt;/td&gt;
+		&lt;td&gt;@filetype&lt;/td&gt;
+		&lt;td&gt;inDirectory&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;with content&lt;/td&gt;
+		&lt;td&gt;@content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td colspan="3"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;sleep&lt;/td&gt;
+		&lt;td colspan="11"&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRD5785&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;nkhaza&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;Nazma$786&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/etldata/pay02/provider/inbox/&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;scenario&lt;/td&gt;
+		&lt;td&gt;given the&lt;/td&gt;
+		&lt;td&gt;filetype&lt;/td&gt;
+		&lt;td&gt;mod file with content&lt;/td&gt;
+		&lt;td colspan="8"&gt;content&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$datfilename=&lt;/td&gt;
+		&lt;td&gt;create&lt;/td&gt;
+		&lt;td&gt;@filetype&lt;/td&gt;
+		&lt;td&gt;inDirectory&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;with content&lt;/td&gt;
+		&lt;td&gt;@content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td&gt;.txt&lt;/td&gt;
+		&lt;td colspan="3"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;sleep&lt;/td&gt;
+		&lt;td colspan="11"&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename.txt&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRD5785&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;nkhaza&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;Nazma$786&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/etldata/pay02/provider/inbox/&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;scenario&lt;/td&gt;
+		&lt;td&gt;given the&lt;/td&gt;
+		&lt;td&gt;filetype&lt;/td&gt;
+		&lt;td&gt;modc file with content&lt;/td&gt;
+		&lt;td colspan="8"&gt;content&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$datfilename=&lt;/td&gt;
+		&lt;td&gt;create&lt;/td&gt;
+		&lt;td&gt;@filetype&lt;/td&gt;
+		&lt;td&gt;inDirectory&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;with content&lt;/td&gt;
+		&lt;td&gt;@content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td colspan="3"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;sleep&lt;/td&gt;
+		&lt;td colspan="11"&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRD5785&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;nkhaza&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;Nazma$786&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/etldata/pay02/provider/inbox/&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;scenario&lt;/td&gt;
+		&lt;td&gt;given the&lt;/td&gt;
+		&lt;td&gt;filetype&lt;/td&gt;
+		&lt;td&gt;paf file with content&lt;/td&gt;
+		&lt;td&gt;content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td colspan="6"&gt;type&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$datfilename=&lt;/td&gt;
+		&lt;td&gt;create&lt;/td&gt;
+		&lt;td&gt;@filetype&lt;/td&gt;
+		&lt;td&gt;inDirectory&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;with content&lt;/td&gt;
+		&lt;td&gt;@content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td&gt;@type&lt;/td&gt;
+		&lt;td colspan="3"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;sleep&lt;/td&gt;
+		&lt;td colspan="11"&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename.DAT&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRD5785&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;nkhaza&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;Nazma$786&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/etldata/pay02/provider/inbox/&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;scenario&lt;/td&gt;
+		&lt;td&gt;given the&lt;/td&gt;
+		&lt;td&gt;filetype&lt;/td&gt;
+		&lt;td&gt;paf companion file with content&lt;/td&gt;
+		&lt;td&gt;content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td colspan="6"&gt;type&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$datfilename=&lt;/td&gt;
+		&lt;td&gt;create&lt;/td&gt;
+		&lt;td&gt;@filetype&lt;/td&gt;
+		&lt;td&gt;inDirectory&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;with content&lt;/td&gt;
+		&lt;td&gt;@content&lt;/td&gt;
+		&lt;td&gt;and type&lt;/td&gt;
+		&lt;td&gt;@type&lt;/td&gt;
+		&lt;td colspan="3"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;sleep&lt;/td&gt;
+		&lt;td colspan="11"&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;ftp&lt;/td&gt;
+		&lt;td&gt;$datfilename.txt&lt;/td&gt;
+		&lt;td&gt;File&lt;/td&gt;
+		&lt;td&gt;E:\\Automation\\Rahul\\paftrack\\&lt;/td&gt;
+		&lt;td&gt;In&lt;/td&gt;
+		&lt;td&gt;APSRD5785&lt;/td&gt;
+		&lt;td&gt;To&lt;/td&gt;
+		&lt;td&gt;nkhaza&lt;/td&gt;
+		&lt;td&gt;Location&lt;/td&gt;
+		&lt;td&gt;Nazma$786&lt;/td&gt;
+		&lt;td&gt;Zone&lt;/td&gt;
+		&lt;td&gt;/etldata/pay02/provider/inbox/&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;div class="collapsible"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;Included page: &lt;a href="FitNesse.CornerStoneFitnesseSuite.SuiteSetUp"&gt;.FitNesse.CornerStoneFitnesseSuite.SuiteSetUp&lt;/a&gt; &lt;a href="FitNesse.CornerStoneFitnesseSuite.SuiteSetUp?edit&amp;amp;redirectToReferer=true&amp;amp;redirectAction=" class="edit"&gt;(edit)&lt;/a&gt;&lt;/p&gt;
+	&lt;div&gt;&lt;span class="meta"&gt;variable defined: createddir=C:\cas\forftp\&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DEV_DB_URL=!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0836.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts01svc.uhc.com)))-!&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;Import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.optum.hde.fitnesse.fixtures&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.optum.hde.fitnesse.fixtures.wiki&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.fixtures&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.ingenix.cas&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.berryworks.edireader.formatter&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;fitnesse.fixtures&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;fitnesse.slim.test&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.optum.cas.edps.file.util&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;slim&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;java.util&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;Library&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;echo fixture&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;Formatter&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TST_DB_URL=!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0010)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=payts04.uhc.com)))-!&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: UAT_DB_URL=!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0009)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=payts06.uhc.com)))-!&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DEV_DB_URL=!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsld0002)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=paydv04.uhc.com)))-!&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: env=UAT&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;div class="collapsible closed"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;# Test server .....&lt;/p&gt;
+	&lt;div&gt;&lt;span class="meta"&gt;variable defined: ftpserver=APSRT0109&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: env=UAT&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpdir=/cas/TST/data/inb/cs&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DB_URL=!-jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0836.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts01svc.uhc.com)))-!&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DB_USER=cas20_ods&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: DB_PASS=cas20_ods9&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: createddir=C:\cas\forftp\&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftpuser=wesbuser&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftppass=uT3MALxe&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftp_out_dir=/cas/TST/data/out/&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: WESB_CAS20=/replaceuser/IBM/WebSphere/ESB/profiles/WESB_CAS20&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: CAS20_LIBRARY=/cas/TST/library/&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: trgfilename=CMS_ENC0022_OUTBOUND_I_GOOD_CLAIM_SUBMISSION.START&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: trgifilename=CMS_ENC0022_OUTBOUND_I_GOOD_CLAIM_SUBMISSION.START&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: encryptiondate='2999/09/30'&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: outboundfiledir=/cas/${env}/data/proc/out/non-cms/837&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;variable defined: ftp_poll_dir=/cas/TST/poll/&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="4"&gt;Library&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;com.optum.hde.fitnesse.fixtures.DatabaseSupport&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0836.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts01svc.uhc.com)))&lt;/td&gt;
+		&lt;td&gt;cas20_ods&lt;/td&gt;
+		&lt;td&gt;cas20_ods9&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;</content>
+    <relativePageName>SuiteSetUp</relativePageName>
+            <instructions>
+            <instructionResult>
+        <instruction>{id='import_6_0', instruction='import', path='com.optum.hde.fitnesse.fixtures'}</instruction>
+        <slimResult>pass(com.optum.hde.fitnesse.fixtures)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_0</instructionId>
+                    <col>0</col>
+                              <row>1</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>com.optum.hde.fitnesse.fixtures</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_1', instruction='import', path='com.optum.hde.fitnesse.fixtures.wiki'}</instruction>
+        <slimResult>pass(com.optum.hde.fitnesse.fixtures.wiki)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_1</instructionId>
+                    <col>0</col>
+                              <row>2</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>com.optum.hde.fitnesse.fixtures.wiki</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_2', instruction='import', path='com.fixtures'}</instruction>
+        <slimResult>pass(com.fixtures)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_2</instructionId>
+                    <col>0</col>
+                              <row>3</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>com.fixtures</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_3', instruction='import', path='com.ingenix.cas'}</instruction>
+        <slimResult>pass(com.ingenix.cas)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_3</instructionId>
+                    <col>0</col>
+                              <row>4</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>com.ingenix.cas</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_4', instruction='import', path='com.berryworks.edireader.formatter'}</instruction>
+        <slimResult>pass(com.berryworks.edireader.formatter)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_4</instructionId>
+                    <col>0</col>
+                              <row>5</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>com.berryworks.edireader.formatter</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_5', instruction='import', path='fitnesse.fixtures'}</instruction>
+        <slimResult>pass(fitnesse.fixtures)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_5</instructionId>
+                    <col>0</col>
+                              <row>6</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>fitnesse.fixtures</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_6', instruction='import', path='fitnesse.slim.test'}</instruction>
+        <slimResult>pass(fitnesse.slim.test)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_6</instructionId>
+                    <col>0</col>
+                              <row>7</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>fitnesse.slim.test</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_7', instruction='import', path='com.optum.cas.edps.file.util'}</instruction>
+        <slimResult>pass(com.optum.cas.edps.file.util)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_7</instructionId>
+                    <col>0</col>
+                              <row>8</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>com.optum.cas.edps.file.util</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_8', instruction='import', path='slim'}</instruction>
+        <slimResult>pass(slim)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_8</instructionId>
+                    <col>0</col>
+                              <row>9</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>slim</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='import_6_9', instruction='import', path='java.util'}</instruction>
+        <slimResult>pass(java.util)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>import_6_9</instructionId>
+                    <col>0</col>
+                              <row>10</row>
+                    <type>ImportExpectation</type>
+                                        <evaluationMessage>java.util</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='library_7_0', instruction='make', instanceName='library1', className='EchoFixture', args=[]}</instruction>
+        <slimResult>pass(echo fixture)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>library_7_0</instructionId>
+                    <col>0</col>
+                              <row>1</row>
+                    <type>ConstructionExpectation</type>
+                                        <evaluationMessage>echo fixture</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='library_7_1', instruction='make', instanceName='library2', className='Formatter', args=[]}</instruction>
+        <slimResult>pass(Formatter)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>library_7_1</instructionId>
+                    <col>0</col>
+                              <row>2</row>
+                    <type>ConstructionExpectation</type>
+                                        <evaluationMessage>Formatter</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+            <instructionResult>
+        <instruction>{id='library_8_0', instruction='make', instanceName='library1', className='com.optum.hde.fitnesse.fixtures.DatabaseSupport', args=[jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt0836.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pay0ts01svc.uhc.com))), cas20_ods, cas20_ods9]}</instruction>
+        <slimResult>pass(com.optum.hde.fitnesse.fixtures.DatabaseSupport)</slimResult>
+                <expectation>
+                    <status>pass</status>
+                    <instructionId>library_8_0</instructionId>
+                    <col>0</col>
+                              <row>1</row>
+                    <type>ConstructionExpectation</type>
+                                        <evaluationMessage>com.optum.hde.fitnesse.fixtures.DatabaseSupport</evaluationMessage>
+                  </expectation>
+              </instructionResult>
+          </instructions>
+      </result>
+  <finalCounts>
+    <right>1</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>288</totalRunTimeInMillis>
+</testResults>
+

@@ -1,0 +1,8 @@
+---
+Test
+---
+!|script|Zippingfile                                                 |
+|$test= |compress File|E:\\testzip.txt|To Unix|E:\\testzip.txt.gz|Zip|
+
+!|script|DeleteHDEFiles                                                                                 |
+|$test= |Delete HDEFiles|E:\\Automation\\Rahul\\paftrack\\10001_ACMM_ACMM_META_20180409.txt|From Inbound|

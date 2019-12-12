@@ -1,0 +1,138 @@
+---
+Test
+---
+!define fileType {MINCLM}
+!define subCliSk {33}
+!define clientText {United HealthCare Medicare - PacifiCare}
+!define clientUniqueText {9c9b0f3e-9dca-4616-b9c1-bf92fed20933}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20160201|20161231|20160921134506|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CLM_Data {100|M448979|101|HIC|288327298A|FINALIZED|2232323|RESERVED||01|12345VA001999901|11|10|1|20160110|20160128|201601101420|20160128|PA001234|20160131|2016-01-30T00:00:00|CLMUD1=CSUD01|CLMUD2=CSUD02|CRK000001|LIKITH|20160721|1|HIOSID01|MMID001|098|SEVERE|AD|120|OTH|CLMUD3=CSUD03}
+!define D4_PRV_Data {100|BILLING|1838762327|20160602|abcd|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D5_CDE_Data {100|ABK|R0789|1|CDEUD1=CSUD01|CDEUD2=CSUD02|CDEUD3=CSUD03}
+!define D6_XSVC_Data {100|1|NUBCDE101|HC|Q4045|32|33|50|52|221|1||||32|20160110|20160128|RENDERING|1838762327|20160602|232|12634049060|10|N|XSVCUD1=CSUD01|XSVCUD2=CSUD02|XSVCUD3=CSUD03}
+!define D7_XFIN_Data {100|1|BILLED_AMT|104.78|20160125|Y|XFINUD1=CSUD01|XFINUD2=CSUD02|XFINUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20160201|20161231|20160921134506|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+
+!define minclmdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLM|$currentdatetime|${D3_CLM_Data}
+PRV|$currentdatetime|${D4_PRV_Data}
+CDE|$currentdatetime|${D5_CDE_Data}
+XSVC|$currentdatetime|${D6_XSVC_Data}
+XFIN|$currentdatetime|${D7_XFIN_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${subCliSk}_MR|file with content|${minclmdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                                   |
+|check|query|select process_sts_key from mini_clm_uow_grp_evnt f where f.file_key=$filekey|For|19;20|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |${fileType} |${subCliSk}     |20160101   |20161231    |20160921134506|6.1        |
+
+
+
+!|script  |DbTable                                                                   |
+|$exit_cd=|run All|CALL_ALL_MINI_CLM_SP_IN_SEQ|Procedure Chunk|1000|And File|$filekey|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|1023|And Retry|600|times|true|
+
+
+|Query:Db Table|select * from MINI_CLM where FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|FILE_KEY      |CLM_ID                                          |CLM_MOD_ID|CLM_MBR_PTNT_ID|CLM_MBR_PTNT_MOD_ID|CLM_MBR_ALT_ID_TYP_CD|CLM_MBR_ALT_ID_VAL_TXT|CLM_STS_CD|CLM_ORIG_REF_NUM|PREV_CLM_VOID_REPL_IND|CLM_DSCHRG_STS_CD|CLM_PLN_NUM     |CLM_FACL_CD|PLC_OF_SRVC_CD|CLM_FREQ_CD|CLM_STMT_FROM_DT     |CLM_STMT_TO_DT       |CLM_ADMIS_DTTM       |CLM_DSCHRG_DT        |CLM_PTNT_ALT_ID|CLM_POST_DT          |CLM_PRCS_DT          |CLM_USR_DFN_1_TXT|CLM_USR_DFN_2_TXT|CLM_CLI_REC_KEY|CLM_INFANT_NM|CLM_INFANT_DOB_DT    |CLM_MULT_INFANT_BTH_CNT|HIOS_ISSR_ID|MBR_MSTR_ID|DRG_CD|SEV_OF_ILL|MAP_SRC|COV_DAY|DRG_GRP|CLM_USR_DFN_3_TXT|
+|$filekey      |$currentdatetime                                |235       |20170719234758 |233                |HIC                  |HN134567              |FINALIZED |2232323         |                      |01               |12345VA001999901|11         |10            |1          |2016-01-10 00:00:00.0|2016-01-28 00:00:00.0|2016-01-10 14:20:00.0|2016-01-28 00:00:00.0|PA001234       |2016-01-31 00:00:00.0|2016-01-30 00:00:00.0|CLMUD1=CSUD01    |CLMUD2=CSUD02    |CRK000001      |LIKITH       |2016-07-21 00:00:00.0|1                      |HIOSID01    |MMID001    |098   |SEVERE    |AD     |120    |OTH    |CLMUD3=CSUD03    |
+
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PROV where CLM_OR_SRVC_IND = 'CLM' and FILE_KEY = $filekey|${env}                                                                                                                                     |
+|FILE_KEY      |CLM_ID                                                                                |CLM_MOD_ID|PROV_ENTY_TYPE|CLM_PROV_ENTY_NPI|PROV_ENTY_ID|PROV_ENTY_MOD_ID|CLM_PRV_USR_DFN_1_TXT|CLM_PRV_USR_DFN_2_TXT|CLM_PRV_USR_DFN_3_TXT|
+|$filekey      |$currentdatetime                                                                      |235       |BILLING       |1838762327       |20160602    |232             |PRVUD1=CSUD01        |PRVUD2=CSUD02        |PRVUD3=CSUD03        |
+
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PROV where CLM_OR_SRVC_IND = 'SRVC' and FILE_KEY = $filekey|${env}                                                                                                                                     |
+|FILE_KEY      |CLM_ID                                                                                 |CLM_MOD_ID|PROV_ENTY_TYPE|CLM_PROV_ENTY_NPI|PROV_ENTY_ID|PROV_ENTY_MOD_ID|CLM_PRV_USR_DFN_1_TXT|CLM_PRV_USR_DFN_2_TXT|CLM_PRV_USR_DFN_3_TXT|
+|$filekey      |$currentdatetime                                                                       |235       |RENDERING     |1838762327       |20160602    |232             |XSVCUD1=CSUD01       |XSVCUD2=CSUD02       |XSVCUD3=CSUD03       |
+
+
+|Query:Db Table|select * from MINI_CLM_DIAG where FILE_KEY = $filekey|${env}                                                                                                             |
+|FILE_KEY      |CLM_ID                                               |CLM_MOD_ID|DIAG_QUAL_TYP_CD|DIAG_CD|DIAG_CD_PT|CLM_DIAG_USR_DFN_1_TXT|CLM_DIAG_USR_DFN_2_TXT|CLM_DIAG_USR_DFN_3_TXT|
+|$filekey      |$currentdatetime                                     |235       |ABK             |R0789  |1         |CDEUD1=CSUD01         |CDEUD2=CSUD02         |CDEUD3=CSUD03         |
+
+
+|Query:Db Table|select * from MINI_CLM_SRVC where FILE_KEY = $filekey|${env}                                                                                                                                                                                                                            |
+|FILE_KEY      |CLM_ID                                               |CLM_MOD_ID|SRVC_LINE_NUM|NUBC_CD  |PRCDR_QUAL_CD|PRCD_CD|SRVC_UNIT_CNT|PLC_OF_SRVC_CD|CLM_SRVC_FROM_DT     |CLM_SRVC_TO_DT       |NDC_CD     |DRG_QTY|DEN_IND|CLM_SRVC_USR_DFN_1_TXT|CLM_SRVC_USR_DFN_2_TXT|CLM_SRVC_USR_DFN_3_TXT|
+|$filekey      |$currentdatetime                                     |235       |1            |NUBCDE101|HC           |Q4045  |221          |32            |2016-01-10 00:00:00.0|2016-01-28 00:00:00.0|12634049060|10     |N      |XSVCUD1=CSUD01        |XSVCUD2=CSUD02        |XSVCUD3=CSUD03        |
+
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PRCDR_DIAG where FILE_KEY = $filekey|${env}                                                                            |
+|FILE_KEY      |CLM_ID                                                          |CLM_MOD_ID|SRVC_LINE_NUM|PRCDR_QUAL_CD|PRCD_CD|DIAG_CD_PT|DIAG_QUAL_TYP_CD|DIAG_CD|
+|$filekey      |$currentdatetime                                                |235       |1            |HC           |Q4045  |1         |ABK             |R0789  |
+
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PRCDR_MOD where PRCDR_CD_MOD_CD = '32' and FILE_KEY = $filekey|${env}                                                        |
+|FILE_KEY      |CLM_ID                                                                                    |CLM_MOD_ID|SRVC_LINE_NUM|PRCDR_QUAL_CD|PRCD_CD|PRCDR_CD_MOD_CD|
+|$filekey      |$currentdatetime                                                                          |235       |1            |HC           |Q4045  |32             |
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PRCDR_MOD where PRCDR_CD_MOD_CD = '33' and FILE_KEY = $filekey|${env}                                                        |
+|FILE_KEY      |CLM_ID                                                                                    |CLM_MOD_ID|SRVC_LINE_NUM|PRCDR_QUAL_CD|PRCD_CD|PRCDR_CD_MOD_CD|
+|$filekey      |$currentdatetime                                                                          |235       |1            |HC           |Q4045  |33             |
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PRCDR_MOD where PRCDR_CD_MOD_CD = '50' and FILE_KEY = $filekey|${env}                                                        |
+|FILE_KEY      |CLM_ID                                                                                    |CLM_MOD_ID|SRVC_LINE_NUM|PRCDR_QUAL_CD|PRCD_CD|PRCDR_CD_MOD_CD|
+|$filekey      |$currentdatetime                                                                          |235       |1            |HC           |Q4045  |50             |
+
+|Query:Db Table|select * from MINI_CLM_SRVC_PRCDR_MOD where PRCDR_CD_MOD_CD = '52' and FILE_KEY = $filekey|${env}                                                        |
+|FILE_KEY      |CLM_ID                                                                                    |CLM_MOD_ID|SRVC_LINE_NUM|PRCDR_QUAL_CD|PRCD_CD|PRCDR_CD_MOD_CD|
+|$filekey      |$currentdatetime                                                                          |235       |1            |HC           |Q4045  |52             |
+
+
+
+|Query:Db Table|select * from MINI_CLM_SRVC_FIN where FILE_KEY = $filekey|${env}                                                                                                                                                                  |
+|FILE_KEY      |CLM_ID                                                                                    |CLM_MOD_ID|SRVC_LINE_NUM|CLM_TRN_TYP_CD|CLM_TRN_AMT|CLM_TRN_DT           |DERIV_AMT_IND|CLM_SRVC_FIN_USR_DFN_1_TXT|CLM_SRVC_FIN_USR_DFN_2_TXT|CLM_SRVC_FIN_USR_DFN_3_TXT|
+|$filekey      |$currentdatetime                                                                          |235       |1            |BILLED_AMT    |104.78     |2016-01-25 00:00:00.0|Y            |XFINUD1=CSUD01            |XFINUD2=CSUD02            |XFINUD3=CSUD03            |
+
+
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                        |
+|send   |CS_MiniClaimNewFCDFile_PREPDB_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+!|comment                                                                                                       |
+|!script     |EtlJobRunner                                                                                      |
+|$job_status=|run Job With|dsivapur|User|SaiRam#87|Pass|PAY_PAY_JS_M_CLM|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|

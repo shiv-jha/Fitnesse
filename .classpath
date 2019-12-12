@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="lib/antisamy-1.4.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/asm-3.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/avalon-framework-4.1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/batik-css-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/batik-ext-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/batik-util-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/bsh-core-2.0b4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cglib-2.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-core-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-collections-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-configuration-1.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-digester-1.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-fileupload-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-lang-2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/esapi-2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jsch-0.1.51.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit-4.8.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/logkit-1.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/nekohtml-1.9.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/servlet-api-2.5-6.1.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/stk-1.3.0-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xalan-2.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xercesImpl-2.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xml-apis-1.3.03.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xml-apis-ext-1.3.04.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xom-1.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_181/lib/ant-javafx.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_181/lib/dt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_181/lib/javafx-mx.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_181/lib/jconsole.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_181/lib/sa-jdi.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_181/lib/tools.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/hde-fitnesse.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/rally-rest-api-2.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/ojdbc6-11.2.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Automation/Fitnesse_Automation/lib/run_etl_jobs.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

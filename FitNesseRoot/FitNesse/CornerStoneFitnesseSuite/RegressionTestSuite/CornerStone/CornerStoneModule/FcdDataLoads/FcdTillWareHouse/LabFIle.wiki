@@ -1,0 +1,98 @@
+---
+Test
+---
+!define fileType {LAB}
+!define sub_client_sk {888}
+!define lab_modifier {237}
+!define clientText {Cornerstone Test Client}
+!define clientUniqueText {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+!define command {sh /cas/scripts/cornerstone/bin/batchclient.sh LAB_STG_TO_ODS TST &}
+!define newftphost {APSRT1029}
+
+!define D1_HDR_Data {${fileType}|${sub_client_sk}|20170101|20170630|20170630112233|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_LAB_Data {54991|233|TEST PROVIDER|20161221|23183-7|1234.2101|3.5 mg/dl|mL/min/1.73m2^mL/m|clireckey01|HIC=TSTHIC001A|NPI=TSTNPI6886|TIN=TSTTIN333|AD|0267T|V|000F12151642|232|HC}
+!define D4_FTR_Data {${fileType}|${sub_client_sk}|20170101|20170630|20170630112233|6.1}
+!define D5_CNT_Data {1|1|2}
+!define env {TST}
+
+
+
+!define labdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+LAB|$currentdatetime|${lab_modifier}|${D3_LAB_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                |
+|$currentdatetime=|make id using Time             |yyyyMMddHHmmss              |
+|given the        |${fileType}_${sub_client_sk}_MR|file with content|${labdata}|
+*!
+
+
+
+!*> 2. !style_green('''This step will wait till file moves to 2 status)
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+*!
+
+|script |File Support                                                      |
+|command|${command}|In|${newftphost}|To|${ftpuser}|Location Zone|${ftppass}|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                                  |
+|$exit_cd=|run All|CALL_ALL_LAB_CLM_SP_IN_SEQ|Procedure Chunk|1000|And File|$filekey|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select * from LAB_CLM_SRVC where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                       |
+|FILE_KEY      |SUB_CLI_SK                                          |CLNT_GUID          |LAB_CLM_SRVC_ID |LAB_CLM_SRVC_MOD_ID|MBR_ID|MBR_MOD_ID|LAB_PROV_ENTY_NM|RECV_LAB_SRVC_DT|LOINC_CD|LAB_RSLT_NUM|LAB_RSLT_TXT|LAB_RSLT_UNIT_NM  |LAB_CLI_REC_KEY|LAB_USER_DFN_1_TXT|LAB_USER_DFN_2_TXT|LAB_USER_DFN_3_TXT|LAB_VEND_SRC|PRCD_CD|PREV_CLM_VOID_REPL_IND|ORDR_PROV_ENTY_ID|ORDR_PROV_ENTY_MOD_ID|PRCDR_QUAL_CD|
+|$filekey      |${sub_client_sk}                                    |${clientUniqueText}|$currentdatetime|${lab_modifier}    |54991 |233       |TEST PROVIDER   |20161221        |23183-7 |1234.2101   |3.5 mg/dl   |mL/min/1.73m2^mL/m|clireckey01    |HIC=TSTHIC001A    |NPI=TSTNPI6886    |TIN=TSTTIN333     |AD          |0267T  |V                     |000F12151642     |232                  |HC           |
+
+
+
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_LAB_CLM|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                                |
+|check|query|SELECT ETL_CMPL_ind  FROM ETL_CLM_FILE_LOG_HIST WHERE TBL_GRP='LAB' and file_key=$filekey|For|'Y'|And Retry|120|times|true|
+
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key = $filekey|${env}|
+|process_sts_key                                                                              |
+|107                                                                                          |
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+|Query:Db Table|select * from A_LAB_CLM_SRVC where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                       |
+|FILE_KEY      |SUB_CLI_SK                                            |CLNT_GUID          |LAB_CLM_SRVC_ID |LAB_CLM_SRVC_MOD_ID|MBR_ID|MBR_MOD_ID|LAB_PROV_ENTY_NM|RECV_LAB_SRVC_DT|LOINC_CD|LAB_RSLT_NUM|LAB_RSLT_TXT|LAB_RSLT_UNIT_NM  |LAB_CLI_REC_KEY|LAB_USER_DFN_1_TXT|LAB_USER_DFN_2_TXT|LAB_USER_DFN_3_TXT|LAB_VEND_SRC|PRCD_CD|PREV_CLM_VOID_REPL_IND|ORDR_PROV_ENTY_ID|ORDR_PROV_ENTY_MOD_ID|PRCDR_QUAL_CD|
+|$filekey      |${sub_client_sk}                                      |${clientUniqueText}|$currentdatetime|${lab_modifier}    |54991 |233       |TEST PROVIDER   |20161221        |23183-7 |1234.2101   |3.5 mg/dl   |mL/min/1.73m2^mL/m|clireckey01    |HIC=TSTHIC001A    |NPI=TSTNPI6886    |TIN=TSTTIN333     |AD          |0267T  |V                     |000F12151642     |232                  |HC           |
+
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                      |
+|send   |CS_LabClaimNewFCDFile_ODSDB_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+
+

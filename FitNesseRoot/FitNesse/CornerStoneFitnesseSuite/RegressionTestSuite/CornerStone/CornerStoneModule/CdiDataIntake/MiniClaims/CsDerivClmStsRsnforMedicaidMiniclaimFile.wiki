@@ -1,0 +1,67 @@
+---
+Suites: Preclusion
+Test
+---
+!define fileType {MINCLM}
+!define subCliSk {140}
+!define clientText {United HealthCare Medicaid - FL}
+!define clientUniqueText {1eeaaf7b-82a9-4b63-b384-60b936690670}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20160101|20161231|20160921134506|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CLM_Data {235|20170719234758|233|HIC|HN134567|FINALIZED|2232323|RESERVED||01|12345VA001999901|11|10|1|||201601281420||PA001234|20160131|2016-01-30T00:00:00|CLMUD1=CSUD01|CLMUD2=CSUD02|CRK000001|LIKITH|20160721|1|HIOSID01|MMID001|098|SEVERE|AD|120|OTH|CLMUD3=CSUD03}
+!define D4_PRV_Data {235|BILLING|1838762327|20160602|232|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D5_CDE_Data {235|ABK|R0789|1|CDEUD1=CSUD01|CDEUD2=CSUD02|CDEUD3=CSUD03}
+!define D6_XSVC_Data {235|1|NUBCDE101|HC|Q4045|32|33|50|52|221|1||||32|20160110|20160128|RENDERING|1838762327|20160602|232|12634049060|10|N|XSVCUD1=CSUD01|XSVCUD2=CSUD02|XSVCUD3=CSUD03}
+!define D7_XFIN_Data {235|1|BILLED_AMT|104.78|20160125|Y|XFINUD1=CSUD01|XSVCUD2=CSUD02|XFINUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20160101|20161231|20160921134506|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+
+!define minclmdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLM|$currentdatetime|${D3_CLM_Data}
+PRV|$currentdatetime|${D4_PRV_Data}
+CDE|$currentdatetime|${D5_CDE_Data}
+XSVC|$currentdatetime|${D6_XSVC_Data}
+XFIN|$currentdatetime|${D7_XFIN_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the cdi    |${fileType}_${subCliSk}_MD|file with content|${minclmdata}|
+
+|script |File Support                                                       |
+|command|${cdi_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6004|And Retry|120|times|true|
+
+|Query:Db Table|select ERR_CD,ERR_DESC,ERR_SVRTY_TYP,FILE_TYPE_NM,SEGMENT_CD from dq_err where err_cd = 'CS107155'|${env}|
+|ERR_CD| ERR_DESC |ERR_SVRTY_TYP|FILE_TYPE_NM|SEGMENT_CD|
+|CS107155 |       |             |            |           | 
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|script |File Support                                                            |
+|command|${cdi_load_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select CLI_SK, CLNT_GUID, PROV_ENTY_ID, PROV_ENTY_MOD_ID, CLM_REJ_DT, REIN_DT, DERIV_DEL_IND from PROV_ENTY_PRECL where PROV_ENTY_ID = '20160602' and prov_enty_precl_sk = '152001'|${env} |                                                                                                                                                                                                                                 
+|CLI_SK|CLNT_GUID|PROV_ENTY_ID|PROV_ENTY_MOD_ID |CLM_REJ_DT|REIN_DT |DERIV_DEL_IND |
+|     |           |20160602|                 |             |      |           |
+

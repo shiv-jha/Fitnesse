@@ -1,0 +1,254 @@
+---
+Help: Load OPSI HEDIS Files into CS
+Test
+---
+!define SubCliSK {888}
+!define ClntNM {CST}
+!define MsrYear {2019}
+!define MeasureFileName {${ClntNM}_${ClntNM}_BCS_HEDIS-${MsrYear}_$currentdatetime.txt}
+!define AuditFileName {${ClntNM}_${ClntNM}_AUDITOUTPUT_$currentdatetime.txt}
+!define pkey1 {2056}
+!define etl_ui_user {dsivapur}
+!define etl_ui_pwd {United@19}
+!define command {cd ${ftpDwdir}; gzip *${ClntNM}*.txt; tar -cvf ${pkey1}_${SubCliSK}_${ClntNM}_${ClntNM}_$currentdatetime.tar ./*${ClntNM}*.gz; rm *${ClntNM}*.gz; touch ${pkey1}_${SubCliSK}_${ClntNM}_${ClntNM}_$currentdatetime.trg;}
+
+
+!define D1_Meta_Data {${pkey1},${MsrYear},${ClntNM},${ClntNM},Packaginglist_${ClntNM}_${ClntNM}_P2019012800014755220190129192727.txt,${ClntNM}_P20190128000147552,570876b8-dc12-4c76-9501-a0fd8b1fdfcd,0,2019-01-28 11:52:31,0,0,prospective,admin,31-DEC-19,40,41,2019-01-28 12:27:35,2019-01-28 12:27:35}
+!define D2_Meta_Data {1,${pkey1},${AuditFileName},AUDIT,4,9,,${AuditFileName},2019-01-28 11:56:13,2019-01-28 20:35:19,2019-01-28 20:35:37}
+!define D3_Meta_Data {2,${pkey1},${MeasureFileName},MEASURE,4,5,,${MeasureFileName},2019-01-28 11:56:13,2019-01-28 20:35:19,2019-01-28 20:35:37}
+!define env {TST}
+
+!define metafiledata {${D1_Meta_Data}
+${D2_Meta_Data}
+${D3_Meta_Data}}
+
+
+
+!|script          |File Support                                                                        |
+|$currentdatetime=|make id using Time                            |yyyyMMddHHmmss                       |
+|given the        |${pkey1}_${SubCliSK}_${ClntNM}_${ClntNM}_META_|met file with content|${metafiledata}|
+
+
+
+!|script|File Support                                                                                                |
+|ftp    |$datfilename.txt|File|${createddir}|In|${ftpDwserver}|To|${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+!|script|DeleteHDEFiles                                                              |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\$datfilename.txt|From Inbound|
+
+!|script|DeleteHDEFiles                                                                 |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\$datfilename.txt.gz|From Inbound|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+!define D1_Aud_Data {GLBIDS008,P|O|P|I|D,MACOEXCLHMOHSENID001-Denominator:MACOEXCLHMO_03,MACOEXCLHMO_03,MACOEXCLHMO_03,2019-09-01,0,2019-12-31,ACO-CUSTOM-2019,ABA}
+!define D2_Aud_Data {MBRGLBID01,P|O|P|,CDC9-Denominator:CDC901,CDC901,CDC901,2019-12-31,0,2019-12-31,HEDIS-2017,CDC}
+!define D3_Aud_Data {GEM00001,P|O|P|Pop,PCR--1:PCRC03,PCRC03,PCRC03,170263534E011,1,2019-12-31,HEDIS-2019,PCR}
+!define env {TST}
+
+!define audfiledata {${D1_Aud_Data}
+${D2_Aud_Data}
+${D3_Aud_Data}}
+
+!|script  |File Support                                         |
+|given the|${AuditFileName}|mod file with content|${audfiledata}|
+
+
+
+Inbound_Files
+!|script|File Support                                                                                            |
+|ftp    |$datfilename|File|${createddir}|In|${ftpDwserver}|To|${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+!|script|DeleteHDEFiles                                                          |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\$datfilename|From Inbound|
+
+!|script|DeleteHDEFiles                                                             |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\$datfilename.gz|From Inbound|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+!define D1_Msr_Data {CBP,CBP,STRAT04,GLBIDS004,RANS01,1,0,0,0,0,2019-12-31,2019-01-27,2019-07-27,0,2006,2005,2004,2003,2002,2001,35.56,0.43,37.12,38.00,39.75,31.50,MALE,20.49,21.67,22.99,DCC_CTG42,P|O|P|I|D|Pop,Provider_Organiza_ID_0042,1,11.22,00.02,21.12,HEDIS-2019.1,Test11,Test12OMNAZ,0,CBP_2019_0,Gap Close}
+!define D2_Msr_Data {COA1,COA1,STRAT07,CLSGLBMBR118,RANS02,1,0,0,1,0,2019-12-31,2019-01-24,2019-02-21,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COA1_2019_1,Gap open}
+!define D3_Msr_Data {COL,COL,STRAT011,GLBIDS012,RANS02,1,0,0,1,0,2019-12-31,2019-01-24,2019-03-02,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COL_2019_1,Gap open}
+!define D4_Msr_Data {COA1,COA1,STRAT012,GLBIDS012,RANS02,1,0,0,0,0,2019-12-31,2019-01-24,2019-04-12,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COA1_2019_1,Gap open}
+!define D5_Msr_Data {CPA,CPA,STRAT013,GLBIDS013,RANS02,1,0,0,1,0,2019-12-31,2019-01-24,2019-01-27,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,CPA_2019_1,Gap open}
+!define D6_Msr_Data {COA2,COA2,STRAT014,GLBIDS014,RANS02,1,0,0,0,0,2019-12-31,2019-01-24,2019-01-27,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COA2_2019_1,Gap open}
+!define D7_Msr_Data {COA2,COA2,STRAT017,GLBIDS017,RANS02,1,0,0,0,0,2019-12-31,2019-01-24,2019-04-20,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COA2_2019_1,Gap open}
+!define D8_Msr_Data {COA3,COA3,STRAT016,GLBIDS016,RANS02,1,0,0,1,0,2019-12-31,2019-01-24,2019-04-20,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COA3_2019_1,Gap open}
+!define D9_Msr_Data {ARTM,ARTM,STRAT0444,GLBIDS004,RANS01,1,0,0,1,0,2019-12-31,2019-01-27,2019-08-24,0,2006,2005,2004,2003,2002,2001,35.56,0.43,37.12,38.00,39.75,31.50,MALE,20.49,21.67,22.99,DCC_CTG42,P|O|P|I|D|Pop,Provider_Organiza_ID_0042,1,11.22,00.02,21.12,HEDIS-2019.1,Test11,Test12OMNAZ,0,ARTM_2019_0,Globalid with two members}
+!define D10_Msr_Data {CBP,CBP,STRAT04,CLSGLBMBR111,RANS01,1,0,0,0,0,2019-12-31,2019-01-27,2019-07-27,0,2006,2005,2004,2003,2002,2001,35.56,0.43,37.12,38.00,39.75,31.50,MALE,20.49,21.67,22.99,DCC_CTG42,P|O|P|I|D|Pop,Provider_Organiza_ID_0042,1,11.22,00.02,21.12,HEDIS-2019.1,Test11,Test12OMNAZ,0,CBP_2019_0,Gap Close}
+!define D11_Msr_Data {ABA,ABA,STRAT06,GLBIDS006,RANS02,1,0,0,0,0,2019-12-31,2019-01-24,2019-05-27,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,ABA_2019_1,Gap open}
+!define D12_Msr_Data {COA1,COA1,STRAT07,GLBIDS007,RANS02,1,0,0,0,0,2019-12-31,2019-01-24,2019-02-21,1,1992,1993,1994,1995,1996,1997,65.56,66.43,67.12,68.00,0.75,34.75,FEMALE,50.49,51.67,52.99,DCC_CTG44,P|O|P|I|,Provider_Organiza_ID_0044,0,44.55,05.05,54.45,HEDIS-2019.2,Test31,Test32OMNAZ,1,COA1_2019_1,Gap open}
+!define env {TST}
+
+!define msrfiledata {${D1_Msr_Data}
+${D2_Msr_Data}
+${D3_Msr_Data}
+${D4_Msr_Data}
+${D5_Msr_Data}
+${D6_Msr_Data}
+${D7_Msr_Data}
+${D8_Msr_Data}
+${D9_Msr_Data}
+${D10_Msr_Data}
+${D11_Msr_Data}
+${D12_Msr_Data}}
+
+!|script  |File Support                                           |
+|given the|${MeasureFileName}|mod file with content|${msrfiledata}|
+
+
+!|script|File Support                                                                                            |
+|ftp    |$datfilename|File|${createddir}|In|${ftpDwserver}|To|${ftpDwuser}|Location|${ftpDwpass}|Zone|${ftpDwdir}|
+
+!|script|DeleteHDEFiles                                                          |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\$datfilename|From Inbound|
+
+!|script|DeleteHDEFiles                                                             |
+|$test= |Delete HDEFiles|C:\\Automation\\Inbound_Files\\$datfilename.gz|From Inbound|
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script      |File Support                                                           |
+|commandhedis|${command}|In|${ftpDwserver}|To|${ftpDwuser}|Location|${ftpDwpass}|Zone|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_OPS_HDE|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script                                                                                                                 |
+|check|query|SELECT count(*) FROM FRMK_STG_FILEINFO WHERE FILE_NAME LIKE '${pkey1}_%.tar'|For|1|And Retry|120|times|true|
+
+
+!|script      |DbTable                                                              |
+|query        |SELECT * FROM FRMK_STG_FILEINFO WHERE FILE_NAME LIKE '${pkey1}_%.tar'|
+|$prntfilekey=|valueofcolumn                        |FILE_KEY                       |
+
+
+|script                                                                                                               |
+|check|query|SELECT PROCESS_STS_KEY FROM FRMK_STG_FILEINFO WHERE FILE_KEY =$prntfilekey|For|4|And Retry|120|times|true|
+
+
+|script                                                                                                                                         |
+|check|query|SELECT count(*) FROM FRMK_STG_FILEINFO WHERE PRNT_FILE_KEY =$prntfilekey AND FILE_NAME LIKE '%META%'|For|1|And Retry|120|times|true|
+
+
+!|script      |DbTable                                                                                      |
+|query        |SELECT * FROM FRMK_STG_FILEINFO WHERE PRNT_FILE_KEY =$prntfilekey AND FILE_NAME LIKE '%META%'|
+|$metafilekey=|valueofcolumn                                    |FILE_KEY                                   |
+
+
+|script                                                                                                                  |
+|check|query|SELECT PROCESS_STS_KEY FROM FRMK_STG_FILEINFO WHERE FILE_KEY =$metafilekey|For|1027|And Retry|120|times|true|
+
+
+
+|script                                                                                                   |
+|check|query|SELECT COUNT(*) FROM HDE_PRJ_INFO WHERE PROJECT_KEY = ${pkey1}|For|1|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from HDE_PRJ_INFO where PROJECT_KEY = ${pkey1}|${env}                                                                                                                                                                                                                                                                                                                                                                                         |
+|PROJECT_KEY   |MSR_YR                                                 |OHR_CLNT_NM|PROJECT_ID|FILE_KEY    |RUN_TYP|ENR_TYP|PKG_FILE_NM                                                           |SRC_PKG_NM                  |ACC_JOB_ID                          |DF_TRANS_ID|OHR_FILE_RECV_DT     |OHR_LOAD_PREP_TM|LEGACY_PROJECT_KEY|OHR_RUN_TYP|RUN_ADMIN_TYP|MSR_END_DT           |STATE_KEY|STATUS_KEY|OHR_CREATE_DT        |DW_INSRT_USER_ID     |SUB_CLI_SK |
+|${pkey1}      |${MsrYear}                                             |${ClntNM}  |${ClntNM} |$metafilekey|M      |NC_OPSI|Packaginglist_${ClntNM}_${ClntNM}_P2019012800014755220190129192727.txt|${ClntNM}_P20190128000147552|570876b8-dc12-4c76-9501-a0fd8b1fdfcd|0          |2019-01-28 11:52:31.0|0               |0                 |prospective|admin        |2019-12-31 00:00:00.0|40       |41        |2019-01-28 12:27:35.0|2019-01-28 12:27:35.0|${SubCliSK}|
+
+
+
+|script                                                                                                                                        |
+|check|query|SELECT count(*) FROM FRMK_STG_FILEINFO WHERE PRNT_FILE_KEY =$prntfilekey AND FILE_NAME LIKE '%BCS%'|For|1|And Retry|120|times|true|
+
+
+!|script     |DbTable                                                                                     |
+|query       |SELECT * FROM FRMK_STG_FILEINFO WHERE PRNT_FILE_KEY =$prntfilekey AND FILE_NAME LIKE '%BCS%'|
+|$msrfilekey=|valueofcolumn                                   |FILE_KEY                                   |
+
+
+|script                                                                                                                |
+|check|query|SELECT PROCESS_STS_KEY FROM FRMK_STG_FILEINFO WHERE FILE_KEY =$msrfilekey|For|113|And Retry|120|times|true|
+
+
+
+|script                                                                                                                                                |
+|check|query|SELECT count(*) FROM FRMK_STG_FILEINFO WHERE PRNT_FILE_KEY =$prntfilekey AND FILE_NAME LIKE '%AUDITOUTPUT%'|For|1|And Retry|120|times|true|
+
+
+
+!|script     |DbTable                                                                                             |
+|query       |SELECT * FROM FRMK_STG_FILEINFO WHERE PRNT_FILE_KEY =$prntfilekey AND FILE_NAME LIKE '%AUDITOUTPUT%'|
+|$audfilekey=|valueofcolumn                                       |FILE_KEY                                       |
+
+
+|script                                                                                                                |
+|check|query|SELECT PROCESS_STS_KEY FROM FRMK_STG_FILEINFO WHERE FILE_KEY =$audfilekey|For|113|And Retry|120|times|true|
+
+
+|script                                                                                                   |
+|check|query|SELECT COUNT(*) FROM HDE_PRJ_FILE WHERE PROJECT_KEY = ${pkey1}|For|2|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select * from HDE_PRJ_FILE where PROJECT_KEY = ${pkey1} AND FILE_TYP = 'AUDIT'|${env}                                                                                                                                                               |
+|OHR_FILE_KEY  |PROJECT_KEY                                                                   |FILE_NM         |FILE_TYP|FILE_KEY   |OHR_STATUS_KEY|ORIG_REC_CNT|OHR_PROCESSED_REC_CNT|ORIG_FILE_NM    |OHR_FILE_RECV_DT     |OHR_CREATE_DT        |DW_INSRT_USER_ID|
+|1             |${pkey1}                                                                      |${AuditFileName}|AUDIT   |$audfilekey|4             |9           |                     |${AuditFileName}|2019-01-28 11:56:13.0|2019-01-28 20:35:19.0|msndspay        |
+
+
+|Query:Db Table|select * from HDE_PRJ_FILE where PROJECT_KEY = ${pkey1} AND FILE_TYP = 'MEASURE'|${env}                                                                                                                                                                   |
+|OHR_FILE_KEY  |PROJECT_KEY                                                                     |FILE_NM           |FILE_TYP|FILE_KEY   |OHR_STATUS_KEY|ORIG_REC_CNT|OHR_PROCESSED_REC_CNT|ORIG_FILE_NM      |OHR_FILE_RECV_DT     |OHR_CREATE_DT        |DW_INSRT_USER_ID|
+|2             |${pkey1}                                                                        |${MeasureFileName}|MEASURE |$msrfilekey|4             |5           |                     |${MeasureFileName}|2019-01-28 11:56:13.0|2019-01-28 20:35:19.0|msndspay        |
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script                                                                                                   |
+|check|query|SELECT COUNT(*) FROM HDE_MSR_RSLT WHERE PROJECT_KEY = ${pkey1}|For|3|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from HDE_MSR_RSLT where PROJECT_KEY = ${pkey1} AND MSR_ID = 'COLM'|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|FILE_KEY      |PROJECT_KEY                                                               |SUB_PARTITION_KEY     |CLI_SK     |RUN_TYP|ENR_TYP|MBR_GLB_ID|MSR_ID|MSR_NM|STRAT_ID|MBR_ID   |MBR_MOD_ID|HIC_NUM       |RSLT_ANS|DENOM_FLG|DENOM_XCLS_FLG|DENOM_XCPT_FLG|NMT_FLG|NMT_XCLS_FLG|MSRMT_END_DT         |QUAL_DT              |RUN_DT               |EPSD_NBR|EXPT_VST_CNT|ACTUL_VST_CNT|MBR_MO_CNT|DAY_CNT|DSCHRG_CNT|SRVC_CNT|SURG_WGT|BAS_RISK_WGT|AGE_AND_GDR_WGT|DCC_WGT|COMORB_WGT|AGE |GDR|RISK_SCOR|ADJ_PRBL|VARIANCE|DCC_CATGY|POP_ID           |RSN_CD|FINAL_DENOM|FINAL_NMT|DW_INSRT_USER_ID|PROV_ORG_ID              |SUPL_ONLY_FLG|BAS_RISK_WGT_2|AGE_AND_GDR_WGT_2|COMORBIDITY_WGT_2|MSR_SET_ID  |MSR_SET_YR|MSR_SET_YR_VER|SRC_MSR|CMS_HOSP_ID|OUTLIER|GAP_COND_ID|QGC_AUDIT                    |SUB_CLI_SK |
+|$msrfilekey   |${pkey1}                                                                  |M_NC_OPSI_${pkey1}_COLM|${SubCliSK}|M      |NC_OPSI|MDNWMBR004|COLM  |COL   |STRAT01 |MBRMR0103|233       |!-A65644799A-!|RANS01  |1        |1             |1             |1      |1           |2019-12-31 00:00:00.0|2019-01-27 00:00:00.0|2019-01-25 00:00:00.0|0       |2006        |2005         |2004      |2003   |2002      |2001    |35.56   |0.43        |37.12          |38     |39.75     |31.5|M  |20.49    |21.67   |22.99   |DCC_CTG42|!-P|O|P|I|D|Pop-!|      |1          |1        |msndspay        |Provider_Organiza_ID_0042|1            |11.22         |0.02             |21.12            |HEDIS-2019.1|2019      |1             |Test11 |Test12OMNAZ|0      |COLM_2019_0 |Gap Closed due to no presence|${SubCliSK}|
+
+
+|Query:Db Table|select * from HDE_MSR_RSLT where PROJECT_KEY = ${pkey1} AND MSR_ID = 'A1C'|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|FILE_KEY      |PROJECT_KEY                                                               |SUB_PARTITION_KEY     |CLI_SK     |RUN_TYP|ENR_TYP|MBR_GLB_ID|MSR_ID |MSR_NM |STRAT_ID|MBR_ID    |MBR_MOD_ID|HIC_NUM        |RSLT_ANS|DENOM_FLG|DENOM_XCLS_FLG|DENOM_XCPT_FLG|NMT_FLG|NMT_XCLS_FLG|MSRMT_END_DT         |QUAL_DT              |RUN_DT               |EPSD_NBR|EXPT_VST_CNT|ACTUL_VST_CNT|MBR_MO_CNT|DAY_CNT|DSCHRG_CNT|SRVC_CNT|SURG_WGT|BAS_RISK_WGT|AGE_AND_GDR_WGT|DCC_WGT|COMORB_WGT|AGE  |GDR|RISK_SCOR|ADJ_PRBL|VARIANCE|DCC_CATGY|POP_ID      |RSN_CD|FINAL_DENOM|FINAL_NMT|DW_INSRT_USER_ID|PROV_ORG_ID              |SUPL_ONLY_FLG|BAS_RISK_WGT_2|AGE_AND_GDR_WGT_2|COMORBIDITY_WGT_2|MSR_SET_ID  |MSR_SET_YR|MSR_SET_YR_VER|SRC_MSR|CMS_HOSP_ID|OUTLIER|GAP_COND_ID|QGC_AUDIT               |SUB_CLI_SK |
+|$msrfilekey   |${pkey1}                                                                  |M_NC_OPSI_${pkey1}_A1C|${SubCliSK}|M      |NC_OPSI|GLBIDS001 |!-A1C-!|!-A1C-!|STRAT02 |GIDS000001|233       |!-A65426129B9-!|RANS02  |1        |1             |1             |1      |1           |2019-12-31 00:00:00.0|2019-01-24 00:00:00.0|2019-05-25 00:00:00.0|1       |1992        |1993         |1994      |1995   |1996      |1997    |65.56   |66.43       |67.12          |68     |0.75      |34.75|F  |50.49    |51.67   |52.99   |DCC_CTG44|!-P|O|P|I|-!|      |1          |0        |msndspay        |Provider_Organiza_ID_0044|0            |44.55         |5.05             |54.45            |HEDIS-2019.2|2019      |2             |Test31 |Test32OMNAZ|1      |A1C_2019_1 |Test Quality Gap Closure|${SubCliSK}|
+
+
+|Query:Db Table|select * from HDE_MSR_RSLT where PROJECT_KEY = ${pkey1} AND MSR_ID = 'BCS'|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|FILE_KEY      |PROJECT_KEY                                                               |SUB_PARTITION_KEY     |CLI_SK     |RUN_TYP|ENR_TYP|MBR_GLB_ID|MSR_ID|MSR_NM|STRAT_ID|MBR_ID|MBR_MOD_ID|HIC_NUM       |RSLT_ANS|DENOM_FLG|DENOM_XCLS_FLG|DENOM_XCPT_FLG|NMT_FLG|NMT_XCLS_FLG|MSRMT_END_DT         |QUAL_DT              |RUN_DT               |EPSD_NBR|EXPT_VST_CNT|ACTUL_VST_CNT|MBR_MO_CNT|DAY_CNT|DSCHRG_CNT|SRVC_CNT|SURG_WGT|BAS_RISK_WGT|AGE_AND_GDR_WGT|DCC_WGT|COMORB_WGT|AGE|GDR|RISK_SCOR|ADJ_PRBL|VARIANCE|DCC_CATGY|POP_ID                                        |RSN_CD|FINAL_DENOM|FINAL_NMT|DW_INSRT_USER_ID|PROV_ORG_ID              |SUPL_ONLY_FLG|BAS_RISK_WGT_2|AGE_AND_GDR_WGT_2|COMORBIDITY_WGT_2|MSR_SET_ID  |MSR_SET_YR|MSR_SET_YR_VER|SRC_MSR|CMS_HOSP_ID|OUTLIER|GAP_COND_ID|QGC_AUDIT|SUB_CLI_SK |
+|$msrfilekey   |${pkey1}                                                                  |M_NC_OPSI_${pkey1}_BCS|${SubCliSK}|M      |NC_OPSI|GEM00001  |BCS   |BCS   |STRAT03 |51003 |233       |!-A21640560A-!|RANS03  |1        |1             |1             |1      |1           |2019-12-31 00:00:00.0|2019-01-23 00:00:00.0|2019-07-25 00:00:00.0|0       |1996        |1995         |1994      |1993   |1992      |1991    |75.56   |76.43       |77.12          |78.12  |79.75     |0.5|F  |60.49    |61.67   |62.99   |DCC_CTG45|!-P|O|P|I|D|Population Identifier P|O|P|I|D|-!|      |1          |1        |msndspay        |Provider_Organiza_ID_0045|1            |55.66         |6.06             |65.56            |HEDIS-2019.3|2019      |3             |Test41 |Test42OMNAZ|       |BCS_2019_0 |         |${SubCliSK}|
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+|script                                                                                                   |
+|check|query|SELECT COUNT(*) FROM HDE_AUD_RSLT WHERE PROJECT_KEY = ${pkey1}|For|3|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from HDE_AUD_RSLT where PROJECT_KEY = ${pkey1} AND MBR_GLB_ID = 'GLBIDS008'|${env}                                                                                                                                                                                                                                                                                                               |
+|FILE_KEY      |PROJECT_KEY                                                                         |SUB_PARTITION_KEY     |CLI_SK     |RUN_TYP|ENR_TYP|MSR_NM|MBR_GLB_ID|MBR_ID    |MBR_MOD_ID|HIC_NUM|POP_ID       |MSR_AUD_KEY                                    |DERIV_MSR_ID        |CNTRB_XOM_OBJ_NM|CNTRB_XOM_OBJ_ID|CNTRB_XOM_OBJ_VAL|EPSD_NBR|DW_INSRT_USER_ID|MSR_END_DT           |MSR_SET_ID     |SUB_CLI_SK |
+|$audfilekey   |${pkey1}                                                                            |M_NC_OPSI_${pkey1}_ABA|${SubCliSK}|M      |NC_OPSI|ABA   |GLBIDS008 |GIDS000008|233       |-1     |!-P|O|P|I|D-!|MACOEXCLHMOHSENID001-Denominator:MACOEXCLHMO_03|MACOEXCLHMOHSENID001|MACOEXCLHMO_03  |MACOEXCLHMO_03  |2019-09-01       |0       |msndspay        |2019-12-31 00:00:00.0|ACO-CUSTOM-2019|${SubCliSK}|
+
+
+|Query:Db Table|select * from HDE_AUD_RSLT where PROJECT_KEY = ${pkey1} AND MBR_GLB_ID = 'MBRGLBID01'|${env}                                                                                                                                                                                                                                                                   |
+|FILE_KEY      |PROJECT_KEY                                                                          |SUB_PARTITION_KEY     |CLI_SK     |RUN_TYP|ENR_TYP|MSR_NM|MBR_GLB_ID|MBR_ID|MBR_MOD_ID|HIC_NUM|POP_ID    |MSR_AUD_KEY            |DERIV_MSR_ID|CNTRB_XOM_OBJ_NM|CNTRB_XOM_OBJ_ID|CNTRB_XOM_OBJ_VAL|EPSD_NBR|DW_INSRT_USER_ID|MSR_END_DT           |MSR_SET_ID|SUB_CLI_SK |
+|$audfilekey   |${pkey1}                                                                             |M_NC_OPSI_${pkey1}_CDC|${SubCliSK}|M      |NC_OPSI|CDC   |MBRGLBID01|-1    |-1        |-1     |!-P|O|P|-!|CDC9-Denominator:CDC901|CDC9        |CDC901          |CDC901          |2019-12-31       |0       |msndspay        |2019-12-31 00:00:00.0|HEDIS-2017|${SubCliSK}|
+
+
+|Query:Db Table|select * from HDE_AUD_RSLT where PROJECT_KEY = ${pkey1} AND MBR_GLB_ID = 'GEM00001'|${env}                                                                                                                                                                                                                                                                   |
+|FILE_KEY      |PROJECT_KEY                                                                        |SUB_PARTITION_KEY     |CLI_SK     |RUN_TYP|ENR_TYP|MSR_NM|MBR_GLB_ID|MBR_ID|MBR_MOD_ID|HIC_NUM       |POP_ID       |MSR_AUD_KEY  |DERIV_MSR_ID|CNTRB_XOM_OBJ_NM|CNTRB_XOM_OBJ_ID|CNTRB_XOM_OBJ_VAL|EPSD_NBR|DW_INSRT_USER_ID|MSR_END_DT           |MSR_SET_ID|SUB_CLI_SK |
+|$audfilekey   |${pkey1}                                                                           |M_NC_OPSI_${pkey1}_PCR|${SubCliSK}|M      |NC_OPSI|PCR   |GEM00001  |51003 |233       |!-A21640560A-!|!-P|O|P|Pop-!|PCR--1:PCRC03|PCR         |PCRC03          |PCRC03          |170263534E011    |1       |msndspay        |2019-12-31 00:00:00.0|HEDIS-2019|${SubCliSK}|
+
+
+
+
+

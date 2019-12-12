@@ -1,0 +1,12 @@
+---
+Test
+---
+!define file_name {OPTUMCARE_20170719_05330038.zip}
+!define createddir {/etldata/pay01/cdo/lstage/}
+!define ftpuser {rmohan11}
+!define ftppass {Kjaya@143!}
+!define ftphost {APSRD5785}
+!define ftpdir {E:\\Automation\\ASM\\}
+
+|script  |File Support                                                                                       |
+|$result=|ftp|${file_name}|File|${createddir}|In|${ftphost}|From|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|

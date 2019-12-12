@@ -1,0 +1,116 @@
+---
+Test
+---
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+!|script           |DbTable                                                                               |
+|query             |select lst_etl_begn_dt,curr_etl_begn_dt FROM ETL_PROC_WNDW WHERE TBL_GRP = 'MEMBER_BV'|
+|$lst_etl_begn_dt= |valueofcolumn                            |lst_etl_begn_dt                             |
+|$curr_etl_begn_dt=|valueofcolumn                            |curr_etl_begn_dt                            |
+
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_MBR_BV|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+|script                                                                                                                                           |
+|check|query|select count(*)  FROM ETL_PROC_WNDW WHERE TBL_GRP = 'MEMBER_BV' and lst_etl_begn_dt>'$lst_etl_begn_dt'|For|1|And Retry|120|times|true|
+
+
+
+!|script      |DbTable                                                                                            |
+|query        |select * from D_MBR where DW_UPDT_DTTM > '$lst_etl_begn_dt' and rownum=1 order by dw_updt_dttm desc|
+|$MBR_ID=     |valueofcolumn                                     |MBR_ID                                          |
+|$CLI_ID=     |valueofcolumn                                     |CLI_ID                                          |
+|$SUB_CLI_SK= |valueofcolumn                                     |SUB_CLI_SK                                      |
+|$CLI_SK=     |valueofcolumn                                     |CLI_SK                                          |
+|$MBR_MOD_ID= |valueofcolumn                                     |MBR_MOD_ID                                      |
+|$MBR_LST_NM= |valueofcolumn                                     |MBR_LST_NM                                      |
+|$MBR_FST_NM= |valueofcolumn                                     |MBR_FST_NM                                      |
+|$MBR_MIDL_NM=|valueofcolumn                                     |MBR_MIDL_NM                                     |
+|$MBR_DOB_DT= |valueofcolumn                                     |MBR_DOB_DT                                      |
+|$MBR_GDR_CD= |valueofcolumn                                     |MBR_GDR_CD                                      |
+
+                                                                |
+
+!|script         |DbTable                                                                    |
+|query           |select * from VW_CS_CLNT_GUID_MOD where sub_cli_sk=$SUB_CLI_SK and rownum=1|
+|$CLI_ORG_NM=    |valueofcolumn                        |CLI_ORG_NM                           |
+|$SUB_CLI_ORG_NM=|valueofcolumn                        |SUB_CLI_ORG_NM                       |
+|$INS_CATG_CD=   |valueofcolumn                        |INS_CATG_CD                          |
+
+
+
+!|script       |DbTable                                                                  |
+|query         |SELECT * FROM A_MBR_ADR WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK|
+|$ADR_LN_1_TXT=|valueofcolumn                        |ADR_LN_1_TXT                       |
+|$ADR_LN_2_TXT=|valueofcolumn                        |ADR_LN_2_TXT                       |
+|$CITY_NM=     |valueofcolumn                        |CITY_NM                            |
+|$ST_CD=       |valueofcolumn                        |ST_CD                              |
+|$ZIP_CD=      |valueofcolumn                        |ZIP_CD                             |
+|$TEL_NUM_TXT= |valueofcolumn                        |TEL_NUM_TXT                        |
+
+
+!|script              |DbTable                                                                   |
+|query                |SELECT * FROM A_MBR_ENRL WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK|
+|$MBR_CONTR_NBR=      |valueofcolumn                     |MBR_CONTR_NBR                          |
+|$MBR_SUB_PLN_ID=     |valueofcolumn                     |MBR_SUB_PLN_ID                         |
+|$MBR_ENRL_CATGY_CD=  |valueofcolumn                     |MBR_ENRL_CATGY_CD                      |
+|$MBR_SUB_PLN_STRT_DT=|valueofcolumn                     |MBR_SUB_PLN_STRT_DT                    |
+|$MBR_SUB_PLN_END_DT= |valueofcolumn                     |MBR_SUB_PLN_END_DT                     |
+
+
+!|script              |DbTable                                                                   |
+|query                |SELECT * FROM A_MBR_ENRL WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK|
+|$MBR_CONTR_NBR=      |valueofcolumn                     |MBR_CONTR_NBR                          |
+|$MBR_SUB_PLN_ID=     |valueofcolumn                     |MBR_SUB_PLN_ID                         |
+|$MBR_ENRL_CATGY_CD=  |valueofcolumn                     |MBR_ENRL_CATGY_CD                      |
+|$MBR_SUB_PLN_STRT_DT=|valueofcolumn                     |MBR_SUB_PLN_STRT_DT                    |
+|$MBR_SUB_PLN_END_DT= |valueofcolumn                     |MBR_SUB_PLN_END_DT                     |
+
+
+!|script                   |DbTable                                                                      |
+|query                     |SELECT * FROM A_MBR_PCP_ADJ WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK|
+|$MBR_PROV_ENTY_ID=        |valueofcolumn                    |MBR_PROV_ENTY_ID                           |
+|$MBR_PROV_ENTY_MOD_ID=    |valueofcolumn                    |MBR_PROV_ENTY_MOD_ID                       |
+|$MBR_PROV_ENTY_GRP_ID=    |valueofcolumn                    |MBR_PROV_ENTY_GRP_ID                       |
+|$MBR_PROV_ENTY_GRP_MOD_ID=|valueofcolumn                    |MBR_PROV_ENTY_GRP_MOD_ID                   |
+
+
+!|script    |DbTable                                                                                                                         |
+|query      |select MBR_ALT_ID_VAL_TXT from a_mbr_alt_id_adj WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK and  mbr_alt_id_typ_cd='UCARD'|
+|$MBR_UCARD=|valueofcolumn                                                |MBR_ALT_ID_VAL_TXT                                                |
+
+!|script  |DbTable                                                                                                                       |
+|query    |select MBR_ALT_ID_VAL_TXT from a_mbr_alt_id_adj WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK and  mbr_alt_id_typ_cd='HIC'|
+|$MBR_HIC=|valueofcolumn                                               |MBR_ALT_ID_VAL_TXT                                               |
+
+!|script     |DbTable                                                                       |
+|query       |select * from A_MBR_ADD_INFO WHERE MBR_ID='$MBR_ID' and sub_cli_sk=$SUB_CLI_SK|
+|$MBR_DOD_DT=|valueofcolumn                           |MBR_DOD_DT                           |
+
+
+!|script          |DbTable                                                         |
+|query            |select * from SEC_PLN_SUB_PLN WHERE sub_pln_id='$MBR_SUB_PLN_ID'|
+|$SEC_PLN_SUB_PLN=|valueofcolumn                  |SEC_PLN_SUB_PLN                 |
+
+
+!|script       |DbTable                                                                                    |
+|query         |SELECT * FROM bv_PROV_dtl WHERE PROV_ENTY_ID='$MBR_PROV_ENTY_ID' and sub_cli_sk=$SUB_CLI_SK|
+|$NPI=         |valueofcolumn                             |MBR_PROV_ENTY_ID                                |
+|$TIN=         |valueofcolumn                             |MBR_PROV_ENTY_MOD_ID                            |
+|$ST_CD=       |valueofcolumn                             |MBR_PROV_ENTY_GRP_ID                            |
+|$PROV_SITE_CD=|valueofcolumn                             |PROV_SITE_CD                                    |
+
+
+
+|Query:Db Table|select * from bv_MBR_dtl where PROV_ENTY_ID = '$PROV_ENTY_ID'|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|CLNT_GUID     |CLI_SK                                                       |SUB_CLI_SK |CLI_ORG_NM |SUB_CLI_ORG_NM |MBR_ID |MBR_MOD_ID |MBR_COMB_ID        |MBR_CARD_ID|MBR_COMB_CARD_MOD_ID  |HIC_NBR |MBR_MOD_SRC_DESC|MBR_LST_NM |MBR_FST_NM |MBR_MIDL_NM |MBR_DOB_DT |MBR_DOD_DT |MBR_GDR_CD |ADR_LN_1_TXT |ADR_LN_2_TXT |CITY_NM |ST_CD |ZIP_CD |TEL_NUM_TXT |MBR_CONTR_NBR |MBR_SUB_PLN_ID |CURR_ERLY_SUB_PLN_STRT_DT|LST_DSENRL_SUB_PLN_END_DT|SEC_PLN_SUB_PLN_SK |MBR_GRP_POL_NBR|LGCY_HP_NM|BRND_NM|MBR_ACTV_IND|CURR_MMR_MO|RAF_TYP_CD|HOSPICE_FLG|MMR_ESRD_IND|MMR_NEW_ENRL_IND|MMR_COMM_IND|MMR_INST_IND|MCAID_ADD_ON_FLG|SPCL_NEED_PLN_TYP_CD|PCP_IND|PCP_PROV_GLB_ID|PCP_COMB_ID|MBR_PROV_ENTY_ID |MBR_PROV_ENTY_MOD_ID |PCP_NPI|PCP_TIN|PCP_SITE_CD  |PCP_ST_CD|PCP_GRP_COMB_ID|MBR_PROV_ENTY_GRP_ID |MBR_PROV_ENTY_GRP_MOD_ID |PCP_GRP_ST_CD|PCP_GRP_PRNT_COMB_ID|PCP_GRP_PRNT_ID|PCP_GRP_PRNT_MOD_ID|PCP_OUTRCH_GRP_COMB_ID|PCP_OUTRCH_GRP_MOD_ID|PCP_OUTRCH_GRP_ID|CS_MBR_ENRL_LT_LOAD_DT|DW_UPDT_DTTM|DW_UPDT_USER_ID|DW_INSRT_DTTM|DW_INSRT_USER_ID|MBR_REL_TYP_CD|MBR_CST_SHR_RDUC_CD|MBR_TBCC_STS_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_CURR_CONTR_STRT_DT|MBR_CURR_CONTR_END_DT|FPL|MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_POL_RERT_MO|MBR_ENRL_ACTV_IND|CNTY_FIPS_NUM|CNTY_NM|EXT_ZIP_CD|PCP_DFLT_PROV_IND|INS_CATG_CD|MBR_GOV_ID_TYP_CD|MBR_GOV_ID_VAL_TXT|PREF_STRT_DT|PREF_END_DT|MMR_PAY_ADJ_STRT_DT|MMR_PAY_ADJ_END_DT|AID_CTGRY|ASSIGNED_PCP_TIN|MMR_CONTR_NBR|MMR_SUB_PLN_ID|PREF_CONTR_NBR|PREF_SUB_PLN_ID|ASSIGNED_GRP_ID|ASSIGNED_GRP_TYP_NM|
+|$CLNT_GUID    |$CLI_SK                                                      |$SUB_CLI_SK|$CLI_ORG_NM|$SUB_CLI_ORG_NM|$MBR_ID|$MBR_MOD_ID|$MBR_ID_$MBR_MOD_ID|$MBR_UCARD |$MBR_UCARD_$MBR_MOD_ID|$MBR_HIC|                |$MBR_LST_NM|$MBR_FST_NM|$MBR_MIDL_NM|$MBR_DOB_DT|$MBR_DOD_DT|$MBR_GDR_CD|$ADR_LN_1_TXT|$ADR_LN_2_TXT|$CITY_NM|$ST_CD|$ZIP_CD|$TEL_NUM_TXT|$MBR_CONTR_NBR|$MBR_SUB_PLN_ID|$MBR_SUB_PLN_STRT_DT     |$MBR_SUB_PLN_END_DT      |$SEC_PLN_SUB_PLN_SK|               |          |       |            |           |          |           |            |                |            |            |                |                    |       |               |           |$MBR_PROV_ENTY_ID|$MBR_PROV_ENTY_MOD_ID|$NPI   |$TIN   |$PROV_SITE_CD|$ST_CD   |               |$MBR_PROV_ENTY_GRP_ID|$MBR_PROV_ENTY_GRP_MOD_ID|             |                    |               |                   |                      |                     |                 |                      |            |               |             |                |              |                   |               |            |             |                      |                     |   |                 |                     |               |                 |             |       |          |                 |           |                 |                  |            |           |                   |                  |         |                |             |              |              |               |               |                   |
+ 
+PLAN_TYP,PCP_ST_IND,RULE_ORD--cas20_dw.CLNT_GRP_TYP_CONFIG
+CLNT_GRP_TYP_CONFIG_SK,GRP_TYP_NM,ORD_NBR--cas20_dw.CLNT_GRP_TYP_HIER
+GRP_TYP_NM,GRP_TYP_DESC -- cas20_dw.GRP_TYP_OPT
+IN_EX_IND,GRP_ID,GRP_TYP_NM,CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK FROM cas20_dw.ASGND_GRP_ID_INCL_EXCL
+

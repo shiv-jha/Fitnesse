@@ -1,0 +1,232 @@
+---
+Test
+---
+!define fileType {ScreeningExtractStacked_Audit}
+--------------------------------------
+!define HDR1 {ChartId}
+!define HDR2 {Measure_ID}
+!define HDR3 {Measure}
+!define HDR4 {Measure_Status}
+!define HDR5 {Review_Level}
+!define HDR6 {Abstraction_Status}
+!define HDR7 {Chart_Status}
+!define HDR8 {Abstracted_Date}
+!define HDR9 {Abstracted_By}
+!define HDR10 {Abstract_Extract_Date}
+!define HDR11 {AuditDate}
+!define HDR12 {Audit_By}
+!define HDR13 {Audit_Extract_Date}
+!define HDR14 {ProjectId}
+!define HDR15 {EDCI_Status}
+!define HDR16 {OM_Code}
+!define HDR17 {Screen_Ref_Date}
+!define HDR18 {Exclusion}
+!define HDR19 {Val_Code}
+!define HDR20 {Provider_Type}
+!define HDR21 {Test_Result_Number}
+!define HDR22 {Test_Result_Text}
+!define HDR23 {Test_Type}
+!define HDR24 {BP_S}
+!define HDR25 {BP_D}
+!define HDR26 {BMI_Ht}
+!define HDR27 {BMI_Wt}
+!define HDR28 {BMI_Override}
+!define HDR29 {CBP_Dx}
+!define HDR30 {CBP_Dx_Date}
+!define HDR31 {Evidence}
+!define HDR32 {Medication}
+!define HDR33 {Fried_Equ_HDL}
+!define HDR34 {Fried_Equ_Cholest}
+!define HDR35 {Fried_Equ_Trigly}
+!define HDR36 {Fried_Equ_LipoPro}
+!define HDR37 {FSA_ADL_Bathing}
+!define HDR38 {FSA_ADL_Eating}
+!define HDR39 {FSA_ADL_Dressing}
+!define HDR40 {FSA_ADL_Toileting}
+!define HDR41 {FSA_ADL_Walking}
+!define HDR42 {FSA_ADL_Transferring}
+!define HDR43 {FSA_ADL_All_Assessed}
+!define HDR44 {FSA_iADL_Shop_Groc}
+!define HDR45 {FSA_iADL_Driving_Transp}
+!define HDR46 {FSA_iADL_Phone}
+!define HDR47 {FSA_iADL_Meal_Prep}
+!define HDR48 {FSA_iADL_Finances}
+!define HDR49 {FSA_iADL_Housework}
+!define HDR50 {FSA_iADL_Home_Repair}
+!define HDR51 {FSA_iADL_Laundry}
+!define HDR52 {FSA_iADL_Taking_Meds}
+!define HDR53 {FSA_iADL_All_Assessed}
+!define HDR54 {FSA_NS_FSA_T_Cogn_Status}
+!define HDR55 {FSA_NS_FSA_T_Ambul_Status}
+!define HDR56 {FSA_NS_FSA_T_Sensory_Speech}
+!define HDR57 {FSA_NS_FSA_T_Sensory_Vision}
+!define HDR58 {FSA_NS_FSA_T_Sensory_Hearing}
+!define HDR59 {FSA_NS_FSA_T_Other_Funct_Ind}
+!define HDR60 {UserDefinedCategory1}
+!define HDR61 {UserDefinedCategory2}
+!define HDR62 {UserDefinedDate1}
+!define HDR63 {UserDefinedDate2}
+!define HDR64 {UserDefinedNumber1}
+!define HDR65 {UserDefinedNumber2}
+!define HDR66 {OR_Date}
+!define HDR67 {OR_By}
+!define HDR68 {OR_Extract_Date}
+!define HDR69 {ORQA_Date}
+!define HDR70 {ORQA_By}
+!define HDR71 {ORQA_Extract_Date}
+!define HDR72 {AdminDate}
+!define HDR73 {CorrectedAdminDate}
+!define HDR74 {ReAdmitDate}
+-----------------------------------
+!define DTL1 {Char01}
+!define DTL2 {13}
+!define DTL3 {A1C}
+!define DTL4 {Complete}
+!define DTL5 {Level 1}
+!define DTL6 {Abstraction Completed}
+!define DTL7 {Coded in Coding}
+!define DTL8 {06/18/2017}
+!define DTL9 {Physician}
+!define DTL10 {06/20/2017}
+!define DTL11 {06/21/2017}
+!define DTL12 {Optum}
+!define DTL13 {06/22/2017}
+!define DTL14 {PAF_OPAF_2016}
+!define DTL15 {YES}
+!define DTL16 {U/A}
+!define DTL17 {06/23/2017}
+!define DTL18 {EXCL}
+!define DTL19 {Labs}
+!define DTL20 {Ophthamologist}
+!define DTL21 {12.52}
+!define DTL22 {mg/Dl}
+!define DTL23 {Screening Mammogram}
+!define DTL24 {121.69}
+!define DTL25 {80.67}
+!define DTL26 {89327}
+!define DTL27 {123.44}
+!define DTL28 {YES}
+!define DTL29 {Elevated Blood Pressure}
+!define DTL30 {06/24/2017}
+!define DTL31 {EVIDE}
+!define DTL32 {YES}
+!define DTL33 {12.34}
+!define DTL34 {34.56}
+!define DTL35 {newone}
+!define DTL36 {Numberonly}
+!define DTL37 {FSA01}
+!define DTL38 {FSA02}
+!define DTL39 {FSA03}
+!define DTL40 {FSA04}
+!define DTL41 {FSA05}
+!define DTL42 {FSA06}
+!define DTL43 {FSA07}
+!define DTL44 {FSA08}
+!define DTL45 {FSA09}
+!define DTL46 {FSA10}
+!define DTL47 {FSA11}
+!define DTL48 {FSA12}
+!define DTL49 {FSA13}
+!define DTL50 {FSA14}
+!define DTL51 {FSA15}
+!define DTL52 {FSA16}
+!define DTL53 {FSA17}
+!define DTL54 {FSA18}
+!define DTL55 {FSA19}
+!define DTL56 {FSA20}
+!define DTL57 {FSA21}
+!define DTL58 {FSA22}
+!define DTL59 {FSA23}
+!define DTL60 {Measuregap}
+!define DTL61 {UDCATG2}
+!define DTL62 {06/25/2017}
+!define DTL63 {06/26/2017}
+!define DTL64 {quality}
+!define DTL65 {Meausre}
+!define DTL66 {06/27/2017}
+!define DTL67 {UHG}
+!define DTL68 {06/28/2017}
+!define DTL69 {06/29/2017}
+!define DTL70 {UHG1}
+!define DTL71 {06/30/2017}
+!define DTL72 {06/01/2017}
+!define DTL73 {06/02/2017}
+!define DTL74 {06/03/2017}
+
+-----------------------------------
+!define TRL1 {TRL}
+!define TRL2 {1}
+
+
+!define contents {${HDR1}|${HDR2}|${HDR3}|${HDR4}|${HDR5}|${HDR6}|${HDR7}|${HDR8}|${HDR9}|${HDR10}|${HDR11}|${HDR12}|${HDR13}|${HDR14}|${HDR15}|${HDR16}|${HDR17}|${HDR18}|${HDR19}|${HDR20}|${HDR21}|${HDR22}|${HDR23}|${HDR24}|${HDR25}|${HDR26}|${HDR27}|${HDR28}|${HDR29}|${HDR30}|${HDR31}|${HDR32}|${HDR33}|${HDR34}|${HDR35}|${HDR36}|${HDR37}|${HDR38}|${HDR39}|${HDR40}|${HDR41}|${HDR42}|${HDR43}|${HDR44}|${HDR45}|${HDR46}|${HDR47}|${HDR48}|${HDR49}|${HDR50}|${HDR51}|${HDR52}|${HDR53}|${HDR54}|${HDR55}|${HDR56}|${HDR57}|${HDR58}|${HDR59}|${HDR60}|${HDR61}|${HDR62}|${HDR63}|${HDR64}|${HDR65}|${HDR66}|${HDR67}|${HDR68}|${HDR69}|${HDR70}|${HDR71}|${HDR72}|${HDR73}|${HDR74}
+${DTL1}|${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}|${DTL8}|${DTL9}|${DTL10}|${DTL11}|${DTL12}|${DTL13}|${DTL14}|${DTL15}|${DTL16}|${DTL17}|${DTL18}|${DTL19}|${DTL20}|${DTL21}|${DTL22}|${DTL23}|${DTL24}|${DTL25}|${DTL26}|${DTL27}|${DTL28}|${DTL29}|${DTL30}|${DTL31}|${DTL32}|${DTL33}|${DTL34}|${DTL35}|${DTL36}|${DTL37}|${DTL38}|${DTL39}|${DTL40}|${DTL41}|${DTL42}|${DTL43}|${DTL44}|${DTL45}|${DTL46}|${DTL47}|${DTL48}|${DTL49}|${DTL50}|${DTL51}|${DTL52}|${DTL53}|${DTL54}|${DTL55}|${DTL56}|${DTL57}|${DTL58}|${DTL59}|${DTL60}|${DTL61}|${DTL62}|${DTL63}|${DTL64}|${DTL65}|${DTL66}|${DTL67}|${DTL68}|${DTL69}|${DTL70}|${DTL71}|${DTL72}|${DTL73}|${DTL74}
+{${TRL1}|${TRL2}}
+
+!define env {TST}
+
+
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                             |
+|given the        |${fileType}_      |daily paf sts file with content|${contents}|
+*!
+
+
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                 |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where f.file_nm ='$datfilename'|For|1|And Retry|60|times|true|
+
+
+|Query:Db Table|select FILE_TYP,FILE_NM,FILE_VER,FILE_PATH from DW_FILE_QUEUE where file_name ='$datfilename'|
+|FILE_TYP      |FILE_NM                  |FILE_VER            |FILE_PATH                                     |
+|PAFMASCRXTRCT |$datfilename             |1.0                 |/etldata/pay02/pafmascrxtrct/inbox            |
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PAFMASCR|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                      |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename'|For|4|And Retry|60|times|true|
+
+
+!|script  |DbTable                                                         |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename'|
+|$filekey=|valueofcolumn                     |FILE_KEY                     |
+
+
+|Query:Db Table|select * from PREP_PAF_MA_SCR_XTRCT_HDR where file_key = $filekey and CHART_ID=${DTL1}|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|RECORD_ID     |FILE_KEY                                                                              |SGMNT_ID|CHART_ID|MEASURE_ID|MEASURE|MEASURE_STATUS|REVIEW_LEVEL|SCREENING_STATUS|CHART_STATUS|ABSTRACTED_DATE|ABSTRACTED_BY|ABSTRACT_EXTRACT_DATE|AUDIT_DATE|AUDIT_BY|AUDIT_EXTRACT_DATE|PROJECTID|EDCI_STATUS|OM_CODE |SCREEN_REF_DATE|EXCLUSION|VAL_CODE|PROVIDER_TYPE|TEST_RESULT_NUMBER|TEST_RESULT_TEXT|TEST_TYPE|BP_S    |BP_D    |BMI_HT  |BMI_WT  |BMI_OVERRIDE|CBP_DX  |CBP_DX_DATE|EVIDENCE|MEDICATION|FRIED_EQU_HDL|FRIED_EQU_CHOLEST|FRIED_EQU_TRIGLY|FRIED_EQU_LIPOPRO|FSA_ADL_BATHING|FSA_ADL_EATING|FSA_ADL_DRESSING|FSA_ADL_TOILETING|FSA_ADL_WALKING|FSA_ADL_TRANSFERRING|FSA_ADL_ALL_ASSESSED|FSA_IADL_SHOP_GROC|FSA_IADL_DRIVING_TRANSP|FSA_IADL_PHONE|FSA_IADL_MEAL_PREP|FSA_IADL_FINANCES|FSA_IADL_HOUSEWORK|FSA_IADL_HOME_REPAIR|FSA_IADL_LAUNDRY|FSA_IADL_TAKING_MEDS|FSA_IADL_ALL_ASSESSED|FSA_NS_FSA_T_COGN_STATUS|FSA_NS_FSA_T_AMBUL_STATUS|FSA_NS_FSA_T_SENSORY_SPEECH|FSA_NS_FSA_T_SENSORY_VISION|FSA_NS_FSA_T_SENSORY_HEARING|FSA_NS_FSA_T_OTHER_FUNCT_IND|USERDEFINEDCATEGORY1|USERDEFINEDCATEGORY2|USERDEFINEDDATE1|USERDEFINEDDATE2|USERDEFINEDNUMBER1|USERDEFINEDNUMBER2|OR_DATE |OR_BY   |OR_EXTRACT_DATE|ORQA_DATE|ORQA_BY |ORQA_EXTRACT_DATE|ADMINDATE|CORRECTEDADMINDATE|READMITDATE|
+|1             |$filekey                                                                              |HDR     |{DTL1}  |{$DTL2}   |{$DTL3}|{$DTL4}       |{$DTL5}     |{$DTL6}         |{$DTL7}     |{$DTL8}        |{$DTL9}      |{$DTL10}             |{$DTL11}  |{$DTL12}|{$DTL13}          |{$DTL14} |{$DTL15}   |{$DTL16}|{$DTL17}       |{$DTL18} |{$DTL19}|{$DTL20}     |{$DTL21}          |{$DTL22}        |{$DTL23} |{$DTL24}|{$DTL25}|{$DTL26}|{$DTL27}|{$DTL28}    |{$DTL29}|{$DTL30}   |{$DTL31}|{$DTL32}  |{$DTL33}     |{$DTL34}         |{$DTL35}        |{$DTL36}         |{$DTL37}       |{$DTL38}      |{$DTL39}        |{$DTL40}         |{$DTL41}       |{$DTL42}            |{$DTL43}            |{$DTL44}          |{$DTL45}               |{$DTL46}      |{$DTL47}          |{$DTL48}         |{$DTL49}          |{$DTL50}            |{$DTL51}        |{$DTL52}            |{$DTL53}             |{$DTL54}                |{$DTL55}                 |{$DTL56}                   |{$DTL57}                   |{$DTL58}                    |{$DTL59}                    |{$DTL60}            |{$DTL61}            |{$DTL62}        |{$DTL63}        |{$DTL64}          |{$DTL65}          |{$DTL66}|{$DTL67}|{$DTL68}       |{$DTL69} |{$DTL70}|{$DTL71}         |{$DTL72} |{$DTL73}          |{$DTL74}   |
+
+
+
+|Query:Db Table|select * from PREP_PAF_MA_SCR_XTRCT_TRL where file_key = $filekey|${env}          |
+|RECORD_ID     |FILE_KEY                                                         |SGMNT_ID|TRL_CNT|
+|2             |$filekey                                                         |TRL     |1      |
+
+
+!|script     |DbTable                                                                                  |
+|query       |select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK from A_PAF_DAILY_STS where CHART_ID = '${DTL1}'|
+|$cli_id=    |valueofcolumn                                 |CLI_ID                                    |
+|$cli_sk=    |valueofcolumn                                 |CLI_SK                                    |
+|$clnt_guid= |valueofcolumn                                 |CLNT_GUID                                 |
+|$sub_cli_sk=|valueofcolumn                                 |SUB_CLI_SK                                |
+
+
+
+|Query:Db Table|select * from A_PAF_MA_SCR_XTRCT where file_key = $filekey and CHART_ID=${DTL1} AND MEASURE = ${DTL2}|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|CLI_ID        |CLI_SK                                                                                               |CLNT_GUID |SUB_CLI_SK |PROJ_YR|RECORD_ID|FILE_KEY|SGMNT_ID|CHART_ID|MEASURE_ID|MEASURE|MEASURE_STATUS|REVIEW_LEVEL|SCREENING_STATUS|CHART_STATUS|ABSTRACTED_DATE|ABSTRACTED_BY|ABSTRACT_EXTRACT_DATE|AUDIT_DATE|AUDIT_BY|AUDIT_EXTRACT_DATE|PROJECTID|EDCI_STATUS|OM_CODE    |SCREEN_REF_DATE|EXCLUSION  |VAL_CODE   |PROVIDER_TYPE|TEST_RESULT_NUMBER|TEST_RESULT_TEXT|TEST_TYPE  |BP_S       |BP_D    |BMI_HT  |BMI_WT  |BMI_OVERRIDE|CBP_DX  |CBP_DX_DATE|EVIDENCE|MEDICATION|FRIED_EQU_HDL|FRIED_EQU_CHOLEST|FRIED_EQU_TRIGLY|FRIED_EQU_LIPOPRO|FSA_ADL_BATHING|FSA_ADL_EATING|FSA_ADL_DRESSING|FSA_ADL_TOILETING|FSA_ADL_WALKING|FSA_ADL_TRANSFERRING|FSA_ADL_ALL_ASSESSED|FSA_IADL_SHOP_GROC|FSA_IADL_DRIVING_TRANSP|FSA_IADL_PHONE|FSA_IADL_MEAL_PREP|FSA_IADL_FINANCES|FSA_IADL_HOUSEWORK|FSA_IADL_HOME_REPAIR|FSA_IADL_LAUNDRY|FSA_IADL_TAKING_MEDS|FSA_IADL_ALL_ASSESSED|FSA_NS_FSA_T_COGN_STATUS|FSA_NS_FSA_T_AMBUL_STATUS|FSA_NS_FSA_T_SENSORY_SPEECH|FSA_NS_FSA_T_SENSORY_VISION|FSA_NS_FSA_T_SENSORY_HEARING|FSA_NS_FSA_T_OTHER_FUNCT_IND|USERDEFINEDCATEGORY1|USERDEFINEDCATEGORY2|USERDEFINEDDATE1|USERDEFINEDDATE2|USERDEFINEDNUMBER1|USERDEFINEDNUMBER2|OR_DATE    |OR_BY      |OR_EXTRACT_DATE|ORQA_DATE|ORQA_BY |ORQA_EXTRACT_DATE|ADMINDATE|CORRECTEDADMINDATE|READMITDATE|
+|$cli_id       |$cli_sk                                                                                              |$clnt_guid|$sub_cli_sk|2018   |1        |$filekey|HDR     |{DTL1}  |{$DTL2}   |{$DTL3}|{$DTL4}       |{$DTL5}     |{$DTL6}         |{$DTL7}     |{$DTL8}        |{$DTL9}      |{$DTL10}             |{$DTL11}  |{$DTL12}|11-JAN-2018       |{$DTL14} |12-JAN-2018|13-JAN-2018|14-JAN-2018    |15-JAN-2018|16-JAN-2018|17-JAN-2018  |18-JAN-2018       |19-JAN-2018     |20-JAN-2018|21-JAN-2018|{$DTL25}|{$DTL26}|{$DTL27}|{$DTL28}    |{$DTL29}|{$DTL30}   |{$DTL31}|{$DTL32}  |{$DTL33}     |{$DTL34}         |{$DTL35}        |{$DTL36}         |{$DTL37}       |{$DTL38}      |22-JAN-2018     |{$DTL40}         |{$DTL41}       |23-JAN-2018         |24-JAN-2018         |{$DTL44}          |{$DTL45}               |{$DTL46}      |25-JAN-2018       |{$DTL48}         |{$DTL49}          |{$DTL50}            |{$DTL51}        |{$DTL52}            |{$DTL53}             |{$DTL54}                |{$DTL55}                 |{$DTL56}                   |{$DTL57}                   |{$DTL58}                    |{$DTL59}                    |{$DTL60}            |{$DTL61}            |{$DTL62}        |{$DTL63}        |{$DTL64}          |{$DTL65}          |26-JAN-2018|27-JAN-2018|{$DTL68}       |{$DTL69} |{$DTL70}|{$DTL71}         |{$DTL72} |{$DTL73}          |{$DTL74}   |
+
+

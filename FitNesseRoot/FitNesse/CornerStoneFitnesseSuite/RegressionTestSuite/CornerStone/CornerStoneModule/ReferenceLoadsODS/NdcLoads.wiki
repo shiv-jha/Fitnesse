@@ -1,0 +1,94 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {REF_CM_NDC}
+!define env {TST}
+
+
+!define ndcdata {1$currentdynamic|Cymbalta CPEP 30 MG 01|20180101|20501231|N||||
+2$currentdynamic|Cymbalta CPEP 30 MG 02|20180102|20501230|Y|*DRUGGRPTEST01*|*ANTIDEPRESSANTS01*|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)01**|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)01***
+3$currentdynamic|Cymbalta CPEP 30 MG 03|20180103|20501229|N||*ANTIDEPRESSANTS02*|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)03**|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)02***
+4$currentdynamic|Cymbalta CPEP 30 MG 04|20180104|20501228|N|*DRUGGRPTEST03*||*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)04**|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)03***
+5$currentdynamic|Cymbalta CPEP 30 MG 05|20180105|20501227|N|*DRUGGRPTEST04*|*ANTIDEPRESSANTS03*||*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)04***
+6$currentdynamic|Cymbalta CPEP 30 MG 06|20180106|20501226|N|*DRUGGRPTEST05*|*ANTIDEPRESSANTS04*|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)04**|}
+
+!|script|File Support|
+|create random val   |
+
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script      |File Support                            |
+|given the ndc|${fileType}|file with content|${ndcdata}|
+*!
+
+!*> 2. !style_green('''This step will wait till file moves to 4 status)
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|4|And Retry|120|times|true|
+*!
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '1$currentdynamic'|${env}                                                                                                                                                     |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC              |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_CLASS|DRUG_SUB_CLASS|DRUG_GRP|
+|1$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 01|2018-01-01 00:00:00.0|2050-12-31 00:00:00.0|N                  |                       |          |              |        |
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '2$currentdynamic'|${env}                                                                                                                                                                                                                                                  |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC              |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP         |DRUG_CLASS                                            |DRUG_SUB_CLASS                                        |
+|2$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 02|2018-01-02 00:00:00.0|2050-12-30 00:00:00.0|Y                  |DRUGGRPTEST01          |ANTIDEPRESSANTS01|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)01|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)01|
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '3$currentdynamic'|${env}                                                                                                                                                                                                                                                  |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC              |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP         |DRUG_CLASS                                            |DRUG_SUB_CLASS                                        |
+|3$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 03|2018-01-03 00:00:00.0|2050-12-29 00:00:00.0|N                  |                       |ANTIDEPRESSANTS02|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)03|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)02|
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '4$currentdynamic'|${env}                                                                                                                                                                                                                                         |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC              |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP|DRUG_CLASS                                            |DRUG_SUB_CLASS                                        |
+|4$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 04|2018-01-04 00:00:00.0|2050-12-28 00:00:00.0|N                  |DRUGGRPTEST03          |        |Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)04|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)03|
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '5$currentdynamic'|${env}                                                                                                                                                                                                      |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC              |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP         |DRUG_CLASS|DRUG_SUB_CLASS                                        |
+|5$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 05|2018-01-05 00:00:00.0|2050-12-27 00:00:00.0|N                  |DRUGGRPTEST04          |ANTIDEPRESSANTS03|          |Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)04|
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '6$currentdynamic'|${env}                                                                                                                                                                                                          |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC              |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP         |DRUG_CLASS                                            |DRUG_SUB_CLASS|
+|6$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 06|2018-01-06 00:00:00.0|2050-12-26 00:00:00.0|N                  |DRUGGRPTEST05          |ANTIDEPRESSANTS04|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)04|              |
+
+
+
+
+!define ndcdataupdate {1$currentdynamic|Cymbalta CPEP 30 MG 001|20180101|20501231|Y|Update Therapatic|Update Drug Group|Update Drug Class|Update Drug Sub Class
+2$currentdynamic|Cymbalta CPEP 30 MG 002|20180102|20501230|N|*DRUGGRPTEST001*|*ANTIDEPRESSANTS001*|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)001**|*Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)001***}
+
+
+
+!|script      |File Support                                  |
+|given the ndc|${fileType}|file with content|${ndcdataupdate}|
+
+
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|4|And Retry|120|times|true|
+
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '1$currentdynamic'|${env}                                                                                                                                                                             |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC               |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP         |DRUG_CLASS       |DRUG_SUB_CLASS       |
+|1$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 001|2018-01-01 00:00:00.0|2050-12-31 00:00:00.0|Y                  |Update Therapatic      |Update Drug Group|Update Drug Class|Update Drug Sub Class|
+
+|Query:Db Table  |select * from NDC_CD where NDC_CD = '2$currentdynamic'|${env}                                                                                                                                                                                                                                                      |
+|NDC_CD          |CRTBY                                                 |UPDBY    |NDC_DESC               |EFF_DTTM             |EXP_DTTM             |IS_SECONDARY_NDC_CD|THERAPEUTIC_CLASS_RANGE|DRUG_GRP          |DRUG_CLASS                                             |DRUG_SUB_CLASS                                         |
+|2$currentdynamic|CAS20_ODS                                             |CAS20_ODS|Cymbalta CPEP 30 MG 002|2018-01-02 00:00:00.0|2050-12-30 00:00:00.0|N                  |DRUGGRPTEST001         |ANTIDEPRESSANTS001|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)001|Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)001|
+

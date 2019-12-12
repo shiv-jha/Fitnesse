@@ -1,0 +1,394 @@
+---
+Test
+---
+!define env {TST}
+!define fileType {MAO002}
+!define contract1 {SKA02}
+!define contract2 {SK002}
+!define contract3 {NAVS1}
+!define contract4 {H2003}
+!define contract5 {H4282}
+!define contract6 {H6501}
+
+
+!define contents1 {1*MAO-002*${contract1}*L175MCE00259                          *$currentdatetime                              *000*Accepted*     *                                        *
+1*MAO-002*${contract1}*L175MCE00259                          *$currentdatetime                              *001*Accepted*     *                                        *
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000001*
+}
+
+
+!define contents2 {0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+1*MAO-002*${contract2}*L175MCE00259                          *$currentdatetime                              *000*Accepted*     *                                        *
+1*MAO-002*${contract2}*L175MCE00259                          *$currentdatetime                              *001*Accepted*     *                                        *
+}
+
+
+!define contents3 {0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000001*
+}
+
+!define contents4 {0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+1*MAO-002*${contract3}*L175MCE00259                          *$currentdatetime                              *000*Accepted*     *                                        *
+1*MAO-002*${contract3}*L175MCE00259                          *$currentdatetime                              *001*Accepted*     *                                        *
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000001*
+}
+
+!define contents5 {0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+1*MAO-002*${contract4}*L175MCE00259                          *$currentdatetime                              *000*Accepted*     *                                        *
+1*MAO-002*${contract4}*L175MCE00259                          *$currentdatetime                              *001*Accepted*     *                                        *
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000001*
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000001*
+}
+
+
+!define contents6 {0*MAO-002*$current*$current*Encounter Data Processing Status Report*     *ENC002904078092720140319      *INS*PROD*
+1*MAO-002*${contract5}*L175MCE00259                          *$currentdatetime                              *000*Accepted*     *                                        *
+1*MAO-002*${contract5}*L175MCE00259                          *$currentdatetime                              *001*Accepted*     *                                        *
+9*MAO-002*00000000*00000001*00000000*00000001*00000001*00000000*00000002*
+}
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                |
+|given the        |${fileType}_Test_Automation|file with content|${contents1}|
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+
+
+!|script   |DbTable                                                                    |
+|query     |select FILE_KEY from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey1=|valueofcolumn                           |FILE_KEY                          |
+
+
+
+|Query:Db Table|select count(*) as COUNT from mini_clm_mao_hdr where file_key=$filekey1|${env}|
+|COUNT                                                                                        |
+|0                                                                                            |
+
+
+
+|Query:Db Table|select * from mini_clm_mao_ftr where file_key=$filekey1|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                            |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey1     |9                                                      |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000001            |                  |     |     |
+
+
+|Query:Db Table|select * from MINI_CLM_MAO_002_DTL where file_key=$filekey1 and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                    |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey1     |1                                                                              |MAO-002   |${contract1}      |L175MCE00259  |$currentdatetime|1            |Accepted  |
+
+
+
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                |
+|given the        |${fileType}_Test_Automation|file with content|${contents2}|
+
+
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+
+
+!|script   |DbTable                                                             |
+|query     |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey2=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from mini_clm_mao_hdr where file_key=$filekey2|${env}                                                                                                                                                                                                                        |
+|FILE_KEY      |HDR_REC_TYP                                            |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|PHASE|VERSION|
+|$filekey2     |0                                                      |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |           |         |     |       |
+
+|Query:Db Table|select count(*) as COUNT from mini_clm_mao_ftr where file_key=$filekey2|${env}|
+|COUNT                                                                                        |
+|0                                                                                            |
+
+|Query:Db Table|select count(*) as COUNT from MINI_CLM_MAO_002_DTL where file_key=$filekey2|${env}|
+|COUNT                                                                                            |
+|2                                                                                                |
+
+
+
+|Query:Db Table|select * from MINI_CLM_MAO_002_DTL where file_key=$filekey2 and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                    |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey2     |1                                                                              |MAO-002   |${contract2}      |L175MCE00259  |$currentdatetime|1            |Accepted  |
+
+
+
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                |
+|given the        |${fileType}_Test_Automation|file with content|${contents3}|
+
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+
+
+!|script   |DbTable                                                             |
+|query     |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey3=|valueofcolumn                       |FILE_KEY                       |
+
+
+
+|Query:Db Table|select * from mini_clm_mao_hdr where file_key=$filekey3|${env}                                                                                                                                                                                                                        |
+|FILE_KEY      |HDR_REC_TYP                                            |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|PHASE|VERSION|
+|$filekey3     |0                                                      |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |           |         |     |       |
+
+|Query:Db Table|select * from mini_clm_mao_ftr where file_key=$filekey3|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                            |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey3     |9                                                      |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000001            |                  |     |     |
+
+
+|Query:Db Table|select count(*) as COUNT from MINI_CLM_MAO_002_DTL where file_key=$filekey3|${env}|
+|COUNT                                                                                            |
+|0                                                                                                |
+
+
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                |
+|given the        |${fileType}_Test_Automation|file with content|${contents4}|
+
+
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+
+
+!|script   |DbTable                                                             |
+|query     |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey4=|valueofcolumn                       |FILE_KEY                       |
+
+
+
+|Query:Db Table|select count(*) as COUNT from mini_clm_mao_hdr where file_key=$filekey4|${env}|
+|COUNT                                                                                        |
+|2                                                                                            |
+
+|Query:Db Table|select * from mini_clm_mao_hdr where file_key=$filekey4|${env}                                                                                                                                                                                                                        |
+|FILE_KEY      |HDR_REC_TYP                                            |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|PHASE|VERSION|
+|$filekey4     |0                                                      |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |           |         |     |       |
+
+|Query:Db Table|select * from mini_clm_mao_ftr where file_key=$filekey4|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                            |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey4     |9                                                      |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000001            |                  |     |     |
+
+
+|Query:Db Table|select * from MINI_CLM_MAO_002_DTL where file_key=$filekey4 and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                    |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey4     |1                                                                              |MAO-002   |${contract3}      |L175MCE00259  |$currentdatetime|1            |Accepted  |
+
+|Query:Db Table|select count(*) as COUNT from MINI_CLM_MAO_002_DTL where file_key=$filekey4|${env}|
+|COUNT                                                                                            |
+|2                                                                                                |
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                |
+|given the        |${fileType}_Test_Automation|file with content|${contents5}|
+
+
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey5=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select count(*) as COUNT from mini_clm_mao_ftr where file_key=$filekey5|${env}|
+|COUNT                                                                                       |
+|2                                                                                           |
+
+|Query:Db Table|select count(*) as COUNT from MINI_CLM_MAO_002_DTL where file_key=$filekey5|${env}|
+|COUNT                                                                                           |
+|2                                                                                               |
+
+
+|Query:Db Table|select * from mini_clm_mao_hdr where file_key=$filekey5|${env}                                                                                                                                                                                                                        |
+|FILE_KEY      |HDR_REC_TYP                                           |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|PHASE|VERSION|
+|$filekey5      |0                                                     |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |           |         |     |       |
+
+
+|Query:Db Table|select * from mini_clm_mao_ftr where file_key=$filekey5|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                           |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey5      |9                                                     |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000001            |                  |     |     |
+
+
+|Query:Db Table|select * from MINI_CLM_MAO_002_DTL where file_key=$filekey5 and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                   |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey5      |1                                                                             |MAO-002   |${contract4}      |L175MCE00259  |$currentdatetime|1            |Accepted  |
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                |
+|given the        |${fileType}_Test_Automation|file with content|${contents6}|
+
+
+
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|2|And Retry|120|times|true|
+
+
+!|script   |DbTable                                                             |
+|query     |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey6=|valueofcolumn                       |FILE_KEY                       |
+
+
+
+|Query:Db Table|select count(*) as COUNT from MINI_CLM_MAO_002_DTL where file_key=$filekey6|${env}|
+|COUNT                                                                                            |
+|2                                                                                                |
+
+
+|Query:Db Table|select * from mini_clm_mao_hdr where file_key=$filekey6|${env}                                                                                                                                                                                                                        |
+|FILE_KEY      |HDR_REC_TYP                                            |REP_ID |REP_DT                             |TRANS_DT                           |REP_DESC                               |SBMSN_INTRCHG_NUM       |REC_TYP|SBMSN_FILE_TYP|MDCR_ADV_CNTRCT_ID|FILLER_COL1|FILE_NAME|PHASE|VERSION|
+|$filekey6     |0                                                      |MAO-002|$currentdateverification 00:00:00.0|$currentdateverification 00:00:00.0|Encounter Data Processing Status Report|ENC002904078092720140319|INS    |PROD          |                  |           |         |     |       |
+
+
+|Query:Db Table|select * from mini_clm_mao_ftr where file_key=$filekey6|${env}                                                                                                                                                                                                      |
+|FILE_KEY      |FTR_REC_TYP                                            |REP_ID |TOT_NUM_PRCS_ERR|TOT_NUM_ENCNTR_SRVCLN_ACCPTD|TOT_NUM_ENCNTR_SRVCLN_RJCTD|TOT_NUM_ENCNTR_SRVCLN_SBMTD|TOT_NUM_ENCNTR_ACCPTD|TOT_NUM_ENCNTR_RJCTD|TOT_NUM_ENCNTR_SBMTD|MDCR_ADV_CNTRCT_ID|FILLER_COL1|
+|$filekey6     |9                                                      |MAO-002|00000000        |00000001                    |00000000                   |00000001                   |00000001             |00000000            |00000002            |                  |     |     |
+
+
+|Query:Db Table|select * from MINI_CLM_MAO_002_DTL where file_key=$filekey6 and encntr_ln_num=1|${env}                                                                                |
+|FILE_KEY      |DTL_REC_TYP                                                                    |DTL_REP_ID|MDCR_ADV_CNTRCT_ID|PLAN_ENCNTR_ID|ENCNTR_ICN      |ENCNTR_LN_NUM|ENCNTR_STS|
+|$filekey6     |1                                                                              |MAO-002   |${contract5}      |L175MCE00259  |$currentdatetime|1            |Accepted  |
+
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_MAO2_ODS|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+
+|script                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey|For|15|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey|${env}|
+|process_sts_key                                                                            |
+|15                                                                                         |
+
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey6|${env}|
+|process_sts_key                                                                             |
+|15                                                                                          |
+
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey4|${env}|
+|process_sts_key                                                                             |
+|15                                                                                          |
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey3|${env}|
+|process_sts_key                                                                             |
+|15                                                                                          |
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey2|${env}|
+|process_sts_key                                                                             |
+|2                                                                                           |
+
+|Query:Db Table|select process_sts_key from frmk_stg_fileinfo where file_key=$filekey1|${env}|
+|process_sts_key                                                                             |
+|2                                                                                           |
+
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+|Query:Db Table|select count(*) as COUNT from from etl_mao_file_log_hist where file_key=$filekey6 and ETL_CMPL_IND='E'|${env}|
+|COUNT                                                                                                                       |
+|1                                                                                                                           |
+
+
+|Query:Db Table|select count(*) as COUNT from from etl_mao_file_log_hist where file_key=$filekey and ETL_CMPL_IND='E' and notes like 'Mismatch counts%'|${env}|
+|COUNT                                                                                                                                                        |
+|1                                                                                                                                                            |
+
+|Query:Db Table|select count(*) as COUNT from from etl_mao_file_log_hist where file_key=$filekey4 and ETL_CMPL_IND='E' and notes like 'Mismatch counts%'|${env}|
+|COUNT                                                                                                                                                         |
+|1                                                                                                                                                             |
+
+|Query:Db Table|select count(*) as COUNT from from etl_mao_file_log_hist where file_key=$filekey3 and ETL_CMPL_IND='E' and notes like 'Mismatch counts%'|${env}|
+|COUNT                                                                                                                                                         |
+|1                                                                                                                                                             |
+
+
+|Query:Db Table|select count(*) as COUNT from from etl_mao_file_log_hist where file_key=$filekey2 and ETL_CMPL_IND='E' and notes like 'Mismatch counts%'|${env}|
+|COUNT                                                                                                                                                         |
+|0                                                                                                                                                             |
+
+
+|Query:Db Table|select count(*) as COUNT from from etl_mao_file_log_hist where file_key=$filekey1 and ETL_CMPL_IND='E' and notes like 'Mismatch counts%'|${env}|
+|COUNT                                                                                                                                                         |
+|0                                                                                                                                                             |
+
+
+

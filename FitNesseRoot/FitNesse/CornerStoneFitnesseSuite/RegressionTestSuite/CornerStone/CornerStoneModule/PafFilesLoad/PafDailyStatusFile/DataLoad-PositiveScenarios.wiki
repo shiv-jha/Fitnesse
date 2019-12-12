@@ -1,0 +1,303 @@
+---
+Test
+---
+!define fileType {DailyPAFStatusFile}
+--------------------------------------
+!define HDR1  {HAID}
+!define HDR2  {ChartId}
+!define HDR3  {ProjectID}
+!define HDR4  {SiteId}
+!define HDR5  {ProviderId}
+!define HDR6  {PlanCode}
+!define HDR7  {PBP}
+!define HDR8  {ProviderGroupType}
+!define HDR9  {ProviderGroupID}
+!define HDR10 {ProviderGroupName}
+!define HDR11 {MemberId}
+!define HDR12 {MemberHIC}
+!define HDR13 {RunDate}
+!define HDR14 {Status}
+!define HDR15 {ScheduledRetrievalDate}
+!define HDR16 {RetrievalDate}
+!define HDR17 {ReleasedForCodingDate}
+!define HDR18 {PrepDate}
+!define HDR19 {CodingDate}
+!define HDR20 {PendedDate}
+!define HDR21 {RejectCode}
+!define HDR22 {PrepRejectedDate}
+!define HDR23 {CodingRejectedDate}
+!define HDR24 {ExtractedDate}
+!define HDR25 {Lob}
+!define HDR26 {HealthPlan}
+!define HDR27 {FormType}
+!define HDR28 {MarketOutreachRep}
+!define HDR29 {ProviderFirstName}
+!define HDR30 {ProviderLastName}
+!define HDR31 {InsiteGroupId}
+!define HDR32 {InsiteGroupName}
+!define HDR33 {ReviewType}
+!define HDR34 {ClientRequestID}
+!define HDR35 {DistributionMethod}
+!define HDR36 {ProviderState}
+!define HDR37 {Payment}
+!define HDR38 {TIN}
+!define HDR39 {AbstractionOnDate}
+!define HDR40 {AbstractionStatus}
+!define HDR41 {AbstractionRejectCode}
+!define HDR42 {AbstractionRejectOn}
+!define HDR43 {CNAOn}
+!define HDR44 {RetrievedBy}
+!define HDR45 {CodingVendor}
+!define HDR46 {BusinessUnit}
+!define HDR47 {CodOverreadOn}
+!define HDR48 {CodingLocation}
+!define HDR49 {CodingORLocation}
+!define HDR50 {CNABy}
+!define HDR51 {PrepBy}
+!define HDR52 {CodedBy}
+!define HDR53 {CodOverreadBy}
+!define HDR54 {PendedBy}
+!define HDR55 {RejectedinPrepBy}
+!define HDR56 {RejectedinCodingBy}
+!define HDR57 {RejectedinAbstractionBy}
+!define HDR58 {RejReasonNote}
+!define HDR59 {AbstractionRejReasonNote}
+!define HDR60 {ProjectType}
+!define HDR61 {TFName}
+!define HDR62 {MbrLastName}
+!define HDR63 {MbrFirstName}
+!define HDR64 {UserDefinedCategory1}
+!define HDR65 {UserDefinedCategory2}
+!define HDR66 {UserDefinedDate1}
+!define HDR67 {UserDefinedDate2}
+!define HDR68 {UserDefinedNumber1}
+!define HDR69 {UserDefinedNumber2}
+!define HDR70 {CNAReason}
+!define HDR71 {PmtNotesLastName}
+!define HDR72 {PmtNotesFirstName}
+!define HDR73 {LevelCode}
+!define HDR74 {Completeness}
+!define HDR75 {DOB}
+!define HDR76 {Barcode}
+!define HDR77 {OverallStatus}
+!define HDR78 {CodingStatus}
+!define HDR79 {AbstrStatus_Portal}
+!define HDR80 {PaymentStatus}
+!define HDR81 {TimlyPmt}
+!define HDR82 {LatePmt}
+!define HDR83 {CGAPPmt}
+!define HDR84 {CompletenessPmt}
+!define HDR85 {PmtSource}
+!define HDR86 {MbrIDKey}
+!define HDR87 {ParentID}
+!define HDR88 {Source}
+!define HDR89 {ClientID}
+!define HDR90 {HPID}
+!define HDR91 {GAPGrpExcl}
+-----------------------------------
+!define DTL1  {HAID01}
+!define DTL2  {$currentdatetime}
+!define DTL3  {PAF_2018}
+!define DTL4  {3403863}
+!define DTL5  {AET_1813455_EPD_AETNA}
+!define DTL6  {H1110}
+!define DTL7  {801}
+!define DTL8  {TIN}
+!define DTL9  {61470493}
+!define DTL10 {FRANKLIN MEDICAL GROUP PC}
+!define DTL11 {NSRMEM01}
+!define DTL12 {042529312A}
+!define DTL13 {01/11/2018}
+!define DTL14 {Unscheduled}
+!define DTL15 {01/12/2018}
+!define DTL16 {01/13/2018}
+!define DTL17 {01/14/2018}
+!define DTL18 {01/15/2018}
+!define DTL19 {01/16/2018}
+!define DTL20 {01/17/2018}
+!define DTL21 {01/18/2018}
+!define DTL22 {01/19/2018}
+!define DTL23 {01/20/2018}
+!define DTL24 {01/21/2018}
+!define DTL25 {AET}
+!define DTL26 {Aetna Medicare}
+!define DTL27 {PAFGEN}
+!define DTL28 {Field Analytics}
+!define DTL29 {ELIZABETH}
+!define DTL30 {KORN}
+!define DTL31 {IGID001}
+!define DTL32 {IGN001}
+!define DTL33 {HQPAF}
+!define DTL34 {PG-107327-c716c83e-3103-3a76-be0a-14a9}
+!define DTL35 {PG_MC}
+!define DTL36 {CT}
+!define DTL37 {50}
+!define DTL38 {61470493}
+!define DTL39 {01/22/2018}
+!define DTL40 {Not Applicable}
+!define DTL41 {ARC001}
+!define DTL42 {01/23/2018}
+!define DTL43 {01/24/2018}
+!define DTL44 {RBUSER}
+!define DTL45 {NA}
+!define DTL46 {Aetna}
+!define DTL47 {01/25/2018}
+!define DTL48 {CL}
+!define DTL49 {CORL}
+!define DTL50 {CNAUSER}
+!define DTL51 {PREPUSER}
+!define DTL52 {CODEUSER}
+!define DTL53 {CODORUSER}
+!define DTL54 {PENDUSER}
+!define DTL55 {REJUSER}
+!define DTL56 {REJICUSER}
+!define DTL57 {REJIAUSER}
+!define DTL58 {RRN001}
+!define DTL59 {ARRN001}
+!define DTL60 {PAF}
+!define DTL61 {Chartfinder_PAF_2017_PG_MA_20171226.dat}
+!define DTL62 {WISNESKI}
+!define DTL63 {KATHY}
+!define DTL64 {UDC001}
+!define DTL65 {UDC002}
+!define DTL66 {01/26/2018}
+!define DTL67 {01/27/2018}
+!define DTL68 {UDN001}
+!define DTL69 {UDN002}
+!define DTL70 {CNAR001}
+!define DTL71 {PNLN001}
+!define DTL72 {PNFN001}
+!define DTL73 {2}
+!define DTL74 {100}
+!define DTL75 {07/30/1955}
+!define DTL76 {PG-107354-c759d209-021f-3fea-a0b1-7824}
+!define DTL77 {OAS001}
+!define DTL78 {CS001}
+!define DTL79 {ASP001}
+!define DTL80 {PS001}
+!define DTL81 {50}
+!define DTL82 {15}
+!define DTL83 {25}
+!define DTL84 {99}
+!define DTL85 {C}
+!define DTL86 {MIDK001}
+!define DTL87 {PID001}
+!define DTL88 {PG}
+!define DTL89 {AET}
+!define DTL90 {AE}
+!define DTL91 {E}
+-----------------------------------
+!define TRL1 {TRL}
+!define TRL2 {1}
+
+
+!define contents {${HDR1}|${HDR2}|${HDR3}|${HDR4}|${HDR5}|${HDR6}|${HDR7}|${HDR8}|${HDR9}|${HDR10}|${HDR11}|${HDR12}|${HDR13}|${HDR14}|${HDR15}|${HDR16}|${HDR17}|${HDR18}|${HDR19}|${HDR20}|${HDR21}|${HDR22}|${HDR23}|${HDR24}|${HDR25}|${HDR26}|${HDR27}|${HDR28}|${HDR29}|${HDR30}|${HDR31}|${HDR32}|${HDR33}|${HDR34}|${HDR35}|${HDR36}|${HDR37}|${HDR38}|${HDR39}|${HDR40}|${HDR41}|${HDR42}|${HDR43}|${HDR44}|${HDR45}|${HDR46}|${HDR47}|${HDR48}|${HDR49}|${HDR50}|${HDR51}|${HDR52}|${HDR53}|${HDR54}|${HDR55}|${HDR56}|${HDR57}|${HDR58}|${HDR59}|${HDR60}|${HDR61}|${HDR62}|${HDR63}|${HDR64}|${HDR65}|${HDR66}|${HDR67}|${HDR68}|${HDR69}|${HDR70}|${HDR71}|${HDR72}|${HDR73}|${HDR74}|${HDR75}|${HDR76}|${HDR77}|${HDR78}|${HDR79}|${HDR80}|${HDR81}|${HDR82}|${HDR83}|${HDR84}|${HDR85}|${HDR86}|${HDR87}|${HDR88}|${HDR89}|${HDR90}|${HDR91}
+${DTL1}|${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}|${DTL8}|${DTL9}|${DTL10}|${DTL11}|${DTL12}|${DTL13}|${DTL14}|${DTL15}|${DTL16}|${DTL17}|${DTL18}|${DTL19}|${DTL20}|${DTL21}|${DTL22}|${DTL23}|${DTL24}|${DTL25}|${DTL26}|${DTL27}|${DTL28}|${DTL29}|${DTL30}|${DTL31}|${DTL32}|${DTL33}|${DTL34}|${DTL35}|${DTL36}|${DTL37}|${DTL38}|${DTL39}|${DTL40}|${DTL41}|${DTL42}|${DTL43}|${DTL44}|${DTL45}|${DTL46}|${DTL47}|${DTL48}|${DTL49}|${DTL50}|${DTL51}|${DTL52}|${DTL53}|${DTL54}|${DTL55}|${DTL56}|${DTL57}|${DTL58}|${DTL59}|${DTL60}|${DTL61}|${DTL62}|${DTL63}|${DTL64}|${DTL65}|${DTL66}|${DTL67}|${DTL68}|${DTL69}|${DTL70}|${DTL71}|${DTL72}|${DTL73}|${DTL74}|${DTL75}|${DTL76}|${DTL77}|${DTL78}|${DTL79}|${DTL80}|${DTL81}|${DTL82}|${DTL83}|${DTL84}|${DTL85}|${DTL86}|${DTL87}|${DTL88}|${DTL89}|${DTL90}|${DTL91}
+{${TRL1}|${TRL2}}
+
+!define env {TST}
+
+
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                             |
+|given the        |${fileType}_      |daily paf sts file with content|${contents}|
+*!
+
+
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                 |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where f.file_nm ='$datfilename'|For|1|And Retry|60|times|true|
+
+
+|Query:Db Table|select FILE_TYP,FILE_NM,FILE_VER,FILE_PATH from DW_FILE_QUEUE where file_name ='$datfilename'|
+|FILE_TYP      |FILE_NM                   |FILE_VER              |FILE_PATH                                  |
+|DLYPAFSTS     |$datfilename              |1.0                   |/etldata/pay02/dlypafsts/inbox             |
+
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PAF_STS|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                      |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename'|For|4|And Retry|60|times|true|
+
+
+!|script  |DbTable                                                         |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename'|
+|$filekey=|valueofcolumn                     |FILE_KEY                     |
+
+
+|Query:Db Table|select * from PREP_PAF_DAILY_STS_HDR where file_key = $filekey and CHART_ID=${DTL2}|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|RECORD_ID     |FILE_KEY                                                                           |SGMNT_ID|HAID  |CHART_ID|PROJECT_ID|SITE_ID|PROV_ID|HCFA_CONTRACT_NUMBER|PBP    |PROV_GROUP_TYPE|PROV_GROUP_ID|PROV_GROUP_NAME|MEM_ID  |HIC_NUM |RUN_DATE|CHART_STATUS|SCHEDULEDRETRIEVALDATE|RETRIEVALDATE|RELEASED_FOR_CODING_DATE|PREP_DATE|CODING_DATE|PENDED_DATE|REJECT_CODE|PREP_REJECT_DATE|CODING_REJECT_DATE|EXTRACT_DATE|LOB     |HEALTH_PLAN|FORM_TYPE|MARKET_OUTREACH_REP|PROV_FNAME|PROV_LNAME|INSITE_GROUP_ID|INSITE_GROUP_NAME|REVIEW_TYPE|REQUESTID|DISTRIBUTION_METHOD|PROVIDERSTATE|PAYMENT |TIN     |SCREENINGDATE|SCREENINGSTATE|SCREENINGREJECTCODE|SCREENINGREJECTON|CNAON   |RETRIEVEDBY|CODINGVENDOR|BUSINESSUNIT|CODOVERREADON|CODINGLOCATION|RAORLOCATION|CNABY   |PREPBY  |CODEDBY |CODOVERREADBY|PENDEDBY|REJECTEDINPREPBY|REJECTEDINCODINGBY|REJECTEDINSCREENBY|REJREASONNOTE|SCREENREJREASONNOTE|PROJECTTYPE|TFNAME  |MBRLASTNAME|MBRFIRSTNAME|USERDEFINEDCATEGORY1|USERDEFINEDCATEGORY2|USERDEFINEDDATE1|USERDEFINEDDATE2|USERDEFINEDNUMBER1|USERDEFINEDNUMBER2|CNAREASON|PMTNOTESLASTNAME|PMTNOTESFIRSTNAME|LEVELCODE|COMPLETENESS|DOB     |BARCODE |OVERALLSTATUS|CODINGSTATUS|ABSTRSTATUS_PORTAL|PAYMENTSTATUS|TIMELYPMT|LATEPMT |CGAPPMT |COMPLETENESSPMT|PMTSOURCE|MBRIDKEY|PARENTID|SOURCE  |CLIENTID|HPID    |GAPGRPEXCL|
+|1             |$filekey                                                                           |HDR     |{DTL1}|{$DTL2} |{$DTL3}   |{$DTL4}|{$DTL5}|{$DTL6}             |{$DTL7}|{$DTL8}        |{$DTL9}      |{$DTL10}       |{$DTL11}|{$DTL12}|{$DTL13}|{$DTL14}    |{$DTL15}              |{$DTL16}     |{$DTL17}                |{$DTL18} |{$DTL19}   |{$DTL20}   |{$DTL21}   |{$DTL22}        |{$DTL23}          |{$DTL24}    |{$DTL25}|{$DTL26}   |{$DTL27} |{$DTL28}           |{$DTL29}  |{$DTL30}  |{$DTL31}       |{$DTL32}         |{$DTL33}   |{$DTL34} |{$DTL35}           |{$DTL36}     |{$DTL37}|{$DTL38}|{$DTL39}     |{$DTL40}      |{$DTL41}           |{$DTL42}         |{$DTL43}|{$DTL44}   |{$DTL45}    |{$DTL46}    |{$DTL47}     |{$DTL48}      |{$DTL49}    |{$DTL50}|{$DTL51}|{$DTL52}|{$DTL53}     |{$DTL54}|{$DTL55}        |{$DTL56}          |{$DTL57}          |{$DTL58}     |{$DTL59}           |{$DTL60}   |{$DTL61}|{$DTL62}   |{$DTL63}    |{$DTL64}            |{$DTL65}            |{$DTL66}        |{$DTL67}        |{$DTL68}          |{$DTL69}          |{$DTL70} |{$DTL71}        |{$DTL72}         |{$DTL73} |{$DTL74}    |{$DTL75}|{$DTL76}|{$DTL77}     |{$DTL78}    |{$DTL79}          |{$DTL80}     |{$DTL81} |{$DTL82}|{$DTL83}|{$DTL84}       |{$DTL85} |{$DTL86}|{$DTL87}|{$DTL88}|{$DTL89}|{$DTL90}|{$DTL91}  |
+
+
+
+|Query:Db Table|select * from PREP_PAF_DAILY_STS_TRL where file_key = $filekey|${env}          |
+|RECORD_ID     |FILE_KEY                                                      |SGMNT_ID|TRL_CNT|
+|2             |$filekey                                                      |TRL     |1      |
+
+
+!|script     |DbTable                                                                                                                                                    |
+|query       |select CLI_ID,CLI_SK,CLNT_GUID,SUB_CLI_SK from D_SUB_PLN where contr_nbr = '${DTL6}' and sub_pln_id = '${DTL7}' and rownum = 1 order by sub_pln_end_dt desc|
+|$cli_id=    |valueofcolumn                                                                  |CLI_ID                                                                     |
+|$cli_sk=    |valueofcolumn                                                                  |CLI_SK                                                                     |
+|$clnt_guid= |valueofcolumn                                                                  |CLNT_GUID                                                                  |
+|$sub_cli_sk=|valueofcolumn                                                                  |SUB_CLI_SK                                                                 |
+
+
+
+|Query:Db Table|select * from A_PAF_DAILY_STS where file_key = $filekey and CHART_ID=${DTL2}|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|CLI_ID        |CLI_SK                                                                      |CLNT_GUID |SUB_CLI_SK |PROJ_YR|FILE_KEY|RECORD_ID|FILE_KEY|SGMNT_ID|HAID  |CHART_ID|PROJECT_ID|SITE_ID|PROV_ID|HCFA_CONTRACT_NUMBER|PBP    |PROV_GROUP_TYPE|PROV_GROUP_ID|PROV_GROUP_NAME|MEM_ID  |HIC_NUM |RUN_DATE   |CHART_STATUS|SCHEDULEDRETRIEVALDATE|RETRIEVALDATE|RELEASED_FOR_CODING_DATE|PREP_DATE  |CODING_DATE|PENDED_DATE|REJECT_CODE|PREP_REJECT_DATE|CODING_REJECT_DATE|EXTRACT_DATE|LOB     |HEALTH_PLAN|FORM_TYPE|MARKET_OUTREACH_REP|PROV_FNAME|PROV_LNAME|INSITE_GROUP_ID|INSITE_GROUP_NAME|REVIEW_TYPE|REQUESTID|DISTRIBUTION_METHOD|PROVIDERSTATE|PAYMENT |TIN     |SCREENINGDATE|SCREENINGSTATE|SCREENINGREJECTCODE|SCREENINGREJECTON|CNAON      |RETRIEVEDBY|CODINGVENDOR|BUSINESSUNIT|CODOVERREADON|CODINGLOCATION|RAORLOCATION|CNABY   |PREPBY  |CODEDBY |CODOVERREADBY|PENDEDBY|REJECTEDINPREPBY|REJECTEDINCODINGBY|REJECTEDINSCREENBY|REJREASONNOTE|SCREENREJREASONNOTE|PROJECTTYPE|TFNAME  |MBRLASTNAME|MBRFIRSTNAME|USERDEFINEDCATEGORY1|USERDEFINEDCATEGORY2|USERDEFINEDDATE1|USERDEFINEDDATE2|USERDEFINEDNUMBER1|USERDEFINEDNUMBER2|CNAREASON|PMTNOTESLASTNAME|PMTNOTESFIRSTNAME|LEVELCODE|COMPLETENESS|DOB        |BARCODE |OVERALLSTATUS|CODINGSTATUS|ABSTRSTATUS_PORTAL|PAYMENTSTATUS|TIMELYPMT|LATEPMT |CGAPPMT |COMPLETENESSPMT|PMTSOURCE|MBRIDKEY|PARENTID|SOURCE  |CLIENTID|HPID    |GAPGRPEXCL|
+|$cli_id       |$cli_sk                                                                     |$clnt_guid|$sub_cli_sk|2018   |$filekey|1        |$filekey|HDR     |{DTL1}|{$DTL2} |{$DTL3}   |{$DTL4}|{$DTL5}|{$DTL6}             |{$DTL7}|{$DTL8}        |{$DTL9}      |{$DTL10}       |{$DTL11}|{$DTL12}|11-JAN-2018|{$DTL14}    |12-JAN-2018           |13-JAN-2018  |14-JAN-2018             |15-JAN-2018|16-JAN-2018|17-JAN-2018|18-JAN-2018|19-JAN-2018     |20-JAN-2018       |21-JAN-2018 |{$DTL25}|{$DTL26}   |{$DTL27} |{$DTL28}           |{$DTL29}  |{$DTL30}  |{$DTL31}       |{$DTL32}         |{$DTL33}   |{$DTL34} |{$DTL35}           |{$DTL36}     |{$DTL37}|{$DTL38}|22-JAN-2018  |{$DTL40}      |{$DTL41}           |23-JAN-2018      |24-JAN-2018|{$DTL44}   |{$DTL45}    |{$DTL46}    |25-JAN-2018  |{$DTL48}      |{$DTL49}    |{$DTL50}|{$DTL51}|{$DTL52}|{$DTL53}     |{$DTL54}|{$DTL55}        |{$DTL56}          |{$DTL57}          |{$DTL58}     |{$DTL59}           |{$DTL60}   |{$DTL61}|{$DTL62}   |{$DTL63}    |{$DTL64}            |{$DTL65}            |26-JAN-2018     |27-JAN-2018     |{$DTL68}          |{$DTL69}          |{$DTL70} |{$DTL71}        |{$DTL72}         |{$DTL73} |{$DTL74}    |30-JUL-1955|{$DTL76}|{$DTL77}     |{$DTL78}    |{$DTL79}          |{$DTL80}     |{$DTL81} |{$DTL82}|{$DTL83}|{$DTL84}       |{$DTL85} |{$DTL86}|{$DTL87}|{$DTL88}|{$DTL89}|{$DTL90}|{$DTL91}  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

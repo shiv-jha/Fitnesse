@@ -1,0 +1,84 @@
+---
+Test
+---
+!define fileType {MINCLM}
+!define subCliSk {888}
+!define clientText {Cornerstone Test Client}
+!define clientUniqueText {c3f51d7a-2e1b-487c-888f-52a765bf1b63}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20160101|20161231|20160921134506|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CLM_Data {235|20170719234758|233|HIC|HN134567|FINALIZED|2232323|RESERVED||01|12345VA001999901|11|10|1|20160110|20160128|201601101420|20160128|PA001234|20160131|2016-01-30T00:00:00|CLMUD1=CSUD01|CLMUD2=CSUD02|CRK000001|LIKITH|20160721|1|HIOSID01|MMID001|098|SEVERE|AD|120|OTH|CLMUD3=CSUD03}
+!define D4_PRV_Data {235|BILLING|1838762327|20160602|232|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D5_PRV_Data {235|BILLING|1838762327|20160602|232|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D6_CDE_Data {235|ABK|R0789|1|CDEUD1=CSUD01|CDEUD2=CSUD02|CDEUD3=CSUD03}
+!define D7_XSVC_Data {235|1|NUBCDE101|HC|Q4045|32|33|50|52|221|1||||32|20160110|20160128|RENDERING|1838762327|20160602|232|12634049060|10|N|XSVCUD1=CSUD01|XSVCUD2=CSUD02|XSVCUD3=CSUD03}
+!define D8_XFIN_Data {235|1|BILLED_AMT|104.78|20160125|Y|XFINUD1=CSUD01|XSVCUD2=CSUD02|XFINUD3=CSUD03}
+!define D9_FTR_Data {${fileType}|${subCliSk}|20160101|20161231|20160921134506|6.1}
+!define D10_CNT_Data {1|1|2|1|1|1|7}
+!define env {TST}
+
+
+!define minclmdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLM|$currentdatetime|${D3_CLM_Data}
+PRV|$currentdatetime|${D4_PRV_Data}
+PRV|$currentdatetime|${D5_PRV_Data}
+CDE|$currentdatetime|${D6_CDE_Data}
+XSVC|$currentdatetime|${D7_XSVC_Data}
+XFIN|$currentdatetime|${D8_XFIN_Data}
+FTR|${D9_FTR_Data}
+CNT|${D10_CNT_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${subCliSk}_MR|file with content|${minclmdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+|Query:Db Table|select ERR_CD,ERR_DESC,ERR_SVRTY_TYP,FILE_TYPE_NM,SEGMENT_CD from dq_err where err_cd = 'CS107155'|${env}|
+|ERR_CD| ERR_DESC |ERR_SVRTY_TYP|FILE_TYPE_NM|SEGMENT_CD|
+|CS107155 |       |             |            |           | 
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select CLI_SK, CLNT_GUID, PROV_ENTY_ID, PROV_ENTY_MOD_ID, CLM_REJ_DT, REIN_DT, DERIV_DEL_IND from PROV_ENTY_PRECL where PROV_ENTY_ID = '20160602' and prov_enty_precl_sk = '152001'|${env} |                                                                                                                                                                                                                                 
+|CLI_SK|CLNT_GUID|PROV_ENTY_ID|PROV_ENTY_MOD_ID |CLM_REJ_DT|REIN_DT |DERIV_DEL_IND |
+|     |           |20160602|                 |             |      |           |
+
+
+|Query:Db Table|select CLI_SK,CLI_ID,MINI_CLM_SK,FILE_KEY,CLM_ID,CLM_STMT_TO_DT,CLM_ADMIS_DTTM,CLM_DSCHRG_DT,CS_DERIV_CLM_STS_CD, CS_DERIV_CLM_STS_RSN from MINI_CLM where file_key =$filekey|${env} |                                                                                                                                                                                                                                  
+|CLI_SK|CLI_ID|FILE_KEY|MINI_CLM_SK|CLM_ID|CLM_STMT_TO_DT |CLM_ADMIS_DTTM|CLM_DSCHRG_DT|CS_DERIV_CLM_STS_CD |CS_DERIV_CLM_STS_RSN|
+|      |      |$filekey |          |      |               |               |             |Inactive           | PRECLUSION      |    
+
+
+|Query:Db Table|select FIlE_KEY, CLM_ID, CLM_OR_SRVC_IND, PROV_ENTY_ID, PROV_ENTY_MOD_ID, PROV_ENTY_TYPE from MINI_CLM_SRVC_PROV where file_key =$filekey|${env} |                                                                          
+|CLM_ID|CLM_OR_SRVC_IND|FILE_KEY|PROV_ENTY_ID|PROV_ENTY_MOD_ID|PROV_ENTY_TYPE|
+|           |            |$filekey |                |          |    |
+|           |           |$filekey |                |           |   |
+|           |           |$filekey |                |           |   |
+
+|Query:Db Table|select  FILE_KEY,ERR_CD,SEG_BUS_KEY, DATA_VAL_IN_ERR_TXT,SEG_NM from DQ_ERR_RSLT where file_key = $filekey|${env}|
+|FILE_KEY      |ERR_CD              |SEG_NM|DATA_VAL_IN_ERR_TXT|SEG_BUS_KEY|
+|$filekey      |              |      |                  |          |             
+|$filekey      |              |      |                  |          |   
+|$filekey      |              |      |                  |          |
+|$filekey      |              |      |                  |          | 
+

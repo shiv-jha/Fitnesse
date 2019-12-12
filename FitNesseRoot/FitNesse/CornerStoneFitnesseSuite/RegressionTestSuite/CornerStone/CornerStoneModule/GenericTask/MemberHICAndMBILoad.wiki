@@ -1,0 +1,68 @@
+---
+Test
+---
+!define fileType {MEMBER}
+!define memberNumber {66}
+!define clientText {CalOptima}
+!define clientUniqueText {378dadd1-ddad-44e2-a9d6-3fbd17a36f3d}
+
+!define D1_HDR_Data {${fileType}|${memberNumber}|20170711|20170711|20170725014424|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data {1379|FNMember61|LNMember61|K|19300101|M|2700 GREEN VALLEY DRIVE|APT 202|COLUMBIA|MO|65202|9020202020|20090101|20171231|EE|N||CR00001|MBRUSER01|12345|MAS1234|Y|82931|MBRUSER02|MBRUSER03}
+!define D4_ENR_Data {1379|H0609|026|||S|20150101|20151231|100.21|CA|USER1|EMG00001|08|021028|XYZ Employer|12345|MasterID|Memb Master ID Sub|2|05|Y|Y|MMP|01|21|11|91|41|51|61|79|89|Y|Y|N|Y|N|Y|N|Y|MCOID1234|QHP12|MN|QHPPPO|12345678901213|50|Y|Y|Y|Y|N|Healthyworld|N|MemberGroupCode|0|G|Y|Fit247|31||ENRUSER02|ENRUSER03}
+!define D5_ENR_Data {1379|H0609|026|||S|20161001|20181231|100.21|CA|USER1|EMG00001|08|021028|XYZ Employer|12345|MasterID|Memb Master ID Sub|2|05|Y|Y|MMP|01|21|11|91|41|51|61|79|89|Y|Y|N|Y|N|Y|N|Y|MCOID1234|QHP12|MN|QHPPPO|12345678901213|50|Y|Y|Y|Y|N|Healthyworld|N|MemberGroupCode|0|G|Y|Fit247|31||ENRUSER02|ENRUSER03}
+!define D6_PCP_Data {1379|00330011529|1378|||20170101|20181231|PCP2USER0121|PCP2USER0222|PCP2USER0323}
+!define D7_ID_Data  {1379|HIC|442302275D|20140101|20181231|IDUSER01|C1|IDUSER0211|IDUSER03ID12}
+!define D8_ID_Data  {1379|UCARD|R00000051BF1|||}
+!define D9_MBXT_Data {1379|3216549870|ACE|M|20140101|20180101||POALName|POAFName|PRT|9876543210|6543219870|||POUGHKEEPSIE|NY|12601|321001|MBXTUSER01X111|MBXTUSER02XT212|MBXTUSER0313}
+!define D10_FTR_Data {${fileType}|${memberNumber}|20170711|20170711|20170725014424|6.1}
+!define D11_CNT_Data {1|1|2|1|2|1|8}
+!define env {TST}
+
+
+!define memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|$currentdatetime|${D3_MBR_Data}
+ENR|$currentdatetime|${D4_ENR_Data}
+ENR|$currentdatetime|${D5_ENR_Data}
+PCP|$currentdatetime|${D6_PCP_Data}
+ID|$currentdatetime|${D7_ID_Data}
+ID|$currentdatetime|${D8_ID_Data}
+MBXT|$currentdatetime|${D9_MBXT_Data}
+FTR|${D10_FTR_Data}
+CNT|${D11_CNT_Data}}
+
+
+
+!|script          |File Support                                               |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${memberNumber}|file with content|${memberdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|105|And Retry|120|times|true|
+
+
+!|script    |DbTable                                            |
+|query      |SELECT * FROM DQ_ERR_RSLT where file_key = $filekey|
+|$ErrorCode=|valueofcolumn                |ERR_CD               |
+

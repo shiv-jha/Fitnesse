@@ -1,0 +1,168 @@
+---
+Test
+---
+!define fileType {MEMBER}
+!define memberNumber {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${memberNumber}|20180301|20180331|20180331121255|4.2}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data {412|PAVAN|VARUN|D|19780309|m|Dugbug, Lee 002|See Mee 2|Miami|CA|100810011|0018099867037|20180101|20181231|EE|N|01|CR00001|TST02}
+!define D4_ENR_Data {412|12345B2798|001|ssi|MEM200001|S|20180101|20180131|100.21|CA|TST03}
+!define D5_PCP_Data {412|PNO000001|411|PNO000001|411|20110101|20111231|TST04}
+!define D6_ID_Data  {412|UCARD|32100001A|20110101|20121231}
+!define D7_MBXT_Data {412|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|13050 D CIRCLE 20170720004|APT A2323|EDEN PRAIRIE|MN|55344|POPID321001|MBXTUD1=CSUD01|MBXTUD2=CSUD02|MBXTUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${memberNumber}|20180301|20180331|20180331121255|4.2}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|$currentdatetime|${D3_MBR_Data}
+ENR|$currentdatetime|${D4_ENR_Data}
+PCP|$currentdatetime|${D5_PCP_Data}
+ID|$currentdatetime|${D6_ID_Data}
+MBXT|$currentdatetime|${D7_MBXT_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${memberNumber}_MR|file with content|${memberdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from mbr_uow_grp_evnt f where f.file_key=$filekey|For|20|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|120|times|true|
+
+
+|Query:Db Table|select FILE_KEY,FILE_NM ,FILE_INFO_NM,FILE_APPL_SND_ID,To_Char(PROC_FRM_DT,'YYYYMMDD') as PROC_FRM_DT,To_Char(PROC_THRU_DT,'YYYYMMDD') as PROC_THRU_DT,To_Char(FILE_CRE_DTTM ,'YYYYMMDDHH24MISS') as FILE_CRE_DTTM,FILE_VER_ID from FILE_TRK  where file_key = $filekey|${env}                                                                           |
+|FILE_KEY      |FILE_NM                                                                                                                                                                                                                                                                |FILE_INFO_NM|FILE_APPL_SND_ID|PROC_FRM_DT|PROC_THRU_DT|FILE_CRE_DTTM |FILE_VER_ID|
+|$filekey      |$datfilename.DAT                                                                                                                                                                                                                                                       |${fileType} |${memberNumber} |20160101   |20161231    |20160921134506|6.1        |
+
+
+|Query:Db Table|select * from P_MBR_VER where file_key = $filekey|${env}                                                                                                                                                                                                  |
+|FILE_KEY      |MBR_ID                                           |MBR_MOD_ID|MBR_LST_NM|MBR_FST_NM|MBR_MIDL_NM|MBR_DOB_DT           |MBR_GDR_CD|Member ORIG STRT DT|MBR LT END DT|MBR_REL_TYP_CD|MBR_TBCC_STS_CD|MBR_CST_SHR_RDUC_CD|SRC_MBRCLI_REC_KEY|MBR_USER_DFN_1_TXT|
+|$filekey      |$currentdatetime                                 |412       |PAVAN     |VARUN     |D          |1978-03-09 00:00:00.0|M         |20180101           |20181231     |EE            |N              |01                 |CR00001           |TST02             |
+
+
+|Query:Db Table|select * from P_MBR_ADR_VER where file_key = $filekey|${env}                                                                          |
+|FILE_KEY      |MBR_ID                                               |MBR_MOD_ID|ADR_LN_1_T      |ADR_LN_2_TXT|CITY_NM  |ST_CD|ZIP_CD   |TEL_NUM_TXT  |
+|$filekey      |$currentdatetime                                     |412       |2Dugbug, Lee 002|See Mee 2   |Miami    |CA   |100810011|0018099867037|
+
+
+|Query:Db Table|select * from P_MBR_ENRL_VER where file_key = $filekey|${env}                                                                                                                                                                                     |
+|FILE_KEY      |MBR_ID                                                |MBR_MOD_ID|MBR_CONTR_NBR|MBR_SUB_PLN_ID|MBR_ENRL_CATGY_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_SUB_PLN_STRT_DT  |MBR_SUB_PLN_END_DT   |MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_ENRL_DFN_1_TXT|
+|$filekey      |$currentdatetime                                      |412       |12345B2798   |001           |SSI              |MEM200001   |S            |2018-01-01 00:00:00.0|2018-01-31 00:00:00.0|100.21           |CA                   |TST03             |
+
+
+|Query:Db Table|select * from P_MBR_PCP_VER where file_key = $filekey|${env}                                                                                                                                                      |
+|FILE_KEY      |MBR_ID                                               |MBR_MOD_ID|MBR_PROV_ENTY_ID|MBR_PROV_ENTY_MOD_ID|MBR_PROV_ENTY_GRP_ID|MBR_PROV_ENTY_GRP_MOD_ID|MBR_PCP_STRT_DT      |MBR_PCP_END_DT       |MBR_PCP_DFN_1_TXT|
+|$filekey      |$currentdatetime                                     |412       |PNO000001       |411                 |PNO000001           |411                     |2011-01-01 00:00:00.0|2011-12-31 00:00:00.0|TST04            |
+
+
+|Query:Db Table|select * from P_MBR_ALT_ID_VER where MBR_ALT_ID_TYP_CD = 'HIC' AND file_key = $filekey|${env}                                                                                     |
+|FILE_KEY      |MBR_ID                                                                                |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |
+|$filekey      |$currentdatetime                                                                      |412       |HIC              |HN134567          |2016-01-01 00:00:00.0|2016-12-31 00:00:00.0|
+
+
+|Query:Db Table|select * from P_MBR_ALT_ID_VER where MBR_ALT_ID_TYP_CD = 'UCARD' AND file_key = $filekey|${env}                                                                                     |
+|FILE_KEY      |MBR_ID                                                                                  |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |
+|$filekey      |$currentdatetime                                                                        |412       |UCARD            |32100001A         |2011-01-01 00:00:00.0|2012-12-31 00:00:00.0|
+
+
+|Query:Db Table|select * from P_MBR_ADD_INFO_VER where file_key = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                 |
+|FILE_KEY      |MBR_ID                                                    |MBR_MOD_ID|MBR_ALT_TEL_NUM_TXT|MBR_LANG_CD|MBR_MRTL_STS_CD|PART_A_ELIG_EFF_DT   |PART_B_ELIG_EFF_DT   |MBR_DOD_DT           |MBR_POA_LST_NM|MBR_POA_FST_NM|MBR_POA_REL_CD|MBR_POA_TEL_NUM_TXT|MBR_POA_ALT_TEL_NUM_TXT|MAIL_ADR_LN_1_TXT         |MAIL_ADR_LN_2_TXT|MAIL_CITY_NM|MAIL_ST_CD|MAIL_ZIP_CD|MBR_POP_ID |MBR_ADD_USER_DFN_1_TXT|MBR_ADD_USER_DFN_2_TXT|MBR_ADD_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                          |412       |9586488991         |AAR        |M              |2016-01-01 00:00:00.0|2016-12-31 00:00:00.0|2016-11-30 00:00:00.0|PALASTNAME    |PAFNAME       |SPS           |9586488992         |9586488993             |13050 D CIRCLE 20170720004|APT A2323        |EDEN PRAIRIE|MN        |55344      |POPID321001|MBXTUD1=CSUD01        |MBXTUD2=CSUD02        |MBXTUD3=CSUD03        |
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|90|And Retry|120|times|true|
+
+
+|Query:Db Table|select * from MBR where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                 |
+|UPDT_FILE_KEY |MBR_ID                                          |MBR_MOD_ID|MBR_LST_NM|MBR_FST_NM|MBR_MIDL_NM|MBR_DOB_DT           |MBR_GDR_CD|Member ORIG STRT DT|MBR LT END DT|MBR_REL_TYP_CD|MBR_TBCC_STS_CD|MBR_CST_SHR_RDUC_CD|SRC_MBRCLI_REC_KEY|MBR_USER_DFN_1_TXT|
+|$filekey      |$currentdatetime                                |412       |PAVAN     |VARUN     |D          |1978-03-09 00:00:00.0|M         |20180101           |20181231     |EE            |N              |01                 |CR00001           |TST02             |
+
+
+|Query:Db Table|select * from MBR_ADR where UPDT_FILE_KEY = $filekey|${env}                                                                          |
+|UPDT_FILE_KEY |MBR_ID                                              |MBR_MOD_ID|ADR_LN_1_T      |ADR_LN_2_TXT|CITY_NM  |ST_CD|ZIP_CD   |TEL_NUM_TXT  |
+|$filekey      |$currentdatetime                                    |412       |2Dugbug, Lee 002|See Mee 2   |Miami    |CA   |100810011|0018099867037|
+
+
+|Query:Db Table|select * from MBR_ENRL where UPDT_FILE_KEY = $filekey|${env}                                                                                                                  |
+|UPDT_FILE_KEY |MBR_ID                                               |MBR_MOD_ID|MBR_CONTR_NBR|MBR_SUB_PLN_ID|MBR_ENRL_CATGY_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_SUB_PLN_STRT_DT  |MBR_SUB_PLN_END_DT   |MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_ENRL_DFN_1_TXT|
+|$filekey      |$currentdatetime                                     |412       |12345B2798   |001           |SSI              |MEM200001   |S            |2018-01-01 00:00:00.0|2018-01-31 00:00:00.0|100.21           |CA                   |TST03             |
+
+
+|Query:Db Table|select * from MBR_ENRL_ADJ where UPDT_FILE_KEY = $filekey|${env}                                                                                                                  |
+|UPDT_FILE_KEY |MBR_ID                                                   |MBR_MOD_ID|MBR_CONTR_NBR|MBR_SUB_PLN_ID|MBR_ENRL_CATGY_CD|MBR_SBSCR_ID|MBR_SBSCR_IND|MBR_SUB_PLN_STRT_DT  |MBR_SUB_PLN_END_DT   |MBR_ENRL_PREM_AMT|MBR_ENRL_RATE_AREA_CD|MBR_ENRL_DFN_1_TXT|
+|$filekey      |$currentdatetime                                         |412       |12345B2798   |001           |SSI              |MEM200001   |S            |2018-01-01 00:00:00.0|2018-01-31 00:00:00.0|100.21           |CA                   |TST03             |
+
+
+|Query:Db Table|select * from MBR_PCP where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                      |
+|UPDT_FILE_KEY |MBR_ID                                              |MBR_MOD_ID|MBR_PROV_ENTY_ID|MBR_PROV_ENTY_MOD_ID|MBR_PROV_ENTY_GRP_ID|MBR_PROV_ENTY_GRP_MOD_ID|MBR_PCP_STRT_DT      |MBR_PCP_END_DT       |MBR_PCP_DFN_1_TXT|
+|$filekey      |$currentdatetime                                    |412       |PNO000001       |411                 |PNO000001           |411                     |2011-01-01 00:00:00.0|2011-12-31 00:00:00.0|TST04            |
+
+
+|Query:Db Table|select * from MBR_PCP_ADJ where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                      |
+|UPDT_FILE_KEY |MBR_ID                                                  |MBR_MOD_ID|MBR_PROV_ENTY_ID|MBR_PROV_ENTY_MOD_ID|MBR_PROV_ENTY_GRP_ID|MBR_PROV_ENTY_GRP_MOD_ID|MBR_PCP_STRT_DT      |MBR_PCP_END_DT       |MBR_PCP_DFN_1_TXT|
+|$filekey      |$currentdatetime                                        |412       |PNO000001       |411                 |PNO000001           |411                     |2011-01-01 00:00:00.0|2011-12-31 00:00:00.0|TST04            |
+
+
+|Query:Db Table|select * from MBR_ALT_ID where MBR_ALT_ID_TYP_CD = 'HIC' AND UPDT_FILE_KEY = $filekey|${env}                                                                                     |
+|UPDT_FILE_KEY |MBR_ID                                                                               |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |
+|$filekey      |$currentdatetime                                                                     |412       |HIC              |HN134567          |2016-01-01 00:00:00.0|2016-12-31 00:00:00.0|
+
+
+|Query:Db Table|select * from MBR_ALT_ID where MBR_ALT_ID_TYP_CD = 'UCARD' AND UPDT_FILE_KEY = $filekey|${env}                                                                                     |
+|UPDT_FILE_KEY |MBR_ID                                                                                 |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |
+|$filekey      |$currentdatetime                                                                       |412       |UCARD            |32100001A         |2011-01-01 00:00:00.0|2012-12-31 00:00:00.0|
+
+
+|Query:Db Table|select * from MBR_ALT_ID_ADJ where MBR_ALT_ID_TYP_CD = 'HIC' AND UPDT_FILE_KEY = $filekey|${env}                                                                                     |
+|UPDT_FILE_KEY |MBR_ID                                                                                   |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |
+|$filekey      |$currentdatetime                                                                         |412       |HIC              |HN134567          |2016-01-01 00:00:00.0|2016-12-31 00:00:00.0|
+
+
+|Query:Db Table|select * from MBR_ALT_ID_ADJ where MBR_ALT_ID_TYP_CD = 'UCARD' AND UPDT_FILE_KEY = $filekey|${env}                                                                                     |
+|UPDT_FILE_KEY |MBR_ID                                                                                     |MBR_MOD_ID|MBR_ALT_ID_TYP_CD|MBR_ALT_ID_VAL_TXT|MBR_ALT_ID_STRT_DT   |MBR_ALT_ID_END_DT    |
+|$filekey      |$currentdatetime                                                                           |412       |UCARD            |32100001A         |2011-01-01 00:00:00.0|2012-12-31 00:00:00.0|
+
+
+|Query:Db Table|select * from MBR_ADD_INFO where UPDT_FILE_KEY = $filekey|${env}                                                                                                                                                                                                                                                                                                                                                                                 |
+|UPDT_FILE_KEY |MBR_ID                                                   |MBR_MOD_ID|MBR_ALT_TEL_NUM_TXT|MBR_LANG_CD|MBR_MRTL_STS_CD|PART_A_ELIG_EFF_DT   |PART_B_ELIG_EFF_DT   |MBR_DOD_DT           |MBR_POA_LST_NM|MBR_POA_FST_NM|MBR_POA_REL_CD|MBR_POA_TEL_NUM_TXT|MBR_POA_ALT_TEL_NUM_TXT|MAIL_ADR_LN_1_TXT         |MAIL_ADR_LN_2_TXT|MAIL_CITY_NM|MAIL_ST_CD|MAIL_ZIP_CD|MBR_POP_ID |MBR_ADD_USER_DFN_1_TXT|MBR_ADD_USER_DFN_2_TXT|MBR_ADD_USER_DFN_3_TXT|
+|$filekey      |$currentdatetime                                         |412       |9586488991         |AAR        |M              |2016-01-01 00:00:00.0|2016-12-31 00:00:00.0|2016-11-30 00:00:00.0|PALASTNAME    |PAFNAME       |SPS           |9586488992         |9586488993             |13050 D CIRCLE 20170720004|APT A2323        |EDEN PRAIRIE|MN        |55344      |POPID321001|MBXTUD1=CSUD01        |MBXTUD2=CSUD02        |MBXTUD3=CSUD03        |
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_MemberNewFCDFile_PREPDB_ODS_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+

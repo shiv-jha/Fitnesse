@@ -1,0 +1,189 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 10:38:30 PM (CST) on Tuesday, February 9, 2016 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.RruMeasures.VerifyRdiMeasureTest|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.7.0_71\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;E:\HDE\lib\antisamy-1.4.3.jar;E:\HDE\lib\asm-3.3.1.jar;E:\HDE\lib\avalon-framework-4.1.3.jar;E:\HDE\lib\batik-css-1.7.jar;E:\HDE\lib\batik-ext-1.7.jar;E:\HDE\lib\batik-util-1.7.jar;E:\HDE\lib\bsh-core-2.0b4.jar;E:\HDE\lib\cglib-2.2.2.jar;E:\HDE\lib\commons-beanutils-1.7.0.jar;E:\HDE\lib\commons-beanutils-core-1.7.0.jar;E:\HDE\lib\commons-codec-1.8.jar;E:\HDE\lib\commons-collections-3.2.jar;E:\HDE\lib\commons-configuration-1.5.jar;E:\HDE\lib\commons-digester-1.8.jar;E:\HDE\lib\commons-fileupload-1.2.jar;E:\HDE\lib\commons-httpclient-3.1.jar;E:\HDE\lib\commons-io-2.4.jar;E:\HDE\lib\commons-lang-2.3.jar;E:\HDE\lib\commons-logging-1.1.jar;E:\HDE\lib\esapi-2.1.0.jar;E:\HDE\lib\hde-fitnesse.jar;E:\HDE\lib\jsch-0.1.51.jar;E:\HDE\lib\junit-4.8.2.jar;E:\HDE\lib\log4j-1.2.16.jar;E:\HDE\lib\logkit-1.0.1.jar;E:\HDE\lib\nekohtml-1.9.12.jar;E:\HDE\lib\ojdbc6.jar;E:\HDE\lib\selenium-java-2.47.1-srcs.jar;E:\HDE\lib\selenium-server-standalone-2.47.1.jar;E:\HDE\lib\servlet-api-2.3.jar;E:\HDE\lib\servlet-api-2.5-6.1.14.jar;E:\HDE\lib\stk-1.3.0.jar;E:\HDE\lib\xalan-2.7.0.jar;E:\HDE\lib\xercesImpl-2.8.0.jar;E:\HDE\lib\xml-apis-1.3.03.jar;E:\HDE\lib\xml-apis-ext-1.3.04.jar;E:\HDE\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8090-! |
+|'''Exit code: '''| 0 |
+|'''Time elapsed: '''| 2.964 seconds |
+
+----
+'''Standard Output:'''
+{{{Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: E:\HDE\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (\\ms\userdata\036\nchakrab) directory: \\ms\userdata\036\nchakrab\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: E:\HDE\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (\\ms\userdata\036\nchakrab) directory: \\ms\userdata\036\nchakrab\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+}}}
+----
+'''Standard Error:'''
+{{{log4j:WARN No appenders could be found for logger (BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.Properties <init>
+INFO: Properties loaded
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : RDI_QA
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>RDI Pattern Num->17 Script File name-> HDE_HDE_RDITST
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.fixtures.RunRruMeasure <init>
+INFO: Measure filename in cons is null
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Feb 09, 2016 10:38:28 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.RRUAggrerationRepoImpl getRRUAggregationByMeasure
+INFO: Loaded data from HDE_AGG_RRU_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5414
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:RDI and population:RCOM
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:RDI
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: Creating Stage db connection
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: QA Connection closed
+Feb 09, 2016 10:38:29 PM com.optum.hde.fitnesse.SuiteTearDown closeDbConnection
+INFO: STG Connection closed
+}}}

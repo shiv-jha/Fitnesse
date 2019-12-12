@@ -1,0 +1,87 @@
+---
+Test
+---
+!define fileType {CMSPreclusionList}
+
+!define D1_HDR_Data {}
+!define env {TST}
+
+
+!define cmsprecldata {${D1_HDR_Data}}
+
+
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                            |
+|given the        |${fileType}_      |PAF PRVG file with content|${cmsprecldata}|
+*!
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+|script                                                                                                                         |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.txt'|For|6|And Retry|10|times|true|
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+!define fileType {CMSPreclusionLists123123}
+
+
+!define D1_HDR_Data {LASTNAME|FIRSTNAME|MIDNAME|BUSNAME|GENERAL|SPECIALTY|NPI|EIN|DOB|LINE_1_ST_ADR|LINE_2_ST_ADR|CITY|STATE|ZIP|EXCLDATE|CLMREJECTDATE|REINDATE}
+!define D2_PRV_Data {Sivapuram|Dinesh|S|SSD Hospitals|PRACTITIONER (PHYSICIAN)|FAMILY PRACTICE|1234567844|EIN001|19820101|796 N ST|Yellow Stone|LORTON|VA|22079|20190101|20190401|20190331}
+!define D3_PRV_Data {Dendi|Revanth|D|DR Nursing Home|Orthopaedician|Orthopedic Surgery|1234567845|EIN002|19821101|963 S ST|Blue Stone|New Jersey|NJ|63985|20190202|20190501|20190402}
+!define D4_PRV_Data {Parthasarathy|Srikanth|SP|SP Clinic|Pediatrician|Pediatrics|1234567846|EIN003|19830101|101 South Street|Market Yard|Minnetonka|MN|21302|20190115|20190330|20190228}
+!define D5_PRV_Data {Mohanty|Prasanjeet|PM|PM Diagnostics|Diabetician|Diabetics|1234567847|EIN004|19890101|120 Down Street|PM Enclave|California|CA|59862|20190101|20190101|20190101}
+!define env {TST}
+
+
+!define cmsprecldata {${D1_HDR_Data}
+${D2_PRV_Data}
+${D3_PRV_Data}
+${D4_PRV_Data}
+${D5_PRV_Data}}
+
+
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                            |
+|given the        |${fileType}_      |PAF PRVG file with content|${cmsprecldata}|
+*!
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+|script                                                                                                                       |
+|check|query|select count(*) as count from frmk_stg_fileinfo where file_name ='$datfilename.txt'|For|0|And Retry|10|times|true|
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+!define fileType {CMSPreclusionList}
+
+
+!define D1_HDR_Data {LSTNAME|FIRSNAME|MNAME|BUSINESSNAME|GENERAL|SPECIALTY|NPI|EIN|DOB|LINE_1_ST_ADR|LINE_2_ST_ADR|CITY|STATE|ZIP|EXCLDATE|CLMREJECTDATE|REINDATE}
+!define D2_PRV_Data {Sivapuram|Dinesh|S|SSD Hospitals|PRACTITIONER (PHYSICIAN)|FAMILY PRACTICE|1234567844|EIN001|19820101|796 N ST|Yellow Stone|LORTON|VA|22079|20190101|20190401|20190331}
+!define env {TST}
+
+
+!define cmsprecldata {${D1_HDR_Data}
+${D2_PRV_Data}}
+
+
+!|script          |File Support                                                 |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                            |
+|given the        |${fileType}_      |PAF PRVG file with content|${cmsprecldata}|
+*!
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+|script                                                                                                                         |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.txt'|For|6|And Retry|10|times|true|

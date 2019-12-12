@@ -1,0 +1,45 @@
+---
+Test
+---
+!define fileType {AET_MA}
+!define providerType {CPGContractPBPOverride}
+
+!define D1_HDR_Data {Plan|PBP|CPG1|CPG2|CPG3|CPG4|CPG5|Date Added}
+!define D2_Data {H1234|001|Y|Y|Y|Y|Y|20180209}
+!define D10_CNT_Data {T|3}
+
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define providerdata {${D1_HDR_Data}
+${D2_Data}
+${D10_CNT_Data}}
+
+
+!|script          |File Support                                                          |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                            |
+|given the        |${fileType}_${providerType}|PAF PRVG file with content|${providerdata}|
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location|${pafpass}|Zone|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+*!
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+
+

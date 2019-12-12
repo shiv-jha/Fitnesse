@@ -1,0 +1,20 @@
+!define env {UAT}
+!define sFile {PLAN_14_20170222_07021013_P.DAT}
+!define ssFile {837I_UHG_COSMOS_999_Scenario1_01.DAT}
+!define Filecount {23202}
+
+
+
+!|script|View File Table Status         |
+|$myVar=|status message|$datfilename.DAT|
+
+
+                                                                                               
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_NAME                                                                                 |
+|$datfilename.DAT                                                                          |
+
+!|script                                                                                                                         |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|10|times|true|
+
+

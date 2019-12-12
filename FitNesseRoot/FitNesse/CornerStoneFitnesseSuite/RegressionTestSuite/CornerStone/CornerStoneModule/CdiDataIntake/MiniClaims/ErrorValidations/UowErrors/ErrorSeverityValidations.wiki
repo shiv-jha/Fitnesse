@@ -1,0 +1,166 @@
+---
+Test
+---
+!define fileType {MINCLM}
+!define subCliSk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+
+!define D1_HDR_Data {${fileType}|${subCliSk}|20161101|20161231|20160921134506|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_CLM_Data {414|20170719234758|233|HIC|288327298B|FINALIZED|2232323|RESERVED||99|@#$|XY|10|1|20160110|20160128|201601101420|20160128|PA001234|20160131|2016-13-30T00:00:00|CLMUD1=CSUD01|CLMUD2=CSUD02|CRK000001|LIKITH|20160721|1|HIOSID01|MMID001|ABC|WRONG|AD|120|OTH|CLMUD3=CSUD03}
+!define D4_PRV_Data {415||2838762327|20160602|abcd|PRVUD1=CSUD01|PRVUD2=CSUD02|PRVUD3=CSUD03}
+!define D5_CDE_Data {414|ABK|S0789|1|CDEUD1=CSUD01|CDEUD2=CSUD02|CDEUD3=CSUD03}
+!define D6_XSVC_Data {414|1|MUBCDE101|HC|12345|32|33|50|52|221|1||||1000|20160110|20160128|RENDERING|1838762327|20160602|232|12634049061|10|N|XSVCUD1=CSUD01|XSVCUD2=CSUD02|XSVCUD3=CSUD03}
+!define D7_XFIN_Data {414|1|BILLED_AMT|104.78|20160125|Y|XFINUD1=CSUD01|XFINUD2=CSUD02|XFINUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${subCliSk}|20161101|20161231|20160921134506|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+
+!define minclmdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+CLM|$currentdatetime|${D3_CLM_Data}
+PRV|$currentdatetime|${D4_PRV_Data}
+CDE|$currentdatetime|${D5_CDE_Data}
+XSVC|$currentdatetime|${D6_XSVC_Data}
+XFIN|$currentdatetime|${D7_XFIN_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time        |yyyyMMddHHmmss                 |
+|given the cdi    |${fileType}_${subCliSk}_CM|file with content|${minclmdata}|
+
+|script |File Support                                                       |
+|command|${cdi_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+
+
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|6007|And Retry|120|times|true|
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107036' and file_key = $filekey|
+|$rjct_ind_CS107036=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107037' and file_key = $filekey|
+|$rjct_ind_CS107037=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107042' and file_key = $filekey|
+|$rjct_ind_CS107042=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107052' and file_key = $filekey|
+|$rjct_ind_CS107052=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107054' and file_key = $filekey|
+|$rjct_ind_CS107054=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107055' and file_key = $filekey|
+|$rjct_ind_CS107055=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+
+
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107082' and file_key = $filekey|
+|$rjct_ind_CS107082=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107083' and file_key = $filekey|
+|$rjct_ind_CS107083=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107086' and file_key = $filekey|
+|$rjct_ind_CS107086=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107088' and file_key = $filekey|
+|$rjct_ind_CS107088=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107091' and file_key = $filekey|
+|$rjct_ind_CS107091=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107100' and file_key = $filekey|
+|$rjct_ind_CS107100=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107101' and file_key = $filekey|
+|$rjct_ind_CS107101=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107115' and file_key = $filekey|
+|$rjct_ind_CS107115=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107121' and file_key = $filekey|
+|$rjct_ind_CS107121=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107139' and file_key = $filekey|
+|$rjct_ind_CS107139=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107141' and file_key = $filekey|
+|$rjct_ind_CS107141=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+!|script            |DbTable                                                                                |
+|query              |select SEG_RJCT_IND from dq_err_rslt_V2 where ERR_CD='CS107154' and file_key = $filekey|
+|$rjct_ind_CS107154=|valueofcolumn                               |SEG_RJCT_IND                              |
+
+
+
+|Query:Db Table    |select err_cd,err_svrty_typ,case when err_svrty_typ = 'WARNING' THEN 'N' when err_svrty_typ = 'REJECT' THEN 'Y' end as indicator from clnt_dq_err where ERR_CD in('CS107139','CS107141','CS107086','CS107036','CS107037','CS107052','CS107054','CS107088','CS107083','CS107037','CS107042','CS107055','CS107082','CS107091','CS107100','CS107101','CS107115','CS107121','CS107154') and prty_sk=${subCliSk}|${env}|
+|INDICATOR     |ERR_CD                                                                                                                                                                              |
+|$rjct_ind_CS107139|CS107139                                                                                                                                                                            |
+|$rjct_ind_CS107141|CS107141                                                                                                                                                                            |
+|$rjct_ind_CS107086|CS107086                                                                                                                                                                            |
+|$rjct_ind_CS107036|CS107036                                                                                                                                                                            |
+|$rjct_ind_CS107037|CS107037                                                                                                                                                                            |
+|$rjct_ind_CS107052|CS107052                                                                                                                                                                            |
+|$rjct_ind_CS107054|CS107054                                                                                                                                                                            |
+|$rjct_ind_CS107088|CS107088                                                                                                                                                                            |
+|$rjct_ind_CS107083|CS107083                                                                                                                                                                            |
+|$rjct_ind_CS107042|CS107042                                                                                                                                                                            |
+|$rjct_ind_CS107055|CS107055                                                                                                                                                                            |
+|$rjct_ind_CS107082|CS107082                                                                                                                                                                            |
+|$rjct_ind_CS107091|CS107091                                                                                                                                                                            |
+|$rjct_ind_CS107100|CS107100                                                                                                                                                                            |
+|$rjct_ind_CS107101|CS107101                                                                                                                                                                            |
+|$rjct_ind_CS107115|CS107115                                                                                                                                                                            |
+|$rjct_ind_CS107121|CS107121                                                                                                                                                                            |
+|$rjct_ind_CS107154|CS107154                                                                                                                                                                            |
+

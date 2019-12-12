@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20161106</FitNesseVersion>
+  <rootPath>FitNesse.CornerStoneFitnesseSuite.SuiteTearDown</rootPath>
+    <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <date>2019-03-13T20:09:01+05:30</date>
+    <runTimeInMillis>0</runTimeInMillis>
+    <content>&lt;br/&gt;&lt;br/&gt;</content>
+    <relativePageName>SuiteTearDown</relativePageName>
+          </result>
+  <finalCounts>
+    <right>1</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>0</totalRunTimeInMillis>
+</testResults>
+

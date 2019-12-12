@@ -1,0 +1,86 @@
+---
+Test
+---
+!define fileType {MEMBER}
+!define memberNumber {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define command {sh /cas/scripts/cornerstone/bin/batchclient.sh CASP0026}
+
+!define D1_HDR_Data {${fileType}|${memberNumber}|20180101|20180111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data {412|Sri|Radha|D|19780309|m|Dugbug, Lee 002|See Mee 2|Miami|CA|100810011|0018099867037|20180101|20181231|EE|N||CR00001|TST02}
+!define D4_ENR_Data {412|12345B2798|001|ssi|MEM200001|S|20180101|20180131|100.21|CA|TST03|EMG00001|08|Add|XYZ Employer|||||05}
+!define D5_PCP_Data {412|PNO000001|411|PNO000001|411|20110101|20111231|TST04}
+!define D6_ID_Data  {412|UcaRD|32100001A|20110101|20121231}
+!define D7_MBXT_Data {412|8886001885|ENG|M|20100101|20111231|20130506|TANKU|RADI|CUP|8887121882|8099562147|13050 D CIRCLE 20170720004|APT A2323|EDEN PRAIRIE|MN|55344|POPID321001|MBXTUD1=CSUD01|MBXTUD2=CSUD02|MBXTUD3=CSUD03}
+!define D8_FTR_Data {${fileType}|${memberNumber}|20180101|20180111|$currentdatetime|6.1}
+!define D9_CNT_Data {1|1|1|1|1|1|6}
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|$currentdatetime|${D3_MBR_Data}
+ENR|$currentdatetime|${D4_ENR_Data}
+PCP|$currentdatetime|${D5_PCP_Data}
+ID|$currentdatetime|${D6_ID_Data}
+MBXT|$currentdatetime|${D7_MBXT_Data}
+FTR|${D8_FTR_Data}
+CNT|${D9_CNT_Data}}
+
+
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the        |${fileType}_${memberNumber}_MR|file with content|${memberdata}|
+
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|script                                                                                                              |
+|check|query|select process_sts_key from mbr_uow_grp_evnt f where f.file_key=$filekey|For|20|And Retry|120|times|true|
+
+!|script  |DbTable                                         |
+|$exit_cd=|run Dup|CALC_RDY_FOR_DUPLICATE_CHK_STS|procedure|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|70|And Retry|10|times|true|
+
+
+|script |File Support                                                      |
+|command|${command}|In|${ftphost}|To|${ftpuser}|Location Zone|${ftppass}|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|90|And Retry|120|times|true|
+
+!|script  |DbTable                                                             |
+|query    |select to_char(UPDATE_DATE,'DD-MON-YY HH.MM.SS') UPDATE_DATE  from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$UPDATE_DATE=|valueofcolumn                        | UPDATE_DATE           |
+
+
+|Query:Db Table|Select PAR_EVENT_ID,COR_EVENT_ID,EVENT_TIMESTAMP,EVENT_CATEGORY,EVENT_TYPE,PUBLISHER,CLI_SK,SUB_CLI_SK,CLI_GUID,SUB_CLI_GUID,ADD_INFO from CLNT_PRCS_CYCLE_EVENT order by add_info like '%$filekey%';|${env} |
+|PAR_EVENT_ID |COR_EVENT_ID |EVENT_TIMESTAMP      |EVENT_CATEGORY|EVENT_TYPE             |PUBLISHER               |CLI_SK |SUB_CLI_SK |CLI_GUID                            |SUB_CLI_GUID                        |ADD_INFO          |
+|null         |null         |$UPDATE_DATE                   |DataIntake    |Member.ODSLoad.Success |RQNS.Cornerstone        |889    |889        |3d148bfe-792f-445b-903a-92c96264f0b2|3d148bfe-792f-445b-903a-92c96264f0b2|[file_key=$filekey|
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_MemberNewFCDFile_PREPDB_ODS_Persistence_Validation61|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+

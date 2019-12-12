@@ -1,0 +1,93 @@
+---
+Test
+---
+!define fileType {PreclusionList}
+!define precl_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/cmspreclusion/cmspreclusion-intake.sh TST rqnsdev cmspreclusion}
+
+# Scenarios to check Update and Deletes. D5 data deleted from inserts. D4 and D6 Modified for Updates. D2 and D3 No change
+
+
+!define D1_HDR_Data {LASTNAME,FIRSTNAME,MIDNAME,BUSNAME,GENERAL,SPECIALTY,NPI,EIN,DOB,LINE_1_ST_ADR,LINE_2_ST_ADR,CITY,STATE,ZIP,EXCLDATE,CLMREJECTDATE,REINDATE}
+!define D2_PRV_Data {NESTAG,CASEY,K,SSD Hospitals,PRACTITIONER (PHYSICIAN),GENERAL,20190313002,TEST02,19860821,6540 N ST,SANFORD,ORLANDO,FL,32773,20190101,,20190101}
+!define D3_PRV_Data {KAREN,ISABELL,K,REX Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190313001,TEST01,19860621,796 N ST,SANFORD,ORLANDO,FL,32773,20190101,20190401,20190101}
+!define D4_PRV_Data {JHON,BOLIVER,D,SSD Hospitals,PRACTITIONER (PHYSICIAN),FAMILY PRACTICE,20190313003,TEST02,19890621,876 N ST,SANFORD,ORLANDO,FL,32773,20190101,,20190101}
+!define D6_PRV_Data {JAMES,OLIVER,N,ZZ Hospitals,PRACTITIONER (PHYSICIAN),OWN PRACTICE,20190313005,TEST02,19840621,89 N ST,SANFORD,ORLANDO,FL,32775,20190101,,}
+!define env {TST}
+
+
+!define cmsprecldata {${D1_HDR_Data}
+${D2_PRV_Data}
+${D3_PRV_Data}
+${D4_PRV_Data}
+${D6_PRV_Data}}
+
+
+
+!|script          |File Support                                              |
+|$currentdatetime=|make id using Time|yyyyMMddHHmmss                         |
+|given the        |${fileType}_      |Precl file with content|${cmsprecldata}|
+*!
+
+
+|script |File Support                                                         |
+|command|${precl_command}|In|${pafhost}|To|${pafuser}|Location Zone|${pafpass}|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.csv'|For|104|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.csv'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+!*> 2. !style_red('''This step will give data from CMS_PRECL_PROV table)
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = '$filekey' and npi = '20190313001'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCL_DT              | CLM_REJ_DT              | REIN_DT              |DERIV_DEL_IND|
+|KAREN       | ISABELL     | K            | REX Hospitals      | PRACTITIONER (PHYSICIAN)  | FAMILY PRACTICE       | 20190313001 | TEST01 | 1986-06-21 00:00:00.0 | 796 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 2019-01-01 00:00:00.0| 2019-04-01 00:00:00.0   | 2019-01-01 00:00:00.0|             |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = '$filekey' and npi = '20190313002'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCL_DT              | CLM_REJ_DT              | REIN_DT              |DERIV_DEL_IND|
+|NESTAG      | CASEY       | K            | SSD Hospitals      | PRACTITIONER (PHYSICIAN)  | GENERAL               | 20190313002 | TEST02 | 1986-08-21 00:00:00.0 | 6540 N ST     | SANFORD       | ORLANDO | FL    | 32773 | 2019-01-01 00:00:00.0|                         | 2019-01-01 00:00:00.0 |  Y          |
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = '$filekey' and npi = '20190313003'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   |  EXCL_DT              | CLM_REJ_DT             | REIN_DT              |DERIV_DEL_IND|
+|JHON        | BOLIVER     | D            | SSD Hospitals | PRACTITIONER (PHYSICIAN)       | FAMILY PRACTICE       | 20190313003 | TEST02 | 1989-06-21 00:00:00.0 | 876 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 2019-01-01 00:00:00.0|                         |2019-01-01 00:00:00.0  |  Y           |
+
+|Query:Db Table|select * from CMS_PRECL_PROV where npi = '20190313004'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   |  EXCL_DT              | CLM_REJ_DT              | REIN_DT              |DERIV_DEL_IND|
+|RUBY        | MITCHEL     | D            | SSD Hospitals | PRACTITIONER (PHYSICIAN)       | FAMILY PRACTICE       | 20190313004 | TEST02 | 1983-06-21 00:00:00.0 | 87 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 2019-01-01 00:00:00.0|                          |                      |  Y           |
+
+|Query:Db Table|select * from CMS_PRECL_PROV where UPDT_file_key = '$filekey' and npi = '20190313005'|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   |  EXCL_DT              | CLM_REJ_DT              | REIN_DT               |DERIV_DEL_IND|
+|JAMES       | OLIVER      | N            | ZZ Hospitals       | PRACTITIONER (PHYSICIAN)  | OWN PRACTICE          | 20190313005 | TEST02 | 1984-06-21 00:00:00.0 | 89 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 2019-01-01 00:00:00.0|                          |                       |            |
+
+!*> 2. !style_green('''This step will give data from CMS_PRECL_PROV_HIST table)
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where npi = '20190313001' and CMS_PRECL_PROV_HIST_SK in (select max(CMS_PRECL_PROV_HIST_SK) from CMS_PRECL_PROV_HIST where npi = '20190313001' )|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCL_DT              | CLM_REJ_DT              | REIN_DT              |DERIV_DEL_IND|
+|KAREN       | ISABELL     | K            | REX Hospitals      | PRACTITIONER (PHYSICIAN)  | FAMILY PRACTICE       | 20190313001 | TEST01 | 1986-06-21 00:00:00.0 | 796 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 2019-01-01 00:00:00.0| 2019-04-01 00:00:00.0   | 2019-01-01 00:00:00.0|             |
+
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where npi = '20190313002' and CMS_PRECL_PROV_HIST_SK in (select max(CMS_PRECL_PROV_HIST_SK) from CMS_PRECL_PROV_HIST where npi = '20190313002' )|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   | EXCL_DT              | CLM_REJ_DT              | REIN_DT              |DERIV_DEL_IND|
+|NESTAG      | CASEY       | K            | SSD Hospitals      | PRACTITIONER (PHYSICIAN)  | GENERAL               | 20190313002 | TEST02 | 1986-08-21 00:00:00.0 | 6540 N ST     | SANFORD       | ORLANDO | FL    | 32773 | 2019-01-01 00:00:00.0|                         | 2019-01-01 00:00:00.0 |  Y          |
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where npi = '20190313003' and CMS_PRECL_PROV_HIST_SK in (select max(CMS_PRECL_PROV_HIST_SK) from CMS_PRECL_PROV_HIST where npi = '20190313003' )|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   |  EXCL_DT              | CLM_REJ_DT             | REIN_DT              |DERIV_DEL_IND|
+|JHON        | BOLIVER     | D            | SSD Hospitals | PRACTITIONER (PHYSICIAN)       | FAMILY PRACTICE       | 20190313003 | TEST02 | 1989-06-21 00:00:00.0 | 876 N ST      | SANFORD       | ORLANDO | FL    | 32773 | 2019-01-01 00:00:00.0|                         |2019-01-01 00:00:00.0  |  Y           |
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where npi = '20190313004' and CMS_PRECL_PROV_HIST_SK in (select max(CMS_PRECL_PROV_HIST_SK) from CMS_PRECL_PROV_HIST where npi = '20190313004' )|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   |  EXCL_DT              | CLM_REJ_DT              | REIN_DT              |DERIV_DEL_IND|
+|RUBY        | MITCHEL     | D            | SSD Hospitals | PRACTITIONER (PHYSICIAN)       | FAMILY PRACTICE       | 20190313004 | TEST02 | 1983-06-21 00:00:00.0 | 87 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 2019-01-01 00:00:00.0|                          |                      |  Y           |
+
+|Query:Db Table|select * from CMS_PRECL_PROV_HIST where npi = '20190313005' and CMS_PRECL_PROV_HIST_SK in (select max(CMS_PRECL_PROV_HIST_SK) from CMS_PRECL_PROV_HIST where npi = '20190313005' )|${env}                                                                                                                                                                                                                                   |
+|PROV_LST_NM | PROV_FST_NM | PROV_MIDL_NM | PROV_ENTY_NM       | PROV_TYP                  | PROV_ENT_SPCLTY       | NPI         | EIN    | DOB                   | LINE_1_ST_ADR | LINE_2_ST_ADR | CITY    | STATE | ZIP   |  EXCL_DT              | CLM_REJ_DT              | REIN_DT               |DERIV_DEL_IND|
+|JAMES       | OLIVER      | N            | ZZ Hospitals       | PRACTITIONER (PHYSICIAN)  | OWN PRACTICE          | 20190313005 | TEST02 | 1984-06-21 00:00:00.0 | 89 N ST       | SANFORD       | ORLANDO | FL    | 32775 | 2019-01-01 00:00:00.0|                          |                       |           |
+
+!|script|RallyTestCaseStatusUpdates                                                               |
+|send   |CS_CMSPreclusion_Updates_Deletes_load|Test|Pass|Result||To|This is Automated run from Rally|Rally|

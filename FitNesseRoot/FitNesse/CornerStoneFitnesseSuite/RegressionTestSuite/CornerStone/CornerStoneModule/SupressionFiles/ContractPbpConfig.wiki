@@ -1,0 +1,188 @@
+---
+Test
+---
+!define fileType {AET_MA_ContractPBPHIOSConfig_}
+!define programYear {2018}
+!define D1_HDR_Data {Program Year|Contract|PBP|State|Membership Type|Onshore_Offshore Coding|Onshore_Offshore PSC Activity|HQPAF_PAF HP Branding|Reporting Exclusion|Timely Reimbursement CPG 1|Timely Reimbursement CPG 2|Timely Reimbursement CPG 3|Timely Reimbursement CPG 4|Timely Reimbursement CPG 5|Late Reimbursement CPG 1|Late Reimbursement CPG 2|Late Reimbursement CPG 3|Late Reimbursement CPG 4|Late Reimbursement CPG 5|CGAP Reimbursement CPG 1|CGAP Reimbursement CPG 2|CGAP Reimbursement CPG 3|CGAP Reimbursement CPG 4|CGAP Reimbursement CPG 5|Date Added}
+!define D2_Data {H1109|801|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D3_Data {H3152|022|AC|Hybrid Assigned|Onshore|Onshore|Allwell from Health Net|Exclude|50|50|50|30|50|5|5|5|5|5|50|50|50|50|50|20181101}
+!define D4_Data {H3152|041||Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude||||||25|25|25|25|25|125|125|50|50|50|20191101}
+!define D5_Data {H3152|045|AZ|Hybrid Render|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250||||||125|125|50|50|50|20191101}
+!define D6_Data {H3152|046|AZ||Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25||||||20191101}
+!define D7_Data {H3152|048|AZ|Hybrid Rendering|Onshored|Onshore|Allwell from Health Net||250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D8_Data {H3152|077|AZ|Hybrid Rendering||Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D9_Data {H3152|801|AZ|Hybrid Rendering|Onshore|Onshored|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D10_Data {H3152|804|AZ|Hybrid Rendering|Onshore||Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D11_Data {H3931|004|AZ|Hybrid Rendering|Onshore|Onshore||Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D12_Data {H3931|054|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Excluded|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D13_Data {H3931|055|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net||250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D14_Data {H3931|058|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|350|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D15_Data {H3931|064|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D16_Data {H3931|065|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|55|25|25|25|25|125|125|50|50|50|20191101}
+!define D17_Data {H3931|070|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D18_Data {H3931|801|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|325|125|50|50|50|20191101}
+!define D19_Data {H3931|804|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define D20_Data {H0522|801|AZ|Hybrid Rendering|Onshore|Onshore|Allwell from Health Net|Exclude|250|250|250|250|250|25|25|25|25|25|125|125|50|50|50|20191101}
+!define env {TST}
+!define var = $currentdatetime
+
+!define providerdata {${D1_HDR_Data}
+${programYear}| ${D2_Data}|
+${programYear}| ${D3_Data}|
+${programYear}| ${D3_Data}|
+${programYear}| ${D4_Data}|
+${programYear}| ${D5_Data}|
+${programYear}| ${D6_Data}| 
+${programYear}| ${D7_Data}| 
+${programYear}| ${D8_Data}| 
+${programYear}| ${D9_Data}| 
+${programYear}| ${D10_Data}|
+${programYear}| ${D11_Data}|
+${programYear}| ${D12_Data}|
+${programYear}| ${D13_Data}|
+${programYear}| ${D14_Data}|
+${programYear}| ${D15_Data}|
+${programYear}| ${D16_Data}|
+${programYear}| ${D17_Data}|
+${programYear}| ${D18_Data}|
+${programYear}| ${D19_Data}|
+${programYear}| ${D20_Data}|
+}
+
+!| script | File Support |
+| $currentdatetime= | make id using Time | yyyyMMddHHmmss |
+| given the | ${fileType} | PAF PRVG file with content | ${providerdata} |
+
+| script | File Support |
+| command | ${paf_command} | In | ${pafhost} | To | ${pafuser} | Location | ${pafpass} | Zone |
+
+!***> 2. !style_green('''This step will wait till file moves to 104 status)'''
+
+| script |
+| check | query | select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.txt' | For | 104 | And Retry | 120 | times | true |
+
+*!
+
+!| script | DbTable |
+| query | select * from frmk_stg_fileinfo  where file_name ='$datfilename.txt' |
+| $filekey= | valueofcolumn | FILE_KEY |
+
+| Query:Db Table | select * from FRMK_STG_FILEINFO where file_name = '$datfilename.txt' | ${env} |
+| FILE_KEY |
+| $filekey |
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H1109' AND SUB_PLN = '801' |
+| $OCT_IOA_CNTR_PBP_CONF_SK1= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | MBRSHP_TP_OVRD  | OFF_ON_CD | OFF_ON_PSC_CD | HQPAF_PAF_HP_BRAND     | RPT_EXCL | DATE_ADDED | REJ_IND |TMLY_REIM_CPG1 |TMLY_REIM_CPG2 |TMLY_REIM_CPG3 |TMLY_REIM_CPG4 |TMLY_REIM_CPG5 | LT_REIM_CPG1 | LT_REIM_CPG2 | LT_REIM_CPG3 | LT_REIM_CPG4 | LT_REIM_CPG5 | CGAP_REIM_CPG1 | CGAP_REIM_CPG1 | CGAP_REIM_CPG1 | CGAP_REIM_CPG1 | CGAP_REIM_CPG1 |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK1 | 2018    | H1109| 801     | Hybrid Rendering| Onshore   | Onshore       | Allwell from Health Net| Exclude  | 01-NOV-19  | N       | 250           |250            |250            |250            |250            | 25           | 25           | 25           | 25           | 25           | 125            | 125            | 125            | 125            | 125            |
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '022' |
+| $OCT_IOA_CNTR_PBP_CONF_SK2= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK2 | 2018    | H3152| 022     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '022') AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				  | DATA_VAL_IN_ERR_TXT  | ELMNT_NM |
+| $filekey | CS230113 | OCT_IOA_CNTR_PBP_CONF_SK2 | [AC]    			 | states	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '041' |
+| $OCT_IOA_CNTR_PBP_CONF_SK3= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK3 | 2018    | H3152| 041     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '041') AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				  | DATA_VAL_IN_ERR_TXT  | ELMNT_NM |
+| $filekey | CS230113 | $OCT_IOA_CNTR_PBP_CONF_SK3 |     			     | states	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '045' |
+| $OCT_IOA_CNTR_PBP_CONF_SK4= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK4 | 2018    | H3152| 045     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '045') AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				  | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 		|
+| $filekey | CS230114 | OCT_IOA_CNTR_PBP_CONF_SK4 | Hybrid Render	     | Membership Type	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '046' |
+| $OCT_IOA_CNTR_PBP_CONF_SK5= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK5 | 2018    | H3152| 046     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '046') AND ELMNT_NM = 'mbrshpTpOvrd' AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				   | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 		|
+| $filekey | CS230114 | $OCT_IOA_CNTR_PBP_CONF_SK5 |     			      | Membership Type	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '048' |
+| $OCT_IOA_CNTR_PBP_CONF_SK6= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK6 | 2018    | H3152| 048     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '048') AND ELMNT_NM = 'mbrshpTpOvrd' AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				   | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 		|
+| $filekey | CS230115 | $OCT_IOA_CNTR_PBP_CONF_SK6 | Onshored		      | Membership Type	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '077' |
+| $OCT_IOA_CNTR_PBP_CONF_SK7= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK7 | 2018    | H3152| 077     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '077') AND ELMNT_NM = 'offOnCd' AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				   | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 		|
+| $filekey | CS230115 | $OCT_IOA_CNTR_PBP_CONF_SK7 | 				      | Membership Type	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '801' |
+| $OCT_IOA_CNTR_PBP_CONF_SK8= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK8 | 2018    | H3152| 801     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '801') AND ELMNT_NM = 'offOnCd' AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				   | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 		|
+| $filekey | CS230116 | $OCT_IOA_CNTR_PBP_CONF_SK8 | Onshored		      | Membership Type	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3152' AND SUB_PLN = '804' |
+| $OCT_IOA_CNTR_PBP_CONF_SK9= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK9 | 2018    | H3152| 804     | N       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '804') AND ELMNT_NM = 'offOnCd' AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				   | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 		|
+| $filekey | CS230116 | $OCT_IOA_CNTR_PBP_CONF_SK9 |         		      | Membership Type	|
+
+!| script | DbTable |
+| query | select * from OCT_IOA_CNTR_PBP_CONF  where file_key = $filekey AND CNTR = 'H3931' AND SUB_PLN = '004' |
+| $OCT_IOA_CNTR_PBP_CONF_SK10= | valueofcolumn | OCT_IOA_CNTR_PBP_CONF_SK |
+
+| Query:Db Table |SELECT * FROM OCT_IOA_CNTR_PBP_CONF WHERE file_key = $filekey| ${env} |
+| FILE_KEY | OCT_IOA_CNTR_PBP_CONF_SK   | PRG_YR  | CNTR | SUB_PLN  | REJ_IND |
+| $filekey | $OCT_IOA_CNTR_PBP_CONF_SK10 | 2018    | H3931| 004     | Y       | 
+
+| Query:Db Table |SELECT * FROM DQ_ERR_RSLT WHERE RECORD_ID IN (select OCT_IOA_CNTR_PBP_CONF_SK from OCT_IOA_CNTR_PBP_CONF where File_key = 32545975 AND CNTR = 'H3152' AND SUB_PLN = '804') AND ELMNT_NM = 'offOnCd' AND file_key = $filekey| ${env} |
+| FILE_KEY | ERR_CD   | RECORD_ID				    | DATA_VAL_IN_ERR_TXT  | ELMNT_NM 				|
+| $filekey | CS230116 | $OCT_IOA_CNTR_PBP_CONF_SK10 |         		      | HQPAF_PAF HP Branding	|

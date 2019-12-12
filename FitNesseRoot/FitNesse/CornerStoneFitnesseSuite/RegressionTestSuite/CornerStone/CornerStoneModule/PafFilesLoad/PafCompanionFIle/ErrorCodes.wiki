@@ -1,0 +1,112 @@
+---
+Test
+---
+!define fileYear {2017}
+!define fileType1 {Chartfinder_Companion_PAF}
+!define fileType2 {MCAID_OP}
+!define fileType3 {COMM}
+!define filev {_Voooo}
+!define  HDR1 {ProjectID}
+!define  HDR2 {PAFID}
+!define  HDR3 {MemberId}
+!define  HDR4 {MemberHIC}
+!define  HDR5 {MemberFirstName}
+!define  HDR6 {MemberLastName}
+!define  HDR7 {MeasureID}
+!define  DTL1 {PAF_2017}
+!define  DTL2 {invalid}
+!define  DTL3 {939117431}
+!define  DTL4 {003312058A}
+!define  DTL5 {Shiv}
+!define  DTL6 {Kumar Jha}
+!define  DTL7 {101}
+!define  DTL1_1 {}
+!define  DTL1_2 {}
+!define  DTL1_3 {}
+!define  DTL1_4 {}
+!define  DTL1_5 {}
+!define  DTL1_6 {}
+!define  DTL1_7 {}
+
+
+!define contents  {${HDR1}|${HDR2}|${HDR3}|${HDR4}|${HDR5}|${HDR6}|${HDR7}
+${DTL1}|${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}
+${DTL1_1}|${DTL1_2}|${DTL1_3}|${DTL1_4}|${DTL1_5}|${DTL1_6}|${DTL1_7}}
+
+!define env {TST}
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                                                                     |
+|$currentdatetime=|make id using Time                                 |yyyyMMddHHmmss                                               |
+|given the        |${fileType1}_${fileYear}_${fileType2}_${fileType3}_|paf companion file with content|${contents}|and type|${filev}|
+*!
+
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                      |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.txt'|For|1|And Retry|60|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PAF_CMPN|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename.txt'|For|105|And Retry|60|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.txt'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280001' and er.file_key= $filekey|${env}                                                                                      |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM |ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION           |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |ProjectID|CS280001|        |REQUIRED     |ProjectID is missing/invalid|REJECT  |
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280002' and er.file_key= $filekey|${env}                                                                                 |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION       |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |PAFID   |CS280002|        |REQUIRED     |PAFID is missing/invalid|REJECT  |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280003' and er.file_key= $filekey|${env}                                                                                    |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION          |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |MemberId|CS280003|        |REQUIRED     |MemberId is missing/invalid|REJECT  |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280004' and er.file_key= $filekey|${env}                                                                                      |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM |ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION           |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |MemberHIC|CS280004|        |REQUIRED     |MemberHIC is missing/invalid|REJECT  |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280005' and er.file_key= $filekey|${env}                                                                                           |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION                 |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |        |CS280005|        |REQUIRED     |MemberFirstName is missing/invalid|WARNING |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280006' and er.file_key= $filekey|${env}                                                                                           |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION                 |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |        |CS280006|        |REQUIRED     |PMemberLastName is missing/invalid|WARNING |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS280007' and er.file_key= $filekey|${env}                                                                                      |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM |ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION           |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |MeasureID|CS280007|        |REQUIRED     |MeasureID is missing/invalid|REJECT  |
+

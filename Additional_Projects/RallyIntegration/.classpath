@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="E:/Automation/rally-rest-api-2.2.1.jar"/>
+	<classpathentry kind="lib" path="E:/Automation/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="E:/Automation/httpclient-4.2.3.jar"/>
+	<classpathentry kind="lib" path="E:/Automation/httpcore-4.2.1.jar"/>
+	<classpathentry kind="lib" path="E:/Automation/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/esglabuser/Desktop/automation-hde/lib/poi-3.9.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

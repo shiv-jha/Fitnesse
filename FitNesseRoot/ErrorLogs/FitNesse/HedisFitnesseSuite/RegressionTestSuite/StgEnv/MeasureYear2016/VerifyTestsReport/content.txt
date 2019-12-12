@@ -1,0 +1,1733 @@
+
+!3 !-slim:fitnesse.slim.SlimService-!
+|'''Date: '''| 3:55:43 PM (IST) on Wednesday, November 9, 2016 |
+|'''Test Page: '''|.FitNesse.HedisFitnesseSuite.RegressionTestSuite.StgEnv.MeasureYear2016.VerifyTestsReport|
+|'''Command: '''| !-"C:\Program Files\Java\jdk1.8.0_51\bin\java" -cp fitnesse-standalone.jar;classes;../lib/*.jar;C:\HDE\automation-hde\lib\antisamy-1.4.3.jar;C:\HDE\automation-hde\lib\asm-3.3.1.jar;C:\HDE\automation-hde\lib\avalon-framework-4.1.3.jar;C:\HDE\automation-hde\lib\batik-css-1.7.jar;C:\HDE\automation-hde\lib\batik-ext-1.7.jar;C:\HDE\automation-hde\lib\batik-util-1.7.jar;C:\HDE\automation-hde\lib\bsh-core-2.0b4.jar;C:\HDE\automation-hde\lib\cglib-2.2.2.jar;C:\HDE\automation-hde\lib\commons-beanutils-1.7.0.jar;C:\HDE\automation-hde\lib\commons-beanutils-core-1.7.0.jar;C:\HDE\automation-hde\lib\commons-codec-1.8.jar;C:\HDE\automation-hde\lib\commons-collections-3.2.jar;C:\HDE\automation-hde\lib\commons-configuration-1.5.jar;C:\HDE\automation-hde\lib\commons-digester-1.8.jar;C:\HDE\automation-hde\lib\commons-fileupload-1.2.jar;C:\HDE\automation-hde\lib\commons-httpclient-3.1.jar;C:\HDE\automation-hde\lib\commons-io-2.4.jar;C:\HDE\automation-hde\lib\commons-lang-2.3.jar;C:\HDE\automation-hde\lib\commons-logging-1.1.jar;C:\HDE\automation-hde\lib\esapi-2.1.0.jar;C:\HDE\automation-hde\lib\hde-fitnesse.jar;C:\HDE\automation-hde\lib\jsch-0.1.51.jar;C:\HDE\automation-hde\lib\junit-4.8.2.jar;C:\HDE\automation-hde\lib\log4j-1.2.16.jar;C:\HDE\automation-hde\lib\logkit-1.0.1.jar;C:\HDE\automation-hde\lib\nekohtml-1.9.12.jar;C:\HDE\automation-hde\lib\ojdbc6.jar;C:\HDE\automation-hde\lib\selenium-java-2.52.0.jar;C:\HDE\automation-hde\lib\selenium-server-standalone-2.52.0.jar;C:\HDE\automation-hde\lib\servlet-api-2.3.jar;C:\HDE\automation-hde\lib\servlet-api-2.5-6.1.14.jar;C:\HDE\automation-hde\lib\sqljdbc42.jar;C:\HDE\automation-hde\lib\stk-1.3.0-SNAPSHOT.jar;C:\HDE\automation-hde\lib\testng-6.8.jar;C:\HDE\automation-hde\lib\xalan-2.7.0.jar;C:\HDE\automation-hde\lib\xercesImpl-2.8.0.jar;C:\HDE\automation-hde\lib\xml-apis-1.3.03.jar;C:\HDE\automation-hde\lib\xml-apis-ext-1.3.04.jar;C:\HDE\automation-hde\lib\xom-1.2.5.jar fitnesse.slim.SlimService 8088-! |
+|'''Exit code: '''| 1 |
+|'''Time elapsed: '''| 296.817 seconds |
+
+----
+'''Standard Output:'''
+{{{Attempting to load ESAPI.properties via file I/O.
+Attempting to load ESAPI.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE\automation-hde\ESAPI.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\ESAPI.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\ESAPI.properties
+Loading ESAPI.properties via file I/O failed. Exception was: java.io.FileNotFoundException
+Attempting to load ESAPI.properties via the classpath.
+SUCCESSFULLY LOADED ESAPI.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+Attempting to load stkvalidation.properties via file I/O.
+Attempting to load stkvalidation.properties as resource file via file I/O.
+Not found in 'org.owasp.esapi.resources' directory or file not readable: C:\HDE\automation-hde\stkvalidation.properties
+Not found in SystemResource Directory/resourceDirectory: .esapi\stkvalidation.properties
+Not found in 'user.home' (C:\Users\vrahulde) directory: C:\Users\vrahulde\esapi\stkvalidation.properties
+Loading stkvalidation.properties via file I/O failed.
+Attempting to load stkvalidation.properties via the classpath.
+SUCCESSFULLY LOADED stkvalidation.properties via the CLASSPATH from '/ (root)' using current thread context class loader!
+}}}
+----
+'''Standard Error:'''
+{{{Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+log4j:WARN No appenders could be found for logger (com.optum.stk.config.BaseConfigurator).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.Properties <init>
+INFO: Properties loaded
+Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : AAB_STGNEW
+Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>AAB Pattern Num->20 Script File name-> HDE_HDE_AABTST
+Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:50:48 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QA
+Nov 09, 2016 3:50:57 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Namrata - QA DB connection established! 
+Nov 09, 2016 3:50:57 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STG
+Nov 09, 2016 3:51:00 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STG DB connection established! 
+Nov 09, 2016 3:51:00 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is QANEW
+Nov 09, 2016 3:51:02 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: QANEW DB connection established! 
+Nov 09, 2016 3:51:02 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: Environment in ConnectionManager is STGNEW
+Nov 09, 2016 3:51:05 PM com.optum.hde.fitnesse.ConnectionManager <init>
+INFO: STGNEW DB connection established! 
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAB and population:A
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAB
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAB and population:B
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAB
+Nov 09, 2016 3:51:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAB and population:C
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAB
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:07 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAB and population:F
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAB
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : AAP_STGNEW
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>AAP Pattern Num->23 Script File name-> HDE_HDE_AAPTST
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:08 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:09 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAP and population:A
+Nov 09, 2016 3:51:09 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAP
+Nov 09, 2016 3:51:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:09 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:10 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAP and population:A
+Nov 09, 2016 3:51:10 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAP
+Nov 09, 2016 3:51:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:10 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:11 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAP and population:C
+Nov 09, 2016 3:51:11 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAP
+Nov 09, 2016 3:51:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:11 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:12 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAP and population:C
+Nov 09, 2016 3:51:12 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAP
+Nov 09, 2016 3:51:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:12 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAP and population:I
+Nov 09, 2016 3:51:13 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAP
+Nov 09, 2016 3:51:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AAP and population:I
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AAP
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ABA_STGNEW
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ABA Pattern Num->19 Script File name-> HDE_HDE_ABATST
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:51:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABA and population:A
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABA
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABA and population:B
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABA
+Nov 09, 2016 3:51:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:16 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:16 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABA and population:C
+Nov 09, 2016 3:51:16 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABA
+Nov 09, 2016 3:51:17 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ABX_STGNEW
+Nov 09, 2016 3:51:17 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ABX Pattern Num->4 Script File name-> HDE_HDE_ABXTST
+Nov 09, 2016 3:51:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:17 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABX and population:A
+Nov 09, 2016 3:51:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABX
+Nov 09, 2016 3:51:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:51:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:51:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:51:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:52:08 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABX and population:A
+Nov 09, 2016 3:52:08 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABX
+Nov 09, 2016 3:52:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:52:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:52:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:52:09 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:52:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABX and population:C
+Nov 09, 2016 3:52:28 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABX
+Nov 09, 2016 3:52:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:52:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:52:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:52:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:52:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABX and population:C
+Nov 09, 2016 3:52:48 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABX
+Nov 09, 2016 3:52:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:52:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:52:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:52:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABX and population:D
+Nov 09, 2016 3:53:13 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABX
+Nov 09, 2016 3:53:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:38 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ABX and population:D
+Nov 09, 2016 3:53:38 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ABX
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ACE_STGNEW
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ACE Pattern Num->AHCA Script File name-> HDE_HDE_ACETST
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:A1
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:A1
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:C1
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:C1
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:D1
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:D1
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:E1
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ACE and population:E1
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ACE
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ADD_STGNEW
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ADD Pattern Num->22 Script File name-> HDE_HDE_ADDTST
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:45 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ADD and population:A
+Nov 09, 2016 3:53:45 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ADD
+Nov 09, 2016 3:53:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:45 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ADD and population:B
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ADD
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ADV_STGNEW
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ADV Pattern Num->23 Script File name-> HDE_HDE_ADVTST
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:46 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:47 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ADV and population:A
+Nov 09, 2016 3:53:47 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ADV
+Nov 09, 2016 3:53:47 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : AMM_STGNEW
+Nov 09, 2016 3:53:47 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>AMM Pattern Num->25 Script File name-> HDE_HDE_AMMTST
+Nov 09, 2016 3:53:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AMM and population:A
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AMM
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AMM and population:B
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AMM
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : AMR_STGNEW
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>AMR Pattern Num->26 Script File name-> HDE_HDE_AMRTST
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:49 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AMR and population:A
+Nov 09, 2016 3:53:51 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AMR
+Nov 09, 2016 3:53:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:52 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AMR and population:A
+Nov 09, 2016 3:53:52 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AMR
+Nov 09, 2016 3:53:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:52 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:54 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AMR and population:C
+Nov 09, 2016 3:53:54 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AMR
+Nov 09, 2016 3:53:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:54 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AMR and population:C
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AMR
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : APC_STGNEW
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>APC Pattern Num->28 Script File name-> HDE_HDE_APCTST
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:55 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:56 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APC and population:A
+Nov 09, 2016 3:53:56 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APC
+Nov 09, 2016 3:53:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:56 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:57 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APC and population:B
+Nov 09, 2016 3:53:57 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APC
+Nov 09, 2016 3:53:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:57 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:58 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APC and population:E
+Nov 09, 2016 3:53:58 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APC
+Nov 09, 2016 3:53:58 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : APM_STGNEW
+Nov 09, 2016 3:53:58 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>APM Pattern Num->28 Script File name-> HDE_HDE_APMTST
+Nov 09, 2016 3:53:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:53:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:53:59 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:53:59 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APM and population:A
+Nov 09, 2016 3:53:59 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APM
+Nov 09, 2016 3:53:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:00 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:00 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APM and population:B
+Nov 09, 2016 3:54:00 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APM
+Nov 09, 2016 3:54:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:01 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:01 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APM and population:E
+Nov 09, 2016 3:54:01 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APM
+Nov 09, 2016 3:54:02 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : APP_STGNEW
+Nov 09, 2016 3:54:02 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>APP Pattern Num->28 Script File name-> HDE_HDE_APPTST
+Nov 09, 2016 3:54:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:02 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:03 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APP and population:A
+Nov 09, 2016 3:54:03 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APP
+Nov 09, 2016 3:54:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:03 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:APP and population:B
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:APP
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ART_STGNEW
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ART Pattern Num->19 Script File name-> HDE_HDE_ARTTST
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ART and population:A
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ART
+Nov 09, 2016 3:54:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ART and population:B
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ART
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : ASM_STGNEW
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>ASM Pattern Num->23 Script File name-> HDE_HDE_ASMTST
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:05 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ASM and population:B
+Nov 09, 2016 3:54:06 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ASM
+Nov 09, 2016 3:54:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:07 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:07 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:08 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ASM and population:B
+Nov 09, 2016 3:54:08 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ASM
+Nov 09, 2016 3:54:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:08 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:08 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:09 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ASM and population:C
+Nov 09, 2016 3:54:09 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ASM
+Nov 09, 2016 3:54:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:09 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:09 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:ASM and population:C
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:ASM
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : AWC_STGNEW
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>AWC Pattern Num->20 Script File name-> HDE_HDE_AWCTST
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:10 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AWC and population:A
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AWC
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AWC and population:C
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AWC
+Nov 09, 2016 3:54:11 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:AWC and population:D
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:AWC
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : BCS_STGNEW
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>BCS Pattern Num->19 Script File name-> HDE_HDE_BCSTST
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:12 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:BCS and population:A
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:BCS
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:BCS and population:B
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:BCS
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : CAP_STGNEW
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>CAP Pattern Num->23 Script File name-> HDE_HDE_CAPTST
+Nov 09, 2016 3:54:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:14 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:14 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CAP and population:A
+Nov 09, 2016 3:54:14 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CAP
+Nov 09, 2016 3:54:14 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:15 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:15 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CAP and population:C
+Nov 09, 2016 3:54:15 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CAP
+Nov 09, 2016 3:54:15 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:16 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:16 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:16 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CAP and population:D
+Nov 09, 2016 3:54:16 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CAP
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : CCS_STGNEW
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>CCS Pattern Num->19 Script File name-> HDE_HDE_CCSTST
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CCS and population:A
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CCS
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:17 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CCS and population:B
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CCS
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : CD4_STGNEW
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>CD4 Pattern Num->AHCA Script File name-> HDE_HDE_CD4TST
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.fixtures.RunAhcaMeasure <init>
+INFO: Inside RunAhcaMeasure
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:18 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CD4 and population:A
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CD4
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CD4 and population:B
+Nov 09, 2016 3:54:19 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CD4
+Nov 09, 2016 3:54:20 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : CHL_STGNEW
+Nov 09, 2016 3:54:20 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>CHL Pattern Num->22 Script File name-> HDE_HDE_CHLTST
+Nov 09, 2016 3:54:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:20 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:20 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:21 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CHL and population:A
+Nov 09, 2016 3:54:21 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CHL
+Nov 09, 2016 3:54:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:21 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CHL and population:B
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CHL
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : CIS_STGNEW
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>CIS Pattern Num->21 Script File name-> HDE_HDE_CISTST
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:22 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:25 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CIS and population:B
+Nov 09, 2016 3:54:25 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CIS
+Nov 09, 2016 3:54:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:26 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CIS and population:B
+Nov 09, 2016 3:54:28 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CIS
+Nov 09, 2016 3:54:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:31 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CIS and population:C
+Nov 09, 2016 3:54:31 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CIS
+Nov 09, 2016 3:54:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:31 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:34 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CIS and population:C
+Nov 09, 2016 3:54:34 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CIS
+Nov 09, 2016 3:54:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:34 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:34 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:35 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CIS and population:F
+Nov 09, 2016 3:54:35 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CIS
+Nov 09, 2016 3:54:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:35 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:35 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CIS and population:F
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CIS
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : COA_STGNEW
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>COA Pattern Num->23 Script File name-> HDE_HDE_COATST
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:37 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:38 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:COA and population:D
+Nov 09, 2016 3:54:38 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:COA
+Nov 09, 2016 3:54:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:38 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:38 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:39 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:COA and population:D
+Nov 09, 2016 3:54:39 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:COA
+Nov 09, 2016 3:54:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:39 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:39 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:40 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:COA and population:I
+Nov 09, 2016 3:54:40 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:COA
+Nov 09, 2016 3:54:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:40 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:40 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:COA and population:I
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:COA
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : COL_STGNEW
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>COL Pattern Num->19 Script File name-> HDE_HDE_COLTST
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:41 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:COL and population:A
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:COL
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:COL and population:B
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:COL
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : CWP_STGNEW
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>CWP Pattern Num->20 Script File name-> HDE_HDE_CWPTST
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:42 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CWP and population:A
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CWP
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CWP and population:B
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CWP
+Nov 09, 2016 3:54:43 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CWP and population:C
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CWP
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:CWP and population:F
+Nov 09, 2016 3:54:44 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:CWP
+Nov 09, 2016 3:54:45 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : DDE_STGNEW
+Nov 09, 2016 3:54:45 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>DDE Pattern Num->26 Script File name-> HDE_HDE_DDETST
+Nov 09, 2016 3:54:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:45 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:45 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:46 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DDE and population:A
+Nov 09, 2016 3:54:46 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DDE
+Nov 09, 2016 3:54:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:46 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:46 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:47 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DDE and population:A
+Nov 09, 2016 3:54:47 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DDE
+Nov 09, 2016 3:54:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:47 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:47 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DDE and population:B
+Nov 09, 2016 3:54:48 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DDE
+Nov 09, 2016 3:54:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:48 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:48 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DDE and population:B
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DDE
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : DMS_STGNEW
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>DMS Pattern Num->29 Script File name-> HDE_HDE_PDMSTST
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DMS and population:A
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure verifyResultsForPopulation
+WARNING: No data loaded to verify for measure:DMS and population Id:A
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DMS
+Nov 09, 2016 3:54:49 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DMS and population:A
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DMS
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DMS and population:C
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.fixtures.RunMeasure verifyResultsForPopulation
+WARNING: No data loaded to verify for measure:DMS and population Id:C
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DMS
+Nov 09, 2016 3:54:50 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DMS and population:C
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DMS
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DMS and population:D
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.fixtures.RunMeasure verifyResultsForPopulation
+WARNING: No data loaded to verify for measure:DMS and population Id:D
+Nov 09, 2016 3:54:51 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DMS
+Nov 09, 2016 3:54:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:52 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:52 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:52 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:DMS and population:D
+Nov 09, 2016 3:54:52 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:DMS
+Nov 09, 2016 3:54:53 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : EBS_STGNEW
+Nov 09, 2016 3:54:53 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>EBS Pattern Num->8 Script File name-> HDE_HDE_EBSTST
+Nov 09, 2016 3:54:53 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:53 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:53 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:53 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:54 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:EBS and population:A
+Nov 09, 2016 3:54:54 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:EBS
+Nov 09, 2016 3:54:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:54 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:54 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:EBS and population:B
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:EBS
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : FHM30_STGNEW
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>FHM30 Pattern Num->AHCA Script File name-> HDE_HDE_FHM30TST
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.fixtures.RunAhcaMeasure <init>
+INFO: Inside RunAhcaMeasure
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:55 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FHM30 and population:A
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FHM30
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FHM30 and population:B
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FHM30
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : FHM7_STGNEW
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>FHM7 Pattern Num->AHCA Script File name-> HDE_HDE_FHM7TST
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.fixtures.RunAhcaMeasure <init>
+INFO: Inside RunAhcaMeasure
+Nov 09, 2016 3:54:56 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FHM7 and population:A
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FHM7
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FHM7 and population:B
+Nov 09, 2016 3:54:57 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FHM7
+Nov 09, 2016 3:54:58 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : FPC_STGNEW
+Nov 09, 2016 3:54:58 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>FPC Pattern Num->23 Script File name-> HDE_HDE_FPCTST
+Nov 09, 2016 3:54:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:58 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:58 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:59 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FPC and population:A
+Nov 09, 2016 3:54:59 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FPC
+Nov 09, 2016 3:54:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:54:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:54:59 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:54:59 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FPC and population:B
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FPC
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : FUH_STGNEW
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>FUH Pattern Num->24 Script File name-> HDE_HDE_FUHTST
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:00 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FUH and population:A
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FUH
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:FUH and population:B
+Nov 09, 2016 3:55:01 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:FUH
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : HAART_STGNEW
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>HAART Pattern Num->AHCA Script File name-> HDE_HDE_HAARTTST
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.fixtures.RunAhcaMeasure <init>
+INFO: Inside RunAhcaMeasure
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:HAART and population:A
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:HAART
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:02 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:HAART and population:B
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:HAART
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : HIVV_STGNEW
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>HIVV Pattern Num->AHCA Script File name-> HDE_HDE_HIVVTST
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.fixtures.RunAhcaMeasure <init>
+INFO: Inside RunAhcaMeasure
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:03 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:HIVV and population:A
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:HIVV
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:HIVV and population:B
+Nov 09, 2016 3:55:04 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:HIVV
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : HPV_STGNEW
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>HPV Pattern Num->19 Script File name-> HDE_HDE_HPVTST
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:HPV and population:A
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:HPV
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:05 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:HPV and population:B
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:HPV
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : IAD_STGNEW
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>IAD Pattern Num->1 Script File name-> HDE_HDE_IADTST
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:06 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:12 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IAD and population:D
+Nov 09, 2016 3:55:12 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IAD
+Nov 09, 2016 3:55:12 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:13 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:13 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IAD and population:D
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IAD
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Inside Run purple measure constructor
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : IHU_STGNEW
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>IHU Pattern Num->29 Script File name-> HDE_HDE_PTIHUTST
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.fixtures.RunPurpleMeasure <init>
+INFO: Namrata - Commented code to FTP and execute ETL jobs
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:19 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:21 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IHU and population:A
+Nov 09, 2016 3:55:21 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IHU
+Nov 09, 2016 3:55:21 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:22 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:22 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:22 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IHU and population:A
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IHU
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : IMA_STGNEW
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>IMA Pattern Num->21 Script File name-> HDE_HDE_IMATST
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IMA and population:A
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IMA
+Nov 09, 2016 3:55:24 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IMA and population:A
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IMA
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:25 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:26 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IMA and population:C
+Nov 09, 2016 3:55:26 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IMA
+Nov 09, 2016 3:55:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:26 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:26 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:27 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IMA and population:C
+Nov 09, 2016 3:55:27 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IMA
+Nov 09, 2016 3:55:27 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:27 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:27 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:27 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IMA and population:D
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IMA
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :199
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating STGNEW db connection
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IMA and population:D
+Nov 09, 2016 3:55:28 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IMA
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: measure_env is : IPU_QANEW
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure getMeasureInfo
+INFO: Measure info: Measure Name0>IPU Pattern Num->9 Script File name-> HDE_HDE_IPUSIT
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5513
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IPU and population:A
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure verifyResultsForPopulation
+WARNING: No data loaded to verify for measure:IPU and population Id:A
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IPU
+Nov 09, 2016 3:55:29 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5513
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IPU and population:A
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IPU
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5513
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IPU and population:C
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.fixtures.RunMeasure verifyResultsForPopulation
+WARNING: No data loaded to verify for measure:IPU and population Id:C
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IPU
+Nov 09, 2016 3:55:30 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5513
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IPU and population:C
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IPU
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5513
+Nov 09, 2016 3:55:31 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IPU and population:D
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.fixtures.RunMeasure verifyResultsForPopulation
+WARNING: No data loaded to verify for measure:IPU and population Id:D
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IPU
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Namrata - changed query with schema name Etl_Oracle00. 
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.repo.impl.CoreRepoImpl getProjectKey
+INFO: Found Project key in Project table :5513
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Creating QANEW db connection
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.repo.impl.AggrerationRepoImpl getAggregationByMeasure
+INFO: Loaded data from HDE_AGG_MEASURES for measure:IPU and population:D
+Nov 09, 2016 3:55:32 PM com.optum.hde.fitnesse.fixtures.RunMeasure extractIdssElementAndValue
+INFO: Extracted IDSS element name and values for:IPU
+}}}

@@ -1,0 +1,44 @@
+!define env {TST}
+!define polldir {E:\\Automation\\Poll\\}
+!define ftpdir {/cas/TST/data/inb/cs/poll/}
+!define ftpuser {wesbuser}
+!define ftppass {uT3MALxe}
+!define ftpserver {APSRT0109}
+!define ftpuser {bpmuser}
+!define ftppass {FRbG7aCD}
+!define ftpserver {apsrt4214}
+!define ftphost {apsrt4214}
+
+|script|File Support                                                                                          |
+|ftp   |PLAN_PROCESS.POLLSTOP|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep |5                                                                                                     |
+
+|script|File Support                                                                                           |
+|ftp   |PLAN_PROCESS.POLLSTART|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+
+
+|script|File Support                                                                                              |
+|ftp   |PROVIDER_PROCESS.POLLSTOP|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep |5                                                                                                         |
+
+|script|File Support                                                                                               |
+|ftp   |PROVIDER_PROCESS.POLLSTART|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+
+|script|File Support                                                                                            |
+|ftp   |MEMBER_PROCESS.POLLSTOP|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep |5                                                                                                       |
+
+|script|File Support                                                                                             |
+|ftp   |MEMBER_PROCESS.POLLSTART|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+
+|script|File Support                                                                                                |
+|ftp   |MINICLAIMS_PROCESS.POLLSTOP|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep |5                                                                                                           |
+
+
+|script|File Support                                                                                              |
+|ftp   |RXCLAIMS_PROCESS.POLLSTOP|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep |5                                                                                                         |
+
+|script|File Support                                                                                               |
+|ftp   |RXCLAIMS_PROCESS.POLLSTART|File|${polldir}|In|${ftpserver}|To|${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|

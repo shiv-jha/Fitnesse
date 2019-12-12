@@ -1,0 +1,9 @@
+---
+Test
+---
+!define env {TST}
+
+
+|script |File Support                                                            |
+|command|${cdi_load_command}|In|${cdihost}|To|${cdiuser}|Location|${cdipass}|Zone|
+

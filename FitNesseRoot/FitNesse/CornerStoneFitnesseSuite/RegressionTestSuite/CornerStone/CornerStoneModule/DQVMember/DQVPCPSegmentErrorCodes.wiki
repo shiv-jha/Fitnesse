@@ -1,0 +1,102 @@
+---
+Test
+---
+###Mbr err codes - CS106182 to CS106185
+!define fileType {MEMBER}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define DQVmember_command {yet to update}
+
+!define D1_HDR_Data {$fileType|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_MBR_Data { Yet to add}
+!define D6_ENR_Data { Yet to add}
+!define D7_PCP_Data { Yet to add}
+!define D4_FTR_Data {$fileType|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D5_CNT_Data {1||}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define Memberdata {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+MBR|${D3_MBR_Data}
+ENR|${D6_ENR_Data}
+PCP|${D7_PCP_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the <>   |${fileType}_${subclisk}_CM|file with content|${Memberdata}|
+
+|script |File Support                                                       |
+|command|${DQVMember_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|18|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                            |
+|query    |select * from frmk_stg_fileinfo where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                      |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|Query:Db Table|select ERR_CD,ERR_DESC,ERR_SVRTY_TYP,FILE_TYPE_NM,SEGMENT_CD from dq_err where err_cd between 'CS106182' and 'CS106185'|${env}|
+|ERR_CD| ERR_DESC |ERR_SVRTY_TYP|FILE_TYPE_NM|SEGMENT_CD|
+|CS106182 |       | WARNING            |            |           | 
+|CS106183 |       | WARNING            |            |           | 
+|CS106184 |       | WARNING            |            |           | 
+|CS106185 |       | WARNING            |            |           | 
+
+|Query:Db Table|select a.err_cd, b.FILE_TYPE_SK, b.dq_err_sk,b.wrn_qty, b.rej_qty from DQ_FILE_THRESH b ,dq_err a  where b.dq_err_sk =a.dq_err_sk  and a.err_cd between 'CS190031' and 'CS190032'|${env}|
+|err_cd   |dq_err_sk|FILE_TYPE_SK|wrn_qty|rej_qty|
+|CS106182 |       |             |            |999| 
+|CS106183 |       |             |            |999| 
+|CS106184 |       |             |            |999| 
+|CS106185 |       |             |            |999| 
+
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS106182'|For|CS106182|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS106182' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS106182                                                                                                                      |PCP   |			                       |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS106183'|For|CS106183|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS106183' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS106183                                                                                                                      |PCP  |			                       |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS106184'|For|CS106184|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS106184' and file_key = $filekey|${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS106184                                                                                                                      |PCP   |			                       |         |
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS106185'|For|CS106185|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS106185' and file_key = $filekey |${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS106185                                                                                                                      |PCP   |			                       |         |
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|107|And Retry|120|times|true|
+
+#!|script|RallyTestCaseStatusUpdates                                                                                         |
+#|send   |CS_QGCNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+	 

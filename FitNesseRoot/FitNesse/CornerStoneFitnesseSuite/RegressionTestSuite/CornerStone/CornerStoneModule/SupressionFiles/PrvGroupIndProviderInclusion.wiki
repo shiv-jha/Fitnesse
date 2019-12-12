@@ -1,0 +1,72 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {AET_MA}
+!define providerType {PrvGrp-IndPrvComboInclusion}
+!define elementType {TIN}
+
+
+!define D1_HDR_Data {Provider Group ID Type|Provider Group ID|Provider Group Name|Provider ID|Provider Name|Date Added}
+!define D2_Data {DEC|017878|DEC Medical Group|1234|Dr Test|20180528}
+!define D10_CNT_Data {T|3}
+
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define providerdata {${D1_HDR_Data}
+${D2_Data}
+${D10_CNT_Data}}
+
+
+!|script          |File Support                                                          |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                            |
+|given the        |${fileType}_${providerType}|PAF PRVG file with content|${providerdata}|
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location|${pafpass}|Zone|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+*!
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+
+|Query:Db Table|select * from oct_ioa_mbr_sprs where file_key = $filekey|${env}                                |
+|FILE_KEY      |SPRS_TYP                                                |VRSN    |DATE_ADDED           |REJ_IND|
+|$filekey      |INCLUSION                                               |$filekey|2018-02-28 06:00:00.0|N      |
+
+
+
+!|script     |DbTable                                                  |
+|query       |select * from oct_ioa_mbr_sprs  where file_key = $filekey|
+|$PRV_SK=    |valueofcolumn                 |PRV_SK                    |
+|$PRV_GRP_SK=|valueofcolumn                 |PRV_GRP_SK                |
+
+
+
+
+|Query:Db Table|select * from oct_ioa_prv where prv_sk = $PRV_SK|${env}|
+|PRV_SK        |PRV_NM                                                 |
+|$PRV_SK       |Dr Test                                                |
+
+
+|Query:Db Table|select * from oct_ioa_prv_grp where prv_GRP_sk = $prv_GRP_sk|${env}                      |
+|PRV_GRP_SK        |PRV_GRP_ID_TYP                                              |PRV_GRP_ID|PRV_GRP_NM       |
+|$PRV_GRP_SK       |DEC                                                         |017878    |DEC Medical Group|
+

@@ -1,0 +1,43 @@
+<project name="hde-fitnesse" basedir=".">
+	<!-- ========== Initialize Properties =================================== -->
+	<!-- set global properties for build -->
+	<property name="project" value="hde-fitnesse" />
+	<property name="basedir" value="." />
+	<property name="lib" value="${basedir}/lib" />
+	<property name="src" value="${basedir}/src" />
+	<property name="bin" value="${basedir}/target" />
+	
+	
+	<!-- ====== Set the classpath ====  -->
+	<path id="classpath">
+		<pathelement location="${bin}" />
+		<fileset dir="${lib}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<path id="lib">
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<!-- Compile the java code from ${src} into ${bin} -->
+		<target name="compile">
+			<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+			<echo> /* Compiled Directory Classes */ </echo>
+		</target>
+	
+	<!-- Package the java classes to <project>.jar  -->
+	<target name="package" depends = "compile">
+			<jar destfile="${lib}/${project}.jar" basedir="${bin}" />
+			<echo> /* Packaged into jar file */ </echo>
+	</target>
+	
+	<target name="clean">
+    	<delete verbose="true">
+       		<fileset dir="${bin}" includes="**/*.class" />
+			<fileset dir="${lib}" includes="${project}.jar" />
+    	</delete>
+	</target>
+
+</project>

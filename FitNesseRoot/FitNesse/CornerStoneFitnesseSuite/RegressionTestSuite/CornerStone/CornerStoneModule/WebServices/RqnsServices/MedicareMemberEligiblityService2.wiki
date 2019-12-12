@@ -1,0 +1,5 @@
+---
+Test
+---
+!|script |WebServicesClient                           |
+|$return=|call Rqns Web|getMedicareEligiblity2|Services|

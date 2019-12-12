@@ -1,0 +1,120 @@
+---
+Test
+---
+!define clientType {EOD10002}
+!define dynamic {2017-01-16}
+!define refreshType {F}
+!define fileType {SUPPLEMENTAL}
+!define EntityName {OMN-AZ}
+!define env {TST}
+!define command {sh /cas/scripts/cornerstone/bin/batchclient.sh CDO_FW_JOB TST}
+!define createddir {E:\\Automation\\Rahul\\}
+!define ftpdir {/cas/TST/data/inb/cornerstone/custom/}
+!define ftpuser {wesbuser}
+!define ftppass {uT3MALxe}
+!define ftpserver {APSRT0109}
+!define ftphost {APSRT0109}
+
+
+!|script  |DbTable                                                                                                  |
+|query    |select CLI_ID from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$ENTY_ID=|valueofcolumn                                           |CLI_ID                                          |
+
+
+!define Suppldata {ENTITY_NAME|ENTITY_ID|UNIQUE_MEMBER_ID|SUBSCRIBER_ID|SOURCE_SYSTEM|DATA_TYPE|CODE|SUPPLEMENTAL_DATE|SUPPLEMENTAL_RESULT|RECORD_STATUS|RECORD_EFFECTIVE_START_DATE|RECORD_EFFECTIVE_END_DATE|SUPPLEMENTAL_DATA_TYPE|UNIQUE_PROVIDER_ID|HEDIS_FLAG|ORIGINAL_SOURCE_ID|ORIGINAL_SOURCE|HCPCS_CODE|CPT_II_CODE|ICD_VERSION_CODE_TYPE|ICD_PROCEDURE_CODE_1|ICD_PROCEDURE_CODE_2|ICD_DIAGNOSIS_CODE_1|ICD_DIAGNOSIS_CODE_2|PROCEDURE_CODE|PROCEDURE_CODE_MODIFIER_1|PROCEDURE_CODE_MODIFIER_2|PROVIDER_SPECIALTY_CODE
+${EntityName}|$ENTY_ID||||Screening|GFR [1st] (mL/min/1.73 m2)|${dynamic} 00:00:00|59.00|Y|2016-01-01 00:00:00|2016-09-04 00:00:00|SN|0251930179||1145080|DataRAP|0267T|0267T|10|0267T|0267T||||UA|U9|12334-12'
+}
+
+
+|script       |File Support                                                                                                                                                             |
+|$datfilename=|create          |${clientType}SUPPLEMENTAL_DATA_0600_${refreshType}_|inDirectory  |${createddir}|with content|${Suppldata}|and type  |.txt                              |
+|sleep        |2                                                                                                                                                                        |
+|ftp          |$datfilename.txt|File                                               |${createddir}|In           |${ftphost}  |To           |${ftpuser}|Location|${ftppass}|Zone|${ftpdir}|
+|sleep        |10                                                                                                                                                                       |
+
+|script |File Support                                                   |
+|command|${command}|In|${ftphost}|To|${ftpuser}|Location Zone|${ftppass}|
+|sleep  |30                                                             |
+
+!|script         |DbTable                                                                                                                                                                    |
+|query           |select TRGT_FILE_NAME_PATTERN from CUSTOM_CLIENTS_FILE_CONFIG where CLI_NM = 'OMN-AZ' and FILE_TYPE = 'SUPPL' and INB_FILE_NAME_PATTERN like '%EOD10002SUPPLEMENTAL_DATA_%'|
+|$targetfilename=|valueofcolumn                                                                    |TRGT_FILE_NAME_PATTERN                                                                   |
+
+|script|File Support|
+|sleep |60          |
+
+
+!|script   |DbTable                                                                                                                   |
+|query     |select max(file_key) as file_key from FRMK_STG_FILEINFO where load_date is not NULL and file_name like '%$targetfilename%'|
+|$file_key=|valueofcolumn                                                  |file_key                                                  |
+
+
+|script                                                                                                                    |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_key ='$file_key'|For|104|And Retry|120|times|true|
+
+
+
+|Query:Db Table|select * from SUPPL_DATA_STG_INBOUND where file_key = '$file_key' and PROCESS_STS_KEY <> 2 order by Process_Sts_Key|${env}    |
+|FILE_KEY      |PROCESS_STS_KEY                                                                                                    |SEG_VALUES|
+|$file_key     |21                                                                                                                 |          |
+
+
+!|script |DbTable                                                                                                  |
+|query   |select cli_sk from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$cli_sk=|valueofcolumn                                           |cli_sk                                          |
+
+
+!|script |DbTable                                                                                                  |
+|query   |select cli_sk from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$cli_sk=|valueofcolumn                                           |cli_sk                                          |
+
+
+!|script     |DbTable                                                                                                      |
+|query       |select sub_cli_sk from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$sub_cli_sk=|valueofcolumn                                           |sub_cli_sk                                          |
+
+
+!|script  |DbTable                                                                                                  |
+|query    |select CLI_ID from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$ENTY_ID=|valueofcolumn                                           |CLI_ID                                          |
+
+!|script |DbTable                                                                                                  |
+|query   |select CLI_ID from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$CLI_ID=|valueofcolumn                                           |CLI_ID                                          |
+
+!|script    |DbTable                                                                                                     |
+|query      |select CLNT_GUID from VW_CS_CLNT_GUID_MOD where SRC_CLNT_ID = 'OAZ' and SRC_SYS_NM = 'OMN-AZ' and rownum = 1|
+|$CLNT_GUID=|valueofcolumn                                           |CLNT_GUID                                          |
+
+
+!|script       |DbTable                                                                                                                            |
+|query         |select CLI_MODIFIER from VW_CS_CLNT_GUID_MOD where clnt_guid = '$CLNT_GUID' and SRC_SYS_TYPE_CD = 'MBR' and SRC_SYS_CD = 'RADC_MBR'|
+|$CLI_MODIFIER=|valueofcolumn                                                     |CLI_MODIFIER                                                    |
+
+
+|Query:Db Table|select * from SUPPL_DATA where FILE_KEY = $file_key|${env}                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|FILE_KEY      |CLI_SK                                             |SUB_CLI_SK |ENTY_NM      |ENTY_ID |CLI_ID |CLNT_GUID |MBR_GLB_ID|MBR_ID     |MBR_SBSCR_ID|SRC_SYS|DATA_TYP |CD                        |SUPPL_DT           |SUPPL_RSLT|REC_STS|REC_EFF_STRT_DT    |REC_EFF_END_DT     |SUPPL_DATA_TYP|UNIQ_PROV_ID|HEDIS_FLG|ORIG_SRC_ID|ORIG_SRC|HCPCS_CD|CPT_II_CD|ICD_VER_CD_TYP|ICD_PROC_CD_1|ICD_PROC_CD_2|ICD_DIAG_CD_1|ICD_DIAG_CD_2|PROC_CD|PROC_CD_MOD_1|PROC_CD_MOD_2|PROV_SPCL_CD|REJ_IND|DERIV_STS_CD|
+|$file_key     |$cli_sk                                            |$sub_cli_sk|${EntityName}|$ENTY_ID|$CLI_ID|$CLNT_GUID|          |10008275600|12123V1J    |DataRAP|Screening|GFR [1st] (mL/min/1.73 m2)|${dynamic} 00:00:00|59.00     |Y      |2016-01-01 00:00:00|2016-09-04 00:00:00|SN            |0251930179  |Y        |1145080    |DataRAP |0267T   |0267T    |10            |0267T        |0267T        |0302         |0301         |0266T  |UA           |U9           |12334-12'   |N      |Y           |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

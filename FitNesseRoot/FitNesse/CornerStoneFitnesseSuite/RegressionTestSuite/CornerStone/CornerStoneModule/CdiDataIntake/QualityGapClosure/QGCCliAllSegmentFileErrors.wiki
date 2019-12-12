@@ -1,0 +1,154 @@
+---
+Test
+---
+# 1st file Covers CS190017,CS190018(Missing) and CS180124,CS180125,CS180126 Errors
+
+!define fileType {QGC}
+!define subclisk {91}
+!define clientText {wellpoint}
+!define clientUniqueText {c78fc3ba-3f18-4b09-93a7-c365a36b9d63}
+!define qgc_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/qgc/dataintake.sh TST rqnsdev qgc}
+
+!define D1_HDR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D2_CLI_Data {|}
+#!define D3_QGC_Data {MBRN0004|685|1PJ9XU1GY06|COA1|COA|20190404|2019|FK=123123|User2|User3}
+#!define D4_FTR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+#!define D5_CNT_Data {1|1|2}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define QGCdata1 {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata1}|
+
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190017'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                         |ERROR_CD |
+|$filekey      |Client Name is missing/invalid    |CS190017 |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190018'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                             |ERROR_CD |
+|$filekey      |Client Identifier is missing/invalid  |CS190018 |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190005'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                                   |ERROR_CD |
+|$filekey      |File must contain at least one QGC segment |CS190005 |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190006'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                          |ERROR_CD |
+|$filekey      |File must contain one FTR segment  |CS190006 |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190007'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                          |ERROR_CD |
+|$filekey      |File must contain one CNT segment  |CS190007 |
+
+
+# 2nd file
+
+#!define D6_HDR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D7_CLI_Data {79|8888888-88888}
+!define D8_QGC_Data {MBRN0002|685|1PJ9XU1GY15|COA1|COA|20190404|2019|FK=123123|User2|User3}
+!define D9_FTR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D10_CNT_Data {1|1|2}
+
+!define QGCdata2 {
+CLI|${D7_CLI_Data}
+QGC|${D8_QGC_Data}
+FTR|${D9_FTR_Data}
+CNT|${D10_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata2}|
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190003'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                             |ERROR_CD |
+|$filekey      |File must contain one HDR segment     |CS190003 |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190017'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                         |ERROR_CD |
+|$filekey      |Client Name is missing/invalid    |CS190017 |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS190018'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                            |ERROR_CD |
+|$filekey      |Client Identifier is missing/invalid |CS190018 |
+
+# 3rd file Covers CS190004 Error
+
+!define D11_HDR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D13_QGC_Data {MBRN0002|685|1PJ9XU1GY06|COA1|COA|20190404|2019|FK=123123|User2|User3}
+!define D14_FTR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D15_CNT_Data {1|1|2}
+
+!define QGCdata3 {HDR|${D11_HDR_Data}
+QGC|${D13_QGC_Data}
+FTR|${D14_FTR_Data}
+CNT|${D15_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata3}|
+
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select FILE_KEY,ERROR_MSG,ERROR_CD from FRMK_STG_ERRORS where file_key = $filekey and error_cd = 'CS190004'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                             |ERROR_CD |
+|$filekey      |File must contain one CLI segment     |CS190004 |
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_QGCNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+	 

@@ -1,0 +1,118 @@
+---
+Test
+---
+# 1st file Covers Count related CS190020, CS190021,CS190022 Errors
+
+!define fileType {QGC}
+!define subclisk {91}
+!define clientText {wellpoint}
+!define clientUniqueText {c78fc3ba-3f18-4b09-93a7-c365a36b9d63}
+!define qgc_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/qgc/dataintake.sh TST rqnsdev qgc}
+
+!define D1_HDR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_QGC_Data {MBRN0003|685|1PJ9XU1GY06|COA1|COA|20190404|2019|FK=123123|User2|User3}
+!define D4_FTR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D5_CNT_Data {2|2|4}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define QGCdata1 {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+QGC|${D3_QGC_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata1}|
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190020' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190020                                                                                                           |$datfilename.DAT    |CLI Segment Count doesn't match with the actual count of CLI segments in file |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190021' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190021                                                                                                           |$datfilename.DAT    |QGC Segment count must exactly match the total QGC segments count in file and cannot be blank |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190022' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190022                                                                                                           |$datfilename.DAT    |Total Row Count doesn't match with the actual count of rows in file|
+
+# 2nd file Covers Structural Errors (CS190023 to CS190027) -- when more segments are there then expected
+
+!define D6_HDR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1|jg}
+!define D7_CLI_Data {${clientText}|${clientUniqueText}|jghg}
+!define D8_QGC_Data {MBRN0003|429|1PJ9AU1GA05|CDCM10|CDC|20190403|2019|FK=123123|User2|User3|jhghj|jj}
+!define D9_FTR_Data {QUALITY GAP CLOSURE FILE|${subclisk}|20190101|20190111|$currentdatetime|6.1|jg}
+!define D10_CNT_Data {1|1|2|4}
+
+!define QGCdata2 {HDR|${D6_HDR_Data}
+CLI|${D7_CLI_Data}
+QGC|${D8_QGC_Data}
+FTR|${D9_FTR_Data}
+CNT|${D10_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdiqgc    |${fileType}_${subclisk}_MR|file with content|${QGCdata2}|
+
+|script |File Support                                                      |
+|command|${qgc_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190023' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190023                                                                                                           |$datfilename.DAT    |HDR-Structure error|
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190024' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190024                                                                                                           |$datfilename.DAT    |CLI-Structure error|
+
+|script                                                                                                                           |
+|check|query|select distinct ERR_CD from DQ_ERR_RSLT f where f.file_key ='$filekey' and ERR_CD='CS190025'|For|CS190025|And Retry|15|times|true|
+
+|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS190025' and file_key = $filekey |${env}                                      |
+|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|DATA_VAL_IN_ERR_TXT|
+|$filekey      |CS190025                                                                                                                      |QGC   | QGC      |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190026' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190026                                                                                                           |$datfilename.DAT    |FTR-Structure error|
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS190027' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS190027                                                                                                           |$datfilename.DAT    |CNT-Structure error|
+
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_SupplementalCNTandStructure_PREPDB_BDpass_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|

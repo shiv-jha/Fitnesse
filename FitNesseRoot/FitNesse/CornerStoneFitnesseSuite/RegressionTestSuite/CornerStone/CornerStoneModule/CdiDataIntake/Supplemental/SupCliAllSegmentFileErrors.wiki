@@ -1,0 +1,148 @@
+---
+Test
+---
+# 1st file Covers CS180136,CS180137 (Missing) and CS180124,CS180125,CS180126 Errors
+
+!define fileType {SUP}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define sup_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/supplemental/dataintake.sh TST rqnsdev supplemental}
+
+!define D1_HDR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D2_CLI_Data {|}
+#!define D3_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|RXNORM|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+#!define D4_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+#!define D5_CNT_Data {1|1|2}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define supplementaldata1 {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata1}|
+
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180136'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                         |ERROR_CD |
+|$filekey      |Client Name is missing/invalid    |CS180136 |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180137 '|${env}                                      |
+|FILE_KEY      |ERROR_MSG                             |ERROR_CD |
+|$filekey      |Client Identifier is missing/invalid  |CS180137 |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180124'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                                   |ERROR_CD |
+|$filekey      |File must contain at least one SUP segment  |CS180124 |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180125'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                          |ERROR_CD |
+|$filekey      |File must contain one FTR segment  |CS180125 |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180126'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                          |ERROR_CD |
+|$filekey      |File must contain one CNT segment  |CS180126 |
+
+
+# 2nd file Covers CS180136,CS180137 (Invalid) and CS180122 Errors
+
+#!define D6_HDR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D7_CLI_Data {79|849febef-aaf6-4619-b8f9-63df3af99b62}
+!define D8_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D9_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D10_CNT_Data {1|1|2}
+
+!define supplementaldata2 {
+CLI|${D7_CLI_Data}
+SUP|$currentdatetime|${D8_SUP_Data}
+FTR|${D9_FTR_Data}
+CNT|${D10_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata2}|
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180122'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                             |ERROR_CD |
+|$filekey      |File must contain one HDR segment     |CS180122 |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = '$filekey' and error_cd = 'CS180136'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                         |ERROR_CD |
+|$filekey      |Client Name is missing/invalid    |CS180136 |
+
+
+# 3rd file Covers CS180123 Error
+
+!define D11_HDR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D13_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D14_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D15_CNT_Data {1|1|2}
+
+!define supplementaldata3 {HDR|${D11_HDR_Data}
+SUP|$currentdatetime|${D13_SUP_Data}
+FTR|${D14_FTR_Data}
+CNT|${D15_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata3}|
+
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+|Query:Db Table|Select file_key,error_msg,error_cd from FRMK_STG_ERRORS where file_key = $filekey and error_cd = 'CS180123'|${env}                                      |
+|FILE_KEY      |ERROR_MSG                             |ERROR_CD |
+|$filekey      |File must contain one CLI segment     |CS180123 |
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_SupplementalNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|

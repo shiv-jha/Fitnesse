@@ -1,0 +1,8 @@
+---
+Test
+---
+!define sup_threshold {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/threshold/dataintake-threshold.sh TST rqnsdev threshold}
+
+
+|script |File Support                                                         |
+|command|${sup_threshold}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}|

@@ -1,0 +1,122 @@
+---
+Test
+---
+!define fileYear {2017}
+!define fileType1 {Chartfinder_Companion_PAF}
+!define fileType2 {OP}
+!define fileType3 {COMM}
+!define filev {_Vooo}
+!define  HDR1 {ProjectID}
+!define  HDR2 {PAFID}
+!define  HDR3 {MemberId}
+!define  HDR4 {MemberHIC}
+!define  HDR5 {MemberFirstName}
+!define  HDR6 {MemberLastName}
+!define  HDR7 {MeasureID}
+!define  DTL1 {PAF_2017}
+!define  DTL2 {OP_3274033}
+!define  DTL3 {939117431}
+!define  DTL4 {003312058A}
+!define  DTL5 {Sh}
+!define  DTL6 {Kumar Jha}
+!define  DTL7 {101}
+!define  DTL1_1 {PAF_2017}
+!define  DTL1_2 {OP_3273839}
+!define  DTL1_3 {939117431}
+!define  DTL1_4 {003312058A}
+!define  DTL1_5 {Shiv}
+!define  DTL1_6 {Kumar Jha}
+!define  DTL1_7 {102}
+
+
+!define contents  {${HDR1}|${HDR2}|${HDR3}|${HDR4}|${HDR5}|${HDR6}|${HDR7}
+${DTL1}|${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}
+${DTL1_1}|${DTL1_2}|${DTL1_3}|${DTL1_4}|${DTL1_5}|${DTL1_6}|${DTL1_7}}
+
+!define env {TST}
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                                                                     |
+|$currentdatetime=|make id using Time                                 |yyyyMMddHHmmss                                               |
+|given the        |${fileType1}_${fileYear}_${fileType2}_${fileType3}_|paf companion file with content|${contents}|and type|${filev}|
+*!
+
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                      |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.txt'|For|1|And Retry|60|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PAF_CMPN|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                          |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename.txt'|For|4|And Retry|60|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.txt'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from PREP_PAF_CMPN where file_key = $filekey and MSR_ID=${DTL7}|${env}                                               |
+|FILE_KEY      |PROJ_ID                                                                 |PAF_ID |MBR_ID |HIC_MBR|MBR_FST_NM|MBR_LST_NM|MSR_ID |
+|$filekey      |PAF_${fileYear}                                                         |${DTL2}|${DTL3}|${DTL4}|${DTL5}   |${DTL6}   |${DTL7}|
+
+
+|Query:Db Table|select * from PREP_PAF_CMPN where file_key = $filekey and MSR_ID=${DTL1_7}|${env}                                                       |
+|FILE_KEY      |PROJ_ID                                                                   |PAF_ID   |MBR_ID   |HIC_MBR  |MBR_FST_NM|MBR_LST_NM|MSR_ID   |
+|$filekey      |PAF_${fileYear}                                                           |${DTL1_2}|${DTL1_3}|${DTL1_4}|${DTL1_5} |${DTL1_6} |${DTL1_7}|
+
+
+
+!|script     |DbTable                                                                           |
+|query       |select cli_id from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL2}' and rownum=1     |
+|$cli_id=    |valueofcolumn                             |CLI_ID                                 |
+|query       |select cli_sk from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL2}'  and rownum=1    |
+|$cli_sk=    |valueofcolumn                             |CLI_SK                                 |
+|query       |select clnt_guid from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL2}'  and rownum=1 |
+|$clnt_guid= |valueofcolumn                             |CLNT_GUID                              |
+|query       |select sub_cli_sk from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL2}'  and rownum=1|
+|$sub_cli_sk=|valueofcolumn                             |SUB_CLI_SK                             |
+
+
+!|script     |DbTable                                                                           |
+|query       |select cli_id from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1_2}' and rownum=1     |
+|$cli_id1=    |valueofcolumn                             |CLI_ID                                 |
+|query       |select cli_sk from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1_2}'  and rownum=1    |
+|$cli_sk1=    |valueofcolumn                             |CLI_SK                                 |
+|query       |select clnt_guid from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1_2}'  and rownum=1 |
+|$clnt_guid1= |valueofcolumn                             |CLNT_GUID                              |
+|query       |select sub_cli_sk from A_PAF_TRCK  where clnt_rqst_paf_id= '${DTL1_2}'  and rownum=1|
+|$sub_cli_sk1=|valueofcolumn                             |SUB_CLI_SK                             |
+
+|Query:Db Table|select * from A_PAF_CMPN where file_key = $filekey  and MSR_ID=${DTL7}|${env}                                                                                               |
+|CLI_ID        |CLI_SK                                                                |CLNT_GUID |SUB_CLI_SK |FILE_KEY|PROJ_ID        |PAF_ID |MBR_ID |HIC_MBR|MBR_FST_NM|MBR_LST_NM|MSR_ID |
+|$cli_id       |$cli_sk                                                               |$clnt_guid|$sub_cli_sk|$filekey|PAF_${fileYear}|${DTL2}|${DTL3}|${DTL4}|${DTL5}   |${DTL6}   |${DTL7}|
+
+
+|Query:Db Table|select * from A_PAF_CMPN where file_key = $filekey  and MSR_ID=${DTL1_7}|${env}                                                                                                       |
+|CLI_ID        |CLI_SK                                                                  |CLNT_GUID |SUB_CLI_SK |FILE_KEY|PROJ_ID        |PAF_ID   |MBR_ID   |HIC_MBR  |MBR_FST_NM|MBR_LST_NM|MSR_ID   |
+|$cli_id1       |$cli_sk1                                                                 |$clnt_guid1|$sub_cli_sk1|$filekey|PAF_${fileYear}|${DTL1_2}|${DTL1_3}|${DTL1_4}|${DTL1_5} |${DTL1_6} |${DTL1_7}|
+
+
+

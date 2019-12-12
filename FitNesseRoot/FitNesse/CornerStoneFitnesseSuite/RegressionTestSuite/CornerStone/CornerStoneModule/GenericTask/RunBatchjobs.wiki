@@ -1,0 +1,9 @@
+---
+Test
+---
+!define command {sh /cas/scripts/cornerstone/bin/batchclient.sh LAB_STG_TO_ODS TST &}
+!define newftphost {APSRT1029}
+
+
+|script |File Support                                                      |
+|command|${command}|In|${newftphost}|To|${ftpuser}|Location Zone|${ftppass}|

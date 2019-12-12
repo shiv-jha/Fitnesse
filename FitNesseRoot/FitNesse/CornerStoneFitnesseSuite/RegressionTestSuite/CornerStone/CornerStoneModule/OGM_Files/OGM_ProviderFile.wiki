@@ -1,0 +1,59 @@
+---
+Test
+---
+!define fileType {OGM_App_Config}
+!define marketSegment {MA}
+!define D1_HDR_Data {Market Segment|Client Code|Group Type|Provider Group ID|Data Provisioning|Deployed}
+!define D2_Data {WLP|TIN|942944896|Y|Y}
+!define D3_Data {WLP|TIN|475605950|Y|Y}
+!define D4_Data {WLP|TIN|742161737|Y|Y}
+!define D5_Data {WLP|TIN|061330992|Y|Y}
+!define D6_Data {WLP|TIN|454456939|Y|Y}
+!define D7_Data {WLP|TIN|061137531|Y|Y}
+!define D10_CNT_Data {T|8}
+!define env {TST}
+!define var = $currentdatetime
+
+!define ogmdata {
+${D1_HDR_Data}
+${marketSegment} | ${D2_Data} |
+${marketSegment} | ${D3_Data} |
+${marketSegment} | ${D4_Data} |
+${marketSegment} | ${D5_Data} |
+${marketSegment} | ${D6_Data} |
+${marketSegment} | ${D7_Data} |
+${D10_CNT_Data}}
+
+!| script | File Support |
+| $currentdatetime= | make id using Time | yyyyMMddHHmmss |
+| given the | ${fileType} | OGM file with content | ${ogm} |
+
+| script | File Support |
+| command | ${ogm_command} | In | ${pafhost} | To | ${pafuser} | Location | ${pafpass} | Zone |
+
+!***> 2. !style_green('''This step will wait till file moves to 104 status)'''
+
+| script |
+| check | query | select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT' | For | 104 | And Retry | 120 | times | true |
+
+*!
+!| script | DbTable |
+| query | select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT' |
+| $filekey= | valueofcolumn | FILE_KEY |
+
+| Query:Db Table | select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT' | ${env} |
+| FILE_KEY |
+| $filekey |
+
+!| script | DbTable |
+| query | SELECT * FROM OCT_APP_OGM_CONF WHERE FILE_KEY IN ($filekey) AND ROWNUM = 1 ORDER BY UPDT_DTTM DESC|
+| $MKT_SEG = | valueofcolumn | MKT_SEG |
+| $CLNT_CD = | valueofcolumn | CLNT_CD |
+| $PRV_GRP_ID_TYP = | valueofcolumn | PRV_GRP_ID_TYP |
+| $DATA_PROV_FLAG = | valueofcolumn | DATA_PROV_FLAG |
+| $DEP_FLAG = | valueofcolumn | DEP_FLAG |
+
+
+| Query:Db Table | SELECT * FROM OCT_APP_OGM_CONF WHERE FILE_KEY IN ($filekey) AND ROWNUM = 1 ORDER BY UPDT_DTTM DESC | ${env} |
+| MKT_SEG	| CLNT_CD	| PRV_GRP_ID_TYP	| DATA_PROV_FLAG	| DEP_FLAG	|
+| MA		| WLP		| TIN 				| Y 				| Y			|

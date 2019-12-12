@@ -1,0 +1,108 @@
+---
+Test
+---
+!define fileYear {2017}
+!define fileType1 {Chartfinder_PAF}
+!define fileType2 {OP}
+!define fileType3 {COMM}
+!define fileType {Chartfinder_PAF_2017_OP_MA}
+!define filev {_Voo}
+!define  MBR_ID {005M65478}
+!define  HIC_MBR {312422846A}
+!define  MBR_FST_NM {fst1}
+!define  MBR_MDL_NM {}
+!define  MBR_LST_NM {lst1}
+!define  MBR_GDR {M}
+!define  MBR_DOB {11/11/1943}
+!define  MBR_ST_CD {IN}
+!define  LOB_HLTH_PLN {Anthem Blue Cross and Blue Shield}
+!define  PAF_DEP_CHN_SRC {OP}
+!define  LOB {WLP}
+!define  SITE_ID {}
+!define  PLN_CD {R5941}
+!define  PBP {W015}
+!define  PROV_ID {WLP_02770465_GBD FACETS_WLP}
+!define  PROV_NPI {1821199431}
+!define  PNL_NBR {}
+!define  PROV_SPCL_CD {}
+!define  PROV_FST_NM   {Shiv}
+!define  PROV_LST_NM   {Jha}
+!define  PROV_ADR_LN_1_TXT {25651 COUNTY ROAD 20}
+!define  PROV_ADR_LN_2_TXT {NA}
+
+!define  PROV_CTY {ELKHART}
+!define  PROV_ST_CD {IN}
+!define  PROV_ZIP_CD {46517}
+!define  PROV_TEL_NUM_TXT   {5745221201}
+!define  PROV_FAX_NUM {}
+!define  PROV_CNTC {}
+!define  PROV_GRP_TYP   {TIN}
+!define  PROV_GRP_ID   {352002269}
+!define  PROV_GRP_NM   {CONCORD FAMILY MEDICINE}
+!define  PROJ_ID   {PAF_2017}
+!define  PROJ_NM   {Patient Assessment Form 2017}
+!define  MRKT_OUTRCH_REP   {HALEY BUCHANAN}
+!define  FORM_TYP   {PAF_IPAD}
+!define  RUN_DT   {08/25/2017}
+!define  PAF_PAY_AMT   {75}
+!define  INSITE_GRP_ID   {}
+!define  INSITE_GRP_NM   {}
+!define  CHRT_RVW_TYP   {HQPAF}
+!define  CLNT_RQST_PAF_ID   {OP_3273878}
+!define  DSTRB_METH_CD   {OP_MC}
+!define  PROV_OR_GRP_TIN   {352002269}
+!define  CHRT_VNDR_CD   {NA}
+!define  LVL_CD   {2}
+!define  TIMLY_PAY_BASE_RT   {75}
+!define  PAY_TBL_LT_PAY   {25}
+!define  ERLY_RTN_PAY   {75}
+!define  CMPL_PAY   {0}
+!define  SRC_OF_PAY   {C}
+!define  MBR_ID_KEY   {NA}
+
+
+!define contents  {}
+
+!define env {TST}
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                                                           |
+|$currentdatetime=|make id using Time                                 |yyyyMMddHHmmss                                     |
+|given the        |${fileType1}_${fileYear}_${fileType2}_${fileType3}_|paf file with content|${contents}|and type|${filev}|
+*!
+
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                                                |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.DAT' and f.file_typ='PAFTRCK'|For|1|And Retry|120|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PAF_TRCK|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename.DAT'|For|4|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+

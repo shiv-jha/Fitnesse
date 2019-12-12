@@ -1,0 +1,190 @@
+---
+Test
+---
+# Covers All Header and FTR level errors (CS180127 to CS180135,CS180138)
+!define fileType {SUP}
+!define subclisk {889}
+!define clientText {Cornerstone Commercial Test Client}
+!define clientUniqueText {3d148bfe-792f-445b-903a-92c96264f0b2}
+!define sup_command {sh /mapr/datalake/optum/optuminsight/rqnsdev/scripts/cornerstone/jars/supplemental/dataintake.sh TST rqnsdev supplemental}
+
+!define D1_HDR_Data {|||20191301||}
+!define D2_CLI_Data {${clientText}|${clientUniqueText}}
+!define D3_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|RXNORM|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D4_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D5_CNT_Data {1|1|2}
+!define env {tst}
+
+!define var = $currentdatetime
+
+!define supplementaldata1 {HDR|${D1_HDR_Data}
+CLI|${D2_CLI_Data}
+SUP|$currentdatetime|${D3_SUP_Data}
+FTR|${D4_FTR_Data}
+CNT|${D5_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata1}|
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180127' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180127                                                                                                           |$datfilename.DAT    |Expected literal value 'SUP' |
+
+                                                                                 |
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180129' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180129                                                                                                           |$datfilename.DAT    |Application Sender ID is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180131' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180131                                                                                                           |$datfilename.DAT    |Process from date is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180132' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180132                                                                                                           |$datfilename.DAT    |ProcessTo date Invalid |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180134' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180134                                                                                                           |$datfilename.DAT    |Timestamp is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180135' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180135                                                                                                           |$datfilename.DAT    |File Version Identifier is missing/invalid |
+
+
+!define D6_HDR_Data {SUPLEMENTAL|999|20190201|20190111|20191501010101|7.1}
+!define D7_CLI_Data {${clientText}|${clientUniqueText}}
+!define D8_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D9_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D10_CNT_Data {1|1|2}
+
+!define supplementaldata2 {HDR|${D6_HDR_Data}
+CLI|${D7_CLI_Data}
+SUP|$currentdatetime|${D8_SUP_Data}
+FTR|${D9_FTR_Data}
+CNT|${D10_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata2}|
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180127' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180127                                                                                                           |$datfilename.DAT    | Expected literal value 'SUP' |
+
+
+#!|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180128' and file_key = $filekey|${env}                                      |
+#!|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+#!|$filekey      |CS180128                                                                                                                      |HDR   |fileType			   |SUPLEMENTAL        |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180129' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180129                                                                                                           |$datfilename.DAT    |Application Sender ID is missing/invalid |
+
+
+#!|Query:Db Table|select FILE_KEY,ERR_CD,SEG_NM,ELMNT_NM,DATA_VAL_IN_ERR_TXT from dq_err_rslt where ERR_CD='CS180130' and file_key = $filekey|${env}                                      |
+#!|FILE_KEY      |ERR_CD                                                                                                                        |SEG_NM|ELMNT_NM                                 |DATA_VAL_IN_ERR_TXT|
+#!|$filekey      |CS180130                                                                                                                      |HDR   |senderId                                    |888        |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180133' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180133                                                                                                           |$datfilename.DAT    |Process From date is greater then process through date |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180134' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180134                                                                                                           |$datfilename.DAT    |Timestamp is missing/invalid |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180134' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180134                                                                                                           |$datfilename.DAT    |File Version Identifier is missing/invalid |
+
+
+!define D11_HDR_Data {${fileType}|${subclisk}|20191401|20191211|20190101010190|6.1}
+!define D12_CLI_Data {${clientText}|${clientUniqueText}}
+!define D13_SUP_Data {123|M448979|412|ACA|10|mg/dl|TEST2|20181127|PRV1235|1234|L5250|L5250|10|DF12|DF1297Z|S61211S|S61222S|L4397|CVX|12634047178|46388-5|J2|SU|spc|AD|user1|user2|user3}
+!define D14_FTR_Data {${fileType}|${subclisk}|20190101|20190111|$currentdatetime|6.1}
+!define D15_CNT_Data {1|1|2}
+
+!define supplementaldata3 {HDR|${D11_HDR_Data}
+CLI|${D12_CLI_Data}
+SUP|$currentdatetime|${D13_SUP_Data}
+FTR|${D14_FTR_Data}
+CNT|${D15_CNT_Data}}
+
+!|script          |File Support                                                  |
+|$currentdatetime=|make id using Time            |yyyyMMddHHmmss                 |
+|given the cdisup    |${fileType}_${subclisk}_CM|file with content|${supplementaldata3}|
+
+|script |File Support                                                      |
+|command|${sup_command}|In|${cdihost}|To|${cdiuser}|Location Zone|${cdipass}   |
+
+|script                                                                                                                           |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|15|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180131' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180131                                                                                                           |$datfilename.DAT    |Process from date is missing/invalid |
+
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180134' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180134                                                                                                           |$datfilename.DAT    |Timestamp is missing/invalid |
+
+|Query:Db Table|select FILE_KEY,ERROR_CD,FILE_NM,ERROR_MSG from frmk_stg_errors where ERROR_CD='CS180138' and file_key = $filekey |${env}               |
+|FILE_KEY      |ERROR_CD                                                                                                           |FILE_NM             |ERROR_MSG   |
+|$filekey      |CS180138                                                                                                           |$datfilename.DAT    |HDR segment does not match with FTR segment |
+
+!|script|RallyTestCaseStatusUpdates                                                                                         |
+|send   |CS_SupplementalNewFCDFile_PREPDB_BDpass_Persistence_Validation|Test|Pass|Result||To|This is Automated run from Rally|Rally|
+
+

@@ -1,0 +1,104 @@
+---
+Test
+---
+!define fileYear {2017}
+!define fileType1 {CF_Risk_PAF}
+!define fileType2 {OP}
+!define fileType3 {COMM}
+!define filev {_Voooo}
+!define  HDR1 {Request_ID}
+!define  HDR2 {Mem_ID}
+!define  HDR3 {Project_ID}
+!define  HDR4 {Prov_ID}
+!define  HDR5 {HIC_Num}
+!define  HDR6 {Suspect_Year}
+!define  HDR7 {Suspect_Flag}
+!define  HDR8 {Suspect_Reason}
+!define  HDR9 {Suspect_Detail}
+!define  HDR10 {Summary_Files}
+!define  HDR11 {PAF_HCC}
+!define  HDR12 {Model}
+!define  DTL1 {}
+!define  DTL2 {}
+!define  DTL3 {}
+!define  DTL4 {CVT_241418_IDXMED4_CVT}
+!define  DTL5 {}
+!define  DTL6 {2017}
+!define  DTL7 {CPC}
+!define  DTL8 {Previously Coded (Esophageal Reflux, Oth Disorderskk of Esop-Test)}
+!define  DTL9 {Esophageal Reflux, Oth Disorders of Esophagus}
+!define  DTL10 {}
+!define  DTL11 {068}
+!define  DTL12 {}
+
+
+
+!define contents  {${HDR1}|${HDR2}|${HDR3}|${HDR4}|${HDR5}|${HDR6}|${HDR7}|${HDR8}|${HDR9}|${HDR10}|${HDR11}|${HDR12}
+${DTL1}|${DTL2}|${DTL3}|${DTL4}|${DTL5}|${DTL6}|${DTL7}|${DTL8}|${DTL9}|${DTL10}|${DTL11}|${DTL12}
+TRL|1}
+!define env {TST}
+
+|Library                                                                                     |
+|!-com.optum.hde.fitnesse.fixtures.DatabaseSupport-!|${DW_DB_URL}|${DW_DB_USER}|${DW_DB_PASS}|
+
+
+
+!|script  |File Support               |
+|$current=|make id using Time|yyyyMMdd|
+
+!|script                  |File Support                 |
+|$currentdateverification=|make id using Time|yyyy-MM-dd|
+
+!*> 1. !style_green('''This step will FTP the file into inbound directory)
+!|script          |File Support                                                                                                     |
+|$currentdatetime=|make id using Time                                 |yyyyMMddHHmmss                                               |
+|given the        |${fileType1}_${fileYear}_${fileType2}_${fileType3}_|paf companion file with content|${contents}|and type|${filev}|
+*!
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                      |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='$datfilename.txt'|For|1|And Retry|60|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                               |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_RA_CMPN|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='$datfilename.txt'|For|105|And Retry|60|times|true|
+
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.txt'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS300001' and er.file_key= $filekey|${env}                                                                                       |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM  |ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION           |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |Request_ID|CS300001|        |REQUIRED     |Request_ID must not be blank|REJECT  |
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS300002' and er.file_key= $filekey|${env}                                                                                    |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION          |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |Mem_ID  |CS300002|        |REQUIRED     |Member_ID must not be blank|REJECT  |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS300003' and er.file_key= $filekey|${env}                                                                                       |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM  |ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION           |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |Project_ID|CS300003|        |REQUIRED     |Project_ID must not be blank|REJECT  |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS300004' and er.file_key= $filekey|${env}                                                                                     |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION           |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |HIC_Num |CS300004|        |REQUIRED     |HIC Member must not be blank|REJECT  |
+
+
+|Query:Db Table|select er.file_key as FILE_KEY, er.seg_nm as SEG_NM ,er.seg_rjct_ind as SEG_RJCT_IND,er.elmnt_nm as ELMNT_NM,er.err_cd as ERROR_CD,er.data_val_in_err_txt as DATA_VAL,er.data_val_typ as DATA_VAL_TYPE,CD.err_desc as ERROR_DESCRIPTION,cd.err_sev_typ SEV_TYPE FROM A_DQ_ERR_RSLT er,D_DQ_ERR cd where er.err_cd=cd.err_cd  and er.err_cd='CS300005' and er.file_key= $filekey|${env}                                                                                |
+|FILE_KEY      |SEG_NM                                                                                                                                                                                                                                                                                                                                                                         |SEG_RJCT_IND|ELMNT_NM|ERROR_CD|DATA_VAL|DATA_VAL_TYPE|ERROR_DESCRIPTION      |SEV_TYPE|
+|$filekey      |                                                                                                                                                                                                                                                                                                                                                                               |            |Model   |CS300005|        |REQUIRED     |Model must not be blank|REJECT  |
+
+

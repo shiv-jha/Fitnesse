@@ -1,0 +1,50 @@
+---
+Test
+---
+---
+Test
+---
+!define fileType {AET_MA}
+!define providerType {StateLevelConfig}
+!define programYear {2018}
+
+!define D1_HDR_Data {Program Year,State,Membership Type,Onshore_Offshore Coding,Onshore_Offshore PSC Activity,Date Added}
+!define D2_Data {${programYear},"AL",Hybrid Rendering,Offshore,Offshore,06/05/2018}
+
+!define env {TST}
+
+!define var = $currentdatetime
+
+!define stateConfig {${D1_HDR_Data}
+${D2_Data}}
+
+
+!|script          |File Support                                                         |
+|$currentdatetime=|make id using Time         |yyyyMMddHHmmss                           |
+|given the        |${fileType}_${providerType}|PAF PRVG file with content|${stateConfig}|
+
+
+|script |File Support                                                       |
+|command|${paf_command}|In|${pafhost}|To|${pafuser}|Location|${pafpass}|Zone|
+
+
+!*> 2. !style_green('''This step will wait till file moves to 104 status)
+|script                                                                                                                            |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where f.file_name ='$datfilename.DAT'|For|104|And Retry|120|times|true|
+*!
+
+!|script  |DbTable                                                             |
+|query    |select * from frmk_stg_fileinfo  where file_name ='$datfilename.DAT'|
+|$filekey=|valueofcolumn                       |FILE_KEY                       |
+
+
+|Query:Db Table|select * from FRMK_STG_FILEINFO where file_name = '$datfilename.DAT'|${env}|
+|FILE_KEY                                                                                  |
+|$filekey                                                                                  |
+
+
+
+|Query:Db Table|select * from oct_ioa_state_conf where file_key = $filekey|${env}                                             |
+|FILE_KEY      |PRG_YR                                                    |MBRSHP_TP_OVRD  |OFF_ON_CD|OFF_ON_PSC_CD|DATE_ADDED|
+|$filekey      |${programYear}                                            |Hybrid Rendering|Offshore |Offshore     |06/05/2018|
+

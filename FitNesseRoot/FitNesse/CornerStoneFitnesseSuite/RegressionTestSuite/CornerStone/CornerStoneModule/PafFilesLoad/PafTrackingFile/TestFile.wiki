@@ -1,0 +1,26 @@
+!define datfilename {TST}
+
+
+
+!|script     |EtlJobRunner                                                                                              |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_FILE_Q|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+
+|script                                                                                                                                                  |
+|check|query|select count(*) as count from DW_FILE_QUEUE f where  f.file_nm ='${datfilename}.DAT' and f.file_typ='PAFTRCK'|For|1|And Retry|120|times|true|
+
+
+
+!|script     |EtlJobRunner                                                                                                |
+|$job_status=|run Job With|${etl_ui_user}|User|${etl_ui_pwd}|Pass|PAY_PAY_PAF_TRCK|Job|APSRD5785|Stn|PAY_PAY_VAR_TST|Table|
+
+
+|script                                                                                                                             |
+|check|query|select process_sts_key from frmk_stg_fileinfo f where  f.file_name ='${datfilename}.DAT'|For|4|And Retry|120|times|true|
+
+
+!|script  |DbTable                                                               |
+|query    |select * from frmk_stg_fileinfo  where file_name ='${datfilename}.DAT'|
+|$filekey=|valueofcolumn                        |FILE_KEY                        |
+
